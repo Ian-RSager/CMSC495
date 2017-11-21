@@ -1,0 +1,1061 @@
+[
+  {
+    "itemName": "Burglar's Pack",
+    "cost":16,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "Includes a backpack, a bag of 1,000 ball bearings, 10 feet of string, a bell, 5 candles, a crowbar, a hammer, 10 pitons, a hooded lantern, 2 flasks of oil, 5 days rations, a tinderbox, and a waterskin. The pack also has 50 feet of hempen rope strapped to the side of it."
+  },
+  {
+    "itemName": "Diplomat's Pack",
+    "cost":39,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "Includes a chest, 2 csaes for maps and scrolls, a set of fine clothes, a bottle of ink, an ink pen, a lamp, 2 flasks of oil, 5 sheets of paper, a vial of perfume, sealing wax, and soap."
+  },
+  {
+    "itemName": "Dungeoneer's Pack",
+    "cost":12,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": ""
+  },
+  {
+    "itemName": "Entertainer's Pack",
+    "cost":40,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "Includes a backpack, a bedroll, 2 costumes, 5 candles, 5 days of rations, a waterskin, and a disguise kit."
+  },
+  {
+    "itemName": "Explorer's Pack",
+    "cost":10,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "Includes a backpack, a bedroll, a mess kit, a tinderbox, 10 torches, 10 days of rations, and a waterskin. The pack also has 50 feet of hempen rope strapped to the side of it."
+  },
+  {
+    "itemName": "Priest's Pack",
+    "cost":19,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "Includes a backpack, a blanket, 10 candles, a tinderbox, an alms box, 2 blocks of incense, a censer, vestments, 2 days of rations, and a waterskin."
+  },
+  {
+    "itemName": "Scholar's Pack)",
+    "cost":40,
+    "costCurrency": "Copper",
+    "weight": null,
+    "description": "Includes a backpack, a book of lore, a bottle of ink, an ink pen, 10 sheets of parchment, a little bag of sand and a small knife"
+  },
+
+  {
+    "itemName": "Abacus",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "-"
+  },
+  {
+    "itemName": "Acid (vial)",
+    "cost":25,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "***Acid.*** As an action, you can splash the contents of this vial onto a creature within 5 feet of you or throw the vial up to 20 feet, shattering it on impact. In either case, make a ranged attack against a creature or object, treating the acid as an improvised weapon. On a hit, the target takes 2d6 acid damage."
+  },
+  {
+    "itemName": "Alchemist's fire (flask)",
+    "cost":50,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "***Alchemist’s Fire.*** This sticky, adhesive fluid ignites when exposed to air. As an action, you can throw this flask up to 20 feet, shattering it on impact. Make a ranged attack against a creature or object, treating the alchemist&#39;s fire as an improvised weapon. On a hit, the target takes 1d4 fire damage at the start of each of its turns. A creature can end this damage by using its action to make a DC 10 Dexterity check to extinguish the flames."
+  },
+  {
+    "itemName": "Arrows (20)",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "20 arrows for 1 gp."
+  },
+  {
+    "itemName": "Blowgun needles (50)",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "50 needles for 1 gp."
+  },
+  {
+    "itemName": "Crossbow bolts (20))",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 1.5,
+    "description": "20 crossbow bolts for 1 gp."
+  },
+  {
+    "itemName": "Sling bullets (20)",
+    "cost":4,
+    "costCurrency": "Copper",
+    "weight": 1.5,
+    "description": "20 bullets for 4 cp."
+  },
+  {
+    "itemName": "Antitoxin (vial)",
+    "cost":50,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "***Antitoxin.*** A creature that drinks this vial of liquid gains advantage on saving throws against poison for 1 hour. It confers no benefit to undead or constructs."
+  },
+  {
+    "itemName": "Crystal",
+    "cost":10,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "***Arcane Focus.*** A special item—an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item— designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
+  },
+  {
+    "itemName": "Orb",
+    "cost":20,
+    "costCurrency": "Gold",
+    "weight": 3,
+    "description": "***Arcane Focus.*** A special item—an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item— designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
+  },
+  {
+    "itemName": "Rod",
+    "cost":10,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "***Arcane Focus.*** A special item—an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item— designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
+  },
+  {
+    "itemName": "Staff",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 4,
+    "description": "***Arcane Focus.*** A special item—an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item— designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
+  },
+  {
+    "itemName": "Wand",
+    "cost":10,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "***Arcane Focus.*** A special item—an orb, a crystal, a rod, a specially constructed staff, a wand-like length of wood, or some similar item— designed to channel the power of arcane spells. A sorcerer, warlock, or wizard can use such an item as a spellcasting focus."
+  },
+  {
+    "itemName": "Backpack",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 5,
+    "description": "-"
+  },
+  {
+    "itemName": "Ball bearings (bag of 1,000)",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "***Ball Bearings.*** As an action, you can spill these tiny metal balls from their pouch to cover a level, square area that is 10 feet on a side. A creature moving across the covered area must succeed on a DC 10 Dexterity saving throw or fall prone. A creature moving through the area at half speed doesn’t need to make the save."
+  },
+  {
+    "itemName": "Barrel",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 70,
+    "description": "-"
+  },
+  {
+    "itemName": "Basket",
+    "cost":4,
+    "costCurrency": "Silver",
+    "weight": 2,
+    "description": "-"
+  },
+  {
+    "itemName": "Bedroll",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 7,
+    "description": "-"
+  },
+  {
+    "itemName": "Bell",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Blanket",
+    "cost":5,
+    "costCurrency": "Silver",
+    "weight": 3,
+    "description": "-"
+  },
+  {
+    "itemName": "Block and Tackle",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 5,
+    "description": "***Block and Tackle.*** A set of pulleys with a cable threaded through them and a hook to attach to objects, a block and tackle allows you to hoist up to four times the weight you can normally lift."
+  },
+  {
+    "itemName": "Book",
+    "cost":25,
+    "costCurrency": "Gold",
+    "weight": 5,
+    "description": "***Book.*** A book might contain poetry, historical accounts, information pertaining to a particular field of lore, diagrams and notes on gnomish contraptions, or just about anything else that can be represented using text or pictures. A book of spells is a spellbook (described later in this section)."
+  },
+  {
+    "itemName": "Bottle, glass",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "-"
+  },
+  {
+    "itemName": "Bucket",
+    "cost":5,
+    "costCurrency": "Copper",
+    "weight": 2,
+    "description": "-"
+  },
+  {
+    "itemName": "Caltrops (bag of 20)",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "***Caltrops.*** As an action, you can spread a bag of caltrops to cover a square area that is 5 feet on a side. Any creature that enters the area must succeed on a DC 15 Dexterity saving throw or stop moving this turn and take 1 piercing damage. Taking this damage reduces the creature’s walking speed by 10 feet until the creature regains at least 1 hit point. A creature moving through the area at half speed doesn’t need to make the save."
+  },
+  {
+    "itemName": "Candle",
+    "cost":1,
+    "costCurrency": "Copper",
+    "weight": null,
+    "description": "***Candle.*** For 1 hour, a candle sheds bright light in a 5-foot radius and dim light for an additional 5 feet."
+  },
+  {
+    "itemName": "Case, crossbow bolt",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "***Case, Crossbow Bolt.*** This wooden case can hold up to twenty crossbow bolts."
+  },
+  {
+    "itemName": "Case, map or scroll",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "***Case, Map or Scroll.*** This cylindrical leather case can hold up to ten rolled-up sheets of paper or five rolled-up sheets of parchment."
+  },
+  {
+    "itemName": "Chain (10 feet)",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 10,
+    "description": "***Chain.*** A chain has 10 hit points. It can be burst with a successful DC 20 Strength check."
+  },
+  {
+    "itemName": "Chalk (1 piece)",
+    "cost":1,
+    "costCurrency": "Copper",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Chest",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 25,
+    "description": "-"
+  },
+  {
+    "itemName": "Climber’s kit",
+    "cost":25,
+    "costCurrency": "Gold",
+    "weight": 12,
+    "description": "***Climber’s Kit.*** A climber’s kit includes special pitons, boot tips, gloves, and a harness. You can use the climber’s kit as an action to anchor yourself; when you do, you can’t fall more than 25 feet from the point where you anchored yourself, and you can’t climb more than 25 feet away from that point without undoing the anchor."
+  },
+  {
+    "itemName": "Clothes, common",
+    "cost":5,
+    "costCurrency": "Silver",
+    "weight": 3,
+    "description": "-"
+  },
+  {
+    "itemName": "Clothes, costume",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 4,
+    "description": "-"
+  },
+  {
+    "itemName": "Clothes, fine",
+    "cost":15,
+    "costCurrency": "Gold",
+    "weight": 6,
+    "description": "-"
+  },
+  {
+    "itemName": "Clothes, traveler’s",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 4,
+    "description": "-"
+  },
+  {
+    "itemName": "Component pouch",
+    "cost":25,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "***Component Pouch.*** A component pouch is a small, watertight leather belt pouch that has compartments to hold all the material components and other special items you need to cast your spells, except for those components that have a specific cost (as indicated in a spell&#39;s description). ***Crowbar.*** Using a crowbar grants advantage to Strength checks where the crowbar’s leverage can be applied."
+  },
+  {
+    "itemName": "Crowbar",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 5,
+    "description": "-"
+  },
+  {
+    "itemName": "Sprig of mistletoe",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "***Druidic Focus.*** A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus."
+  },
+  {
+    "itemName": "Totem",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "***Druidic Focus.*** A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus."
+  },
+  {
+    "itemName": "Wooden staff",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 4,
+    "description": "***Druidic Focus.*** A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus."
+  },
+  {
+    "itemName": "Yew wand",
+    "cost":10,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "***Druidic Focus.*** A druidic focus might be a sprig of mistletoe or holly, a wand or scepter made of yew or another special wood, a staff drawn whole out of a living tree, or a totem object incorporating feathers, fur, bones, and teeth from sacred animals. A druid can use such an object as a spellcasting focus."
+  },
+  {
+    "itemName": "Fishing tackle",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 4,
+    "description": "***Fishing Tackle.*** This kit includes a wooden rod, silken line, corkwood bobbers, steel hooks, lead sinkers, velvet lures, and narrow netting. Healer’s Kit. This kit is a leather pouch containing bandages, salves, and splints. The kit has ten uses. As an action, you can expend one use of the kit to stabilize a creature that has 0 hit points, without needing to make a Wisdom (Medicine) check."
+  },
+  {
+    "itemName": "Flask or tankard",
+    "cost":2,
+    "costCurrency": "Copper",
+    "weight": 1,
+    "description": "-"
+  },
+  {
+    "itemName": "Grappling hook",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 4,
+    "description": "-"
+  },
+  {
+    "itemName": "Hammer",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 3,
+    "description": "-"
+  },
+  {
+    "itemName": "Hammer, sledge",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 10,
+    "description": "-"
+  },
+  {
+    "itemName": "Healer’s kit",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 3,
+    "description": "-"
+  },
+  {
+    "itemName": "Amulet",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "***Holy Symbol.*** A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. Appendix PH-B &quot;Fantasy-Historical Pantheons&quot; lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+  },
+  {
+    "itemName": "Emblem",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "***Holy Symbol.*** A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. Appendix PH-B &quot;Fantasy-Historical Pantheons&quot; lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+  },
+  {
+    "itemName": "Reliquary",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "***Holy Symbol.*** A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. Appendix PH-B &quot;Fantasy-Historical Pantheons&quot; lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+  },
+  {
+    "itemName": "Holy water (flask)",
+    "cost":25,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "***Holy Water.*** As an action, you can splash the contents of this flask onto a creature within 5 feet of you or throw it up to 20 feet, shattering it on impact. In either case, make a ranged attack against a target creature, treating the holy water as an improvised weapon. If the target is a fiend or undead, it takes 2d6 radiant damage. A cleric or paladin may create holy water by performing a special ritual. The ritual takes 1 hour to perform, uses 25 gp worth of powdered silver, and requires the caster to expend a 1st-level spell slot."
+  },
+  {
+    "itemName": "Hourglass",
+    "cost":25,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "-"
+  },
+  {
+    "itemName": "Hunting trap",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 25,
+    "description": "***Hunting Trap.*** When you use your action to set it, this trap forms a saw-toothed steel ring that snaps shut when a creature steps on a pressure plate in the center. The trap is affixed by a heavy chain to an immobile object, such as a tree or a spike driven into the ground. A creature that steps on the plate must succeed on a DC 13 Dexterity saving throw or take 1d4 piercing damage and stop moving. Thereafter, until the creature breaks free of the trap, its movement is limited by the length of the chain (typically 3 feet long). A creature can use its action to make a DC 13 Strength check, freeing itself or another creature within its reach on a success. Each failed check deals 1 piercing damage to the trapped creature."
+  },
+  {
+    "itemName": "Ink (1 ounce bottle)",
+    "cost":10,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Ink pen",
+    "cost":2,
+    "costCurrency": "Copper",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Jug or pitcher",
+    "cost":2,
+    "costCurrency": "Copper",
+    "weight": 4,
+    "description": "-"
+  },
+  {
+    "itemName": "Ladder (10-foot)",
+    "cost":1,
+    "costCurrency": "Silver",
+    "weight": 25,
+    "description": "-"
+  },
+  {
+    "itemName": "Lamp",
+    "cost":5,
+    "costCurrency": "Silver",
+    "weight": 1,
+    "description": "***Lamp.*** A lamp casts bright light in a 15-foot radius and dim light for an additional 30 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil. Lantern, Bullseye. A bullseye lantern casts bright light in a 60-foot cone and dim light for an additional 60 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil. Lantern, Hooded. A hooded lantern casts bright light in a 30-foot radius and dim light for an additional 30 feet. Once lit, it burns for 6 hours on a flask (1 pint) of oil. As an action, you can lower the hood, reducing the light to dim light in a 5-foot radius."
+  },
+  {
+    "itemName": "Lantern, bullseye",
+    "cost":10,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "-"
+  },
+  {
+    "itemName": "Lantern, hooded",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "-"
+  },
+  {
+    "itemName": "Lock",
+    "cost":10,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "***Lock.*** A key is provided with the lock. Without the key, a creature proficient with thieves’ tools can pick this lock with a successful DC 15 Dexterity check. Your GM may decide that better locks are available for higher prices."
+  },
+  {
+    "itemName": "Magnifying glass",
+    "cost":100,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "***Magnifying Glass.*** This lens allows a closer look at small objects. It is also useful as a substitute for flint and steel when starting fires. Lighting a fire with a magnifying glass requires light as bright as sunlight to focus, tinder to ignite, and about 5 minutes for the fire to ignite. A magnifying glass grants advantage on any ability check made to appraise or inspect an item that is small or highly detailed."
+  },
+  {
+    "itemName": "Manacles",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 6,
+    "description": "***Manacles.*** These metal restraints can bind a Small or Medium creature. Escaping the manacles requires a successful DC 20 Dexterity check. Breaking them requires a successful DC 20 Strength check. Each set of manacles comes with one key. Without the key, a creature proficient with thieves’ tools can pick the manacles’ lock with a successful DC 15 Dexterity check. Manacles have 15 hit points."
+  },
+  {
+    "itemName": "Mess kit",
+    "cost":2,
+    "costCurrency": "Silver",
+    "weight": 1,
+    "description": "***Mess Kit.*** This tin box contains a cup and simple cutlery. The box clamps together, and one side can be used as a cooking pan and the other as a plate or shallow bowl."
+  },
+  {
+    "itemName": "Mirror, steel",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 0.5,
+    "description": "-"
+  },
+  {
+    "itemName": "Oil (flask)",
+    "cost":1,
+    "costCurrency": "Silver",
+    "weight": 1,
+    "description": "***Oil.*** Oil usually comes in a clay flask that holds 1 pint. As an action, you can splash the oil in this flask onto a creature within 5 feet of you or throw it up to 20 feet, shattering it on impact. Make a ranged attack against a target creature or object, treating the oil as an improvised weapon. On a hit, the target is covered in oil. If the target takes any fire damage before the oil dries (after 1 minute), the target takes an additional 5 fire damage from the burning oil. You can also pour a flask of oil on the ground to cover a 5-foot-square area, provided that the surface is level. If lit, the oil burns for 2 rounds and deals 5 fire damage to any creature that enters the area or ends its turn in the area. A creature can take this damage only once per turn."
+  },
+  {
+    "itemName": "Paper (one sheet)",
+    "cost":2,
+    "costCurrency": "Silver",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Parchment (one sheet)",
+    "cost":1,
+    "costCurrency": "Silver",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Perfume (vial)",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Pick, miner’s",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 10,
+    "description": "-"
+  },
+  {
+    "itemName": "Piton",
+    "cost":5,
+    "costCurrency": "Copper",
+    "weight": 0.25,
+    "description": "-"
+  },
+  {
+    "itemName": "Poison, basic (vial)",
+    "cost":100,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "***Poison, Basic.*** You can use the poison in this vial to coat one slashing or piercing weapon or up to three pieces of ammunition. Applying the poison takes an action. A creature hit by the poisoned weapon or ammunition must make a DC 10 Constitution saving throw or take 1d4 poison damage. Once applied, the poison retains potency for 1 minute before drying."
+  },
+  {
+    "itemName": "Pole (10-foot)",
+    "cost":5,
+    "costCurrency": "Copper",
+    "weight": 7,
+    "description": "-"
+  },
+  {
+    "itemName": "Pot, iron",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 10,
+    "description": "-"
+  },
+  {
+    "itemName": "Potion of healing 5",
+    "cost":50,
+    "costCurrency": "Gold",
+    "weight": 0.5,
+    "description": "***Potion of Healing.*** A character who drinks the magical red fluid in this vial regains 2d4 + 2 hit points. Drinking or administering a potion takes an action."
+  },
+  {
+    "itemName": "Pouch",
+    "cost":5,
+    "costCurrency": "Silver",
+    "weight": 1,
+    "description": "***Pouch.*** A cloth or leather pouch can hold up to 20 sling bullets or 50 blowgun needles, among other things. A compartmentalized pouch for holding spell components is called a component pouch (described earlier in this section). Quiver. A quiver can hold up to 20 arrows. Ram, Portable. You can use a portable ram to break down doors. When doing so, you gain a +4 bonus on the Strength check. One other character can help you use the ram, giving you advantage on this check."
+  },
+  {
+    "itemName": "Quiver",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "-"
+  },
+  {
+    "itemName": "Ram, portable",
+    "cost":4,
+    "costCurrency": "Gold",
+    "weight": 35,
+    "description": "-"
+  },
+  {
+    "itemName": "Rations (1 day)",
+    "cost":5,
+    "costCurrency": "Silver",
+    "weight": 2,
+    "description": "***Rations.*** Rations consist of dry foods suitable for extended travel, including jerky, dried fruit, hardtack, and nuts."
+  },
+  {
+    "itemName": "Robes",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 4,
+    "description": "-"
+  },
+  {
+    "itemName": "Rope, hempen (50 feet)",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 10,
+    "description": "***Rope.*** Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check."
+  },
+  {
+    "itemName": "Rope, silk (50 feet)",
+    "cost":10,
+    "costCurrency": "Gold",
+    "weight": 5,
+    "description": "***Rope.*** Rope, whether made of hemp or silk, has 2 hit points and can be burst with a DC 17 Strength check."
+  },
+  {
+    "itemName": "Sack",
+    "cost":1,
+    "costCurrency": "Copper",
+    "weight": 0.5,
+    "description": "-"
+  },
+  {
+    "itemName": "Scale, merchant’s",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 3,
+    "description": "***Scale, Merchant’s.*** A scale includes a small balance, pans, and a suitable assortment of weights up to 2 pounds. With it, you can measure the exact weight of small objects, such as raw precious metals or trade goods, to help determine their worth."
+  },
+  {
+    "itemName": "Sealing wax",
+    "cost":5,
+    "costCurrency": "Silver",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Shovel",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 5,
+    "description": "-"
+  },
+  {
+    "itemName": "Signal whistle",
+    "cost":5,
+    "costCurrency": "Copper",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Signet ring",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Soap",
+    "cost":2,
+    "costCurrency": "Copper",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Spellbook",
+    "cost":50,
+    "costCurrency": "Gold",
+    "weight": 3,
+    "description": "***Spellbook.*** Essential for wizards, a spellbook is a leather-bound tome with 100 blank vellum pages suitable for recording spells."
+  },
+  {
+    "itemName": "Spikes, iron (10)",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 5,
+    "description": "-"
+  },
+  {
+    "itemName": "Spyglass",
+    "cost":1000,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "***Spyglass.*** Objects viewed through a spyglass are magnified to twice their size.",
+  },
+  {
+    "itemName": "Tent, two-person",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 20,
+    "description": "***Tent.*** A simple and portable canvas shelter, a tent sleeps two.",
+  },
+  {
+    "itemName": "Tinderbox",
+    "cost":5,
+    "costCurrency": "Silver",
+    "weight": 1,
+    "description": "***Tinderbox.*** This small container holds flint, fire steel, and tinder (usually dry cloth soaked in light oil) used to kindle a fire. Using it to light a torch—or anything else with abundant, exposed fuel—takes an action. Lighting any other fire takes 1 minute."
+  },
+  {
+    "itemName": "Torch",
+    "cost":1,
+    "costCurrency": "Copper",
+    "weight": 1,
+    "description": "***Torch.*** A torch burns for 1 hour, providing bright light in a 20-foot radius and dim light for an additional 20 feet. If you make a melee attack with a burning torch and hit, it deals 1 fire damage."
+  },
+  {
+    "itemName": "Vial",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Waterskin",
+    "cost":2,
+    "costCurrency": "Silver",
+    "weight": 5,
+    "description": "-"
+  },
+  {
+    "itemName": "Whetstone",
+    "cost":1,
+    "costCurrency": "Copper",
+    "weight": 1,
+    "description": "-"
+  },
+  {
+    "itemName": "Alchemist's supplies",
+    "cost":50,
+    "costCurrency": "Gold",
+    "weight": 8,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Brewer's supplies",
+    "cost":20,
+    "costCurrency": "Gold",
+    "weight": 9,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Caligrapher's supplies",
+    "cost":10,
+    "costCurrency": "Gold",
+    "weight": 5,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Carpenter's tools",
+    "cost":8,
+    "costCurrency": "Gold",
+    "weight": 6,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Cartagrapher's tools",
+    "cost":15,
+    "costCurrency": "Gold",
+    "weight": 6,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Cobbler's tools",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Cook's utensils",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 8,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Glassblower's tools",
+    "cost":30,
+    "costCurrency": "Gold",
+    "weight": 5,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Jeweler's tools",
+    "cost":25,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Leatherworker's tools",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 5,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Mason's tools",
+    "cost":10,
+    "costCurrency": "Gold",
+    "weight": 8,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Painter's supplies",
+    "cost":10,
+    "costCurrency": "Gold",
+    "weight": 5,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Potter's tools",
+    "cost":10,
+    "costCurrency": "Gold",
+    "weight": 3,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Smith's tools",
+    "cost":20,
+    "costCurrency": "Gold",
+    "weight": 8,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Tinker's tools",
+    "cost":50,
+    "costCurrency": "Gold",
+    "weight": 10,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Weaver's tools",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 5,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Woodcarver's tools",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 5,
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+  },
+  {
+    "itemName": "Disguise Kit",
+    "cost":25,
+    "costCurrency": "Gold",
+    "weight": 3,
+    "description": "Profeciency with this kit lets you add your proficiency bonus to any ability checks you make to create a visual disguise."
+  },
+  {
+    "itemName": "Forgery kit",
+    "cost":15,
+    "costCurrency": "Gold",
+    "weight": 5,
+    "description": "This small box conatins a variety of papers and parchments, pens and inks, seals and sealing wax, gold and silver leaf, and other supplies necessary to create convincing forgeries of physical documents. Profeciency with this kit lets you add your proficiency bonus to any ability checks you make to create a physical forgery of a document."
+  },
+  {
+    "itemName": "Dice set",
+    "cost":1,
+    "costCurrency": "Silver",
+    "weight": null,
+    "description": "Common gaming set with game pieces (dice and/or card deck). If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set. Each Type of gaming set requires a separate proficiency."
+  },
+  {
+    "itemName": "Dragonchess set",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 0.5,
+    "description": "Common gaming set with game pieces (dice and/or card deck). If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set. Each Type of gaming set requires a separate proficiency."
+  },
+  {
+    "itemName": "Playing card set",
+    "cost":5,
+    "costCurrency": "Silver",
+    "weight": null,
+    "description": "Common gaming set with game pieces (dice and/or card deck). If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set. Each Type of gaming set requires a separate proficiency."
+  },
+  {
+    "itemName": "Three-Dragon Ante set",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "Common gaming set with game pieces (dice and/or card deck). If you are proficient with a gaming set, you can add your proficiency bonus to ability checks you make to play a game with that set. Each Type of gaming set requires a separate proficiency."
+  },
+  {
+    "itemName": "Herbalism kit",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 3,
+    "description": "This kit contains a variety of instruments such as clippers, mortar and pestle, and pouches and vials used by herbalists to create remedies and potions. Proficiency with this kit lets you add your proficiency bonus to any ability checks you make to identify or apply herbs. Also, proficiency with this kit is required to create antitoxin and potions of healing."
+  },
+  {
+    "itemName": "Bagpipes",
+    "cost":30,
+    "costCurrency": "Gold",
+    "weight": 6,
+    "description": "Common musical instrument. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each Type of musical instrument requires a separate proficiency."
+  },
+  {
+    "itemName": "Drum",
+    "cost":6,
+    "costCurrency": "Gold",
+    "weight": 3,
+    "description": "Common musical instrument. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each Type of musical instrument requires a separate proficiency."
+  },
+  {
+    "itemName": "Dulcimer",
+    "cost":25,
+    "costCurrency": "Gold",
+    "weight": 10,
+    "description": "Common musical instrument. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each Type of musical instrument requires a separate proficiency."
+  },
+  {
+    "itemName": "Flute",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "Common musical instrument. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each Type of musical instrument requires a separate proficiency."
+  },
+  {
+    "itemName": "Lute",
+    "cost":35,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "Common musical instrument. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each Type of musical instrument requires a separate proficiency."
+  },
+  {
+    "itemName": "Lyre",
+    "cost":30,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "Common musical instrument. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each Type of musical instrument requires a separate proficiency."
+  },
+  {
+    "itemName": "Horn",
+    "cost":3,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "Common musical instrument. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each Type of musical instrument requires a separate proficiency."
+  },
+  {
+    "itemName": "Pan flute",
+    "cost":12,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "Common musical instrument. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each Type of musical instrument requires a separate proficiency."
+  },
+  {
+    "itemName": "Shawm",
+    "cost":2,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "Common musical instrument. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each Type of musical instrument requires a separate proficiency."
+  },
+  {
+    "itemName": "Viol",
+    "cost":30,
+    "costCurrency": "Gold",
+    "weight": 1,
+    "description": "Common musical instrument. If you have proficiency with a given musical instrument, you can add your proficiency bonus to any ability checks you make to play music with the instrument. A bard can use a musical instrument as a spellcasting focus. Each Type of musical instrument requires a separate proficiency."
+  },
+  {
+    "itemName": "Navigator's tools",
+    "cost":25,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "This set of instruments is used for navigation at sea. Proficiency with navigator's tools lets you chart a ship's course and follow navigataion charts. In addition, these tools allow you to add your proficiency bonus to any ability check you make to avoid getting lost at sea."
+  },
+  {
+    "itemName": "Poisoner's kit",
+    "cost":50,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "A poisoner's kit includes the vials, chemicals, and other equipment necessary for the creation of poisons. Proficiency with this kit lets you add your profeciency bonus to any ability checks you make to craft or use poisons."
+  },
+  {
+    "itemName": "Thieve's kit",
+    "cost":25,
+    "costCurrency": "Gold",
+    "weight": 2,
+    "description": "This set of tools includes a small file, a set of lock picks, a small mirror mounted on a metal handle, a set of narrow-bladed scissors, and a pair of pliers. Profeciency with these tools lets you add your proficiency bonus to any ability checks you make to disarm traps or open locks."
+  },
+  {
+    "itemName": "Three-Dragon Ante set",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Herbalism kit",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 3,
+    "description": "-"
+  },
+  {
+    "itemName": "Bagpipes",
+    "cost":30,
+    "costCurrency": "Gold",
+    "weight": 6,
+    "description": "-"
+  },
+  {
+    "itemName": "Dragonchess set",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": 0.5,
+    "description": "-"
+  },
+  {
+    "itemName": "Playing card set",
+    "cost":5,
+    "costCurrency": "Silver",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Three-Dragon Ante set",
+    "cost":1,
+    "costCurrency": "Gold",
+    "weight": null,
+    "description": "-"
+  },
+  {
+    "itemName": "Herbalism kit",
+    "cost":5,
+    "costCurrency": "Gold",
+    "weight": 3,
+    "description": "-"
+  },
+  {
+    "itemName": "Bagpipes",
+    "cost":30,
+    "costCurrency": "Gold",
+    "weight": 6,
+    "description": "-"
+  }
+
+]
