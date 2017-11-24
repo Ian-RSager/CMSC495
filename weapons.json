@@ -1,6 +1,7 @@
 [
   {
-    "itemName": "Club",
+    "id": "weaponClub",
+    "name": "Club",
     "cost":1,
     "costCurrency": "Silver",
     "damage": "1d4 bludgeoning",
@@ -11,7 +12,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -21,10 +21,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Dagger",
+    "id": "weaponDagger",
+    "name": "Dagger",
     "cost":2,
     "costCurrency": "Gold",
     "damage": "1d4 piercing",
@@ -35,7 +36,6 @@
     "isThrown": true,
     "normalRange": 20,
     "maximumRange": 60,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": true,
     "isHeavy": false,
@@ -45,10 +45,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Greatclub",
+    "id": "weaponGreatclub",
+    "name": "Greatclub",
     "cost":2,
     "costCurrency": "Silver",
     "damage": "1d8 bludgeoning",
@@ -59,7 +60,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -69,10 +69,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Handaxe",
+    "id": "weaponHandaxe",
+    "name": "Handaxe",
     "cost":5,
     "costCurrency": "Gold",
     "damage": "1d6 slashing",
@@ -83,7 +84,6 @@
     "isThrown": true,
     "normalRange": 20,
     "maximumRange": 60,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -93,10 +93,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Javelin",
+    "id": "weaponJavelin",
+    "name": "Javelin",
     "cost":5,
     "costCurrency": "Silver",
     "damage": "1d6 piercing",
@@ -107,7 +108,6 @@
     "isThrown": true,
     "normalRange": 30,
     "maximumRange": 120,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -117,10 +117,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Mace",
+    "id": "weaponMace",
+    "name": "Mace",
     "cost":5,
     "costCurrency": "Gold",
     "damage": "1d6 bludgeoning",
@@ -131,7 +132,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -141,10 +141,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Quarterstaff",
+    "id": "weaponQuarterstaff",
+    "name": "Quarterstaff",
     "cost":2,
     "costCurrency": "Silver",
     "damage": "1d6 bludgeoning",
@@ -155,7 +156,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -165,10 +165,11 @@
     "isSpecial": false,
     "versatileDamage": "1d8",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Sickle",
+    "id": "weaponSickle",
+    "name": "Sickle",
     "cost":1,
     "costCurrency": "Gold",
     "damage": "1d4 slashing",
@@ -179,7 +180,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -189,10 +189,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Spear",
+    "id": "weaponSpear",
+    "name": "Spear",
     "cost":1,
     "costCurrency": "Gold",
     "damage": "1d4 piercing",
@@ -203,7 +204,6 @@
     "isThrown": true,
     "normalRange": 20,
     "maximumRange": 60,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -213,10 +213,11 @@
     "isSpecial": false,
     "versatileDamage": "1d8",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Unarmed strike",
+    "id": "weaponUnarmedStrike",
+    "name": "Unarmed strike",
     "cost":null,
     "costCurrency": "",
     "damage": "1 bludgeoning",
@@ -227,7 +228,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -237,10 +237,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Crossbow, light",
+    "id": "weaponCrossbowLight",
+    "name": "Crossbow, light",
     "cost":25,
     "costCurrency": "Gold",
     "damage": "1d8 piercing",
@@ -251,7 +252,6 @@
     "isThrown": false,
     "normalRange": 80,
     "maximumRange": 320,
-    "ammunitionCount": null,
     "isLoading": true,
     "hasFinesse": false,
     "isHeavy": false,
@@ -261,10 +261,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A ranged weapon used to attack a target at a distance."
   },
   {
-    "itemName": "Dart",
+    "id": "weaponDart",
+    "name": "Dart",
     "cost":5,
     "costCurrency": "Copper",
     "damage": "1d4 piercing",
@@ -275,7 +276,6 @@
     "isThrown": true,
     "normalRange": 20,
     "maximumRange": 60,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": true,
     "isHeavy": false,
@@ -285,10 +285,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A ranged weapon used to attack a target at a distance."
   },
   {
-    "itemName": "Shortbow",
+    "id": "weaponShortbow",
+    "name": "Shortbow",
     "cost":25,
     "costCurrency": "Gold",
     "damage": "1d6 piercing",
@@ -299,7 +300,6 @@
     "isThrown": false,
     "normalRange": 80,
     "maximumRange": 320,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -309,10 +309,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A ranged weapon used to attack a target at a distance."
   },
   {
-    "itemName": "Sling",
+    "id": "weaponSling",
+    "name": "Sling",
     "cost":1,
     "costCurrency": "Silver",
     "damage": "1d4 bludgeoning",
@@ -323,7 +324,6 @@
     "isThrown": false,
     "normalRange": 30,
     "maximumRange": 120,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -333,10 +333,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A ranged weapon used to attack a target at a distance."
   },
   {
-    "itemName": "Battleaxe",
+    "id": "weaponBattleaxe",
+    "name": "Battleaxe",
     "cost":10,
     "costCurrency": "Gold",
     "damage": "1d8 slashing",
@@ -347,7 +348,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -357,10 +357,11 @@
     "isSpecial": false,
     "versatileDamage": "1d10",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Flail",
+    "id": "weaponFlail",
+    "name": "Flail",
     "cost":10,
     "costCurrency": "Gold",
     "damage": "1d8 bludgeoning",
@@ -371,7 +372,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -381,10 +381,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Glaive",
+    "id": "weaponGlaive",
+    "name": "Glaive",
     "cost":20,
     "costCurrency": "Gold",
     "damage": "1d10 slashing",
@@ -395,7 +396,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": true,
@@ -405,10 +405,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Greataxe",
+    "id": "weaponGreataxe",
+    "name": "Greataxe",
     "cost":30,
     "costCurrency": "Gold",
     "damage": "1d12 slashing",
@@ -419,7 +420,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": true,
@@ -429,10 +429,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Greatsword",
+    "id": "weaponGreatsword",
+    "name": "Greatsword",
     "cost":50,
     "costCurrency": "Gold",
     "damage": "2d6 slashing",
@@ -443,7 +444,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": true,
@@ -453,10 +453,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Halberd",
+    "id": "weaponHalberd",
+    "name": "Halberd",
     "cost":20,
     "costCurrency": "Gold",
     "damage": "1d10 slashing",
@@ -467,7 +468,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": true,
@@ -477,10 +477,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Lance",
+    "id": "weaponLance",
+    "name": "Lance",
     "cost":10,
     "costCurrency": "Gold",
     "damage": "1d12 piercing",
@@ -491,7 +492,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -500,11 +500,12 @@
     "isVersatile": false,
     "isSpecial": true,
     "versatileDamage": "",
-    "isSpecialDescription": "",
-    "description": ""
+    "isSpecialDescription": "You have disadvantage when you use a lance to attack a target within 5 feet of you. Also, a lance requires two hands to wield when you aren't mounted.",
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Longsword",
+    "id": "weaponLongsword",
+    "name": "Longsword",
     "cost":15,
     "costCurrency": "Gold",
     "damage": "1d8 slashing",
@@ -515,7 +516,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -525,10 +525,11 @@
     "isSpecial": false,
     "versatileDamage": "1d10",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Maul",
+    "id": "weaponMaul",
+    "name": "Maul",
     "cost":15,
     "costCurrency": "Gold",
     "damage": "2d6 bludgeoning",
@@ -539,7 +540,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": true,
@@ -549,10 +549,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Morningstar",
+    "id": "weaponMorningstar",
+    "name": "Morningstar",
     "cost":15,
     "costCurrency": "Gold",
     "damage": "1d8 piercing",
@@ -563,7 +564,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -573,10 +573,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Pike",
+    "id": "weaponPike",
+    "name": "Pike",
     "cost":5,
     "costCurrency": "Gold",
     "damage": "1d10 piercing",
@@ -587,7 +588,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": true,
@@ -597,10 +597,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Rapier",
+    "id": "weaponRapier",
+    "name": "Rapier",
     "cost":25,
     "costCurrency": "Gold",
     "damage": "1d8 piercing",
@@ -611,7 +612,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": true,
     "isHeavy": false,
@@ -621,10 +621,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Scimitar",
+    "id": "weaponScimitar",
+    "name": "Scimitar",
     "cost":25,
     "costCurrency": "Gold",
     "damage": "1d6 slashing",
@@ -635,7 +636,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": true,
     "isHeavy": false,
@@ -645,10 +645,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Shortsword",
+    "id": "weaponShortsword",
+    "name": "Shortsword",
     "cost":10,
     "costCurrency": "Gold",
     "damage": "1d6 piercing",
@@ -659,7 +660,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": true,
     "isHeavy": false,
@@ -669,10 +669,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Trident",
+    "id": "weaponTrident",
+    "name": "Trident",
     "cost":5,
     "costCurrency": "Gold",
     "damage": "1d86 piercing",
@@ -683,7 +684,6 @@
     "isThrown": true,
     "normalRange": 20,
     "maximumRange": 60,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -693,10 +693,11 @@
     "isSpecial": false,
     "versatileDamage": "1d8",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "War pick",
+    "id": "weaponWarPick",
+    "name": "War pick",
     "cost":5,
     "costCurrency": "Gold",
     "damage": "1d8 piercing",
@@ -707,7 +708,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -717,10 +717,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Warhammer",
+    "id": "weaponWarhammer",
+    "name": "Warhammer",
     "cost":15,
     "costCurrency": "Gold",
     "damage": "1d8 bludgeoning",
@@ -731,7 +732,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -741,10 +741,11 @@
     "isSpecial": false,
     "versatileDamage": "1d10",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Whip",
+    "id": "weaponWhip",
+    "name": "Whip",
     "cost":2,
     "costCurrency": "Gold",
     "damage": "1d4 slashing",
@@ -755,7 +756,6 @@
     "isThrown": false,
     "normalRange": null,
     "maximumRange": null,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": true,
     "isHeavy": false,
@@ -765,10 +765,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {
-    "itemName": "Blowgun",
+    "id": "weaponBlowgun",
+    "name": "Blowgun",
     "cost":10,
     "costCurrency": "Gold",
     "damage": "1 piercing",
@@ -779,7 +780,6 @@
     "isThrown": false,
     "normalRange": 25,
     "maximumRange": 100,
-    "ammunitionCount": null,
     "isLoading": true,
     "hasFinesse": false,
     "isHeavy": false,
@@ -789,10 +789,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A ranged weapon used to attack a target at a distance."
   },
   {
-    "itemName": "Crossbow, hand",
+    "id": "weaponCrossbowHand",
+    "name": "Crossbow, hand",
     "cost":75,
     "costCurrency": "Gold",
     "damage": "1d6 piercing",
@@ -803,7 +804,6 @@
     "isThrown": false,
     "normalRange": 30,
     "maximumRange": 120,
-    "ammunitionCount": null,
     "isLoading": true,
     "hasFinesse": false,
     "isHeavy": false,
@@ -813,10 +813,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A ranged weapon used to attack a target at a distance."
   },
   {
-    "itemName": "Crossbow, heavy",
+    "id": "weaponCrossbowHeavy",
+    "name": "Crossbow, heavy",
     "cost":50,
     "costCurrency": "Gold",
     "damage": "1d10 piercing",
@@ -827,7 +828,6 @@
     "isThrown": false,
     "normalRange": 100,
     "maximumRange": 400,
-    "ammunitionCount": null,
     "isLoading": true,
     "hasFinesse": false,
     "isHeavy": true,
@@ -837,10 +837,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A ranged weapon used to attack a target at a distance."
   },
   {
-    "itemName": "Longbow",
+    "id": "weaponLongbow",
+    "name": "Longbow",
     "cost":50,
     "costCurrency": "Gold",
     "damage": "1d8 piercing",
@@ -851,7 +852,6 @@
     "isThrown": false,
     "normalRange": 150,
     "maximumRange": 600,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": true,
@@ -861,10 +861,11 @@
     "isSpecial": false,
     "versatileDamage": "",
     "isSpecialDescription": "",
-    "description": ""
+    "description": "A ranged weapon used to attack a target at a distance."
   },
   {
-    "itemName": "net",
+    "id": "weaponNet",
+    "name": "Net",
     "cost":1,
     "costCurrency": "Gold",
     "damage": "",
@@ -875,7 +876,6 @@
     "isThrown": true,
     "normalRange": 5,
     "maximumRange": 15,
-    "ammunitionCount": null,
     "isLoading": false,
     "hasFinesse": false,
     "isHeavy": false,
@@ -884,8 +884,8 @@
     "isVersatile": false,
     "isSpecial": true,
     "versatileDamage": "",
-    "isSpecialDescription": "",
-    "description": ""
+    "isSpecialDescription": "A large or smaller creater hit by a net is restrained until it is freed. A net has no effect on creatures that are formless, or creatures that are Huge or larger. A creature can use its action to make a DC 10 Strength check, freeing itself or another creaure within its reach on a success. Dealing 5 slashing damage to the net (AC 10) also frees the creature without harming it, ending the effect and destroying the net. When you use an action, bonus action, or reaction to attack with a net, you can make only one attack regardless of the number of attacks you can normally make.",
+    "description": "A ranged weapon used to attack a target at a distance."
   }
 
 
