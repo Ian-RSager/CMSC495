@@ -1,10 +1,13 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -13,15 +16,23 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
@@ -40,21 +51,9 @@ public class CharacterCreator {
 	TransparentJPanel photoNamePanel;
 	JLabel photoLabel;
 	JLabel nameLabel;
-	TransparentJPanel classInfoPanel;
-	JLabel classField;
-	JLabel classLabel;
-	JLabel backgroundField;
-	JLabel backgroundLabel;
-	JLabel factionField;
-	JLabel factionLabel;
-	JLabel raceField;
-	JLabel raceLabel;
-	JLabel alignmentField;
-	JLabel alignmentLabel;
-	JLabel experiencePointsField;
-	JLabel experiencePointsLabel;
-
+	TransparentJPanel bioInfoPanel;
 	
+
 	//ability scores panel components
 	TransparentJPanel abilityScoresPanel;
 	AbilityScorePanel strengthPanel;
@@ -92,19 +91,30 @@ public class CharacterCreator {
 	JPanel speedPanel;
 	JPanel passivePerceptionPanel;
 	
-	//inventory and spells subpanel
-	TransparentJPanel inventoryAndSpellsSubPanel;
+	//features, equippedItems, langauges subpanel
+	TransparentJPanel featuresAndEquippedItemsSubPanel;
+	TransparentJPanel languagesPanel;
+	JLabel languagesLabel;
 	
 	//inventory subpanel components
-	TransparentJPanel inventoryPanel;
+	TransparentJPanel featuresPanel;
+	TransparentJPanel featuresDisplayPanel;
+	TransparentJPanel featuresButtonsPanel;
+	JButton addFeatureButton;
+	JButton removeFeatureButton;
 	
 	//spells subpanel components
+	TransparentJPanel equippedItemsPanel;
+	TransparentJPanel equippedItemsDisplayPanel;
+	TransparentJPanel equippedItemsButtonsPanel;
+	JButton equipItemButton;
+	JButton unequipItemButton;
+	
+	//TODO add inventoryAndSpellsPanel components
+	TransparentJPanel inventoryAndSpellsPanel;
+	TransparentJPanel inventoryPanel;
 	TransparentJPanel spellsPanel;
 	
-	
-	//TODO add treasure and features components
-	TransparentJPanel treasurePanel;
-	TransparentJPanel featuresPanel;
 	
 	//top menu bar components
 	JMenuBar menuBar;
@@ -155,11 +165,10 @@ public class CharacterCreator {
 		background.add(tabbedPane);
 		mainPanel = new TransparentJPanel();
 		mainPanel.setBackground(new Color(255, 236, 186));
-		treasurePanel = new TransparentJPanel();
-		featuresPanel = new TransparentJPanel();
-		tabbedPane.add("MAIN", mainPanel);
-		tabbedPane.add("TREASURE", treasurePanel);
-		tabbedPane.add("FEATURES", featuresPanel);
+		inventoryAndSpellsPanel = new TransparentJPanel();
+		tabbedPane.add("Main", mainPanel);
+		tabbedPane.add("Inventory and Spells", inventoryAndSpellsPanel);
+		
 		
 		
 		
@@ -192,54 +201,29 @@ public class CharacterCreator {
 		nameLabel = new JLabel("Bob", SwingConstants.CENTER);
 		nameLabel.setFont(new Font(null, Font.BOLD, 20));
 		photoNamePanel.add(nameLabel, BorderLayout.SOUTH);
+		photoNamePanel.setBorder(new EmptyBorder(0, 13, 0, 7));
 		
 		// Class, level, background, faction, race, alignment, XP
-		classInfoPanel = new TransparentJPanel();
-		Border classInfoPanelBorder = BorderFactory.createLineBorder(Color.BLACK, 1);
-		Border classInfoPanelMargin = new EmptyBorder(0, 10, 0, 0);
-		classInfoPanel.setBorder(BorderFactory.createCompoundBorder(classInfoPanelMargin, classInfoPanelBorder));
-		classInfoPanel.setLayout(new GridLayout(0, 3));
-		topMainPanel.add(classInfoPanel, BorderLayout.CENTER);
-		//row 1
-		classField = new JLabel("Ranger 1");
-		classInfoPanel.add(classField);
-		backgroundField = new JLabel("Outlander");
-		classInfoPanel.add(backgroundField);
-		factionField = new JLabel("Emerald Enclave");
-		classInfoPanel.add(factionField);
-		//row 2
-		classLabel = new JLabel("Class and Level");
-		classInfoPanel.add(classLabel);
-		backgroundLabel = new JLabel("Background");
-		classInfoPanel.add(backgroundLabel);
-		factionLabel = new JLabel("Faction");
-		classInfoPanel.add(factionLabel);
-		//row 3
-		raceField = new JLabel("Wood Elf");
-		classInfoPanel.add(raceField);
-		alignmentField = new JLabel("Lawful Good");
-		classInfoPanel.add(alignmentField);
-		experiencePointsField = new JLabel("0");
-		classInfoPanel.add(experiencePointsField);
-		//row 4
-		raceLabel = new JLabel("Race");
-		classInfoPanel.add(raceLabel);
-		alignmentLabel = new JLabel("Alignment");
-		classInfoPanel.add(alignmentLabel);
-		experiencePointsLabel = new JLabel("Experience Points");
-		classInfoPanel.add(experiencePointsLabel);
-		//formatting
-		JLabel[] classInfoLabels = {classLabel, backgroundLabel, factionLabel, raceLabel,
-				alignmentLabel, experiencePointsLabel};
-		JLabel[] classInfoFields = {classField, backgroundField, 
-				factionField, raceField, alignmentField, experiencePointsField};
-		for (JLabel label: classInfoLabels) {
-			label.setHorizontalAlignment(SwingConstants.CENTER);
-		}
-		for (JLabel label: classInfoFields) {
-			label.setHorizontalAlignment(SwingConstants.CENTER);
-			label.setFont(new Font(null, Font.BOLD, 20));
-		}
+		bioInfoPanel = new TransparentJPanel();
+		Border bioInfoPanelBorder = BorderFactory.createLineBorder(Color.BLACK, 1);
+		Border bioInfoPanelMargin = new EmptyBorder(0, 10, 0, 0);
+		bioInfoPanel.setBorder(BorderFactory.createCompoundBorder(bioInfoPanelMargin, bioInfoPanelBorder));
+		bioInfoPanel.setLayout(new GridLayout(0, 3));
+		topMainPanel.add(bioInfoPanel, BorderLayout.CENTER);
+		
+		BasicInfoPanel classInfoPanel = new BasicInfoPanel("Class and Level", "Ranger 1");
+		bioInfoPanel.add(classInfoPanel);
+		BasicInfoPanel backgroundInfoPanel = new BasicInfoPanel("Background", "Outlander");
+		bioInfoPanel.add(backgroundInfoPanel);
+		BasicInfoPanel factionInfoPanel = new BasicInfoPanel("Faction", "Emerald Enclave");
+		bioInfoPanel.add(factionInfoPanel);
+		BasicInfoPanel raceInfoPanel = new BasicInfoPanel("Race", "Wood Elf");
+		bioInfoPanel.add(raceInfoPanel);
+		BasicInfoPanel alignmentInfoPanel = new BasicInfoPanel("Alignment", "Lawful Good");
+		bioInfoPanel.add(alignmentInfoPanel);
+		BasicInfoPanel experiencePointsInfoPanel = new BasicInfoPanel("Experience Points", "777");
+		bioInfoPanel.add(experiencePointsInfoPanel);
+
 		
 		// Ability scores panel
 		abilityScoresPanel = new TransparentJPanel();
@@ -303,7 +287,7 @@ public class CharacterCreator {
 		
 		// Skills panel
 		for(String skill: skills) {
-			skillsPanel.add(new JCheckBox(skill + "    "));
+			skillsPanel.add(new JCheckBox("+3 " + skill + "    "));
 		}
 		
 		// Stats panel
@@ -323,68 +307,122 @@ public class CharacterCreator {
 		passivePerceptionPanel = new StatsPanel("Passive Perception");
 		statsPanel.add(passivePerceptionPanel);
 		
-		// inventory and spells subpanel
-		inventoryAndSpellsSubPanel = new TransparentJPanel();
-		centerSubPanel.add(inventoryAndSpellsSubPanel, BorderLayout.CENTER);
-		inventoryAndSpellsSubPanel.setLayout(new GridLayout(1, 0));
+		// features and equipped items subpanel
+		featuresAndEquippedItemsSubPanel = new TransparentJPanel();
+		centerSubPanel.add(featuresAndEquippedItemsSubPanel, BorderLayout.CENTER);
+		featuresAndEquippedItemsSubPanel.setLayout(new GridLayout(1, 0));
+		
+		featuresPanel = new TransparentJPanel();
+		featuresPanel.setLayout(new BorderLayout());
+		equippedItemsPanel = new TransparentJPanel();
+		equippedItemsPanel.setLayout(new BorderLayout());
+		featuresAndEquippedItemsSubPanel.add(featuresPanel);
+		featuresAndEquippedItemsSubPanel.add(equippedItemsPanel);
+		
+		//features panel buttons
+		featuresButtonsPanel = new TransparentJPanel();
+		featuresButtonsPanel.setLayout(new GridLayout(1,0));
+		addFeatureButton = new JButton("Add Feature");
+		removeFeatureButton = new JButton("Remove Feature");
+		featuresButtonsPanel.add(addFeatureButton);
+		featuresButtonsPanel.add(removeFeatureButton);
+		featuresPanel.add(featuresButtonsPanel, BorderLayout.SOUTH);
+		
+		//equipped items panel buttons
+		equippedItemsButtonsPanel = new TransparentJPanel();
+		equippedItemsButtonsPanel.setLayout(new GridLayout(1,0));
+		equipItemButton = new JButton("Equip Item");
+		unequipItemButton = new JButton("Unequip Item");
+		equippedItemsButtonsPanel.add(equipItemButton);
+		equippedItemsButtonsPanel.add(unequipItemButton);
+		equippedItemsPanel.add(equippedItemsButtonsPanel, BorderLayout.SOUTH);
+		
+		
+		
+		// features display panel
+		featuresDisplayPanel = new TransparentJPanel();
+		JScrollPane featuresScrollPane = new JScrollPane(featuresDisplayPanel);
+		featuresPanel.add(featuresScrollPane, BorderLayout.CENTER);
+		featuresScrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
+				Color.BLACK, 1, true), "Features"));
+		featuresScrollPane.setOpaque(false);
+		featuresScrollPane.getViewport().setOpaque(false);
+		featuresScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		// equippedItems display panel
+		equippedItemsDisplayPanel = new TransparentJPanel();
+		//equippedItemsDisplayPanel.setLayout(new GridLayout(0,1));
+		JScrollPane equippedItemsScrollPane = new JScrollPane(equippedItemsDisplayPanel);
+		equippedItemsPanel.add(equippedItemsScrollPane, BorderLayout.CENTER);
+		equippedItemsScrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
+				Color.BLACK, 1, true), "Equipped Items"));
+		equippedItemsScrollPane.setOpaque(false);
+		equippedItemsScrollPane.getViewport().setOpaque(false);
+		equippedItemsScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		// equipped items combo boxes
+		JLabel wornArmorLabel = new JLabel("Worn Armor");
+		equippedItemsDisplayPanel.add(wornArmorLabel);
+		String[] wornArmorOptions = { "None", "Chain Mail", "Hide" };
+		JComboBox wornArmorBox = new JComboBox(wornArmorOptions);
+		equippedItemsDisplayPanel.add(wornArmorBox);
+		
+//		JLabel wieldedShieldLabel = new JLabel("Wielded Shield");
+//		equippedItemsDisplayPanel.add(wieldedShieldLabel);
+//		String[] wieldedShieldOptions = { "None", "Shield" };
+//		JComboBox wieldedShieldBox = new JComboBox(wieldedShieldOptions);
+//		equippedItemsDisplayPanel.add(wieldedShieldBox);
+		
+		// languages panel
+		languagesPanel = new TransparentJPanel();
+		equippedItemsPanel.add(languagesPanel, BorderLayout.NORTH); // add languages above equipment
+		languagesPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
+				Color.BLACK, 1, true), "Languages"));
+		languagesLabel = new JLabel("Dwarvish, Common, Giant, Halfling");
+		languagesPanel.add(languagesLabel);
+		
+		// inventory and spells page
+		inventoryAndSpellsPanel.setLayout(new GridLayout(1,0));
 		inventoryPanel = new TransparentJPanel();
+		inventoryAndSpellsPanel.add(inventoryPanel);
 		spellsPanel = new TransparentJPanel();
+		inventoryAndSpellsPanel.add(spellsPanel);
 		
-		
-		//Inventory panel
-		JScrollPane inventoryScrollPane = new JScrollPane(inventoryPanel);
-		inventoryAndSpellsSubPanel.add(inventoryScrollPane);
-		inventoryScrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
+		//inventory panel
+		inventoryPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
 				Color.BLACK, 1, true), "Inventory"));
-		inventoryScrollPane.setOpaque(false);
-		inventoryScrollPane.getViewport().setOpaque(false);
-		inventoryScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		//spells panel
-		JScrollPane spellsScrollPane = new JScrollPane(inventoryPanel);
-		inventoryAndSpellsSubPanel.add(spellsScrollPane);
-		spellsScrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
+		spellsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
 				Color.BLACK, 1, true), "Spells"));
-		spellsScrollPane.setOpaque(false);
-		spellsScrollPane.getViewport().setOpaque(false);
-		spellsScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		
-		
 	}
 	
 	private void display() {
 		frame.setVisible(true);
 	}
 	
-	private static void setUIFont(javax.swing.plaf.FontUIResource f)
-	{
-	    java.util.Enumeration<Object> keys = UIManager.getDefaults().keys();
-	    while (keys.hasMoreElements())
-	    {
-	        Object key = keys.nextElement();
-	        Object value = UIManager.get(key);
-	        if (value instanceof javax.swing.plaf.FontUIResource)
-	        {
-	            UIManager.put(key, f);
-	        }
-	    }
-	}
 
 	public static void main(String[] args) {
-	
-//		File font_file = new File("PTC55F.ttf");
-//		Font sizedFont = new Font("Courier", Font.PLAIN, 12);
-//		try {
-//			Font font = Font.createFont(Font.TRUETYPE_FONT, font_file);
-//			sizedFont = font.deriveFont(12f);
-//		} catch (FontFormatException | IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
+		Object[] options = {"Create New Character", "Load Character"};
+//		int selection = JOptionPane.showOptionDialog(null, "Welcome to Character Creator!\nSelect an Option:",
+//				"Character Creator", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+//				null,     //do not use a custom Icon
+//				options,  //the titles of buttons
+//				null); //default button title
+//		switch(selection) {
+//		case 0: 
+//			// TODO create newCharacter object
+//
+//			break;
+//		case 1:
+//			CharacterCreator c = new CharacterCreator();
+//			c.display();
+//			break;
+//		case JOptionPane.CLOSED_OPTION:
+//			System.exit(0);
 //		}
-//		setUIFont (new javax.swing.plaf.FontUIResource(sizedFont));
 		CharacterCreator c = new CharacterCreator();
 		c.display();
-
+		
 	}
 
 }
@@ -392,33 +430,89 @@ public class CharacterCreator {
 class TransparentJPanel extends JPanel {
     {
         setOpaque(false);
+        setFocusable(true);
     }
 }
 
+class BasicInfoPanel extends JPanel {
+	JLabel basicInfoNameLabel;
+	JTextField basicInfoValue;
+	
+	public BasicInfoPanel(String inName, String inValue) {
+		setOpaque(false);
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		
+		basicInfoValue = new JTextField(inValue);
+		basicInfoValue.setOpaque(false);
+		basicInfoValue.setHorizontalAlignment(JTextField.CENTER);
+		basicInfoValue.setFont(new Font(null, Font.BOLD, 20));
+		basicInfoValue.setBackground(new Color(0,0,0,0));
+		basicInfoValue.setBorder(new EmptyBorder(0,0,0,0));
+		add(basicInfoValue);
+		
+		basicInfoNameLabel = new JLabel(inName);
+		basicInfoNameLabel.setOpaque(false);
+		basicInfoNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		basicInfoNameLabel.setBorder(new EmptyBorder(0,0,8,0));
+		add(basicInfoNameLabel);
+		
+		basicInfoValue.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				basicInfoValue.setBackground(new Color(255, 255, 255));
+				basicInfoValue.setOpaque(true);
+				basicInfoValue.repaint();
+				
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				basicInfoValue.setBackground(new Color(0, 0, 0));
+				basicInfoValue.setOpaque(false);
+				basicInfoValue.repaint();
+			}			
+		});
+				
+	}
+}
+
+
 class AbilityScorePanel extends JPanel {
 	JLabel abilityScoreNameLabel;
-	JLabel abilityScoreLabel;
+	JSpinner spinner;
+	//JLabel abilityScoreLabel;
 	JLabel modifierLabel;
 	
-	public AbilityScorePanel(String inAbility)
-	{
+	public AbilityScorePanel(String inAbility) {
 		setOpaque(false);
-		Border margin = new EmptyBorder(5,5,5,5);
+		Border margin = new EmptyBorder(5,5,0,5);
 		
 		Border padding = new EmptyBorder(5,5,5,5);
 		Border border = BorderFactory.createBevelBorder(BevelBorder.RAISED);
 		Border inside = new CompoundBorder(border, padding);
 		setBorder(new CompoundBorder(margin, inside));
 		setLayout(new BorderLayout());
+		
+		SpinnerModel model = new SpinnerNumberModel(0, 0, 99, 1);
+		spinner = new JSpinner(model);
+		spinner.setFont(new Font(null, Font.BOLD, 24));
+		spinner.setOpaque(false);
+		spinner.getEditor().setOpaque(false);	
+		JFormattedTextField textField = ((JSpinner.DefaultEditor)spinner.getEditor()).getTextField();
+		textField.setBackground(new Color(0,0,0,0));
+		textField.setColumns(2);
+		textField.setBorder(new EmptyBorder(0,0,0,5));
+		textField.setEditable(false);
+		
 		abilityScoreNameLabel = new JLabel(inAbility, SwingConstants.CENTER);
-		String fillerScore = String.valueOf(Math.round(Math.random()*20));
-		abilityScoreLabel = new JLabel(fillerScore, SwingConstants.CENTER);
-		abilityScoreLabel.setFont(new Font(null, Font.BOLD, 25));
 		String fillerModifier = String.valueOf(Math.round(Math.random()*10 - 5));
-		modifierLabel = new JLabel(fillerModifier, SwingConstants.RIGHT);
+		if (Integer.valueOf(fillerModifier) > 0) fillerModifier = "+" + fillerModifier;
+		modifierLabel = new JLabel((" (" + fillerModifier + ")"), SwingConstants.RIGHT);
+		modifierLabel.setFont(new Font(null, Font.ITALIC, 11));
 		add(abilityScoreNameLabel, BorderLayout.NORTH);
-		add(abilityScoreLabel, BorderLayout.CENTER);
-		add(modifierLabel, BorderLayout.SOUTH);		
+		JPanel helperPanel = new TransparentJPanel();
+		helperPanel.add(spinner);
+		add(helperPanel, BorderLayout.CENTER);
+		helperPanel.add(modifierLabel);		
 	}
 }
 
@@ -436,12 +530,28 @@ class StatsPanel extends JPanel {
 		Border inside = new CompoundBorder(border, padding);
 		setBorder(new CompoundBorder(margin, inside));
 		setLayout(new BorderLayout());
+		
+		SpinnerModel model = new SpinnerNumberModel(0, 0, 99, 1);
+		JSpinner spinner = new JSpinner(model);
+		spinner.setFont(new Font(null, Font.BOLD, 20));
+		spinner.setOpaque(false);
+		spinner.getEditor().setOpaque(false);		
+		JFormattedTextField textField = ((JSpinner.DefaultEditor)spinner.getEditor()).getTextField();
+		textField.setBackground(new Color(0,0,0,0));
+		textField.setColumns(2);
+		textField.setBorder(new EmptyBorder(0,0,0,5));
+		textField.setEditable(false);
+		
 		statNameLabel = new JLabel(inStat, SwingConstants.CENTER);
 		String fillerNumber = String.valueOf(Math.round(Math.random()*100));
 		statNumberLabel = new JLabel(fillerNumber, SwingConstants.CENTER);
 		statNumberLabel.setFont(new Font(null, Font.BOLD, 20));
 		add(statNameLabel, BorderLayout.NORTH);
-		add(statNumberLabel, BorderLayout.CENTER);
-
+		
+		JPanel helperPanel = new TransparentJPanel();
+		helperPanel.add(spinner);
+		add(helperPanel, BorderLayout.CENTER);
 	}
 }
+
+
