@@ -6,7 +6,7 @@
     "costCurrency": "Gold",
     "weight": 0,
     "armorType": "light",
-    "armorClass": 0,
+    "armorClass": 10,
     "maxDexterityBonus": 99,
     "donTime": "Immediate",
     "doffTime": "Immediate",
