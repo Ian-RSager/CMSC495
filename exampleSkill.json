@@ -1,0 +1,127 @@
+[
+  {
+    "id": "skillAcrobatics",
+    "name": "Acrobatics",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillAnimalHandling",
+    "name": "Animal Handling",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillArcana",
+    "name": "Arcana",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillAthletics",
+    "name": "Athletics",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillDeception",
+    "name": "Deception",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillHistory",
+    "name": "History",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillInsight",
+    "name": "Insight",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillIntimidation",
+    "name": "Intimidation",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillInvestigation",
+    "name": "Investigation",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillMedicine",
+    "name": "Medicine",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillNature",
+    "name": "Nature",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillPerception",
+    "name": "Perception",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillPerformance",
+    "name": "Performance",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillPersuasion",
+    "name": "Persuasion",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillReligion",
+    "name": "Religion",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillSleightOfHand",
+    "name": "Sleight of Hand",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  },
+  {
+    "id": "skillSurvival",
+    "name": "Survival",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]  }
+  {
+    "id": "skillStealth",
+    "name": "Stealth",
+    "description": "",
+    "classes":[ "",""],
+    "tags":["","",""]
+  }
+]
