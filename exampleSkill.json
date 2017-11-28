@@ -3,125 +3,126 @@
     "id": "skillAcrobatics",
     "name": "Acrobatics",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":[ "Bard","Fighter","Monk","Rogue"],
+    "tags":["Dex","Dexterity","Bard","Fighter","Monk","Rogue"]
   },
   {
     "id": "skillAnimalHandling",
     "name": "Animal Handling",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Barbarian","Bard","Druid","Fighter","Ranger"],
+    "tags":["Wis","Wisdom","Bard","Fighter","Monk","Rogue"]
   },
   {
     "id": "skillArcana",
     "name": "Arcana",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Bard","Druid","Sorcerer","Warlock","Wizard"],
+    "tags":["Int","Intelligence","Bard","Druid","Sorcerer","Warlock","Wizard"]
   },
   {
     "id": "skillAthletics",
     "name": "Athletics",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Barbarian","Bard","Fighter","Monk","Paladin","Ranger","Rogue"],
+    "tags":["Str","Strength","Barbarian","Bard","Fighter","Monk","Paladin","Ranger","Rogue"]
   },
   {
     "id": "skillDeception",
     "name": "Deception",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Bard","Rogue","Sorcerer","Warlock"],
+    "tags":["Cha","Charisma","Bard","Rogue","Sorcerer","Warlock"]
   },
   {
     "id": "skillHistory",
     "name": "History",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Bard","Cleric","Fighter","Monk","Warlock","Wizard"],
+    "tags":["Int","Intelligence","Bard","Cleric","Fighter","Monk","Warlock","Wizard"]
   },
   {
     "id": "skillInsight",
     "name": "Insight",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Bard","Cleric","Druid","Fighter","Monk","Paladin","Ranger","Rogue","Sorcerer","Wizard"],
+    "tags":["Wis","Wisdom","Bard","Cleric","Druid","Fighter","Monk","Paladin","Ranger","Rogue","Sorcerer","Wizard"]
   },
   {
     "id": "skillIntimidation",
     "name": "Intimidation",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Barbarian","Bard","Fighter","Paladin","Rogue","Sorcerer","Warlock"],
+    "tags":["Cha","Charisma","Barbarian","Bard","Fighter","Paladin","Rogue","Sorcerer","Warlock"]
   },
   {
     "id": "skillInvestigation",
     "name": "Investigation",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Bard","Ranger","Rogue","Warlock","Wizard"],
+    "tags":["Int","Intelligence","Ranger","Bard","Ranger","Rogue","Warlock","Wizard"]
   },
   {
     "id": "skillMedicine",
     "name": "Medicine",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Bard","Cleric","Druid","Paladin","Wizard"],
+    "tags":["Wis","Wisdom","Bard","Cleric","Druid","Paladin","Wizard"]
   },
   {
     "id": "skillNature",
     "name": "Nature",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Barbarian","Bard","Druid","Ranger","Warlock"],
+    "tags":["Int","Intelligence","Barbarian","Bard","Druid","Ranger","Warlock"]
   },
   {
     "id": "skillPerception",
     "name": "Perception",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Barbarian","Bard","Druid","Fighter","Ranger","Rogue"],
+    "tags":["Wis","Wisdom","Barbarian","Bard","Druid","Fighter","Ranger","Rogue"]
   },
   {
     "id": "skillPerformance",
     "name": "Performance",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Bard","Rogue"],
+    "tags":["Cha","Charisma","Bard","Rogue"]
   },
   {
     "id": "skillPersuasion",
     "name": "Persuasion",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Bard","Cleric","Paladin","Rogue","Sorcerer"],
+    "tags":["Cha","Charisma","Bard","Cleric","Paladin","Rogue","Sorcerer"]
   },
   {
     "id": "skillReligion",
     "name": "Religion",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Bard","Cleric","Druid","Monk","Paladin","Sorcerer","Warlock","Wizard"],
+    "tags":["Int","Intelligence","Bard","Cleric","Druid","Monk","Paladin","Sorcerer","Warlock","Wizard"]
   },
   {
     "id": "skillSleightOfHand",
     "name": "Sleight of Hand",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Bard","Rogue"],
+    "tags":["Dex","Dexterity","Bard","Rogue"]
   },
   {
     "id": "skillSurvival",
     "name": "Survival",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]  }
+    "classes":["Barbarian","Bard","Druid","Fighter"],
+    "tags":["Wis","Wisdom","Barbarian","Bard","Druid","Fighter"]
+  }
   {
     "id": "skillStealth",
     "name": "Stealth",
     "description": "",
-    "classes":[ "",""],
-    "tags":["","",""]
+    "classes":["Bard","Monk","Ranger","Rogue"],
+    "tags":["Dex","Dexterity","Bard","Monk","Ranger","Rogue"]
   }
 ]
