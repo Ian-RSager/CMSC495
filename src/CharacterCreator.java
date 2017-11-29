@@ -1,8 +1,10 @@
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.FocusEvent;
@@ -40,6 +42,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
 public class CharacterCreator {
+	
+	Character character;
 	
 	JFrame frame;
 	
@@ -124,7 +128,14 @@ public class CharacterCreator {
 	JMenuItem quitMenuItem;
 	
 	
-	public CharacterCreator() {
+	/*
+	 * GUI constructor
+	 */
+	
+	public CharacterCreator(Character inCharacter) {
+		
+		this.character = inCharacter;	
+		
 		/*
 		 * Set frame
 		 */
@@ -197,7 +208,7 @@ public class CharacterCreator {
 		}	
 		photoLabel.setSize(50, 50);
 		photoNamePanel.add(photoLabel, BorderLayout.CENTER);
-		nameLabel = new JLabel("Bob", SwingConstants.CENTER);
+		nameLabel = new JLabel(character.getName(), SwingConstants.CENTER);
 		nameLabel.setFont(new Font(null, Font.BOLD, 20));
 		photoNamePanel.add(nameLabel, BorderLayout.SOUTH);
 		photoNamePanel.setBorder(new EmptyBorder(0, 13, 0, 7));
@@ -210,17 +221,19 @@ public class CharacterCreator {
 		bioInfoPanel.setLayout(new GridLayout(0, 3));
 		topMainPanel.add(bioInfoPanel, BorderLayout.CENTER);
 		
-		BasicInfoPanel classInfoPanel = new BasicInfoPanel("Class and Level", "Ranger 1");
+		BasicInfoPanel classInfoPanel = new BasicInfoPanel("Class and Level", "Class " + 
+				String.valueOf(character.getLevel()));
 		bioInfoPanel.add(classInfoPanel);
-		BasicInfoPanel backgroundInfoPanel = new BasicInfoPanel("Background", "Outlander");
+		BasicInfoPanel backgroundInfoPanel = new BasicInfoPanel("Background", character.getBackground());
 		bioInfoPanel.add(backgroundInfoPanel);
-		BasicInfoPanel factionInfoPanel = new BasicInfoPanel("Faction", "Emerald Enclave");
+		BasicInfoPanel factionInfoPanel = new BasicInfoPanel("Faction", "Faction");
 		bioInfoPanel.add(factionInfoPanel);
-		BasicInfoPanel raceInfoPanel = new BasicInfoPanel("Race", "Wood Elf");
+		BasicInfoPanel raceInfoPanel = new BasicInfoPanel("Race", character.getRace());
 		bioInfoPanel.add(raceInfoPanel);
-		BasicInfoPanel alignmentInfoPanel = new BasicInfoPanel("Alignment", "Lawful Good");
+		BasicInfoPanel alignmentInfoPanel = new BasicInfoPanel("Alignment", character.getAlignment());
 		bioInfoPanel.add(alignmentInfoPanel);
-		BasicInfoPanel experiencePointsInfoPanel = new BasicInfoPanel("Experience Points", "777");
+		BasicInfoPanel experiencePointsInfoPanel = new BasicInfoPanel("Experience Points", 
+				String.valueOf(character.getExperiencePoints()));
 		bioInfoPanel.add(experiencePointsInfoPanel);
 
 		
@@ -228,17 +241,17 @@ public class CharacterCreator {
 		abilityScoresPanel = new TransparentJPanel();
 		abilityScoresPanel.setLayout(new GridLayout(0,1));
 		mainPanel.add(abilityScoresPanel, BorderLayout.WEST);
-		strengthPanel = new AbilityScorePanel("Strength");
+		strengthPanel = new AbilityScorePanel("Strength", character);
 		abilityScoresPanel.add(strengthPanel);
-		dexterityPanel = new AbilityScorePanel("Dexterity");
+		dexterityPanel = new AbilityScorePanel("Dexterity", character);
 		abilityScoresPanel.add(dexterityPanel);
-		constitutionPanel = new AbilityScorePanel("Constitution");
+		constitutionPanel = new AbilityScorePanel("Constitution", character);
 		abilityScoresPanel.add(constitutionPanel);
-		intelligencePanel = new AbilityScorePanel("Intelligence");
+		intelligencePanel = new AbilityScorePanel("Intelligence", character);
 		abilityScoresPanel.add(intelligencePanel);
-		wisdomPanel = new AbilityScorePanel("Wisdom");
+		wisdomPanel = new AbilityScorePanel("Wisdom", character);
 		abilityScoresPanel.add(wisdomPanel);
-		charismaPanel = new AbilityScorePanel("Charisma");
+		charismaPanel = new AbilityScorePanel("Charisma", character);
 		abilityScoresPanel.add(charismaPanel);
 		
 		
@@ -286,24 +299,28 @@ public class CharacterCreator {
 		
 		// Skills panel
 		for(String skill: skills) {
-			skillsPanel.add(new JCheckBox("+3 " + skill + "    "));
+			boolean selected = false;
+			// TODO need method to get character Skill list
+			//if (inCharacter.getSkillList().contains(skill)) selected = true;
+			skillsPanel.add(new JCheckBox("+3 " + skill + "    "), selected);
+			
 		}
 		
 		// Stats panel
 		statsPanel = new TransparentJPanel();
 		statsPanel.setLayout(new GridLayout(0,1));
 		centerSubPanel.add(statsPanel, BorderLayout.WEST);
-		hitPointsPanel = new StatsPanel("Hit Points");
+		hitPointsPanel = new StatsPanel("Hit Points", character);
 		statsPanel.add(hitPointsPanel);
-		armorClassPanel = new StatsPanel("Armor Class");
+		armorClassPanel = new StatsPanel("Armor Class", character);
 		statsPanel.add(armorClassPanel);
-		initiativePanel = new StatsPanel("Initiative");
+		initiativePanel = new StatsPanel("Initiative", character);
 		statsPanel.add(initiativePanel);
-		proficiencyBonusPanel = new StatsPanel("Proficiency Bonus");
+		proficiencyBonusPanel = new StatsPanel("Proficiency Bonus", character);
 		statsPanel.add(proficiencyBonusPanel);
-		speedPanel = new StatsPanel("Speed");
+		speedPanel = new StatsPanel("Speed", character);
 		statsPanel.add(speedPanel);
-		passivePerceptionPanel = new StatsPanel("Passive Perception");
+		passivePerceptionPanel = new StatsPanel("Passive Perception", character);
 		statsPanel.add(passivePerceptionPanel);
 		
 		// features and equipped items subpanel
@@ -402,25 +419,31 @@ public class CharacterCreator {
 
 	public static void main(String[] args) {
 		Object[] options = {"Create New Character", "Load Character"};
-//		int selection = JOptionPane.showOptionDialog(null, "Welcome to Character Creator!\nSelect an Option:",
-//				"Character Creator", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
-//				null,     //do not use a custom Icon
-//				options,  //the titles of buttons
-//				null); //default button title
-//		switch(selection) {
-//		case 0: 
-//			// TODO create newCharacter object
-//
-//			break;
-//		case 1:
-//			CharacterCreator c = new CharacterCreator();
-//			c.display();
-//			break;
-//		case JOptionPane.CLOSED_OPTION:
-//			System.exit(0);
-//		}
-		CharacterCreator c = new CharacterCreator();
-		c.display();
+		int selection = JOptionPane.showOptionDialog(null, "Welcome to Character Creator!\nSelect an Option:",
+				"Character Creator", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+				null,     //do not use a custom Icon
+				options,  //the titles of buttons
+				null); //default button title
+		switch(selection) {
+		case 0: 
+			NewCharacter nc = new NewCharacter();
+			
+
+			break;
+		case 1:
+			Character testCharacter = new Character();
+			testCharacter.setName("Test Char");
+			testCharacter.setLevel(4);
+			testCharacter.setAbilityScoreCharisma(5);
+			testCharacter.setAbilityScoreDexterity(6);
+			testCharacter.setSpeed(15);
+			CharacterCreator c = new CharacterCreator(testCharacter);
+			c.display();
+			break;
+		case JOptionPane.CLOSED_OPTION:
+			System.exit(0);
+		}
+		
 		
 	}
 
@@ -476,12 +499,13 @@ class BasicInfoPanel extends JPanel {
 
 
 class AbilityScorePanel extends JPanel {
+	
 	JLabel abilityScoreNameLabel;
 	JSpinner spinner;
 	//JLabel abilityScoreLabel;
 	JLabel modifierLabel;
 	
-	public AbilityScorePanel(String inAbility) {
+	public AbilityScorePanel(String inAbility, Character inCharacter) {
 		setOpaque(false);
 		Border margin = new EmptyBorder(5,5,0,5);
 		
@@ -491,7 +515,25 @@ class AbilityScorePanel extends JPanel {
 		setBorder(new CompoundBorder(margin, inside));
 		setLayout(new BorderLayout());
 		
-		SpinnerModel model = new SpinnerNumberModel(0, 0, 99, 1);
+		int value = 0;
+		switch(inAbility) {
+			case "Strength" : value = inCharacter.getAbilityScoreStrength();
+				break;
+			case "Dexterity" : value = inCharacter.getAbilityScoreDexterity();
+				break;
+			case "Constitution" : value = inCharacter.getAbilityScoreConstitution();
+				break;
+			case "Intelligence" : value = inCharacter.getAbilityScoreIntelligence();
+				break;
+			case "Wisdom" : value = inCharacter.getAbilityScoreWisdom();
+				break;
+			case "Charisma" : value = inCharacter.getAbilityScoreCharisma();
+				break;
+			default:
+				break;
+		}
+		
+		SpinnerModel model = new SpinnerNumberModel(value, 0, 99, 1);
 		spinner = new JSpinner(model);
 		spinner.setFont(new Font(null, Font.BOLD, 24));
 		spinner.setOpaque(false);
@@ -519,7 +561,7 @@ class StatsPanel extends JPanel {
 	JLabel statNameLabel;
 	JLabel statNumberLabel;
 	
-	public StatsPanel(String inStat)
+	public StatsPanel(String inStat, Character inCharacter)
 	{
 		setOpaque(false);
 		Border margin = new EmptyBorder(5,5,0,5);
@@ -530,7 +572,25 @@ class StatsPanel extends JPanel {
 		setBorder(new CompoundBorder(margin, inside));
 		setLayout(new BorderLayout());
 		
-		SpinnerModel model = new SpinnerNumberModel(0, 0, 99, 1);
+		int value = 0;
+		
+		switch (inStat) {
+		case "Hit Points" :
+			break;
+		case "Armor Class" :
+			break;
+		case "Initiative" :
+			break;
+		case "Proficiency Bonus" :
+			break;
+		case "Speed" :
+			value = inCharacter.getSpeed();
+			break;
+		case "Passive Perception" :
+			break;
+		}
+		
+		SpinnerModel model = new SpinnerNumberModel(value, 0, 99, 1);
 		JSpinner spinner = new JSpinner(model);
 		spinner.setFont(new Font(null, Font.BOLD, 20));
 		spinner.setOpaque(false);
@@ -542,9 +602,6 @@ class StatsPanel extends JPanel {
 		textField.setEditable(false);
 		
 		statNameLabel = new JLabel(inStat, SwingConstants.CENTER);
-		String fillerNumber = String.valueOf(Math.round(Math.random()*100));
-		statNumberLabel = new JLabel(fillerNumber, SwingConstants.CENTER);
-		statNumberLabel.setFont(new Font(null, Font.BOLD, 20));
 		add(statNameLabel, BorderLayout.NORTH);
 		
 		JPanel helperPanel = new TransparentJPanel();
@@ -552,5 +609,8 @@ class StatsPanel extends JPanel {
 		add(helperPanel, BorderLayout.CENTER);
 	}
 }
+
+
+
 
 
