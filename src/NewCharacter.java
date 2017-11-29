@@ -66,8 +66,8 @@ public class NewCharacter extends JFrame{
         
         //Set up the Window
         super("Create a Character");
-        setSize (800, 800);
-        setMinimumSize(new Dimension(800, 800));
+        setSize (700, 685);
+        setMinimumSize(new Dimension(700, 685));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -88,17 +88,19 @@ public class NewCharacter extends JFrame{
 
         //Display
         pack();
-        setVisible(true);
+        setVisible(false);
     }
-
+	
+	//newCharacterGui - method to create and display the new character creator gui
+    public void newCharacterGui(){
+	    this.setVisible(true);
+    }
     
     //Main Test Function
     //Will be taken out when linked with the rest of the program
     public static void main(String[] args){
-
-
         NewCharacter nc = new NewCharacter();
-
+		nc.newCharacterGui();
     }
 
     
@@ -114,13 +116,13 @@ public class NewCharacter extends JFrame{
         ///////////////
 
         //Text Area for displaying the race description
-        private JTextArea jtaInfo = new JTextArea ();
+        private JTextArea raceDescriptionTextArea = new JTextArea ();
 
         //Labels
-        private JLabel raceLblA   = new JLabel("Select a Race", JLabel.CENTER);
-        private JLabel raceLblB   = new JLabel("Select a Race", JLabel.LEFT);
-        private JLabel subraceLbl = new JLabel("Select a Subrace", JLabel.LEFT);
-        private JLabel raceTxtLbl = new JLabel("Dwarf", JLabel.CENTER);
+        private JLabel raceScreenLabel = new JLabel("Select a Race", JLabel.CENTER);
+        private JLabel selectARaceLabel = new JLabel("Select a Race", JLabel.LEFT);
+        private JLabel subraceLabel = new JLabel("Select a Subrace", JLabel.LEFT);
+        private JLabel raceLabel = new JLabel("Dwarf", JLabel.CENTER);
         private JLabel blankLbl = new JLabel("", JLabel.CENTER);
 
         //Combo boxes
@@ -128,11 +130,11 @@ public class NewCharacter extends JFrame{
                                            "Dragonborn","Gnome","Half-Elf",
                                            "Half-Orc","Tiefling"};
         private String [] subracesStr   = {"Hill Dwarf","Mountain Dwarf"};
-        private JComboBox<String> raceCombo    = new JComboBox<String> (racesStr);
-        private JComboBox<String> subRaceCombo = new JComboBox<String> (subracesStr);
+        private JComboBox<String> raceComboBox  = new JComboBox<String> (racesStr);
+        private JComboBox<String> subRaceComboBox = new JComboBox<String> (subracesStr);
 
         //Buttons
-        private JButton jbNext = new JButton ("Save and Continue >");  
+        private JButton saveAndContinueButton = new JButton ("Save and Continue >");  
 
         private Font titleFont;
         
@@ -195,7 +197,7 @@ public class NewCharacter extends JFrame{
 
             //Title
             titleFont = new Font("Serif", Font.BOLD, 32);
-            raceLblA.setFont(titleFont);
+            raceScreenLabel.setFont(titleFont);
             gbc.fill = GridBagConstraints.NONE;
             gbc.gridx = 0;
             gbc.gridy = 0;
@@ -205,7 +207,7 @@ public class NewCharacter extends JFrame{
             gbc.gridheight = 1;
             gbc.weighty = 1.0;
             gbc.weightx = 1.0;
-            add(raceLblA , gbc);
+            add(raceScreenLabel, gbc);
 
             
             /////////////////
@@ -216,18 +218,18 @@ public class NewCharacter extends JFrame{
             
             //Race Description Label
             titleFont = new Font("Serif", Font.BOLD, 26);
-            raceTxtLbl.setFont(titleFont);
-            right.add(raceTxtLbl,BorderLayout.NORTH);
+            raceLabel.setFont(titleFont);
+            right.add(raceLabel,BorderLayout.NORTH);
 
             //Set up JTextArea for Description
-            jtaInfo.setEditable(false);
-            jtaInfo.setLineWrap(true);
-            jtaInfo.setWrapStyleWord(true);
-            jtaInfo.setFont (new java.awt.Font ("Monospaced", 0, 12));
-            jsp = new JScrollPane (jtaInfo);
+            raceDescriptionTextArea.setEditable(false);
+            raceDescriptionTextArea.setLineWrap(true);
+            raceDescriptionTextArea.setWrapStyleWord(true);
+            raceDescriptionTextArea.setFont (new java.awt.Font ("Monospaced", 0, 12));
+            jsp = new JScrollPane (raceDescriptionTextArea);
             jsp.setPreferredSize(new Dimension(300, 300));
             jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-            jtaInfo.setText(raceDescrStr[0]);
+            raceDescriptionTextArea.setText(raceDescrStr[0]);
             right.add(jsp,BorderLayout.CENTER);
 
             
@@ -238,20 +240,20 @@ public class NewCharacter extends JFrame{
             left.setBackground(backgroundColor);
             
             //Race Selection Label
-            raceLblB.setFont(titleFont);
-            left.add(raceLblB);
+            selectARaceLabel.setFont(titleFont);
+            left.add(selectARaceLabel);
             
             //Race Combo
-            left.add(raceCombo);
+            left.add(raceComboBox);
             left.add(blankLbl);
 
             //Select subrace Label
             //titleFont = new Font("Serif", Font.PLAIN, 18);
-            subraceLbl.setFont(titleFont);
-            left.add(subraceLbl, gbc);
+            subraceLabel.setFont(titleFont);
+            left.add(subraceLabel, gbc);
 
             //Subrace combo
-            left.add(subRaceCombo, gbc);
+            left.add(subRaceComboBox, gbc);
             
             //Add left Panel to the Gui
             gbc.fill = GridBagConstraints.NONE;
@@ -277,7 +279,7 @@ public class NewCharacter extends JFrame{
             gbc.insets = new Insets(0,0,5,0);  //bottom padding
             gbc.anchor = GridBagConstraints.LAST_LINE_END;
             gbc.gridwidth = GridBagConstraints.REMAINDER;
-            add(jbNext, gbc);
+            add(saveAndContinueButton, gbc);
 
             setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
@@ -286,58 +288,58 @@ public class NewCharacter extends JFrame{
             ////////////////////
             
             //Next Button
-            jbNext.addActionListener   (e -> switchStateNext());
+            saveAndContinueButton.addActionListener   (e -> switchStateNext());
             
             //Race Combo Box
             //Should update the Gui Elements whenever a new race is
             //selected
-            raceCombo.addActionListener(new ActionListener() {
+            raceComboBox.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent event) {
                     JComboBox comboBox = (JComboBox) event.getSource();
-                    subRaceCombo.removeAllItems();
+                    subRaceComboBox.removeAllItems();
                     Object selected = comboBox.getSelectedItem();
                     String rStr = selected.toString();
                     
-                    raceTxtLbl.setText(rStr);
+                    raceLabel.setText(rStr);
                     switch(rStr){
                         case "Dwarf":
-                            jtaInfo.setText(raceDescrStr[0]);
-                            subRaceCombo.addItem("Hill Dwarf");
-                            subRaceCombo.addItem("Mountain Dwarf");
+                            raceDescriptionTextArea.setText(raceDescrStr[0]);
+                            subRaceComboBox.addItem("Hill Dwarf");
+                            subRaceComboBox.addItem("Mountain Dwarf");
                             break;
                         case "Elf":
-                            jtaInfo.setText(raceDescrStr[1]);
-                            subRaceCombo.addItem("High Elf");
-                            subRaceCombo.addItem("Wood Elf");
-                            subRaceCombo.addItem("Dark Elf");
+                            raceDescriptionTextArea.setText(raceDescrStr[1]);
+                            subRaceComboBox.addItem("High Elf");
+                            subRaceComboBox.addItem("Wood Elf");
+                            subRaceComboBox.addItem("Dark Elf");
                             break;
                         case "Human":
-                            jtaInfo.setText(raceDescrStr[2]);
+                            raceDescriptionTextArea.setText(raceDescrStr[2]);
                             break;
                         case "Halfling":
-                            jtaInfo.setText(raceDescrStr[3]);
-                            subRaceCombo.addItem("Lightfoot");
-                            subRaceCombo.addItem("Stout");
+                            raceDescriptionTextArea.setText(raceDescrStr[3]);
+                            subRaceComboBox.addItem("Lightfoot");
+                            subRaceComboBox.addItem("Stout");
                             break;
                         case "Dragonborn":
-                            jtaInfo.setText(raceDescrStr[4]);
+                            raceDescriptionTextArea.setText(raceDescrStr[4]);
                             break;
                         case "Gnome":
-                            jtaInfo.setText(raceDescrStr[5]);
-                            subRaceCombo.addItem("Forest Gnome");
-                            subRaceCombo.addItem("Rock Gnome");
+                            raceDescriptionTextArea.setText(raceDescrStr[5]);
+                            subRaceComboBox.addItem("Forest Gnome");
+                            subRaceComboBox.addItem("Rock Gnome");
                             break;
                         case "Half-Elf":
-                            jtaInfo.setText(raceDescrStr[6]);
+                            raceDescriptionTextArea.setText(raceDescrStr[6]);
                             break;
                         case "Half-Orc":
-                            jtaInfo.setText(raceDescrStr[7]);
+                            raceDescriptionTextArea.setText(raceDescrStr[7]);
                             break;
                         case "Tiefling":
-                            jtaInfo.setText(raceDescrStr[8]);						
+                            raceDescriptionTextArea.setText(raceDescrStr[8]);						
                             break;
                         default:
-                            jtaInfo.setText("Error, Invalid");	
+                            raceDescriptionTextArea.setText("Error, Invalid");	
                             break;
                     }
 
@@ -376,28 +378,28 @@ public class NewCharacter extends JFrame{
 
 
         //Text Area for displaying information about the selected class
-        private JTextArea jtaInfo = new JTextArea ();
+        private JTextArea classDescriptionTextArea = new JTextArea ();
 
         //Labels
-        private JLabel classLblA   = new JLabel("Select a Class", JLabel.CENTER);
-        private JLabel classLblB   = new JLabel("Select a Class", JLabel.LEFT);
-        private JLabel startLvlLbl = new JLabel("Starting Level", JLabel.LEFT);
-        private JLabel classTxtLbl = new JLabel("Barbarian", JLabel.CENTER);
+        private JLabel classScreenLabel = new JLabel("Select a Class", JLabel.CENTER);
+        private JLabel selectAClassLabel = new JLabel("Select a Class", JLabel.LEFT);
+        private JLabel startingLevelLabel = new JLabel("Starting Level", JLabel.LEFT);
+        private JLabel classLabel = new JLabel("Barbarian", JLabel.CENTER);
         private JLabel blankLbl = new JLabel("", JLabel.CENTER);
 
         //Combo boxes
         private String [] classesStr      = {"Barbarian","Bard","Cleric","Druid",
                                            "Fighter","Monk","Paladin","Ranger",
                                            "Rogue","Sorcerer","Wizard","Warlock"};
-        private JComboBox<String> classCombo    = new JComboBox<String> (classesStr);
+        private JComboBox<String> classComboBox = new JComboBox<String> (classesStr);
         
         //Level Spinner (1 to 100, default 1, incr by 1)
         SpinnerNumberModel snm = new SpinnerNumberModel(new Integer(1),new Integer(1),new Integer(100),new Integer(1));
         JSpinner spnLevl = new JSpinner(snm);
     
         //Buttons
-        private JButton jbNext = new JButton ("Save and Continue >");    
-        private JButton jbPrev = new JButton ("< Prev");    
+        private JButton saveAndContinueButton = new JButton ("Save and Continue >");    
+        private JButton previousButton = new JButton ("< Prev");    
 
         private Font titleFont;
         
@@ -442,7 +444,7 @@ public class NewCharacter extends JFrame{
             "and to absorb attacks as easily as a heavily armored knight. Monks tap into the psionic potential that "+
             "rests within themselves, turning that energy further inward to fortify their bodies and sharpen their minds.",
 
-            "Paladins are indomitable warriors whoâ€™ve pledged their prowess to something greater than themselves. "+
+            "Paladins are indomitable warriors who’ve pledged their prowess to something greater than themselves. "+
             "Paladins smite enemies with divine authority, bolster the courage of nearby companions, and radiate as "+
             "if a beacon of inextinguishable hope. Paladins are transfigured on the field of battle, exemplars of "+
             "divine ethos in action.",
@@ -486,7 +488,7 @@ public class NewCharacter extends JFrame{
 
             //Title
             titleFont = new Font("Serif", Font.BOLD, 32);
-            classLblA.setFont(titleFont);
+            classScreenLabel.setFont(titleFont);
             gbc.fill = GridBagConstraints.NONE;
             gbc.gridx = 0;
             gbc.gridy = 0;
@@ -496,7 +498,7 @@ public class NewCharacter extends JFrame{
             gbc.gridheight = 1;
             gbc.weighty = 1.0;
             gbc.weightx = 1.0;
-            add(classLblA , gbc);
+            add(classScreenLabel , gbc);
             
 
             
@@ -508,18 +510,18 @@ public class NewCharacter extends JFrame{
             
             //Class Description Label
             titleFont = new Font("Serif", Font.BOLD, 26);
-            classTxtLbl.setFont(titleFont);
-            right.add(classTxtLbl,BorderLayout.NORTH);
+            classLabel.setFont(titleFont);
+            right.add(classLabel,BorderLayout.NORTH);
 
             //Set up JTextArea for Description
-            jtaInfo.setEditable(false);
-            jtaInfo.setLineWrap(true);
-            jtaInfo.setWrapStyleWord(true);
-            jtaInfo.setFont (new java.awt.Font ("Monospaced", 0, 12));
-            jsp = new JScrollPane (jtaInfo);
+            classDescriptionTextArea.setEditable(false);
+            classDescriptionTextArea.setLineWrap(true);
+            classDescriptionTextArea.setWrapStyleWord(true);
+            classDescriptionTextArea.setFont (new java.awt.Font ("Monospaced", 0, 12));
+            jsp = new JScrollPane (classDescriptionTextArea);
             jsp.setPreferredSize(new Dimension(300, 300));
             jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-            jtaInfo.setText(classDescrStr[0]);
+            classDescriptionTextArea.setText(classDescrStr[0]);
             right.add(jsp,BorderLayout.CENTER);
 
             
@@ -530,19 +532,19 @@ public class NewCharacter extends JFrame{
             left.setBackground(backgroundColor);
             
             //Class Selection Label
-            classLblB.setFont(titleFont);
-            left.add(classLblB);
+            selectAClassLabel.setFont(titleFont);
+            left.add(selectAClassLabel);
             
             //Starting Level Value
-            left.add(classCombo);
+            left.add(classComboBox);
             
             left.add(blankLbl);
             left.add(blankLbl);
 
             //Select Starting Level
-            startLvlLbl.setFont(titleFont);
+            startingLevelLabel.setFont(titleFont);
             
-            left.add(startLvlLbl);
+            left.add(startingLevelLabel);
 
             //Starting Level
             helper.add(spnLevl);
@@ -572,7 +574,7 @@ public class NewCharacter extends JFrame{
             gbc.insets = new Insets(0,0,5,0);  //bottom padding
             gbc.anchor = GridBagConstraints.LAST_LINE_START;
             gbc.gridwidth = GridBagConstraints.RELATIVE;
-            add(jbPrev, gbc);
+            add(previousButton, gbc);
 
             //Save & Continue button
             gbc.gridx = 1;
@@ -580,63 +582,63 @@ public class NewCharacter extends JFrame{
             gbc.insets = new Insets(0,0,5,0);  //bottom padding
             gbc.anchor = GridBagConstraints.LAST_LINE_END;
             gbc.gridwidth = GridBagConstraints.REMAINDER;
-            add(jbNext, gbc);
+            add(saveAndContinueButton, gbc);
 
             setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
             //Action Listeners - Next/Prev Buttons
-            jbNext.addActionListener   (e -> switchStateNext());
-            jbPrev.addActionListener   (e -> switchStatePrev());
+            saveAndContinueButton.addActionListener   (e -> switchStateNext());
+            previousButton.addActionListener   (e -> switchStatePrev());
             
             //Action Listener for Class Selection
             //Will update Gui Elements when a new class is selected
-            classCombo.addActionListener(new ActionListener() {
+            classComboBox.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent event) {
                     JComboBox comboBox = (JComboBox) event.getSource();
                     
                     Object selected = comboBox.getSelectedItem();
-                    String rStr = selected.toString();
+                    String cStr = selected.toString();
                                         
-                    classTxtLbl.setText(rStr);
-                    switch(rStr){
+                    classLabel.setText(cStr);
+                    switch(cStr){
                         case "Barbarian":
-                            jtaInfo.setText(classDescrStr[0]);
+                            classDescriptionTextArea.setText(classDescrStr[0]);
                             break;
                         case "Bard":
-                            jtaInfo.setText(classDescrStr[1]);
+                            classDescriptionTextArea.setText(classDescrStr[1]);
                             break;
                         case "Cleric":
-                            jtaInfo.setText(classDescrStr[2]);
+                            classDescriptionTextArea.setText(classDescrStr[2]);
                             break;
                         case "Druid":
-                            jtaInfo.setText(classDescrStr[3]);
+                            classDescriptionTextArea.setText(classDescrStr[3]);
                             break;
                         case "Fighter":
-                            jtaInfo.setText(classDescrStr[4]);
+                            classDescriptionTextArea.setText(classDescrStr[4]);
                             break;
                         case "Monk":
-                            jtaInfo.setText(classDescrStr[5]);
+                            classDescriptionTextArea.setText(classDescrStr[5]);
                             break;
                         case "Paladin":
-                            jtaInfo.setText(classDescrStr[6]);
+                            classDescriptionTextArea.setText(classDescrStr[6]);
                             break;
                         case "Ranger":
-                            jtaInfo.setText(classDescrStr[7]);
+                            classDescriptionTextArea.setText(classDescrStr[7]);
                             break;
                         case "Rogue":
-                            jtaInfo.setText(classDescrStr[8]);						
+                            classDescriptionTextArea.setText(classDescrStr[8]);						
                             break;
                         case "Sorcerer":
-                            jtaInfo.setText(classDescrStr[9]);						
+                            classDescriptionTextArea.setText(classDescrStr[9]);						
                             break;
                         case "Wizard":
-                            jtaInfo.setText(classDescrStr[10]);						
+                            classDescriptionTextArea.setText(classDescrStr[10]);						
                             break;
                         case "Warlock":
-                            jtaInfo.setText(classDescrStr[11]);						
+                            classDescriptionTextArea.setText(classDescrStr[11]);						
                             break;
                         default:
-                            jtaInfo.setText("Error, Invalid");	
+                            classDescriptionTextArea.setText("Error, Invalid");	
                             break;
                     }
                 }
@@ -677,15 +679,15 @@ public class NewCharacter extends JFrame{
 
 
         //Labels
-        private JLabel abilityLblA   = new JLabel("Determine Ability Scores", JLabel.CENTER);
+        private JLabel abilityScoreScreenLabel = new JLabel("Determine Ability Scores", JLabel.CENTER);
         private JLabel abilityLblB   = new JLabel("Ability Scores", JLabel.CENTER);
-        private JLabel strLbl = new JLabel("Strength (STR)", JLabel.LEFT);
-        private JLabel dexLbl = new JLabel("Dexterity (DEX)", JLabel.LEFT);
-        private JLabel constLbl = new JLabel("Constitution (CON)", JLabel.LEFT);
-        private JLabel intLbl = new JLabel("Intelligence (INT)", JLabel.LEFT);
-        private JLabel wisdomLbl = new JLabel("Wisdom (WIS)", JLabel.LEFT);
-        private JLabel charismaLbl = new JLabel("Charisma (CHA)", JLabel.LEFT);
-        private JLabel ptsassignLbl = new JLabel("Total Points Assigned: 60", JLabel.LEFT);
+        private JLabel strengthLabel = new JLabel("Strength (STR)", JLabel.LEFT);
+        private JLabel dexterityLabel = new JLabel("Dexterity (DEX)", JLabel.LEFT);
+        private JLabel constitutionLabel = new JLabel("Constitution (CON)", JLabel.LEFT);
+        private JLabel intelligenceLabel = new JLabel("Intelligence (INT)", JLabel.LEFT);
+        private JLabel wisdomLabel = new JLabel("Wisdom (WIS)", JLabel.LEFT);
+        private JLabel charismaLabel = new JLabel("Charisma (CHA)", JLabel.LEFT);
+        private JLabel totalPointsField = new JLabel("Total Points Assigned: 60", JLabel.LEFT);
         
         private JLabel rollStr = new JLabel("  0",JLabel.CENTER);
         private JLabel rollDex = new JLabel("  0",JLabel.CENTER);
@@ -701,17 +703,17 @@ public class NewCharacter extends JFrame{
         SpinnerNumberModel snm4 = new SpinnerNumberModel(new Integer(10),new Integer(-100),new Integer(100),new Integer(1));
         SpinnerNumberModel snm5 = new SpinnerNumberModel(new Integer(10),new Integer(-100),new Integer(100),new Integer(1));
         SpinnerNumberModel snm6 = new SpinnerNumberModel(new Integer(10),new Integer(-100),new Integer(100),new Integer(1));		
-        JSpinner spn1 = new JSpinner(snm1);
-        JSpinner spn2 = new JSpinner(snm2);
-        JSpinner spn3 = new JSpinner(snm3);
-        JSpinner spn4 = new JSpinner(snm4);
-        JSpinner spn5 = new JSpinner(snm5);
-        JSpinner spn6 = new JSpinner(snm6);
+        JSpinner strengthJSpinner = new JSpinner(snm1);
+        JSpinner dexterityJSpinner = new JSpinner(snm2);
+        JSpinner constitutionJSpinner = new JSpinner(snm3);
+        JSpinner wisdomJSpinner = new JSpinner(snm4);
+        JSpinner intelligenceJSpinner = new JSpinner(snm5);
+        JSpinner charismaJSpinner = new JSpinner(snm6);
         
         
         //Buttons
-        private JButton jbNext = new JButton ("Save and Continue >");    
-        private JButton jbPrev = new JButton ("< Prev");    
+        private JButton saveAndContinueButton = new JButton ("Save and Continue >");    
+        private JButton previousButton = new JButton ("< Prev");    
 
         private Font titleFont;
         
@@ -730,7 +732,7 @@ public class NewCharacter extends JFrame{
 
             //Title
             titleFont = new Font("Serif", Font.BOLD, 32);
-            abilityLblA.setFont(titleFont);
+            abilityScoreScreenLabel.setFont(titleFont);
             gbc.fill = GridBagConstraints.NONE;
             gbc.gridx = 0;
             gbc.gridy = 0;
@@ -740,7 +742,7 @@ public class NewCharacter extends JFrame{
             gbc.gridheight = 1;
             gbc.weighty = 1.0;
             gbc.weightx = 1.0;
-            add(abilityLblA , gbc);
+            add(abilityScoreScreenLabel , gbc);
             
             //Titles for left/right panels
             titleFont = new Font("Serif", Font.BOLD, 22);
@@ -776,45 +778,45 @@ public class NewCharacter extends JFrame{
             
             //Strength
             titleFont = new Font("Serif", Font.PLAIN, 22);
-            strLbl.setFont(titleFont);
-            abilityPanel.add(strLbl);
+            strengthLabel.setFont(titleFont);
+            abilityPanel.add(strengthLabel);
             f1.setFont(titleFont);
-            f1.add(spn1);
+            f1.add(strengthJSpinner);
             abilityPanel.add(f1);
             abilityPanel.add(rollStr);
 
             //Dexterity
-            dexLbl.setFont(titleFont);
-            abilityPanel.add(dexLbl);
-            f2.add(spn2);
+            dexterityLabel.setFont(titleFont);
+            abilityPanel.add(dexterityLabel);
+            f2.add(dexterityJSpinner);
             abilityPanel.add(f2);
             abilityPanel.add(rollDex);
             
-            //Const
-            constLbl.setFont(titleFont);
-            abilityPanel.add(constLbl);
-            f3.add(spn3);
+            //Constitution
+            constitutionLabel.setFont(titleFont);
+            abilityPanel.add(constitutionLabel);
+            f3.add(constitutionJSpinner);
             abilityPanel.add(f3);
             abilityPanel.add(rollCon);
 
             //Intelligence
-            intLbl.setFont(titleFont);
-            abilityPanel.add(intLbl);
-            f4.add(spn4);
+            intelligenceLabel.setFont(titleFont);
+            abilityPanel.add(intelligenceLabel);
+            f4.add(intelligenceJSpinner);
             abilityPanel.add(f4);
             abilityPanel.add(rollInt);
 
             //Wisdom
-            wisdomLbl.setFont(titleFont);
-            abilityPanel.add(wisdomLbl);
-            f5.add(spn5);
+            wisdomLabel.setFont(titleFont);
+            abilityPanel.add(wisdomLabel);
+            f5.add(wisdomJSpinner);
             abilityPanel.add(f5);
             abilityPanel.add(rollWis);
 
             //Charisma
-            charismaLbl.setFont(titleFont);
-            abilityPanel.add(charismaLbl);
-            f6.add(spn6);
+            charismaLabel.setFont(titleFont);
+            abilityPanel.add(charismaLabel);
+            f6.add(charismaJSpinner);
             abilityPanel.add(f6);	
             abilityPanel.add(rollCha);		
             
@@ -845,8 +847,8 @@ public class NewCharacter extends JFrame{
             gbc.insets = new Insets(0,0,5,0);  //bottom padding
             gbc.anchor = GridBagConstraints.LAST_LINE_START;
             gbc.gridwidth = GridBagConstraints.RELATIVE;
-            ptsassignLbl.setFont(titleFont);
-            add(ptsassignLbl, gbc);
+            totalPointsField.setFont(titleFont);
+            add(totalPointsField, gbc);
             
             //Radio Button Selection
             gbc.gridx = 0;
@@ -868,7 +870,7 @@ public class NewCharacter extends JFrame{
             gbc.insets = new Insets(0,0,5,0);  //bottom padding
             gbc.anchor = GridBagConstraints.LAST_LINE_START;
             gbc.gridwidth = GridBagConstraints.RELATIVE;
-            add(jbPrev, gbc);
+            add(previousButton, gbc);
 
             //Save & Continue button
             gbc.gridx = 1;
@@ -876,14 +878,14 @@ public class NewCharacter extends JFrame{
             gbc.insets = new Insets(0,0,5,0);  //bottom padding
             gbc.anchor = GridBagConstraints.LAST_LINE_END;
             gbc.gridwidth = GridBagConstraints.REMAINDER;
-            add(jbNext, gbc);
+            add(saveAndContinueButton, gbc);
 
 
             setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
             //Action Listeners
-            jbNext.addActionListener   (e -> switchStateNext());
-            jbPrev.addActionListener   (e -> switchStatePrev());
+            saveAndContinueButton.addActionListener   (e -> switchStateNext());
+            previousButton.addActionListener   (e -> switchStatePrev());
             
         }
 
@@ -922,39 +924,39 @@ public class NewCharacter extends JFrame{
 
 
         //Labels
-        private JLabel addInfoLbl   = new JLabel("Additional Information", JLabel.CENTER);
+        private JLabel additionalInfoScreenLabel = new JLabel("Additional Information", JLabel.CENTER);
     
-        private JLabel nameLbl   = new JLabel("Name:", JLabel.LEFT);
-        private JLabel weightLbl = new JLabel("Weight:", JLabel.LEFT);
-        private JLabel heightLbl = new JLabel("Height:", JLabel.LEFT);
-        private JLabel sexLbl = new JLabel("Sex:", JLabel.LEFT);
-        private JLabel alignmentLbl = new JLabel("Alignment:", JLabel.LEFT);
-        private JLabel backgroundLbl = new JLabel("Background:", JLabel.LEFT);
+        private JLabel nameLabel   = new JLabel("Name:", JLabel.LEFT);
+        private JLabel weightLabel = new JLabel("Weight:", JLabel.LEFT);
+        private JLabel heightLabel = new JLabel("Height:", JLabel.LEFT);
+        private JLabel sexLabel = new JLabel("Sex:", JLabel.LEFT);
+        private JLabel alignmentLabel = new JLabel("Alignment:", JLabel.LEFT);
+        private JLabel backgroundLabel = new JLabel("Background:", JLabel.LEFT);
 
         //Text Fields		
-        private JTextField nameTxt   = new JTextField("", 10);
-        private JTextField weightTxt = new JTextField("", 10);
-        private JTextField heightTxt = new JTextField("", 10);		
+        private JTextField nameTextField   = new JTextField("", 10);
+        private JTextField weightTextField = new JTextField("", 10);
+        private JTextField heightTextField = new JTextField("", 10);		
 
         //Combo boxes
         private String [] sexStr      = {"Male","Female"};
-        private JComboBox<String> sexCombo    = new JComboBox<String> (sexStr);
+        private JComboBox<String> sexComboBox = new JComboBox<String> (sexStr);
         private String [] alignmentStr      = {"Lawful Good", "Neutral Good", "Chaotic Good",
                                                "Lawful Neutral", "Neutral", "Chaotic Neutral",
                                                "Lawful Evil","Neutral Evil","Chaotic Evil"};
-        private JComboBox<String> alignCombo    = new JComboBox<String> (alignmentStr);
+        private JComboBox<String> alignmentComboBox  = new JComboBox<String> (alignmentStr);
         private String [] backgroundStr      = {"Acolyte","Criminal","Folk Hero","Noble",
                                                 "Sage","Soldier","Charlatan","Entertainer",
                                                 "Guild Artisan","Hermit","Outlander","Urchin",
                                                 "Caravan Specialist","Guild Merchant","Hermit",
                                                 "Outlander","Knight","Sailor","Pirate"};
-        private JComboBox<String> backCombo    = new JComboBox<String> (backgroundStr);
+        private JComboBox<String> backgroundComboBox = new JComboBox<String> (backgroundStr);
     
 
         //Buttons
-        private JButton jbUpload = new JButton("Upload an image");
-        private JButton jbNext = new JButton ("Generate Character Sheet");    
-        private JButton jbPrev = new JButton ("< Prev");    
+        private JButton uploadImageButton = new JButton("Upload an image");
+        private JButton generateCharacterSheetButton = new JButton ("Generate Character Sheet");    
+        private JButton previousButton = new JButton ("< Prev");    
 
         private Font titleFont;
 
@@ -976,7 +978,7 @@ public class NewCharacter extends JFrame{
 
             //Title
             titleFont = new Font("Serif", Font.BOLD, 32);
-            addInfoLbl.setFont(titleFont);
+            additionalInfoScreenLabel.setFont(titleFont);
             gbc.fill = GridBagConstraints.NONE;
             gbc.gridx = 0;
             gbc.gridy = 0;
@@ -986,7 +988,7 @@ public class NewCharacter extends JFrame{
             gbc.gridheight = 1;
             gbc.weighty = 1.0;
             gbc.weightx = 1.0;
-            add(addInfoLbl , gbc);
+            add(additionalInfoScreenLabel , gbc);
             
 
             
@@ -995,12 +997,12 @@ public class NewCharacter extends JFrame{
             ///////////////////////////////////////////
             JPanel right = new JPanel(new BorderLayout());
             right.setBackground(backgroundColor);
-            BufferedImage photo;
+            BufferedImage characterImage;
             JLabel photoLabel;
             
             try {
-                photo = ImageIO.read(new File("cabbage.jpg"));
-                Image resizedPhoto = photo.getScaledInstance(100, 100, Image.SCALE_SMOOTH);	
+                characterImage = ImageIO.read(new File("cabbage.jpg"));
+                Image resizedPhoto = characterImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);	
                 photoLabel = new JLabel(new ImageIcon(resizedPhoto));
                 photoLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
                 photoLabel.setSize(50, 50);
@@ -1012,8 +1014,8 @@ public class NewCharacter extends JFrame{
             
             //Upload Image Button
             titleFont = new Font("Serif", Font.BOLD, 26);
-            jbUpload.setFont(titleFont);
-            right.add(jbUpload,BorderLayout.SOUTH);
+            uploadImageButton.setFont(titleFont);
+            right.add(uploadImageButton,BorderLayout.SOUTH);
 
             
             ////////////////////////////////////
@@ -1023,35 +1025,35 @@ public class NewCharacter extends JFrame{
             left.setBackground(backgroundColor);
             
             //Class Selection Label
-            nameLbl.setFont(titleFont);
-            nameTxt.setFont(titleFont);
-            left.add(nameLbl);
-            left.add(nameTxt);
+            nameLabel.setFont(titleFont);
+            nameTextField.setFont(titleFont);
+            left.add(nameLabel);
+            left.add(nameTextField);
             
-            weightLbl.setFont(titleFont);
-            weightTxt.setFont(titleFont);
-            left.add(weightLbl);
-            left.add(weightTxt);
+            weightLabel.setFont(titleFont);
+            weightTextField.setFont(titleFont);
+            left.add(weightLabel);
+            left.add(weightTextField);
             
-            heightLbl.setFont(titleFont);
-            heightTxt.setFont(titleFont);
-            left.add(heightLbl);
-            left.add(heightTxt);
+            heightLabel.setFont(titleFont);
+            heightTextField.setFont(titleFont);
+            left.add(heightLabel);
+            left.add(heightTextField);
             
-            sexLbl.setFont(titleFont);
-            sexCombo.setFont(titleFont);
-            left.add(sexLbl);
-            left.add(sexCombo);
+            sexLabel.setFont(titleFont);
+            sexComboBox.setFont(titleFont);
+            left.add(sexLabel);
+            left.add(sexComboBox);
             
-            alignmentLbl.setFont(titleFont);
-            alignCombo.setFont(titleFont);
-            left.add(alignmentLbl);
-            left.add(alignCombo);
+            alignmentLabel.setFont(titleFont);
+            alignmentComboBox.setFont(titleFont);
+            left.add(alignmentLabel);
+            left.add(alignmentComboBox);
             
-            backgroundLbl.setFont(titleFont);
-            backCombo.setFont(titleFont);
-            left.add(backgroundLbl);
-            left.add(backCombo);
+            backgroundLabel.setFont(titleFont);
+            backgroundComboBox.setFont(titleFont);
+            left.add(backgroundLabel);
+            left.add(backgroundComboBox);
             
             //Add left panel to Grid Bag Layout
             gbc.fill = GridBagConstraints.NONE;
@@ -1077,7 +1079,7 @@ public class NewCharacter extends JFrame{
             gbc.insets = new Insets(0,0,5,0);  //bottom padding
             gbc.anchor = GridBagConstraints.LAST_LINE_START;
             gbc.gridwidth = GridBagConstraints.RELATIVE;
-            add(jbPrev, gbc);
+            add(previousButton, gbc);
 
             //Save & Continue button
             gbc.gridx = 1;
@@ -1085,13 +1087,13 @@ public class NewCharacter extends JFrame{
             gbc.insets = new Insets(0,0,5,0);  //bottom padding
             gbc.anchor = GridBagConstraints.LAST_LINE_END;
             gbc.gridwidth = GridBagConstraints.REMAINDER;
-            add(jbNext, gbc);
+            add(generateCharacterSheetButton, gbc);
 
             setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
             //Action Listeners for Buttons
-            jbNext.addActionListener   (e -> generateCharacter());
-            jbPrev.addActionListener   (e -> switchStatePrev());
+            generateCharacterSheetButton.addActionListener   (e -> generateCharacter());
+            previousButton.addActionListener   (e -> switchStatePrev());
         }
 
         //Method to go to Previous Card
