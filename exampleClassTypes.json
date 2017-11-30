@@ -3,12 +3,12 @@
         "Class Features": {
             "content": "As a barbarian, you gain the following class features.",
             "Hit Points": [0, 0, 0, 1],
+            "armorProfeciencies":["Light","medium", "shields"],
+            "weaponsProfeciencies": ["simple","martial"],
+            "tools": ["none"],
+            "savingThrows":["strength","constitution"],
             "Proficiencies": {
                 "content": {
-                    "armor":" Light, medium, shields",
-                    "weapons": "simple, martial",
-                    "tools": "none",
-                    "saving throws":" strength, constitution",
                     "Skills":{
                       "content":[
                         "Choose two from the following:",
