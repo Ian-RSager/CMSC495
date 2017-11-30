@@ -132,9 +132,9 @@ public class CharacterCreator {
 	 * GUI constructor
 	 */
 	
-	public CharacterCreator(Character CharacterIn) {
+	public CharacterCreator(Character characterIn) {
 		
-		this.character = inCharacter;	
+		this.character = characterIn;	
 		
 		/*
 		 * Set frame
@@ -301,7 +301,7 @@ public class CharacterCreator {
 		for(String skill: skills) {
 			boolean selected = false;
 			// TODO need method to get character Skill list
-			//if (inCharacter.getSkillList().contains(skill)) selected = true;
+			//if (characterIn.getSkillList().contains(skill)) selected = true;
 			skillsPanel.add(new JCheckBox("+3 " + skill + "    "), selected);
 			
 		}
@@ -505,7 +505,7 @@ class AbilityScorePanel extends JPanel {
 	//JLabel abilityScoreLabel;
 	JLabel modifierLabel;
 	
-	public AbilityScorePanel(String inAbility, Character inCharacter) {
+	public AbilityScorePanel(String abilityIn, Character characterIn) {
 		setOpaque(false);
 		Border margin = new EmptyBorder(5,5,0,5);
 		
@@ -516,18 +516,18 @@ class AbilityScorePanel extends JPanel {
 		setLayout(new BorderLayout());
 		
 		int value = 0;
-		switch(inAbility) {
-			case "Strength" : value = inCharacter.getAbilityScoreStrength();
+		switch(abilityIn) {
+			case "Strength" : value = characterIn.getAbilityScoreStrength();
 				break;
-			case "Dexterity" : value = inCharacter.getAbilityScoreDexterity();
+			case "Dexterity" : value = characterIn.getAbilityScoreDexterity();
 				break;
-			case "Constitution" : value = inCharacter.getAbilityScoreConstitution();
+			case "Constitution" : value = characterIn.getAbilityScoreConstitution();
 				break;
-			case "Intelligence" : value = inCharacter.getAbilityScoreIntelligence();
+			case "Intelligence" : value = characterIn.getAbilityScoreIntelligence();
 				break;
-			case "Wisdom" : value = inCharacter.getAbilityScoreWisdom();
+			case "Wisdom" : value = characterIn.getAbilityScoreWisdom();
 				break;
-			case "Charisma" : value = inCharacter.getAbilityScoreCharisma();
+			case "Charisma" : value = characterIn.getAbilityScoreCharisma();
 				break;
 			default:
 				break;
@@ -544,7 +544,7 @@ class AbilityScorePanel extends JPanel {
 		textField.setBorder(new EmptyBorder(0,0,0,5));
 		textField.setEditable(false);
 		
-		abilityScoreNameLabel = new JLabel(inAbility, SwingConstants.CENTER);
+		abilityScoreNameLabel = new JLabel(abilityIn, SwingConstants.CENTER);
 		String fillerModifier = String.valueOf(Math.round(Math.random()*10 - 5));
 		if (Integer.valueOf(fillerModifier) > 0) fillerModifier = "+" + fillerModifier;
 		modifierLabel = new JLabel((" (" + fillerModifier + ")"), SwingConstants.RIGHT);
@@ -561,7 +561,7 @@ class StatsPanel extends JPanel {
 	JLabel statNameLabel;
 	JLabel statNumberLabel;
 	
-	public StatsPanel(String inStat, Character inCharacter)
+	public StatsPanel(String statIn, Character characterIn)
 	{
 		setOpaque(false);
 		Border margin = new EmptyBorder(5,5,0,5);
@@ -574,7 +574,7 @@ class StatsPanel extends JPanel {
 		
 		int value = 0;
 		
-		switch (inStat) {
+		switch (statIn) {
 		case "Hit Points" :
 			break;
 		case "Armor Class" :
@@ -584,7 +584,7 @@ class StatsPanel extends JPanel {
 		case "Proficiency Bonus" :
 			break;
 		case "Speed" :
-			value = inCharacter.getSpeed();
+			value = characterIn.getSpeed();
 			break;
 		case "Passive Perception" :
 			break;
@@ -601,7 +601,7 @@ class StatsPanel extends JPanel {
 		textField.setBorder(new EmptyBorder(0,0,0,5));
 		textField.setEditable(false);
 		
-		statNameLabel = new JLabel(inStat, SwingConstants.CENTER);
+		statNameLabel = new JLabel(statIn, SwingConstants.CENTER);
 		add(statNameLabel, BorderLayout.NORTH);
 		
 		JPanel helperPanel = new TransparentJPanel();
