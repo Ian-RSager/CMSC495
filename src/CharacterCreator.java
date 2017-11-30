@@ -132,7 +132,7 @@ public class CharacterCreator {
 	 * GUI constructor
 	 */
 	
-	public CharacterCreator(Character inCharacter) {
+	public CharacterCreator(Character CharacterIn) {
 		
 		this.character = inCharacter;	
 		
