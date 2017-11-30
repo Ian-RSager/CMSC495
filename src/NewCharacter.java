@@ -444,7 +444,7 @@ public class NewCharacter extends JFrame{
             "and to absorb attacks as easily as a heavily armored knight. Monks tap into the psionic potential that "+
             "rests within themselves, turning that energy further inward to fortify their bodies and sharpen their minds.",
 
-            "Paladins are indomitable warriors who’ve pledged their prowess to something greater than themselves. "+
+            "Paladins are indomitable warriors who've pledged their prowess to something greater than themselves. "+
             "Paladins smite enemies with divine authority, bolster the courage of nearby companions, and radiate as "+
             "if a beacon of inextinguishable hope. Paladins are transfigured on the field of battle, exemplars of "+
             "divine ethos in action.",
