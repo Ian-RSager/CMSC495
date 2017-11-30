@@ -196,7 +196,7 @@ public class NewCharacter extends JFrame{
             GridBagConstraints gbc = new GridBagConstraints();
 
             //Title
-            titleFont = new Font("Serif", Font.BOLD, 32);
+            titleFont = new Font("Default", Font.BOLD, 32);
             raceScreenLabel.setFont(titleFont);
             gbc.fill = GridBagConstraints.NONE;
             gbc.gridx = 0;
@@ -217,7 +217,7 @@ public class NewCharacter extends JFrame{
             right.setBackground(backgroundColor);
             
             //Race Description Label
-            titleFont = new Font("Serif", Font.BOLD, 26);
+            titleFont = new Font("Default", Font.BOLD, 26);
             raceLabel.setFont(titleFont);
             right.add(raceLabel,BorderLayout.NORTH);
 
@@ -248,7 +248,7 @@ public class NewCharacter extends JFrame{
             left.add(blankLbl);
 
             //Select subrace Label
-            //titleFont = new Font("Serif", Font.PLAIN, 18);
+            //titleFont = new Font("Default", Font.PLAIN, 18);
             subraceLabel.setFont(titleFont);
             left.add(subraceLabel, gbc);
 
@@ -487,7 +487,7 @@ public class NewCharacter extends JFrame{
             GridBagConstraints gbc = new GridBagConstraints();
 
             //Title
-            titleFont = new Font("Serif", Font.BOLD, 32);
+            titleFont = new Font("Default", Font.BOLD, 32);
             classScreenLabel.setFont(titleFont);
             gbc.fill = GridBagConstraints.NONE;
             gbc.gridx = 0;
@@ -509,7 +509,7 @@ public class NewCharacter extends JFrame{
             right.setBackground(backgroundColor);
             
             //Class Description Label
-            titleFont = new Font("Serif", Font.BOLD, 26);
+            titleFont = new Font("Default", Font.BOLD, 26);
             classLabel.setFont(titleFont);
             right.add(classLabel,BorderLayout.NORTH);
 
@@ -731,7 +731,7 @@ public class NewCharacter extends JFrame{
             setBackground(backgroundColor);
 
             //Title
-            titleFont = new Font("Serif", Font.BOLD, 32);
+            titleFont = new Font("Default", Font.BOLD, 32);
             abilityScoreScreenLabel.setFont(titleFont);
             gbc.fill = GridBagConstraints.NONE;
             gbc.gridx = 0;
@@ -745,7 +745,7 @@ public class NewCharacter extends JFrame{
             add(abilityScoreScreenLabel , gbc);
             
             //Titles for left/right panels
-            titleFont = new Font("Serif", Font.BOLD, 22);
+            titleFont = new Font("Default", Font.BOLD, 22);
             JLabel ptBuy = new JLabel("Point Buy",JLabel.CENTER);
             abilityLblB.setFont(titleFont);
             ptBuy.setFont(titleFont);
@@ -777,7 +777,7 @@ public class NewCharacter extends JFrame{
             abilityPanel.add(bRoll);
             
             //Strength
-            titleFont = new Font("Serif", Font.PLAIN, 22);
+            titleFont = new Font("Default", Font.PLAIN, 22);
             strengthLabel.setFont(titleFont);
             abilityPanel.add(strengthLabel);
             f1.setFont(titleFont);
@@ -977,7 +977,7 @@ public class NewCharacter extends JFrame{
             GridBagConstraints gbc = new GridBagConstraints();
 
             //Title
-            titleFont = new Font("Serif", Font.BOLD, 32);
+            titleFont = new Font("Default", Font.BOLD, 32);
             additionalInfoScreenLabel.setFont(titleFont);
             gbc.fill = GridBagConstraints.NONE;
             gbc.gridx = 0;
@@ -1013,7 +1013,7 @@ public class NewCharacter extends JFrame{
             }
             
             //Upload Image Button
-            titleFont = new Font("Serif", Font.BOLD, 26);
+            titleFont = new Font("Default", Font.BOLD, 26);
             uploadImageButton.setFont(titleFont);
             right.add(uploadImageButton,BorderLayout.SOUTH);
 
