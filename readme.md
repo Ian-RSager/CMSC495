@@ -3,9 +3,9 @@ Group Bravo's capstone project for CMSC495
 
 Current Items being worked:
 
-* Alex - Character Class
-* Anna - NewCharacter Class
-* Brian - GUI
-* Chris - Skills, Items, etc. JSON
-* Ian - Git Tutorial
+* Alex - JSON, Masterlist class
+* Anna - GUI changes
+* Brian - GUI changes, pictures
+* Chris - Class Type JSON, Features
+* Ian - Class Type JSON, Features
 
