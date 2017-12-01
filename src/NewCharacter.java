@@ -1,10 +1,11 @@
 /*
  * File: NewCharacter.java
- * Date: November 11, 2017
+ * Date: December 1, 2017
  * Purpose: Creates a Gui with a Card Layout to Step by Step allow the user
  *          to create a new D&D 5th Edition character.
  *
  * First draft of Gui is complete, but all backend code needs to be written.
+ * Background image and resizing added.
  * Many listeners still need to be implemented.
  */
 
@@ -43,6 +44,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import java.awt.event.ComponentListener;
 
 @SuppressWarnings("serial")    //Suppress serialVersionUID warning when compiling with -Xlint
 
@@ -59,18 +61,34 @@ public class NewCharacter extends JFrame{
     private JPanelAddInfo  card4;      //Fourth Panel
     
     //Background Color for all Screens
-    private Color backgroundColor = new Color(252,229,83);
-
+    private BufferedImage photo;
+    private Image resizedPhoto;
+    private ImageIcon iiphoto = new ImageIcon();
+    private JLabel background;
+	
     //Constructor
     public NewCharacter(){
         
         //Set up the Window
         super("Create a Character");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize (700, 685);
         setMinimumSize(new Dimension(700, 685));
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
+		try {
+			photo = ImageIO.read(new File("background2.jpg"));
+		    resizedPhoto = photo.getScaledInstance(700, 685, Image.SCALE_FAST);	
+			iiphoto.setImage(resizedPhoto);
+			background=new JLabel(iiphoto);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			background=new JLabel();
+		}
+        add(background);
+        background.setLayout(new BorderLayout());
+		
         //Create the individual cards
         card1 = new JPanelRace();
         card2 = new JPanelClass();
@@ -79,12 +97,24 @@ public class NewCharacter extends JFrame{
 
         //Create the Card Panel Layout
         cardPanel = new JPanel(new CardLayout());
+		cardPanel.setOpaque(false);
         cardPanel.add(card1, "Card1");
         cardPanel.add(card2, "Card2");
         cardPanel.add(card3, "Card3");
         cardPanel.add(card4, "Card4");
 
-        add(cardPanel,BorderLayout.CENTER);
+        background.add(cardPanel,BorderLayout.CENTER);
+		
+		//Add a component listener to handle resizing the background image
+		//if the window is resized
+        background.addComponentListener(new ComponentAdapter () {
+            public void componentResized(ComponentEvent e) {
+				Dimension newSize = e.getComponent().getBounds().getSize();
+		        resizedPhoto = photo.getScaledInstance((int)newSize.getWidth(), (int)newSize.getHeight(), Image.SCALE_FAST);	
+	  		    iiphoto.setImage(resizedPhoto);
+                background=new JLabel(iiphoto);
+            }
+        });
 
         //Display
         pack();
@@ -190,8 +220,7 @@ public class NewCharacter extends JFrame{
 
         //Constructor
         public JPanelRace(){
-
-            setBackground(backgroundColor);
+            setOpaque(false);
             setLayout(new GridBagLayout());
             GridBagConstraints gbc = new GridBagConstraints();
 
@@ -214,7 +243,7 @@ public class NewCharacter extends JFrame{
             // Right Panel //
             /////////////////
             JPanel right = new JPanel(new BorderLayout());
-            right.setBackground(backgroundColor);
+            right.setOpaque(false);
             
             //Race Description Label
             titleFont = new Font("Default", Font.BOLD, 26);
@@ -237,7 +266,7 @@ public class NewCharacter extends JFrame{
             // Left Panel //
             ////////////////
             JPanel left = new JPanel(new GridLayout(0, 1));
-            left.setBackground(backgroundColor);
+            left.setOpaque(false);
             
             //Race Selection Label
             selectARaceLabel.setFont(titleFont);
@@ -481,9 +510,9 @@ public class NewCharacter extends JFrame{
 
             JPanel helper = new JPanel();
             helper.setLayout(new FlowLayout(FlowLayout.LEFT));
-            helper.setBackground(backgroundColor);
+            helper.setOpaque(false);
             setLayout(new GridBagLayout());
-            setBackground(backgroundColor);
+			setOpaque(false);
             GridBagConstraints gbc = new GridBagConstraints();
 
             //Title
@@ -506,7 +535,7 @@ public class NewCharacter extends JFrame{
             // Right Panel //
             /////////////////
             JPanel right = new JPanel(new BorderLayout());
-            right.setBackground(backgroundColor);
+            right.setOpaque(false);
             
             //Class Description Label
             titleFont = new Font("Default", Font.BOLD, 26);
@@ -529,7 +558,7 @@ public class NewCharacter extends JFrame{
             // Left Panel //
             ////////////////
             JPanel left = new JPanel(new GridLayout(0, 1));
-            left.setBackground(backgroundColor);
+            left.setOpaque(false);
             
             //Class Selection Label
             selectAClassLabel.setFont(titleFont);
@@ -728,7 +757,7 @@ public class NewCharacter extends JFrame{
 
             setLayout(new GridBagLayout());
             GridBagConstraints gbc = new GridBagConstraints();
-            setBackground(backgroundColor);
+            setOpaque(false);
 
             //Title
             titleFont = new Font("Default", Font.BOLD, 32);
@@ -764,13 +793,13 @@ public class NewCharacter extends JFrame{
             JPanel f4 = new JPanel(new FlowLayout());
             JPanel f5 = new JPanel(new FlowLayout());
             JPanel f6 = new JPanel(new FlowLayout());
-            abilityPanel.setBackground(backgroundColor);
-            f1.setBackground(backgroundColor);
-            f2.setBackground(backgroundColor);
-            f3.setBackground(backgroundColor);
-            f4.setBackground(backgroundColor);
-            f5.setBackground(backgroundColor);
-            f6.setBackground(backgroundColor);
+            abilityPanel.setOpaque(false);
+            f1.setOpaque(false);
+            f2.setOpaque(false);
+            f3.setOpaque(false);
+            f4.setOpaque(false);
+            f5.setOpaque(false);
+            f6.setOpaque(false);
             
             abilityPanel.add(abilityLblB);
             abilityPanel.add(ptBuy);
@@ -834,9 +863,9 @@ public class NewCharacter extends JFrame{
             JRadioButton rPt   = new JRadioButton("Use Point Buy");
             JRadioButton rRoll = new JRadioButton("Use Roll");
             ButtonGroup rgroup = new ButtonGroup();
-            rPt.setBackground(backgroundColor);
+            rPt.setOpaque(false);
             rPt.setFont(titleFont);
-            rRoll.setBackground(backgroundColor);
+            rRoll.setOpaque(false);
             rRoll.setFont(titleFont);
             rgroup.add(rPt);
             rgroup.add(rRoll);
@@ -971,9 +1000,9 @@ public class NewCharacter extends JFrame{
 
             JPanel helper = new JPanel();
             helper.setLayout(new FlowLayout(FlowLayout.LEFT));
-            helper.setBackground(backgroundColor);
+            helper.setOpaque(false);
             setLayout(new GridBagLayout());
-            setBackground(backgroundColor);
+            setOpaque(false);
             GridBagConstraints gbc = new GridBagConstraints();
 
             //Title
@@ -996,14 +1025,14 @@ public class NewCharacter extends JFrame{
             // Right Panel - Image and Upload Button //
             ///////////////////////////////////////////
             JPanel right = new JPanel(new BorderLayout());
-            right.setBackground(backgroundColor);
+            right.setOpaque(false);
             BufferedImage characterImage;
             JLabel photoLabel;
             
             try {
                 characterImage = ImageIO.read(new File("cabbage.jpg"));
-                Image resizedPhoto = characterImage.getScaledInstance(100, 100, Image.SCALE_SMOOTH);	
-                photoLabel = new JLabel(new ImageIcon(resizedPhoto));
+                Image lresizedPhoto = characterImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);	
+                photoLabel = new JLabel(new ImageIcon(lresizedPhoto));
                 photoLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
                 photoLabel.setSize(50, 50);
                 //Show Image
@@ -1013,7 +1042,7 @@ public class NewCharacter extends JFrame{
             }
             
             //Upload Image Button
-            titleFont = new Font("Default", Font.BOLD, 26);
+            titleFont = new Font("Default", Font.PLAIN, 18);
             uploadImageButton.setFont(titleFont);
             right.add(uploadImageButton,BorderLayout.SOUTH);
 
@@ -1022,7 +1051,7 @@ public class NewCharacter extends JFrame{
             // Left Panel - User Entered Data //
             ////////////////////////////////////
             JPanel left = new JPanel(new GridLayout(0, 2));
-            left.setBackground(backgroundColor);
+            left.setOpaque(false);
             
             //Class Selection Label
             nameLabel.setFont(titleFont);
