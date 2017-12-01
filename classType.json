@@ -1,0 +1,570 @@
+[
+  {
+    "id": "classBarbarian",
+    "name":"Barbarian",
+    "description": "As a barbarian, you gain the following class features.",
+    "hitDice": [0, 0, 0, 1],
+    "armorProficiencies":["light","medium", "shields"],
+    "weaponsProficiencies": ["simple","martial"],
+    "savingThrows":["strength","constitution"],
+    "numberOfSkillChoices":2,
+    "skillChoicesArray": [
+      "Animal Handling",
+      "Athletics",
+      "Intimidation",
+      "Nature",
+      "Perception",
+      "Survival"
+    ],
+    "tools":["none"],
+    "equipment":
+      "You start with the following equipment, in addition to the equipment granted by your background:\n(*a*) a greataxe or (*b*) any martial melee weapon\n(*a*) two handaxes or (*b*) any simple weapon\nAn explorer’s pack and four javelins",
+    "Features": [
+      ["featureRage", "featureUnarmoredDefense"],
+      ["featureRecklessAttack", " featureDangerSense"],
+      ["featurePrimalPath"],
+      ["featureAbilityScoreImprovement"],
+      ["featureExtraAttack", " featureFastMovement"],
+      ["featurePathFeature"],
+      ["featureFeralInstinct"],
+      ["featureAbilityScoreImprovement"],
+      ["featureBrutalCritical (1 die)"],
+      ["featurePathFeature"],
+      ["featureRelentless"],
+      ["featureAbilityScoreImprovement"],
+      ["featureBrutalCritical(2dice)"],
+      ["featurePathFeature"],
+      ["featurePersistentRage"],
+      ["featureAbilityScoreImprovement"],
+      ["featureBrutalCritical(3dice)"],
+      ["featureIndomitableMight"],
+      ["featureAbilityScoreImprovement"],
+      ["featurePrimalChampion"]
+    ],
+    "subClassFeaturesList": [
+      ["featureBerserker","","","featureFrenzy","","","featureMindlessRage","","","","featureIntimidatingPresence","","","","featureRetaliation","","","","","",""],
+      ["featureTotemWarrior","","","featureSpiritSeeker, featureTotemSpirit","","","featureAspectOfTheBeast","","","", "featureSpiritWalker","","","","featureTotemicAttunement","","","","","",""]
+    ]
+  },
+  {
+    "id":"classBard",
+    "name":"Bard",
+    "description": "As a bard, you gain the following class features.",
+    "hitDice": [0,1,0,0],
+    "armrProficiencies": ["light"],
+    "weaponsProficiencies:":["Simple weapons","hand crossbows","longswords","rapiers","shortswords"],
+    "savingThrows":["Dexterity","Charisma"],
+    "numberOfSkillChoices": 3,
+    "skillChoiceArray":[
+      "Acrobatics",
+      "Animal Handling",
+      "Arcana",
+      "Athletics",
+      "Deception",
+      "History",
+      "Insight",
+      "Intimidation",
+      "Investigation",
+      "Medicine",
+      "Nature",
+      "Perception",
+      "Performance",
+      "Persuasion",
+      "Religion",
+      "Sleight of Hand",
+      "Survival",
+      "Stealth"
+    ],
+    "tools:":"Three musical instruments of your choice",
+    "equipment": "You start with the following equipment, in addition to the equipment granted by your background:\n
+      (*a*) a rapier, (*b*) a longsword, or (*c*) any simple weapon\n
+      (*a*) a diplomat’s pack or (*b*) an entertainer’s pack\n
+      (*a*) a lute or (*b*) any other musical instrument\n
+      Leather armor and a dagger",
+    "features":[
+      ["Spellcasting","Bardic Inspiration"],
+      ["Jack of All Trades","Song of Rest"],
+      ["Bard College","Expertise"],
+      ["Ability Score Improvement"],
+      ["Bardic Inspiration","Font of Inspiration"],
+      ["Countercharm","Bard College Feature"],
+      ["-"],
+      ["Ability Score Improvement"],
+      ["Song of Rest"],
+      ["Bardic Inspiration","Expertise, Magical Secrets"],
+      ["-"],
+      ["Ability Score Improvement"],
+      ["Song of Rest"],
+      ["Magical Secrets","Bard College Feature"],
+      ["Bardic Inspiration"],
+      ["Ability Score Improvement"],
+      ["Song of Rest"],
+      ["Magical Secrets"],
+      ["Ability Score Improvement"],
+      ["Superior Inspiration"]
+    ],
+    "subclassFeaturesList":[]
+  },
+  {
+    "id":"classCleric",
+    "name":"Cleric",
+    "description": "As a cleric, you gain the following class features.",
+    "hitDice": [0,1,0,0],
+    "armorProficiencies":["Light, medium, shields"],
+    "weaponProficiencies":["Simple"],
+    "tools":["None"],
+    "saving throws":["Wisdom","Charisma"],
+    "numberOfSkillChoices": 2,
+    "skillChoiceArray":[
+      "History",
+      "Insight",
+      "Medicine",
+      "Persuasion",
+      "Religion"
+    ],
+    "equipment":
+      "You start with the following equipment, in addition to the equipment granted by your background:\
+      (*a*) a mace or (*b*) a warhammer (if proficient)\n
+      (*a*) scale mail, (*b*) leather armor, or (*c*) chain mail (if proficient)\n
+      (*a*) a light crossbow and 20 bolts or (*b*) any simple weapon\n
+      (*a*) a priest’s pack or (*b*) an explorer’s pack\n
+      A shield and a holy symbol",
+    "features":[
+      ["Spellcasting, Divine Domain"],
+      ["Channel Divinity (1/rest), Divine Domain Feature"],
+      ["-"],
+      ["Ability Score Improvement"],
+      ["Destroy Undead (CR 1/2)"],
+      ["Channel Divinity (2/rest), Divine Domain Feature"],
+      ["-"],
+      ["Ability Score Improvement, Destroy Undead (CR 1), Divine Domain Feature"],
+      ["-"],
+      ["Divine Intervention"],
+      ["Destroy Undead (CR 2)"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Destroy Undead (CR 3)"],
+      ["-"],
+      ["Ability Score Improvement"],
+      ["Destroy Undead (CR 4), Divine Domain Feature"],
+      ["Channel Divinity (3/rest)"],
+      ["Ability Score Improvement"],
+      ["Divine Intervention improvement"]
+    ],
+    "subclassFeaturesList":[]
+  },
+  {
+    "id":"classDruid",
+    "name": "Druid",
+    "description": "As a druid, you gain the following class features.(druids will not wear armor or use shields made of metal)",
+    "hitDice": [0,1,0,0],
+    "armorProficiencies":["Light","medium","shields"],
+    "weaponProficiencies":["Simple"],
+    "tools":["None"],
+    "saving throws":["Wisdom","Intelligence"],
+    "numberOfSkillChoices": 2,
+    "skillChoiceArray":[
+      "Arcana",
+      "Animal Handling",
+      "Insight",
+      "Medicine",
+      "Nature",
+      "Perception",
+      "Religion",
+      "Survival"
+     ],
+    "equipment":
+      "You start with the following equipment, in addition to the equipment granted by your background:\n
+      (*a*) a wooden shield or (*b*) any simple weapon\n
+      (*a*) a scimitar or (*b*) any simple melee weapon\n
+      Leather armor, an explorer’s pack, and a druidic focus",
+    "features":[
+      ["Druidic","Spellcasting"],
+      ["Wild Shape","Druid Circle"],
+      ["-"],
+      ["Wild Shape Improvement","Ability Score Improvement"],
+      ["-"],
+      ["Druid Circle feature"],
+      ["-"],
+      ["Wild Shape Improvement","Ability Score Improvement"],
+      ["-"],
+      ["Druid Circle feature"],
+      ["-"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Druid Circle feature"],
+      ["-"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Timeless Body","Beast Spells"],
+      ["Ability Score Improvement"],
+      ["Archdruid"]
+    ],
+    "subclassFeaturesList":[]
+  },
+  {
+    "id":"classFighter",
+    "name": "Fighter",
+    "description": "As a fighter, you gain the following class features.(druids will not wear armor or use shields made of metal)",
+    "hitDice": [0,0,1,0],
+    "armorProficiencies":["Light","Medium","Heavy","Shields"],
+    "weaponProficiencies":["Simple","Martial"],
+    "tools":["None"],
+    "saving throws":["Strength","Constitution"],
+    "numberOfSkillChoices": 2,
+    "skillChoiceArray":[
+      "Acrobatics",
+      "Animal Handling",
+      "Athletics",
+      "History",
+      "Insight",
+      "Intimidation",
+      "Perception",
+      "Survival"
+    ],
+    "equipment":
+      "You start with the following equipment, in addition to the equipment granted by your background:\n
+      (*a*) chain mail or (*b*) leather armor, longbow, and 20 arrows\n
+      (*a*) a martial weapon and a shield or (*b*) two martial weapons\n
+      (*a*) a light crossbow and 20 bolts or (*b*) two handaxes\n
+      (*a*) a dungeoneer’s pack or (*b*) an explorer’s pack",
+    "features":[
+      ["Fighting Style", "Second Wind"],
+      ["Action Surge (one use)"],
+      ["Martial Archetype"],
+      ["Ability Score Improvement"],
+      ["Extra Attack"],
+      ["Ability Score Improvement"],
+      ["Martial Archetype Feature"],
+      ["Ability Score Improvement"],
+      ["Indomitable (one use)"],
+      ["Martial Archetype Feature"],
+      ["Extra Attack (2)"],
+      ["Ability Score Improvement"],
+      ["Indomitable (two uses)"],
+      ["Ability Score Improvement"],
+      ["Martial Archetype Feature"],
+      ["Ability Score Improvement"],
+      ["Action Surge (two uses)", "Indomitable (three uses)"],
+      ["Martial Archetype Feature"],
+      ["Ability Score Improvement"],
+      ["Extra Attack (3)"]
+    ],
+    "subclassFeaturesList":[]
+  },
+  {
+    "id":"classMonk",
+    "name": "Monk",
+    "description": "As a monk, you gain the following class features.(druids will not wear armor or use shields made of metal)",
+    "hitDice": [0,1,0,0],
+    "armorProficiencies":["None"],
+    "weaponProficiencies":["Simple","Shortswords"],
+    "tools":["Choose one type of artisan’s tools or one musical instrument"],
+    "saving throws":["Strength","Dexterity"],
+    "numberOfSkillChoices": 2,
+    "skillChoiceArray":[
+      "Acrobatics","Athletics","History", "Insight", "Religion", "Stealth"
+    ],
+    "equipment":
+      "You start with the following equipment, in addition to the equipment granted by your background:\n
+      (*a*) a shortsword or (*b*) any simple weapon\n
+      (*a*) a dungeoneer’s pack or (*b*) an explorer’s pack\n
+      10 darts",
+    "features":[
+     ["Unarmored Defense", "Martial Arts"],
+     ["Ki", "Unarmored Movement"],
+     ["Monastic Tradition", "Deflect Missiles"],
+     ["Ability Score Improvement", "Slow Fall"],
+     ["Extra Attack", "Stunning Strike"],
+     ["Ki-Empowered Strikes", "Monastic Tradition Feature"],
+     ["Evasion", "Stillness of Mind"],
+     ["Ability Score Improvement"],
+     ["Unarmored Movement improvement"],
+     ["Purity of Body"],
+     ["Monastic Tradition Feature"],
+     ["Ability Score Improvement"],
+     ["Tongue of the Sun and Moon"],
+     ["Diamond Soul"],
+     ["Timeless Body"],
+     ["Ability Score Improvement"],
+     ["Monastic Tradition Feature"],
+     ["Empty Body"],
+     ["Ability Score Improvement"],
+     ["Perfect Self"]
+    ],
+    "subclassFeaturesList":[]
+  },
+  {
+    "id":"classPaladin",
+    "name": "Paladin",
+    "description": "As a paladin, you gain the following class features.(druids will not wear armor or use shields made of metal)",
+    "hitDice": [0,1,0,0],
+    "armorProficiencies":["Light","Medium","Heavy","Shields"],
+    "weaponProficiencies":["Simple","Martial"],
+    "tools":["None"],
+    "saving throws":["Wisdom","Charisma"],
+    "numberOfSkillChoices": 2,
+    "skillChoiceArray":[
+      "Athletics",
+      "Insight",
+      "Intimidation",
+      "Medicine",
+      "Persuasion",
+      "Religion"
+    ],
+    "equipment":
+      "You start with the following equipment, in addition to the equipment granted by your background:\n
+      (*a*) a martial weapon and a shield or (*b*) two martial weapons\n
+      (*a*) five javelins or (*b*) any simple melee weapon\n
+      (*a*) a priest’s pack or (*b*) an explorer’s pack\n
+      Chain mail and a holy symbol",
+    "features":[
+     ["Divine Sense", "Lay on Hands"],
+     ["Fighting Style", "Spellcasting", "Divine Smite"],
+     ["Divine Health", "Sacred Oath"],
+     ["Ability Score Improvement"],
+     ["Extra Attack"],
+     ["Aura of Protection"],
+     ["Sacred Oath feature"],
+     ["Ability Score Improvement"],
+     ["-"],
+     ["Aura of Courage"],
+     ["Improved Divine Smite"],
+     ["Ability Score Improvement"],
+     ["-"],
+     ["Cleansing Touch"],
+     ["Sacred Oath feature"],
+     ["Ability Score Improvement"],
+     ["-"],
+     ["Aura improvements"],
+     ["Ability Score Improvement"],
+     ["Sacred Oath feature"]
+    ],
+    "subclassFeaturesList":[]
+  },
+  {
+    "id":"classRanger",
+    "name": "Ranger",
+    "description": "As a ranger, you gain the following class features.(druids will not wear armor or use shields made of metal)",
+    "hitDice": [0,0,1,0],
+    "armorProficiencies":["Light","Medium","Shields"],
+    "weaponProficiencies":["Simple","Martial"],
+    "tools":["None"],
+    "saving throws":["Strength","Dexterity"],
+    "numberOfSkillChoices": 2,
+    "skillChoiceArray":[
+      "Animal Handling",
+      "Athletics",
+      "Insight",
+      "Investigation",
+      "Nature",
+      "Perception",
+      "Stealth",
+      "Survival"
+    ],
+    "equipment":
+      "You start with the following equipment, in addition to the equipment granted by your background\n
+      (*a*) scale mail or (*b*) leather armor\n
+      (*a*) two shortswords or (*b*) two simple melee weapons\n
+      (*a*) a dungeoneer’s pack or (*b*) an explorer’s pack\n
+      A longbow and a quiver of 20 arrows",
+    "features":[
+      ["Favored Enemy","Natural Explorer"],
+      ["Fighting Style","Spellcasting"],
+      ["Ranger Archetype","Primeval Awareness"],
+      ["Ability Score Improvement"],
+      ["Extra Attack"],
+      ["Favored Enemy and Natural Explorer improvements"],
+      ["Ranger Archetype feature"],
+      ["Ability Score Improvement","Land’s Stride"],
+      ["-"],
+      ["Natural Explorer improvement","Hide in Plain Sight"],
+      ["Ranger Archetype feature"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Favored Enemy improvement","Vanish"],
+      ["Ranger Archetype feature"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Feral Senses"],
+      ["Ability Score Improvement"],
+      ["Foe Slayer"]
+    ],
+    "subclassFeaturesList":[]
+  },
+  {
+    "id":"classRogue",
+    "name": "Rogue",
+    "description": "As a rogue, you gain the following class features.(druids will not wear armor or use shields made of metal)",
+    "hitDice": [0,1,0,0],
+    "armorProficiencies":["Light"],
+    "weaponProficiencies":["Simple","Hand Crossbows","Longswords","Rapiers","Shortswords"],
+    "tools":["Thieeves' Tools"],
+    "saving throws":["Dexterity","Intelligence"],
+    "numberOfSkillChoices": 4,
+    "skillChoiceArray":[
+     "Acrobatics",
+     "Athletics",
+     "Deception",
+     "Insight",
+     "Intimidation",
+     "Investigation",
+     "Perception",
+     "Performance",
+     "Persuasion",
+     "Sleight of Hand",
+     "Stealth"
+   ],
+    "equipment":"You start with the following equipment, in addition to the equipment granted by your background:\n(*a*) a rapier or (*b*) a shortsword\n
+     (*a*) a shortbow and quiver of 20 arrows or (*b*) a shortsword\n
+     (*a*) a burglar’s pack, (*b*) a dungeoneer’s pack, or (*c*) an explorer’s pack\n
+     (*a*) Leather armor, two daggers, and thieves’ tools",
+    "features":[
+       ["Expertise","Sneak Attack","Thieves’ Cant"],
+       ["Cunning Action"],
+       ["Roguish Archetype"],
+       ["Ability Score Improvement"],
+       ["Uncanny Dodge"],
+       ["Expertise"],
+       ["Evasion"],
+       ["Ability Score Improvement"],
+       ["Roguish Archetype feature"],
+       ["Ability Score Improvement"],
+       ["Reliable Talent"],
+       ["Ability Score Improvement"],
+       ["Roguish Archetype Feature"],
+       ["Blindsense"],
+       ["Slippery Mind"],
+       ["Ability Score Improvement"],
+       ["Roguish Archetype Feature"],
+       ["Elusive"],
+       ["Ability Score Improvement"],
+       ["Stroke of Luck"]
+    ],
+    "subclassFeaturesList":[]
+  },
+  {
+    "id":"classSorcerer",
+    "name": "Sorcerer",
+    "description": "As a sorcerer, you gain the following class features.(druids will not wear armor or use shields made of metal)",
+    "hitDice": [1,0,0,0],
+    "armorProficiencies":["None"],
+    "weaponProficiencies":["Daggers","Darts","Slings","Quarterstaffs","Light Crossbows"],
+    "tools":["None"],
+    "saving throws":["Constitution","Charisma"],
+    "numberOfSkillChoices": 2,
+    "skillChoiceArray":[
+      "Arcana",
+      "Deception",
+      "Insight",
+      "Intimidation",
+      "Persuasion",
+      "Religion"
+    ],
+    "equipment":
+      "You start with the following equipment, in addition to the equipment granted by your background:\n
+      (*a*) a light crossbow and 20 bolts or (*b*) any simple weapon\n
+      (*a*) a component pouch or (*b*) an arcane focus\n
+      (*a*) a dungeoneer’s pack or (*b*) an explorer’s pack\n
+      Two daggers",
+    "features":[
+      ["Spellcasting","Sorcerous Origin"],
+      ["Font of Magic"],
+      ["Metamagic"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Sorcerous Origin Feature"],
+      ["-"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Metamagic"],
+      ["-"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Sorcerous Origin Feature"],
+      ["-"],
+      ["Ability Score Improvement"],
+      ["Metamagic"],
+      ["Sorcerous Origin Feature"],
+      ["Ability Score Improvement"],
+      ["Sorcerous Restoration"]
+    ],
+    "subclassFeaturesList":[]
+  },
+  {
+    "id":"classWarlock",
+    "name": "Warlock",
+    "description": "As a Warlock, you gain the following class features.(druids will not wear armor or use shields made of metal)",
+    "hitDice": [0,1,0,0],
+    "armorProficiencies":["Light"],
+    "weaponProficiencies":["Simple"],
+    "tools":["None"],
+    "saving throws":["Wisdom","Charisma"],
+    "numberOfSkillChoices": 2,
+    "skillChoiceArray":[
+      "Arcana",
+      "Deception",
+      "History",
+      "Intimidation",
+      "Investigation",
+      "Nature",
+      "Religion"
+    ],
+    "equipment":
+      "You start with the following equipment, in addition to the equipment granted by your background:\n
+      *(a)* a light crossbow and 20 bolts or (*b*) any simple weapon\n
+      *(a)* a component pouch or (*b*) an arcane focus\n
+      *(a)* a scholar’s pack or (*b*) a dungeoneer’s pack\n
+      Leather armor, any simple weapon, and two daggers",
+    "features":[],
+    "subclassFeaturesList":[]
+  },
+  {
+    "id":"classWizard",
+    "name": "Wizard",
+    "description": "As a Wizard, you gain the following class features.(druids will not wear armor or use shields made of metal)",
+    "hitDice": [1,0,0,0],
+    "armorProficiencies":["None"],
+    "weaponProficiencies":["Daggers","Darts","Slings","Quarterstaffs","Light Crossbows"],
+    "tools":["None"],
+    "saving throws":["Wisdom","Intelligence"],
+    "numberOfSkillChoices": 2,
+    "skillChoiceArray":[
+      "Arcana",
+      "History",
+      "Insight",
+      "Investigation",
+      "Medicine",
+      "Religion"
+    ],
+    "equipment":
+      "You start with the following equipment, in addition to the equipment granted by your background:\n
+      *(a)* a quarterstaff or (*b*) a dagger\n
+      *(a)* a component pouch or (*b*) an arcane focus\n
+      *(a)* a scholar’s pack or (*b*) an explorer’s pack\n
+      A spellbook",
+    "features":[
+      ["Spellcasting","Arcane Recovery"],
+      ["Arcane Tradition"],
+      ["-"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Arcane Tradition Feature"],
+      ["-"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Arcane Tradition Feature"],
+      ["-"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Arcane Tradition Feature"],
+      ["-"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Spell Mastery"],
+      ["Ability Score Improvement"],
+      ["Signature Spell"]
+    ],
+    "subclassFeaturesList":[]
+  }
+]
