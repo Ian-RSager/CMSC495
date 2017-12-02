@@ -35,7 +35,7 @@ public class Spell {
     
     // Setters and getters.
     // For id.
-    public void setID(String idIn) {this.id = idIn;}   
+    public void setID(String idIn) {this.id = idIn;}
     public String getID() {return this.id;}
     // For name.
     public void setName(String nameIn) {this.name = nameIn;}
