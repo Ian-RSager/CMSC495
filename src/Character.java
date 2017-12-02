@@ -1,6 +1,11 @@
 package charactercreator;
 
+import java.awt.List;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.stream.*;
 
 /*
  * This class serves as a way to store the data that defines a given Character object.  That is to say, all the fields and information that one would reasonably
@@ -12,12 +17,24 @@ public class Character {
     private int id;                                                 // Unique number ID for the character, for potential future use if more than one character can be opened at the same time.
     private String name;                                            // The character's name.
     private String race;                                            // The character's race, subraces are considered their own race.
+    private int level;                                              // The character's total level.
+    private int[] levelArray = new int[]{0,0,0,0,0,0,0,0,0,0,0,0};  
+    // The total levels the character has in each class.
+    // In order, these represent levels of: (0)Barbarian, (1)Bard, (2)Cleric, (3)Druid, (4)Fighter, (5)Monk, (6)Paladin, (7)Ranger, (8)Rogue, (9)Sorcerer, (10)Warlock, (11)Wizard.
+    private String[] subClassArray = new String[]{"","","","","","","","","","","",""};
+    // The subclass the character has chosen for a given class.
+    // In order, these represent levels of: (0)Barbarian, (1)Bard, (2)Cleric, (3)Druid, (4)Fighter, (5)Monk, (6)Paladin, (7)Ranger, (8)Rogue, (9)Sorcerer, (10)Warlock, (11)Wizard.
+    private String faction;                                         // The faction the character currently belongs to.
+    private int proficiencyBonus;                                   // The character's current proficency bonus, based on their character level.
+    private int hitPointsMaximum;                                   // The character's maximum hit points.
+    private int hitPointsCurrent;                                   // The character's current hit points.
+    private int armorClass;                                         // The character's current armor class.
+    private int initiative;                                         // The character's initiative modifier.
+    private int passivePerception;                                  // The character's passive perception (which is 10 + the Perception skill value).
     private String size;                                            // The character's size (small, medium, large, etc.)
     private int speed;                                              // The character's speed, in feet per round.
     private String background;                                      // The character's background.
-    private int level;                                              // The character's total level.
     private int experiencePoints;                                   // The current value of experience the character has earned.
-    private int[] levelArray = new int[]{0,0,0,0,0,0,0,0,0,0,0,0};  // The total levels the character has in each class.  In order, these represent levels of: Barbarian, Bard, Cleric, Druid, Fighter, Monk, Paladin, Ranger, Rogue, Sorcerer, Warlock, Wizard.
     private String alignment;                                       // The character's alignment.
     private int abilityScoreStrength;                               // The character's Strength value.
     private int abilityScoreDexterity;                              // The character's Dexterity value.
@@ -25,65 +42,160 @@ public class Character {
     private int abilityScoreIntelligence;                           // The character's Intelligence value.
     private int abilityScoreWisdom;                                 // The character's Wisdom value.
     private int abilityScoreCharisma;                               // The character's Charisma value.
+    private int[] totalSkillModifierArray = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    // The total modifier for each of the character's skills.
+    // In order, these represent the modifiers for: (0)Acrobatics, (1)Animal Handling, (2)Arcana, (3)Athletics, (4)Deception, (5)History, (6)Insight, (7)Intimidation, 
+    // (8)Investigation, (9)Medicine, (10)Nature, (11)Perception, (12)Performance, (13)Persuasion, (14)Religion, (15)Sleight of Hand, (16)Stealth, (17)Survival 
+    private boolean[] savingThrowProficiencyArray = new boolean[]{false,false,false,false,false,false};
+    // An array saving the flag of whether or not the character has proficiency in a given saving throw.
+    // In order, these represent the saving throws for: (0)Strength, (1)Dexterity, (2)Constitution, (3)Intelligence, (4)Wisdom, (5)Charisma
+    private int[] savingThrowFinalValueArray = new int[]{0,0,0,0,0,0};
+    // An array saving the final values of each of the character's saving throws.
+    // In order, these represent the saving throws for: (0)Strength, (1)Dexterity, (2)Constitution, (3)Intelligence, (4)Wisdom, (5)Charisma
     private ArrayList<Item> itemsList = new ArrayList<>();          // A list of all items in the character's inventory.
-    private ArrayList<String> skillsList = new ArrayList<>();       // A list of all skills the character is proficient in.  The arrayList should contain the String ids of each skill.
+    private ArrayList<Skill> skillsList = new ArrayList<>();        // A list of all skills, intialized as a copy from the masterSkillList.
     private ArrayList<Spell> knownSpells = new ArrayList<>();       // A list of ALL spells the character currently knows, via spellbook or innate memorization.
     private ArrayList<Spell> memorizedSpells = new ArrayList<>();   // A list of the CURRENTLY MEMORIZED spells for the character.
+    private ArrayList<String> featuresList = new ArrayList<>();     // A list of all class features that the character possesses.  These are merely listed via their IDs.
     
-    // Setters and getters.
+    /*
+    THINGS TO ADD:
+    
+    languages
+    
+    equippedArmor(ArmorObject)
+    equippedShield(ArmorObject)
+    equippedWeaponsList(WeaponObject)
+    
+    weapon proficiency list
+    armor proficiency list
+    
+    spell save DCs for all stats
+    spell attack modifier for all stats
+    
+    methods for memorizedSpells
+    
+    methods for featuresList
+    */
+    
+    // Setters and getters.  Not all fields have a setter, due to the fact that values for these fields will be calculated internally.
     // For ID.
     public void setID(int idIn) {this.id = idIn;}
     public int getID() {return this.id;}
+    
     // For name.
     public void setName(String nameIn) {this.name = nameIn;}
     public String getName() {return this.name;}
+    
     // For race.
     public void setRace(String raceIn) {this.race = raceIn;}
     public String getRace() {return this.race;}
-    // For size.
-    public void setSize(String sizeIn) {this.size = sizeIn;}
-    public String getSize() {return this.size;}
-    // For speed.
-    public void setSpeed(int speedIn) {this.speed = speedIn;}
-    public int getSpeed() {return this.speed;}
-    // For background.
-    public void setBackground(String backgroundIn) {this.background = backgroundIn;}
-    public String getBackground() {return this.background;}
-    // For level.
-    public void setLevel(int levelIn) {this.level = levelIn;}
-    public int getLevel() {return this.level;}
-    // For experience points.
-    public void setExperiencePoints(int experiencePointsIn) {this.experiencePoints = experiencePointsIn;}
-    public int getExperiencePoints() {return this.experiencePoints;}
-    // For level array.  This setter method requires the programmer to enter the index to be altered, as well as the new value for that index in the level array.
+    
+    // For level.  This will be automatically calculated based on the values in levelArray.
+    public int getLevel() {return this.level;} // End getLevel.
+    
+    // For level array.  This setter method requires the programmer to enter the index to be altered, as well as the new value for that index in the level array.  Recalculates total character level.
     public void setClassLevel(int indexIn, int newLevelValueIn) {
         this.levelArray[indexIn] = newLevelValueIn;
+        this.level = IntStream.of(levelArray).sum();
+        // recalculate();
     } // End set class level.
     // Allows the programmer to get the entire level array.
     public int[] getLevelArray() {return this.levelArray;}
+    
+    // For subClass array.  This setter method requires the programmer to enter the index to be altered, as well as the new value for that index in the subClass array.
+    public void setSubClass(int indexIn, String subClassIn) {
+        this.subClassArray[indexIn] = subClassIn;
+    } // End setSubClass.
+    // Allows the programmer to get the entire subclass array.
+    public String[] getSubClassArray() {return this.subClassArray;}
+    
+    // For faction.
+    public void setFaction(String factionIn) {this.faction = factionIn;}
+    public String getFaction() {return this.faction;}
+    
+    // For proficiency bonus.  No setter method is provided as this will always be calculated internally based upon the character's total level.
+    public int getProficiencyBonus() {return this.proficiencyBonus;}
+    
+    // For maximum hit points.
+    public void setHitPointsMaximum(int hitPointsMaximumIn) {this.hitPointsMaximum = hitPointsMaximumIn;}
+    public int getHitPointsMaximum() {return this.hitPointsMaximum;}
+    
+    // For current hit points.
+    public void setHitPointsCurrent(int hitPointsCurrentIn) {this.hitPointsCurrent = hitPointsCurrentIn;}
+    public int getHitPointsCurrent() {return this.hitPointsCurrent;}
+    
+    // For armor class.
+    public void setArmorClass(int armorClassIn) {this.armorClass = armorClassIn;}
+    public int getArmorClass() {return this.armorClass;}
+    
+    // For initiative.
+    public void setInitiative(int initiativeIn) {this.initiative = initiativeIn;}
+    public int getInitiative() {return this.initiative;}
+    
+    // For passive perception.
+    public int getPassivePerception() {return this.passivePerception;}
+    
+    // For size.
+    public void setSize(String sizeIn) {this.size = sizeIn;}
+    public String getSize() {return this.size;}
+    
+    // For speed.
+    public void setSpeed(int speedIn) {this.speed = speedIn;}
+    public int getSpeed() {return this.speed;}
+    
+    // For background.
+    public void setBackground(String backgroundIn) {this.background = backgroundIn;}
+    public String getBackground() {return this.background;}
+    
+    // For experience points.
+    public void setExperiencePoints(int experiencePointsIn) {this.experiencePoints = experiencePointsIn;}
+    public int getExperiencePoints() {return this.experiencePoints;}
+    
     // For alignment.
     public void setAlignment(String alignmentIn) {this.alignment = alignmentIn;}
     public String getAlignment() {return this.alignment;}
+    
     // For Strength.
     public void setAbilityScoreStrength(int strengthIn) {this.abilityScoreStrength = strengthIn;}
     public int getAbilityScoreStrength() {return this.abilityScoreStrength;}
+    
     // For Dexterity.
     public void setAbilityScoreDexterity(int dexterityIn) {this.abilityScoreDexterity = dexterityIn;}
     public int getAbilityScoreDexterity() {return this.abilityScoreDexterity;}
+    
     // For Constitution.
     public void setAbilityScoreConstitution(int constitutionIn) {this.abilityScoreConstitution = constitutionIn;}
     public int getAbilityScoreConstitution() {return this.abilityScoreConstitution;}
+    
     // For Intelligence.
     public void setAbilityScoreIntelligence(int intelligenceIn) {this.abilityScoreIntelligence = intelligenceIn;}
     public int getAbilityScoreIntelligence() {return this.abilityScoreIntelligence;}
+    
     // For Wisdom.
     public void setAbilityScoreWisdom(int wisdomIn) {this.abilityScoreWisdom = wisdomIn;}
     public int getAbilityScoreWisdom() {return this.abilityScoreWisdom;}
+    
     // For Charisma.
     public void setAbilityScoreCharisma(int charismaIn) {this.abilityScoreCharisma = charismaIn;}
     public int getAbilityScoreCharisma() {return this.abilityScoreCharisma;}
+    
+    // For total skill modifier array.
+    public int[] getTotalSkillModifierArray() {return this.totalSkillModifierArray;}    // Getter.
+    
+    // For saving throw proficiency array.
+    public boolean[] getSavingThrowProficiencyArray() {return this.savingThrowProficiencyArray;}    // Getter.
+    public void setSavingThrowProficiencyArrayValue(int indexIn, boolean newValueIn) {              // Setter for an individual index.
+        this.savingThrowProficiencyArray[indexIn] = newValueIn;
+    } // End public void setSavingThrowProficiencyArrayValue().
+    
+    // For saving throw final value array.
+    public int[] getSavingThrowFinalValueArray() {return this.savingThrowFinalValueArray;}  // Getter.
+    
     // For items list.
-    // This method adds a new item to the character's current inventory.  If the item already exists in the character's inventory, the quantity is incremented by one.
+    public ArrayList<Item> getItemsList() {return this.itemsList;} // Getter.
+    
+    // This method adds a new item to the character's current inventory, and sets the quantity of that item to the specified parameter.
     public void addItem(Item itemIn, int quantityToAddIn) {
         if (this.hasItem(itemIn.getID())) {
             Item itemToIncrement = this.getInventoryItemByID(itemIn.getID());
@@ -127,11 +239,39 @@ public class Character {
         return new Item();
     } // End public Item getInventoryItemByID.
     
-    // For adding a skill to the Character's skillsList.
-    public void addSkill(String skillIDIn) {
-        if (!this.skillsList.contains(skillIDIn)) { // Only add the Skill id if it doesn't currently exist in the skills list.
-            skillsList.add(skillIDIn);
+    // For skillsList.
+    public ArrayList<Skill> getSkillsList() {return this.skillsList;} // Getter.
+    
+    // Only to be used when creating a new character.  Copies the master list of Skill objects into skillsList, overwriting all data.
+    public void initializeSkillsList() {
+        Map<String, Skill> currentMasterSkillMap = MasterLists.getMasterSkillList();
+        
+        for (Skill skill : currentMasterSkillMap.values()) {
+            this.skillsList.add(skill);
+        } // End for.
+        
+        // Sort the skillsList via ID, providing alphabetical order.
+        SkillIDCompare skillIDcompare = new SkillIDCompare();
+        Collections.sort(skillsList, skillIDcompare);
+    } // End public void initializeSkillsList.
+    
+    // Private class for comparing skill IDs.
+    private class SkillIDCompare implements Comparator<Skill> {
+        public int compare(Skill skill1, Skill skill2) {
+            return(skill1.getID().compareTo(skill2.getID()));
+        } // End public int compare.
+    } // End private class SkillIDCompare.
+    
+    // For adding a spell to the Character's knownSpells list.
+    public void addKnownSpell(String spellIDIn) {
+        this.knownSpells.add(MasterLists.getSpellByID(spellIDIn));
+    } // End public void addKnownSpell.
+    
+    // For removing a spell from the Character's knownSpells list.
+    public void removeKnownSpell(Spell spellToRemoveIn) {
+        if (this.knownSpells.contains(spellToRemoveIn)) {
+            this.knownSpells.remove(spellToRemoveIn);
         } // End if.
-    } // End public void addSkill.
+    } // End public void removeKnownSpell.
     
 } // End public class Character.
