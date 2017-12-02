@@ -132,9 +132,11 @@ public class CharacterCreator {
 	 * GUI constructor
 	 */
 	
+
 	public CharacterCreator(Character inCharacter) {
 		
 		this.character = inCharacter;	
+
 		
 		/*
 		 * Set frame
@@ -172,6 +174,7 @@ public class CharacterCreator {
 		 * Set Tabbed pane
 		 */
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		UIManager.put("TabbedPane.contentAreaColor", new Color(0, 0, 0, 0));
 		background.add(tabbedPane);
 		mainPanel = new TransparentJPanel();
 		mainPanel.setBackground(new Color(255, 236, 186));
@@ -198,10 +201,10 @@ public class CharacterCreator {
 		topMainPanel.add(photoNamePanel, BorderLayout.WEST);
 		BufferedImage photo;
 		try {
-			photo = ImageIO.read(new File("cabbage.jpg"));
-			Image resizedPhoto = photo.getScaledInstance(100, 100, Image.SCALE_SMOOTH);	
-			photoLabel = new JLabel(new ImageIcon(resizedPhoto));
-			photoLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
+			photo = ImageIO.read(new File("portraits/Beldora.png"));
+            Image resizedPhoto = photo.getScaledInstance(80, 112, Image.SCALE_SMOOTH);
+            photoLabel = new JLabel(new ImageIcon(resizedPhoto));
+			//photoLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -285,24 +288,32 @@ public class CharacterCreator {
 		savingThrowsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
 				Color.BLACK, 1, true), "Saving Throws"));
 		strengthCheckBox = new JCheckBox("+5 Strength");
+		strengthCheckBox.setOpaque(false);
 		savingThrowsPanel.add(strengthCheckBox);
 		dexterityCheckBox = new JCheckBox("-1 Dexterity");
+		dexterityCheckBox.setOpaque(false);
 		savingThrowsPanel.add(dexterityCheckBox);
 		constitutionCheckBox = new JCheckBox("+3 Constitution");
+		constitutionCheckBox.setOpaque(false);
 		savingThrowsPanel.add(constitutionCheckBox);
 		intelligenceCheckBox = new JCheckBox("+0 Intelligence");
+		intelligenceCheckBox.setOpaque(false);
 		savingThrowsPanel.add(intelligenceCheckBox);
 		wisdomCheckBox = new JCheckBox("-2 Wisdom");
+		wisdomCheckBox.setOpaque(false);
 		savingThrowsPanel.add(wisdomCheckBox);
 		charismaCheckBox = new JCheckBox("+2 Charisma");
+		charismaCheckBox.setOpaque(false);
 		savingThrowsPanel.add(charismaCheckBox);
 		
 		// Skills panel
 		for(String skill: skills) {
 			boolean selected = false;
 			// TODO need method to get character Skill list
+
 			//if (inCharacter.getSkillList().contains(skill)) selected = true;
-			skillsPanel.add(new JCheckBox("+3 " + skill + "    "), selected);
+
+			skillsPanel.add(new TransparentJCheckBox("+3 " + skill + "    "), selected);
 			
 		}
 		
@@ -427,6 +438,7 @@ public class CharacterCreator {
 		switch(selection) {
 		case 0: 
 			NewCharacter nc = new NewCharacter();
+			nc.newCharacterGui();
 			
 
 			break;
@@ -447,6 +459,13 @@ public class CharacterCreator {
 		
 	}
 
+}
+
+class TransparentJCheckBox extends JCheckBox {
+	public TransparentJCheckBox(String text) {
+		super(text);
+		setOpaque(false);
+	}	
 }
 
 class TransparentJPanel extends JPanel {
@@ -505,7 +524,10 @@ class AbilityScorePanel extends JPanel {
 	//JLabel abilityScoreLabel;
 	JLabel modifierLabel;
 	
+
 	public AbilityScorePanel(String inAbility, Character inCharacter) {
+
+	
 		setOpaque(false);
 		Border margin = new EmptyBorder(5,5,0,5);
 		
@@ -516,6 +538,7 @@ class AbilityScorePanel extends JPanel {
 		setLayout(new BorderLayout());
 		
 		int value = 0;
+
 		switch(inAbility) {
 			case "Strength" : value = inCharacter.getAbilityScoreStrength();
 				break;
@@ -562,6 +585,7 @@ class StatsPanel extends JPanel {
 	JLabel statNumberLabel;
 	
 	public StatsPanel(String inStat, Character inCharacter)
+
 	{
 		setOpaque(false);
 		Border margin = new EmptyBorder(5,5,0,5);
@@ -574,6 +598,7 @@ class StatsPanel extends JPanel {
 		
 		int value = 0;
 		
+
 		switch (inStat) {
 		case "Hit Points" :
 			break;
@@ -609,5 +634,8 @@ class StatsPanel extends JPanel {
 		add(helperPanel, BorderLayout.CENTER);
 	}
 }
+
+
+
 
 
