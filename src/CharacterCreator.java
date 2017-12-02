@@ -29,6 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
@@ -38,6 +39,9 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.text.DefaultFormatter;
 
 public class CharacterCreator {
     
@@ -114,7 +118,14 @@ public class CharacterCreator {
     //TODO add inventoryAndSpellsPanel components
     TransparentJPanel inventoryAndSpellsPanel;
     TransparentJPanel inventoryPanel;
+    TransparentJPanel inventoryButtonsPanel;
+    TransparentJPanel inventoryDisplayPanel;
+    JScrollPane inventoryScrollPane;
+    JButton addItemButton;
+    JButton removeItemButton;
+    
     TransparentJPanel spellsPanel;
+    TransparentJPanel spellsButtonsPanel;
     
     
     //top menu bar components
@@ -223,18 +234,19 @@ public class CharacterCreator {
         topMainPanel.add(bioInfoPanel, BorderLayout.CENTER);
         
         BasicInfoPanel classInfoPanel = new BasicInfoPanel("Class and Level", "Class " +
-                                                           String.valueOf(character.getLevel()));
+                                                           String.valueOf(character.getLevel()), character);
         bioInfoPanel.add(classInfoPanel);
-        BasicInfoPanel backgroundInfoPanel = new BasicInfoPanel("Background", character.getBackground());
+        BasicInfoPanel backgroundInfoPanel = new BasicInfoPanel("Background", character.getBackground(), character);
         bioInfoPanel.add(backgroundInfoPanel);
-        BasicInfoPanel factionInfoPanel = new BasicInfoPanel("Faction", "Faction");
+        BasicInfoPanel factionInfoPanel = new BasicInfoPanel("Faction", "Faction", character);
         bioInfoPanel.add(factionInfoPanel);
-        BasicInfoPanel raceInfoPanel = new BasicInfoPanel("Race", character.getRace());
+        BasicInfoPanel raceInfoPanel = new BasicInfoPanel("Race", character.getRace(), character);
         bioInfoPanel.add(raceInfoPanel);
-        BasicInfoPanel alignmentInfoPanel = new BasicInfoPanel("Alignment", character.getAlignment());
+        BasicInfoPanel alignmentInfoPanel = new BasicInfoPanel("Alignment", character.getAlignment(), character);
         bioInfoPanel.add(alignmentInfoPanel);
         BasicInfoPanel experiencePointsInfoPanel = new BasicInfoPanel("Experience Points",
-                                                                      String.valueOf(character.getExperiencePoints()));
+                                                                      String.valueOf(character.getExperiencePoints()), character);
+        experiencePointsInfoPanel.addSpinner();
         bioInfoPanel.add(experiencePointsInfoPanel);
         
         
@@ -411,10 +423,28 @@ public class CharacterCreator {
         inventoryAndSpellsPanel.add(inventoryPanel);
         spellsPanel = new TransparentJPanel();
         inventoryAndSpellsPanel.add(spellsPanel);
+        inventoryDisplayPanel = new TransparentJPanel();
+        
         
         //inventory panel
-        inventoryPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
-                                                                                                 Color.BLACK, 1, true), "Inventory"));
+        inventoryDisplayPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
+                                                                                                        Color.BLACK, 1, true), "Inventory"));
+        inventoryScrollPane = new JScrollPane(inventoryDisplayPanel);
+        //        for (Item item: character.itemsList) {
+        //                String itemDescription = item.name + "\n\t" + item.description;
+        //                inventoryDisplayPanel.add(new JLabel(itemDescription));
+        //        }
+        
+        inventoryPanel.setLayout(new BorderLayout());
+        inventoryButtonsPanel = new TransparentJPanel();
+        inventoryButtonsPanel.setLayout(new GridLayout(1,0));
+        addItemButton = new JButton("Add Item");
+        removeItemButton = new JButton("Remove Item");
+        inventoryButtonsPanel.add(addItemButton);
+        inventoryButtonsPanel.add(removeItemButton);
+        
+        inventoryPanel.add(inventoryDisplayPanel, BorderLayout.CENTER);
+        inventoryPanel.add(inventoryButtonsPanel, BorderLayout.SOUTH);
         
         //spells panel
         spellsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
@@ -443,7 +473,7 @@ public class CharacterCreator {
             case 1:
                 Character testCharacter = new Character();
                 testCharacter.setName("Test Char");
-                testCharacter.setLevel(4);
+               // testCharacter.setLevel(4);
                 testCharacter.setAbilityScoreCharisma(5);
                 testCharacter.setAbilityScoreDexterity(6);
                 testCharacter.setSpeed(15);
@@ -476,13 +506,18 @@ class TransparentJPanel extends JPanel {
 class BasicInfoPanel extends JPanel {
     JLabel basicInfoNameLabel;
     JTextField basicInfoValue;
+    String value;
+    Character character;
     
-    public BasicInfoPanel(String inName, String inValue) {
+    public BasicInfoPanel(String inName, String inValue, Character inCharacter) {
+        this.value = inValue;
+        this.character = inCharacter;
         setOpaque(false);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         
         basicInfoValue = new JTextField(inValue);
         basicInfoValue.setOpaque(false);
+        basicInfoValue.setEditable(false);
         basicInfoValue.setHorizontalAlignment(JTextField.CENTER);
         basicInfoValue.setFont(new Font(null, Font.BOLD, 20));
         basicInfoValue.setBackground(new Color(0,0,0,0));
@@ -495,6 +530,10 @@ class BasicInfoPanel extends JPanel {
         basicInfoNameLabel.setBorder(new EmptyBorder(0,0,8,0));
         add(basicInfoNameLabel);
         
+    }
+    
+    public void setEditable(JTextField basicInfoValueIn) {
+        basicInfoValue.setEditable(true);
         basicInfoValue.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -503,6 +542,7 @@ class BasicInfoPanel extends JPanel {
                 basicInfoValue.repaint();
                 
             }
+            
             @Override
             public void focusLost(FocusEvent e) {
                 basicInfoValue.setBackground(new Color(0, 0, 0));
@@ -510,7 +550,38 @@ class BasicInfoPanel extends JPanel {
                 basicInfoValue.repaint();
             }
         });
+    }
+    
+    public void addSpinner() {
+        JSpinner basicInfoValueSpinner;
+        int spinnerValue = Integer.valueOf(value);
+        remove(basicInfoValue);
+        SpinnerModel model = new SpinnerNumberModel(spinnerValue, 0, 99, 1);
+        basicInfoValueSpinner = new JSpinner(model);
+        basicInfoValueSpinner.setFont(new Font(null, Font.BOLD, 24));
+        basicInfoValueSpinner.setOpaque(false);
+        basicInfoValueSpinner.getEditor().setOpaque(false);
+        JFormattedTextField textField = ((JSpinner.DefaultEditor)basicInfoValueSpinner.getEditor()).getTextField();
+        textField.setBackground(new Color(0,0,0,0));
+        textField.setColumns(2);
+        textField.setBorder(new EmptyBorder(0,0,0,5));
+        textField.setEditable(false);
+        JPanel helperPanel = new TransparentJPanel();
+        helperPanel.add(basicInfoValueSpinner);
+        add(helperPanel, BorderLayout.CENTER);
+        add(helperPanel);
+        add(basicInfoNameLabel);
         
+        DefaultFormatter formatter = (DefaultFormatter) textField.getFormatter();
+        formatter.setCommitsOnValidEdit(true);
+        basicInfoValueSpinner.addChangeListener(new ChangeListener() {
+            
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                character.setExperiencePoints((int) basicInfoValueSpinner.getValue());
+                
+            }
+        });
     }
 }
 
@@ -519,16 +590,12 @@ class AbilityScorePanel extends JPanel {
     
     JLabel abilityScoreNameLabel;
     JSpinner spinner;
-    //JLabel abilityScoreLabel;
     JLabel modifierLabel;
-    
     
     public AbilityScorePanel(String inAbility, Character inCharacter) {
         
-        
         setOpaque(false);
         Border margin = new EmptyBorder(5,5,0,5);
-        
         Border padding = new EmptyBorder(5,5,5,5);
         Border border = BorderFactory.createBevelBorder(BevelBorder.RAISED);
         Border inside = new CompoundBorder(border, padding);
@@ -564,6 +631,39 @@ class AbilityScorePanel extends JPanel {
         textField.setColumns(2);
         textField.setBorder(new EmptyBorder(0,0,0,5));
         textField.setEditable(false);
+        
+        // listener to change set new values in character.java if spinner buttons are used
+        DefaultFormatter formatter = (DefaultFormatter) textField.getFormatter();
+        formatter.setCommitsOnValidEdit(true);
+        spinner.addChangeListener(new ChangeListener() {
+            
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                switch (inAbility) {
+                    case "Strength":
+                        inCharacter.setAbilityScoreStrength((int) spinner.getValue());
+                        break;
+                    case "Dexterity":
+                        inCharacter.setAbilityScoreDexterity((int) spinner.getValue());
+                        break;
+                    case "Constitution":
+                        inCharacter.setAbilityScoreConstitution((int) spinner.getValue());
+                        break;
+                    case "Intelligence":
+                        inCharacter.setAbilityScoreIntelligence((int) spinner.getValue());
+                        break;
+                    case "Wisdom":
+                        inCharacter.setAbilityScoreWisdom((int) spinner.getValue());
+                        break;
+                    case "Charisma":
+                        inCharacter.setAbilityScoreCharisma((int) spinner.getValue());
+                        break;
+                    default:
+                        break;
+                }
+                
+            }
+        });
         
         abilityScoreNameLabel = new JLabel(inAbility, SwingConstants.CENTER);
         String fillerModifier = String.valueOf(Math.round(Math.random()*10 - 5));
