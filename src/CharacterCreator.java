@@ -1,3 +1,5 @@
+
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -38,6 +40,9 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.text.DefaultFormatter;
 
 public class CharacterCreator {
     
@@ -71,17 +76,8 @@ public class CharacterCreator {
     //throws and skills center subpanel
     TransparentJPanel skillsAndThrowsPanel;
     TransparentJPanel savingThrowsPanel;
-    JCheckBox strengthCheckBox;
-    JCheckBox dexterityCheckBox;
-    JCheckBox constitutionCheckBox;
-    JCheckBox intelligenceCheckBox;
-    JCheckBox wisdomCheckBox;
-    JCheckBox charismaCheckBox;
     TransparentJPanel skillsPanel;
-    String[] skills = {"Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
-    "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature",
-    "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand",
-    "Stealth", "Survival"};
+    
     
     //stats subpanel components
     TransparentJPanel statsPanel;
@@ -97,25 +93,35 @@ public class CharacterCreator {
     TransparentJPanel languagesPanel;
     JLabel languagesLabel;
     
-    //inventory subpanel components
+    //features subpanel components
     TransparentJPanel featuresPanel;
     TransparentJPanel featuresDisplayPanel;
     TransparentJPanel featuresButtonsPanel;
     JButton addFeatureButton;
     JButton removeFeatureButton;
     
-    //spells subpanel components
+    //equipped items subpanel components
     TransparentJPanel equippedItemsPanel;
     TransparentJPanel equippedItemsDisplayPanel;
     TransparentJPanel equippedItemsButtonsPanel;
     JButton equipItemButton;
     JButton unequipItemButton;
     
-    //TODO add inventoryAndSpellsPanel components
+    //inventoryAndSpellsPanel components
     TransparentJPanel inventoryAndSpellsPanel;
     TransparentJPanel inventoryPanel;
+    TransparentJPanel inventoryButtonsPanel;
+    TransparentJPanel inventoryDisplayPanel;
+    JScrollPane inventoryScrollPane;
+    JButton addItemButton;
+    JButton removeItemButton;
+   
     TransparentJPanel spellsPanel;
-    
+    TransparentJPanel spellsButtonsPanel;
+    TransparentJPanel spellsDisplayPanel;
+    JScrollPane spellsScrollPane;
+    JButton addSpellButton;
+    JButton removeSpellButton;
     
     //top menu bar components
     JMenuBar menuBar;
@@ -182,7 +188,6 @@ public class CharacterCreator {
         
         
         
-        
         /*
          * Set main panel components
          */
@@ -210,6 +215,7 @@ public class CharacterCreator {
         photoLabel.setSize(50, 50);
         photoNamePanel.add(photoLabel, BorderLayout.CENTER);
         nameLabel = new JLabel(character.getName(), SwingConstants.CENTER);
+        
         nameLabel.setFont(new Font(null, Font.BOLD, 20));
         photoNamePanel.add(nameLabel, BorderLayout.SOUTH);
         photoNamePanel.setBorder(new EmptyBorder(0, 13, 0, 7));
@@ -223,18 +229,19 @@ public class CharacterCreator {
         topMainPanel.add(bioInfoPanel, BorderLayout.CENTER);
         
         BasicInfoPanel classInfoPanel = new BasicInfoPanel("Class and Level", "Class " +
-                                                           String.valueOf(character.getLevel()));
+                                                           String.valueOf(character.getLevel()), character);
         bioInfoPanel.add(classInfoPanel);
-        BasicInfoPanel backgroundInfoPanel = new BasicInfoPanel("Background", character.getBackground());
+        BasicInfoPanel backgroundInfoPanel = new BasicInfoPanel("Background", character.getBackground(), character);
         bioInfoPanel.add(backgroundInfoPanel);
-        BasicInfoPanel factionInfoPanel = new BasicInfoPanel("Faction", "Faction");
+        BasicInfoPanel factionInfoPanel = new BasicInfoPanel("Faction", character.getFaction(), character);
         bioInfoPanel.add(factionInfoPanel);
-        BasicInfoPanel raceInfoPanel = new BasicInfoPanel("Race", character.getRace());
+        BasicInfoPanel raceInfoPanel = new BasicInfoPanel("Race", character.getRace(), character);
         bioInfoPanel.add(raceInfoPanel);
-        BasicInfoPanel alignmentInfoPanel = new BasicInfoPanel("Alignment", character.getAlignment());
+        BasicInfoPanel alignmentInfoPanel = new BasicInfoPanel("Alignment", character.getAlignment(), character);
         bioInfoPanel.add(alignmentInfoPanel);
         BasicInfoPanel experiencePointsInfoPanel = new BasicInfoPanel("Experience Points",
-                                                                      String.valueOf(character.getExperiencePoints()));
+                                                                      String.valueOf(character.getExperiencePoints()), character);
+        experiencePointsInfoPanel.addSpinner();
         bioInfoPanel.add(experiencePointsInfoPanel);
         
         
@@ -254,7 +261,7 @@ public class CharacterCreator {
         abilityScoresPanel.add(wisdomPanel);
         charismaPanel = new AbilityScorePanel("Charisma", character);
         abilityScoresPanel.add(charismaPanel);
-        
+     
         
         // Center panel
         centerPanel = new TransparentJPanel();
@@ -285,33 +292,27 @@ public class CharacterCreator {
         // Saving throws panel
         savingThrowsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
                                                                                                     Color.BLACK, 1, true), "Saving Throws"));
-        strengthCheckBox = new JCheckBox("+5 Strength");
-        strengthCheckBox.setOpaque(false);
-        savingThrowsPanel.add(strengthCheckBox);
-        dexterityCheckBox = new JCheckBox("-1 Dexterity");
-        dexterityCheckBox.setOpaque(false);
-        savingThrowsPanel.add(dexterityCheckBox);
-        constitutionCheckBox = new JCheckBox("+3 Constitution");
-        constitutionCheckBox.setOpaque(false);
-        savingThrowsPanel.add(constitutionCheckBox);
-        intelligenceCheckBox = new JCheckBox("+0 Intelligence");
-        intelligenceCheckBox.setOpaque(false);
-        savingThrowsPanel.add(intelligenceCheckBox);
-        wisdomCheckBox = new JCheckBox("-2 Wisdom");
-        wisdomCheckBox.setOpaque(false);
-        savingThrowsPanel.add(wisdomCheckBox);
-        charismaCheckBox = new JCheckBox("+2 Charisma");
-        charismaCheckBox.setOpaque(false);
-        savingThrowsPanel.add(charismaCheckBox);
+        String[] savingThrows = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"};
+        int[] savingThrowFinalArray = character.getSavingThrowFinalValueArray();
+        boolean[] savingThrowProficiencyArray = character.getSavingThrowProficiencyArray();
+        for (int i=0; i<savingThrows.length; i++) {
+        		String text = String.valueOf(savingThrowFinalArray[i]) + " " + savingThrows[i];
+        		savingThrowsPanel.add(new TransparentJCheckBox(text, savingThrowProficiencyArray[i])); 
+        }
+        
         
         // Skills panel
-        for(String skill: skills) {
+        String[] skills = {"Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
+        	    "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature",
+        	    "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand",
+        	    "Stealth", "Survival"};
+        
+        int[]skillModifierArray = character.getTotalSkillModifierArray();
+        for(int i=0; i<skills.length; i++) {
             boolean selected = false;
-            // TODO need method to get character Skill list
-            
-            //if (inCharacter.getSkillList().contains(skill)) selected = true;
-            
-            skillsPanel.add(new TransparentJCheckBox("+3 " + skill + "    "), selected);
+            //if (inCharacter.getSkillList().contains(skill)) selected = true; 
+            skillsPanel.add(new TransparentJCheckBox(String.valueOf(skillModifierArray[i]) +
+            		" " + skills[i] + "     ", selected));
             
         }
         
@@ -411,14 +412,52 @@ public class CharacterCreator {
         inventoryAndSpellsPanel.add(inventoryPanel);
         spellsPanel = new TransparentJPanel();
         inventoryAndSpellsPanel.add(spellsPanel);
+        inventoryDisplayPanel = new TransparentJPanel();
+        spellsDisplayPanel = new TransparentJPanel();
+        
+        /*
+         * Set inventory and spells panel components
+         */
         
         //inventory panel
-        inventoryPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
-                                                                                                 Color.BLACK, 1, true), "Inventory"));
+        inventoryDisplayPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
+                                                                                                        Color.BLACK, 1, true), "Inventory"));
+        inventoryScrollPane = new JScrollPane(inventoryDisplayPanel);
+            for (Item item: character.getItemsList()) {
+                    String itemDescription = item.name + "\n\t" + item.description + "\n";
+                    inventoryDisplayPanel.add(new JLabel(itemDescription));
+            }
+        
+        inventoryPanel.setLayout(new BorderLayout());
+        inventoryButtonsPanel = new TransparentJPanel();
+        inventoryButtonsPanel.setLayout(new GridLayout(1,0));
+        addItemButton = new JButton("Add Item");
+        removeItemButton = new JButton("Remove Item");
+        inventoryButtonsPanel.add(addItemButton);
+        inventoryButtonsPanel.add(removeItemButton);
+        
+        inventoryPanel.add(inventoryDisplayPanel, BorderLayout.CENTER);
+        inventoryPanel.add(inventoryButtonsPanel, BorderLayout.SOUTH);
         
         //spells panel
-        spellsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
+        spellsDisplayPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
                                                                                               Color.BLACK, 1, true), "Spells"));
+        spellsScrollPane = new JScrollPane(spellsDisplayPanel);
+//        for (Spell spell: character.getKnownSpells) {
+//                String spellDescription = spell.name + "\n\t" + spell.description + "\n";
+//                inventoryDisplayPanel.add(new JLabel(spellDescription));
+//        }
+    
+		spellsPanel.setLayout(new BorderLayout());
+		spellsButtonsPanel = new TransparentJPanel();
+		spellsButtonsPanel.setLayout(new GridLayout(1,0));
+		addSpellButton = new JButton("Add Spell");
+		removeSpellButton = new JButton("Remove Spell");
+		spellsButtonsPanel.add(addSpellButton);
+		spellsButtonsPanel.add(removeSpellButton);
+		
+		spellsPanel.add(spellsDisplayPanel, BorderLayout.CENTER);
+        spellsPanel.add(spellsButtonsPanel, BorderLayout.SOUTH);
     }
     
     private void display() {
@@ -427,6 +466,7 @@ public class CharacterCreator {
     
     
     public static void main(String[] args) {
+    		MasterLists.createMasterLists();
         Object[] options = {"Create New Character", "Load Character"};
         int selection = JOptionPane.showOptionDialog(null, "Welcome to Character Creator!\nSelect an Option:",
                                                      "Character Creator", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
@@ -437,13 +477,11 @@ public class CharacterCreator {
             case 0:
                 NewCharacter nc = new NewCharacter();
                 nc.newCharacterGui();
-                
-                
                 break;
             case 1:
                 Character testCharacter = new Character();
                 testCharacter.setName("Test Char");
-                testCharacter.setLevel(4);
+               // testCharacter.setLevel(4);
                 testCharacter.setAbilityScoreCharisma(5);
                 testCharacter.setAbilityScoreDexterity(6);
                 testCharacter.setSpeed(15);
@@ -460,8 +498,8 @@ public class CharacterCreator {
 }
 
 class TransparentJCheckBox extends JCheckBox {
-    public TransparentJCheckBox(String text) {
-        super(text);
+    public TransparentJCheckBox(String text, Boolean selected) {
+        super(text, selected);
         setOpaque(false);
     }
 }
@@ -476,13 +514,18 @@ class TransparentJPanel extends JPanel {
 class BasicInfoPanel extends JPanel {
     JLabel basicInfoNameLabel;
     JTextField basicInfoValue;
+    String value;
+    Character character;
     
-    public BasicInfoPanel(String inName, String inValue) {
+    public BasicInfoPanel(String inName, String inValue, Character inCharacter) {
+        this.value = inValue;
+        this.character = inCharacter;
         setOpaque(false);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         
         basicInfoValue = new JTextField(inValue);
         basicInfoValue.setOpaque(false);
+        basicInfoValue.setEditable(false);
         basicInfoValue.setHorizontalAlignment(JTextField.CENTER);
         basicInfoValue.setFont(new Font(null, Font.BOLD, 20));
         basicInfoValue.setBackground(new Color(0,0,0,0));
@@ -495,6 +538,10 @@ class BasicInfoPanel extends JPanel {
         basicInfoNameLabel.setBorder(new EmptyBorder(0,0,8,0));
         add(basicInfoNameLabel);
         
+    }
+    
+    public void setEditable(JTextField basicInfoValueIn) {
+        basicInfoValue.setEditable(true);
         basicInfoValue.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -503,6 +550,7 @@ class BasicInfoPanel extends JPanel {
                 basicInfoValue.repaint();
                 
             }
+            
             @Override
             public void focusLost(FocusEvent e) {
                 basicInfoValue.setBackground(new Color(0, 0, 0));
@@ -510,7 +558,38 @@ class BasicInfoPanel extends JPanel {
                 basicInfoValue.repaint();
             }
         });
+    }
+    
+    public void addSpinner() {
+        JSpinner basicInfoValueSpinner;
+        int spinnerValue = Integer.valueOf(value);
+        remove(basicInfoValue);
+        SpinnerModel model = new SpinnerNumberModel(spinnerValue, 0, 99, 1);
+        basicInfoValueSpinner = new JSpinner(model);
+        basicInfoValueSpinner.setFont(new Font(null, Font.BOLD, 24));
+        basicInfoValueSpinner.setOpaque(false);
+        basicInfoValueSpinner.getEditor().setOpaque(false);
+        JFormattedTextField textField = ((JSpinner.DefaultEditor)basicInfoValueSpinner.getEditor()).getTextField();
+        textField.setBackground(new Color(0,0,0,0));
+        textField.setColumns(2);
+        textField.setBorder(new EmptyBorder(0,0,0,5));
+        textField.setEditable(false);
+        JPanel helperPanel = new TransparentJPanel();
+        helperPanel.add(basicInfoValueSpinner);
+        add(helperPanel, BorderLayout.CENTER);
+        add(helperPanel);
+        add(basicInfoNameLabel);
         
+        DefaultFormatter formatter = (DefaultFormatter) textField.getFormatter();
+        formatter.setCommitsOnValidEdit(true);
+        basicInfoValueSpinner.addChangeListener(new ChangeListener() {
+            
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                character.setExperiencePoints((int) basicInfoValueSpinner.getValue());
+                
+            }
+        });
     }
 }
 
@@ -519,16 +598,12 @@ class AbilityScorePanel extends JPanel {
     
     JLabel abilityScoreNameLabel;
     JSpinner spinner;
-    //JLabel abilityScoreLabel;
     JLabel modifierLabel;
-    
     
     public AbilityScorePanel(String inAbility, Character inCharacter) {
         
-        
         setOpaque(false);
         Border margin = new EmptyBorder(5,5,0,5);
-        
         Border padding = new EmptyBorder(5,5,5,5);
         Border border = BorderFactory.createBevelBorder(BevelBorder.RAISED);
         Border inside = new CompoundBorder(border, padding);
@@ -565,6 +640,39 @@ class AbilityScorePanel extends JPanel {
         textField.setBorder(new EmptyBorder(0,0,0,5));
         textField.setEditable(false);
         
+        // listener to change set new values in character.java if spinner buttons are used
+        DefaultFormatter formatter = (DefaultFormatter) textField.getFormatter();
+        formatter.setCommitsOnValidEdit(true);
+        spinner.addChangeListener(new ChangeListener() {
+            
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                switch (inAbility) {
+                    case "Strength":
+                        inCharacter.setAbilityScoreStrength((int) spinner.getValue());
+                        break;
+                    case "Dexterity":
+                        inCharacter.setAbilityScoreDexterity((int) spinner.getValue());
+                        break;
+                    case "Constitution":
+                        inCharacter.setAbilityScoreConstitution((int) spinner.getValue());
+                        break;
+                    case "Intelligence":
+                        inCharacter.setAbilityScoreIntelligence((int) spinner.getValue());
+                        break;
+                    case "Wisdom":
+                        inCharacter.setAbilityScoreWisdom((int) spinner.getValue());
+                        break;
+                    case "Charisma":
+                        inCharacter.setAbilityScoreCharisma((int) spinner.getValue());
+                        break;
+                    default:
+                        break;
+                }
+                
+            }
+        });
+        
         abilityScoreNameLabel = new JLabel(inAbility, SwingConstants.CENTER);
         String fillerModifier = String.valueOf(Math.round(Math.random()*10 - 5));
         if (Integer.valueOf(fillerModifier) > 0) fillerModifier = "+" + fillerModifier;
@@ -594,41 +702,87 @@ class StatsPanel extends JPanel {
         setBorder(new CompoundBorder(margin, inside));
         setLayout(new BorderLayout());
         
-        int value = 0;
+        statNameLabel = new JLabel(inStat, SwingConstants.CENTER);
+        add(statNameLabel, BorderLayout.NORTH);
         
+        int value = 0;
         
         switch (inStat) {
             case "Hit Points" :
+            		value = inCharacter.getHitPointsCurrent();
                 break;
             case "Armor Class" :
+            		value = inCharacter.getArmorClass();
                 break;
             case "Initiative" :
+            		value = inCharacter.getInitiative();
                 break;
             case "Proficiency Bonus" :
+            		value = inCharacter.getProficiencyBonus();
                 break;
             case "Speed" :
                 value = inCharacter.getSpeed();
                 break;
             case "Passive Perception" :
+            		value = inCharacter.getPassivePerception();
                 break;
         }
         
-        SpinnerModel model = new SpinnerNumberModel(value, 0, 99, 1);
-        JSpinner spinner = new JSpinner(model);
-        spinner.setFont(new Font(null, Font.BOLD, 20));
-        spinner.setOpaque(false);
-        spinner.getEditor().setOpaque(false);
-        JFormattedTextField textField = ((JSpinner.DefaultEditor)spinner.getEditor()).getTextField();
-        textField.setBackground(new Color(0,0,0,0));
-        textField.setColumns(2);
-        textField.setBorder(new EmptyBorder(0,0,0,5));
-        textField.setEditable(false);
+         
+        if (inStat.matches("Proficiency Bonus") || inStat.matches("Passive Perception")) {
+        		JLabel statLabel = new JLabel(String.valueOf(value));
+        		statLabel.setFont(new Font(null, Font.BOLD, 20));
+        		statLabel.setHorizontalAlignment(JLabel.CENTER);
+        		add(statLabel, BorderLayout.CENTER);
+        }
         
-        statNameLabel = new JLabel(inStat, SwingConstants.CENTER);
-        add(statNameLabel, BorderLayout.NORTH);
-        
-        JPanel helperPanel = new TransparentJPanel();
-        helperPanel.add(spinner);
-        add(helperPanel, BorderLayout.CENTER);
+        else {
+	        SpinnerModel model = new SpinnerNumberModel(value, 0, 99, 1);
+	        JSpinner spinner = new JSpinner(model);
+	        spinner.setFont(new Font(null, Font.BOLD, 20));
+	        spinner.setOpaque(false);
+	        spinner.getEditor().setOpaque(false);
+	        JFormattedTextField textField = ((JSpinner.DefaultEditor)spinner.getEditor()).getTextField();
+	        textField.setBackground(new Color(0,0,0,0));
+	        textField.setColumns(2);
+	        textField.setBorder(new EmptyBorder(0,0,0,5));
+	        textField.setEditable(false);   
+	        JPanel helperPanel = new TransparentJPanel();
+	        helperPanel.add(spinner);
+	        add(helperPanel, BorderLayout.CENTER);
+	        
+	     // listener to change set new values in character.java if spinner buttons are used
+	        DefaultFormatter formatter = (DefaultFormatter) textField.getFormatter();
+	        formatter.setCommitsOnValidEdit(true);
+	        spinner.addChangeListener(new ChangeListener() {
+	            
+	            @Override
+	            public void stateChanged(ChangeEvent e) {
+	                switch (inStat) {
+	                    case "Hit Points":
+	                        inCharacter.setHitPointsCurrent((int) spinner.getValue());
+	                        break;
+	                    case "Armor Class":
+	                        inCharacter.setArmorClass((int) spinner.getValue());
+	                        break;
+	                    case "Initiative":
+	                        inCharacter.setInitiative((int) spinner.getValue());
+	                        break;
+	                    case "Proficiency Bonus":
+	                        
+	                        break;
+	                    case "Speed":
+	                        inCharacter.setSpeed((int) spinner.getValue());
+	                        break;
+	                    case "Passive Perception":
+	                        
+	                        break;
+	                    default:
+	                        break;
+	                }
+	                
+	            }
+	        });
+        }
     }
 }
