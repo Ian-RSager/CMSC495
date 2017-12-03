@@ -1,11 +1,12 @@
 /*
  * File: NewCharacter.java
- * Date: December 1, 2017
+ * Date: December 3, 2017
  * Purpose: Creates a Gui with a Card Layout to Step by Step allow the user
  *          to create a new D&D 5th Edition character.
  *
  * First draft of Gui is complete, but all backend code needs to be written.
  * Background image and resizing added.
+ * Character image selection added.
  * Many listeners still need to be implemented.
  */
 
@@ -45,6 +46,9 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import java.awt.event.ComponentListener;
+import java.awt.geom.AffineTransform;
+import java.awt.Graphics2D;
+import java.awt.image.AffineTransformOp;
 
 @SuppressWarnings("serial")    //Suppress serialVersionUID warning when compiling with -Xlint
 
@@ -65,6 +69,9 @@ public class NewCharacter extends JFrame{
     private Image resizedPhoto;
     private ImageIcon iiphoto = new ImageIcon();
     private JLabel background;
+
+    //Character being created
+    //private Character myCharacter;
 	
     //Constructor
     public NewCharacter(){
@@ -105,16 +112,19 @@ public class NewCharacter extends JFrame{
 
         background.add(cardPanel,BorderLayout.CENTER);
 		
-		//Add a component listener to handle resizing the background image
-		//if the window is resized
+        //Add a component listener to handle resizing the background image
+        //if the window is resized
         background.addComponentListener(new ComponentAdapter () {
             public void componentResized(ComponentEvent e) {
-				Dimension newSize = e.getComponent().getBounds().getSize();
-		        resizedPhoto = photo.getScaledInstance((int)newSize.getWidth(), (int)newSize.getHeight(), Image.SCALE_FAST);	
-	  		    iiphoto.setImage(resizedPhoto);
+                Dimension newSize = e.getComponent().getBounds().getSize();
+                resizedPhoto = photo.getScaledInstance((int)newSize.getWidth(), (int)newSize.getHeight(), Image.SCALE_FAST);	
+                iiphoto.setImage(resizedPhoto);
                 background=new JLabel(iiphoto);
             }
         });
+
+        //Create a new character to populate
+//        myCharacter = new Character();
 
         //Display
         pack();
@@ -384,7 +394,17 @@ public class NewCharacter extends JFrame{
         private void switchStateNext(){
             
             //Obtain and Validate, and store character data
-            // (TBD)
+
+            //Nothing to validate, combo boxes force valid data
+
+            //Set race/subrace.  Race is the subrace if it exists. Otherwise its the race.
+            //That's how we are handling it in Character.java
+            String race = raceLabel.getText();
+            String subrace = subraceLabel.getText();
+            //if(subrace.length() > 0)
+            //    myCharacter.setRace(subrace);
+            //else
+            //    myCharacter.setRace(race);
             
             //Move to next card
             CardLayout c1 = (CardLayout)(cardPanel.getLayout());
@@ -685,7 +705,12 @@ public class NewCharacter extends JFrame{
         private void switchStateNext(){
             
             //Obtain and Validate, and store character data
-            // (TBD)
+
+            //Nothing to validate, combo boxes force valid data
+
+            //Set class/starting level
+//            myCharacter.setClass(classLabel.getText());
+//            myCharacter.setLevel((int)spnLevl.getValue(););
             
             //Go to next card
             CardLayout c1 = (CardLayout)(cardPanel.getLayout());
@@ -988,8 +1013,17 @@ public class NewCharacter extends JFrame{
         private JButton previousButton = new JButton ("< Prev");    
 
         private Font titleFont;
+		
+		private String[] charImages = {"Augrek_Brighthelm.png", "Beldora.png", 
+		    "Darathra_Shendrel.png", "Darz_Helgar.png",
+      		"Duvessa_Shane.png", "Ghelryn_Foehammer.png", "Lifferlas.png", "Markham_Southwell.png",
+		    "Miros_Xelbrin.png", "Narth_Tezrin.png", "Naxene_Drathkala.png", "Oren_Yogilvy.png",
+			"Othovir.png", "Shalvus_Martholio.png", "Sir_Baric_Nylef.png", "Sirac_of_Suzail.png",
+			"Urgala_Meltimer.png", "Zi_Liang.png"};
+        private int charImgIndex = 0;
+        private ImageIcon iicon;
 
-
+                
         //////////////////////
         // End of Variables //
         //////////////////////
@@ -1027,25 +1061,47 @@ public class NewCharacter extends JFrame{
             JPanel right = new JPanel(new BorderLayout());
             right.setOpaque(false);
             BufferedImage characterImage;
-            JLabel photoLabel;
+            JLabel photoLabel = new JLabel();
             
-            try {
-                characterImage = ImageIO.read(new File("cabbage.jpg"));
-                Image lresizedPhoto = characterImage.getScaledInstance(200, 200, Image.SCALE_SMOOTH);	
-                photoLabel = new JLabel(new ImageIcon(lresizedPhoto));
-                photoLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
-                photoLabel.setSize(50, 50);
-                //Show Image
-                right.add(photoLabel,BorderLayout.CENTER);
-            } catch (IOException e) {
-                e.printStackTrace();
+            JLabel imgselect = new JLabel("Character Image",JLabel.CENTER);
+            titleFont = new Font("Default", Font.BOLD, 24);
+            imgselect.setFont(titleFont);            
+            right.add(imgselect,BorderLayout.NORTH);
+            titleFont = new Font("Default", Font.PLAIN, 18);   
+            iicon = new ImageIcon(); 
+            updateCharacterImg(charImgIndex);
+            photoLabel.setIcon(iicon);
+            photoLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
+            photoLabel.setSize(50, 50);
+            //Show Image
+            right.add(photoLabel,BorderLayout.CENTER);
+			        
+            //Create and initialize the character selection buttons.
+            JPanel iFlow = new JPanel(new FlowLayout(FlowLayout.CENTER));
+            iFlow.setOpaque(false);
+            JButton imgPrevButton = new JButton();
+            try{
+                Image prevImg = ImageIO.read(getClass().getResource("Back24.gif"));
+                imgPrevButton.setIcon(new ImageIcon(prevImg));
             }
-            
-            //Upload Image Button
-            titleFont = new Font("Default", Font.PLAIN, 18);
-            uploadImageButton.setFont(titleFont);
-            right.add(uploadImageButton,BorderLayout.SOUTH);
-
+            catch(Exception ee){
+                System.out.println(ee);
+            }
+            imgPrevButton.addActionListener (e -> getPrevCharacterImg());
+            iFlow.add(imgPrevButton);
+ 
+            JButton imgNextButton = new JButton();
+            try{
+                Image nextImg = ImageIO.read(getClass().getResource("Forward24.gif"));
+                imgNextButton.setIcon(new ImageIcon(nextImg));
+            }
+            catch(Exception ee){
+                System.out.println(ee);
+            }
+            imgNextButton.addActionListener (e -> getNextCharacterImg());
+            iFlow.add(imgNextButton);
+            right.add(iFlow,BorderLayout.SOUTH);
+	
             
             ////////////////////////////////////
             // Left Panel - User Entered Data //
@@ -1123,6 +1179,59 @@ public class NewCharacter extends JFrame{
             //Action Listeners for Buttons
             generateCharacterSheetButton.addActionListener   (e -> generateCharacter());
             previousButton.addActionListener   (e -> switchStatePrev());
+        }
+		
+        //Cycles through the character photo selection
+        private void getPrevCharacterImg(){
+			
+            //Adjust image name index
+            charImgIndex--;
+            if(charImgIndex < 0)
+                charImgIndex = charImages.length-1;
+						
+            updateCharacterImg(charImgIndex);		
+        }
+	
+        private void getNextCharacterImg(){
+
+            BufferedImage characterImage;
+
+            //Adjust image name index			
+            charImgIndex++;
+            if(charImgIndex >= charImages.length)
+                charImgIndex = 0;
+            
+            updateCharacterImg(charImgIndex);	
+        }
+        
+        private void updateCharacterImg(int charImgIndex){
+            try {
+                //Read in original image
+                BufferedImage characterImage;
+                characterImage = ImageIO.read(new File("Portraits/" + charImages[charImgIndex]));
+                double w = characterImage.getWidth();
+                double h = characterImage.getHeight();
+                double scalew = 200.0/w;
+                double scaleh = 200.0/h;
+                
+                //Create a new buffered image with the correct width/height
+                //Set the scaling transformation
+                BufferedImage imgafter = new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB);
+                AffineTransform scaleInstance = AffineTransform.getScaleInstance(scalew, scaleh);
+                AffineTransformOp scaleOp = new AffineTransformOp(scaleInstance, AffineTransformOp.TYPE_BILINEAR);
+
+                //redraw the image
+                Graphics2D g2 = (Graphics2D) imgafter.getGraphics();
+                g2.drawImage(characterImage, scaleOp, 0, 0);
+                g2.dispose();
+                        
+                //Set the new icon
+                iicon.setImage(imgafter);
+                revalidate();
+                repaint();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }   
         }
 
         //Method to go to Previous Card
