@@ -9,6 +9,8 @@
  * Character image selection added.
  * Many listeners still need to be implemented.
  */
+//package charactercreator;
+
 
 
 //Imports
@@ -180,6 +182,9 @@ public class NewCharacter extends JFrame{
         
         //Scroll pane for jtextarea
         private JScrollPane jsp;
+		
+		//For Images
+        private ImageIcon iicon = new ImageIcon();
 
         //Text Strings describing the races
         private String [] raceDescrStr   = {
@@ -252,13 +257,20 @@ public class NewCharacter extends JFrame{
             /////////////////
             // Right Panel //
             /////////////////
-            JPanel right = new JPanel(new BorderLayout());
+            JPanel right = new JPanel(new BorderLayout(0,5));
             right.setOpaque(false);
             
             //Race Description Label
             titleFont = new Font("Default", Font.BOLD, 26);
             raceLabel.setFont(titleFont);
             right.add(raceLabel,BorderLayout.NORTH);
+			
+			//Race Image
+			JLabel racePicture = new JLabel("",JLabel.CENTER);
+            updateRaceImg("Dwarf.jpg",iicon);
+            racePicture.setIcon(iicon);
+            racePicture.setSize(180, 225);
+			right.add(racePicture,BorderLayout.CENTER);
 
             //Set up JTextArea for Description
             raceDescriptionTextArea.setEditable(false);
@@ -266,10 +278,10 @@ public class NewCharacter extends JFrame{
             raceDescriptionTextArea.setWrapStyleWord(true);
             raceDescriptionTextArea.setFont (new java.awt.Font ("Monospaced", 0, 12));
             jsp = new JScrollPane (raceDescriptionTextArea);
-            jsp.setPreferredSize(new Dimension(300, 300));
+            jsp.setPreferredSize(new Dimension(300, 150));
             jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
             raceDescriptionTextArea.setText(raceDescrStr[0]);
-            right.add(jsp,BorderLayout.CENTER);
+            right.add(jsp,BorderLayout.SOUTH);
 
             
             ////////////////
@@ -342,47 +354,55 @@ public class NewCharacter extends JFrame{
                     raceLabel.setText(rStr);
                     switch(rStr){
                         case "Dwarf":
+						    updateRaceImg("Dwarf.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[0]);
                             subRaceComboBox.addItem("Hill Dwarf");
                             subRaceComboBox.addItem("Mountain Dwarf");
                             break;
                         case "Elf":
+						    updateRaceImg("Elf.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[1]);
                             subRaceComboBox.addItem("High Elf");
                             subRaceComboBox.addItem("Wood Elf");
                             subRaceComboBox.addItem("Dark Elf");
                             break;
                         case "Human":
+						    updateRaceImg("Human.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[2]);
                             break;
                         case "Halfling":
+						    updateRaceImg("Halfling.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[3]);
                             subRaceComboBox.addItem("Lightfoot");
                             subRaceComboBox.addItem("Stout");
                             break;
                         case "Dragonborn":
+						    updateRaceImg("Dragonborn.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[4]);
                             break;
                         case "Gnome":
+						    updateRaceImg("Gnome.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[5]);
                             subRaceComboBox.addItem("Forest Gnome");
                             subRaceComboBox.addItem("Rock Gnome");
                             break;
                         case "Half-Elf":
+						    updateRaceImg("Half-elf.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[6]);
                             break;
                         case "Half-Orc":
+						    updateRaceImg("Half-orc.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[7]);
                             break;
                         case "Tiefling":
+						    updateRaceImg("Tiefling.png",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[8]);						
                             break;
                         default:
                             raceDescriptionTextArea.setText("Error, Invalid");	
                             break;
                     }
-
-                                           
+					raceDescriptionTextArea.setCaretPosition(0);
 
                 }
             });
@@ -409,6 +429,37 @@ public class NewCharacter extends JFrame{
             //Move to next card
             CardLayout c1 = (CardLayout)(cardPanel.getLayout());
             c1.next(cardPanel);
+        }
+
+		//Updates the image associated with a race in the Gui
+		private void updateRaceImg(String imageName, ImageIcon imgIcon){
+            try {
+                //Read in original image
+                BufferedImage origImage;
+                origImage = ImageIO.read(new File("races/" + imageName));
+                double w = origImage.getWidth();
+                double h = origImage.getHeight();
+                double scalew = 180.0/w;
+                double scaleh = 225.0/h;
+                
+                //Create a new buffered image with the correct width/height
+                //Set the scaling transformation
+                BufferedImage imgafter = new BufferedImage(180, 225, BufferedImage.TYPE_INT_ARGB);
+                AffineTransform scaleInstance = AffineTransform.getScaleInstance(scalew, scaleh);
+                AffineTransformOp scaleOp = new AffineTransformOp(scaleInstance, AffineTransformOp.TYPE_BILINEAR);
+
+                //redraw the image
+                Graphics2D g2 = (Graphics2D) imgafter.getGraphics();
+                g2.drawImage(origImage, scaleOp, 0, 0);
+                g2.dispose();
+                        
+                //Set the new icon
+                imgIcon.setImage(imgafter);
+                revalidate();
+                repaint();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }   
         }
 
     }
@@ -451,6 +502,9 @@ public class NewCharacter extends JFrame{
         private JButton previousButton = new JButton ("< Prev");    
 
         private Font titleFont;
+		
+		//For Images
+        private ImageIcon iicon = new ImageIcon();
         
         //Scroll pane for jtextarea
         private JScrollPane jsp;
@@ -554,13 +608,20 @@ public class NewCharacter extends JFrame{
             /////////////////
             // Right Panel //
             /////////////////
-            JPanel right = new JPanel(new BorderLayout());
+            JPanel right = new JPanel(new BorderLayout(0,5));
             right.setOpaque(false);
             
             //Class Description Label
             titleFont = new Font("Default", Font.BOLD, 26);
             classLabel.setFont(titleFont);
             right.add(classLabel,BorderLayout.NORTH);
+			
+			//Class Image
+			JLabel classPicture = new JLabel("",JLabel.CENTER);
+            updateClassImg("Barbarian.png",iicon);
+            classPicture.setIcon(iicon);
+            classPicture.setSize(180, 225);
+			right.add(classPicture,BorderLayout.CENTER);
 
             //Set up JTextArea for Description
             classDescriptionTextArea.setEditable(false);
@@ -568,10 +629,10 @@ public class NewCharacter extends JFrame{
             classDescriptionTextArea.setWrapStyleWord(true);
             classDescriptionTextArea.setFont (new java.awt.Font ("Monospaced", 0, 12));
             jsp = new JScrollPane (classDescriptionTextArea);
-            jsp.setPreferredSize(new Dimension(300, 300));
+            jsp.setPreferredSize(new Dimension(300, 150));
             jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
             classDescriptionTextArea.setText(classDescrStr[0]);
-            right.add(jsp,BorderLayout.CENTER);
+            right.add(jsp,BorderLayout.SOUTH);
 
             
             ////////////////
@@ -651,45 +712,58 @@ public class NewCharacter extends JFrame{
                     classLabel.setText(cStr);
                     switch(cStr){
                         case "Barbarian":
+						    updateClassImg("Barbarian.png",iicon);
                             classDescriptionTextArea.setText(classDescrStr[0]);
                             break;
                         case "Bard":
+						    updateClassImg("Bard.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[1]);
                             break;
                         case "Cleric":
+						    updateClassImg("Cleric.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[2]);
                             break;
                         case "Druid":
+						    updateClassImg("Druid.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[3]);
                             break;
                         case "Fighter":
+						    updateClassImg("Fighter.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[4]);
                             break;
                         case "Monk":
+						    updateClassImg("Monk.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[5]);
                             break;
                         case "Paladin":
+						    updateClassImg("Paladin.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[6]);
                             break;
                         case "Ranger":
+						    updateClassImg("Ranger.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[7]);
                             break;
                         case "Rogue":
+						    updateClassImg("Rogue.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[8]);						
                             break;
                         case "Sorcerer":
+						    updateClassImg("Sorcerer.png",iicon);
                             classDescriptionTextArea.setText(classDescrStr[9]);						
                             break;
                         case "Wizard":
+						    updateClassImg("Wizard.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[10]);						
                             break;
                         case "Warlock":
+						    updateClassImg("Warlock.png",iicon);
                             classDescriptionTextArea.setText(classDescrStr[11]);						
                             break;
                         default:
                             classDescriptionTextArea.setText("Error, Invalid");	
                             break;
                     }
+					classDescriptionTextArea.setCaretPosition(0);
                 }
             });
         }
@@ -715,6 +789,37 @@ public class NewCharacter extends JFrame{
             //Go to next card
             CardLayout c1 = (CardLayout)(cardPanel.getLayout());
             c1.next(cardPanel);
+        }
+		
+		//Updates the image associated with a class in the Gui
+		private void updateClassImg(String imageName, ImageIcon imgIcon){
+            try {
+                //Read in original image
+                BufferedImage origImage;
+                origImage = ImageIO.read(new File("classes/" + imageName));
+                double w = origImage.getWidth();
+                double h = origImage.getHeight();
+                double scalew = 180.0/w;
+                double scaleh = 225.0/h;
+                
+                //Create a new buffered image with the correct width/height
+                //Set the scaling transformation
+                BufferedImage imgafter = new BufferedImage(180, 225, BufferedImage.TYPE_INT_ARGB);
+                AffineTransform scaleInstance = AffineTransform.getScaleInstance(scalew, scaleh);
+                AffineTransformOp scaleOp = new AffineTransformOp(scaleInstance, AffineTransformOp.TYPE_BILINEAR);
+
+                //redraw the image
+                Graphics2D g2 = (Graphics2D) imgafter.getGraphics();
+                g2.drawImage(origImage, scaleOp, 0, 0);
+                g2.dispose();
+                        
+                //Set the new icon
+                imgIcon.setImage(imgafter);
+                revalidate();
+                repaint();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }   
         }
 
     }
@@ -1244,9 +1349,17 @@ public class NewCharacter extends JFrame{
         //Method to go to Next Card
         private void generateCharacter(){
             
-            //Obtain and Validate, and store character data
-            // (TBD)
-            
+            //Obtain and Validate, and store character data			
+			//myCharacter.setName(nameTextField.getText());
+            //myCharacter.TBD(weightTextField.getText());
+            //myCharacter.TBD(heightTextField.getText());
+            //myCharacter.TBD(sexComboBox.getSelectedItem());
+			//myCharacter.setAlignment(alignmentComboBox.getSelectedItem());
+			//myCharacter.setBackground(backgroundComboBox.getSelectedItem());
+			//myCharacter.TBD("Portraits/" + charImages[charImgIndex]);
+			
+			//Validate Name, Weight, Height
+			
             //Go to Main Gui
 
         }
