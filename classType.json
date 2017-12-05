@@ -5,10 +5,10 @@
     "description": "As a barbarian, you gain the following class features.",
     "hitDice": [0, 0, 0, 1],
     "armorProficiencies":["light","medium", "shields"],
-    "weaponsProficiencies": ["simple","martial"],
+    "weaponProficiencies": ["simple","martial"],
     "savingThrows":["strength","constitution"],
     "numberOfSkillChoices":2,
-    "skillChoicesArray": [
+    "skillChoiceArray": [
       "Animal Handling",
       "Athletics",
       "Intimidation",
@@ -17,9 +17,8 @@
       "Survival"
     ],
     "tools":["none"],
-    "equipment":
-      "You start with the following equipment, in addition to the equipment granted by your background:\n(*a*) a greataxe or (*b*) any martial melee weapon\n(*a*) two handaxes or (*b*) any simple weapon\nAn explorer’s pack and four javelins",
-    "Features": [
+    "equipment": "You start with the following equipment, in addition to the equipment granted by your background:\n(*a*) a greataxe or (*b*) any martial melee weapon\n(*a*) two handaxes or (*b*) any simple weapon\nAn explorer’s pack and four javelins",
+    "features": [
       ["featureRage", "featureUnarmoredDefense"],
       ["featureRecklessAttack", " featureDangerSense"],
       ["featurePrimalPath"],
@@ -51,8 +50,8 @@
     "name":"Bard",
     "description": "As a bard, you gain the following class features.",
     "hitDice": [0,1,0,0],
-    "armrProficiencies": ["light"],
-    "weaponsProficiencies:":["Simple weapons","hand crossbows","longswords","rapiers","shortswords"],
+    "armorProficiencies": ["light"],
+    "weaponProficiencies":["Simple weapons","hand crossbows","longswords","rapiers","shortswords"],
     "savingThrows":["Dexterity","Charisma"],
     "numberOfSkillChoices": 3,
     "skillChoiceArray":[
@@ -75,12 +74,8 @@
       "Survival",
       "Stealth"
     ],
-    "tools:":"Three musical instruments of your choice",
-    "equipment": "You start with the following equipment, in addition to the equipment granted by your background:\n
-      (*a*) a rapier, (*b*) a longsword, or (*c*) any simple weapon\n
-      (*a*) a diplomat’s pack or (*b*) an entertainer’s pack\n
-      (*a*) a lute or (*b*) any other musical instrument\n
-      Leather armor and a dagger",
+    "tools":["Three musical instruments of your choice"],
+    "equipment": "You start with the following equipment, in addition to the equipment granted by your background:\n(*a*) a rapier, (*b*) a longsword, or (*c*) any simple weapon\n(*a*) a diplomat’s pack or (*b*) an entertainer’s pack\n(*a*) a lute or (*b*) any other musical instrument\nLeather armor and a dagger",
     "features":[
       ["Spellcasting","Bardic Inspiration"],
       ["Jack of All Trades","Song of Rest"],
@@ -113,7 +108,7 @@
     "armorProficiencies":["Light, medium, shields"],
     "weaponProficiencies":["Simple"],
     "tools":["None"],
-    "saving throws":["Wisdom","Charisma"],
+    "savingThrows":["Wisdom","Charisma"],
     "numberOfSkillChoices": 2,
     "skillChoiceArray":[
       "History",
@@ -123,12 +118,7 @@
       "Religion"
     ],
     "equipment":
-      "You start with the following equipment, in addition to the equipment granted by your background:\
-      (*a*) a mace or (*b*) a warhammer (if proficient)\n
-      (*a*) scale mail, (*b*) leather armor, or (*c*) chain mail (if proficient)\n
-      (*a*) a light crossbow and 20 bolts or (*b*) any simple weapon\n
-      (*a*) a priest’s pack or (*b*) an explorer’s pack\n
-      A shield and a holy symbol",
+    "You start with the following equipment, in addition to the equipment granted by your background:\n(*a*) a mace or (*b*) a warhammer (if proficient)\n(*a*) scale mail, (*b*) leather armor, or (*c*) chain mail (if proficient)\n(*a*) a light crossbow and 20 bolts or (*b*) any simple weapon\n(*a*) a priest’s pack or (*b*) an explorer’s pack\nA shield and a holy symbol",
     "features":[
       ["Spellcasting, Divine Domain"],
       ["Channel Divinity (1/rest), Divine Domain Feature"],
@@ -161,7 +151,7 @@
     "armorProficiencies":["Light","medium","shields"],
     "weaponProficiencies":["Simple"],
     "tools":["None"],
-    "saving throws":["Wisdom","Intelligence"],
+    "savingThrows":["Wisdom","Intelligence"],
     "numberOfSkillChoices": 2,
     "skillChoiceArray":[
       "Arcana",
@@ -172,12 +162,9 @@
       "Perception",
       "Religion",
       "Survival"
-     ],
+    ],
     "equipment":
-      "You start with the following equipment, in addition to the equipment granted by your background:\n
-      (*a*) a wooden shield or (*b*) any simple weapon\n
-      (*a*) a scimitar or (*b*) any simple melee weapon\n
-      Leather armor, an explorer’s pack, and a druidic focus",
+    "You start with the following equipment, in addition to the equipment granted by your background:\n(*a*) a wooden shield or (*b*) any simple weapon\n(*a*) a scimitar or (*b*) any simple melee weapon\nLeather armor, an explorer’s pack, and a druidic focus",
     "features":[
       ["Druidic","Spellcasting"],
       ["Wild Shape","Druid Circle"],
@@ -210,7 +197,7 @@
     "armorProficiencies":["Light","Medium","Heavy","Shields"],
     "weaponProficiencies":["Simple","Martial"],
     "tools":["None"],
-    "saving throws":["Strength","Constitution"],
+    "savingThrows":["Strength","Constitution"],
     "numberOfSkillChoices": 2,
     "skillChoiceArray":[
       "Acrobatics",
@@ -223,11 +210,7 @@
       "Survival"
     ],
     "equipment":
-      "You start with the following equipment, in addition to the equipment granted by your background:\n
-      (*a*) chain mail or (*b*) leather armor, longbow, and 20 arrows\n
-      (*a*) a martial weapon and a shield or (*b*) two martial weapons\n
-      (*a*) a light crossbow and 20 bolts or (*b*) two handaxes\n
-      (*a*) a dungeoneer’s pack or (*b*) an explorer’s pack",
+    "You start with the following equipment, in addition to the equipment granted by your background:\n(*a*) chain mail or (*b*) leather armor, longbow, and 20 arrows\n(*a*) a martial weapon and a shield or (*b*) two martial weapons\n(*a*) a light crossbow and 20 bolts or (*b*) two handaxes\n(*a*) a dungeoneer’s pack or (*b*) an explorer’s pack",
     "features":[
       ["Fighting Style", "Second Wind"],
       ["Action Surge (one use)"],
@@ -260,37 +243,34 @@
     "armorProficiencies":["None"],
     "weaponProficiencies":["Simple","Shortswords"],
     "tools":["Choose one type of artisan’s tools or one musical instrument"],
-    "saving throws":["Strength","Dexterity"],
+    "savingThrows":["Strength","Dexterity"],
     "numberOfSkillChoices": 2,
     "skillChoiceArray":[
       "Acrobatics","Athletics","History", "Insight", "Religion", "Stealth"
     ],
     "equipment":
-      "You start with the following equipment, in addition to the equipment granted by your background:\n
-      (*a*) a shortsword or (*b*) any simple weapon\n
-      (*a*) a dungeoneer’s pack or (*b*) an explorer’s pack\n
-      10 darts",
+    "You start with the following equipment, in addition to the equipment granted by your background:\n(*a*) a shortsword or (*b*) any simple weapon\n(*a*) a dungeoneer’s pack or (*b*) an explorer’s pack\n10 darts",
     "features":[
-     ["Unarmored Defense", "Martial Arts"],
-     ["Ki", "Unarmored Movement"],
-     ["Monastic Tradition", "Deflect Missiles"],
-     ["Ability Score Improvement", "Slow Fall"],
-     ["Extra Attack", "Stunning Strike"],
-     ["Ki-Empowered Strikes", "Monastic Tradition Feature"],
-     ["Evasion", "Stillness of Mind"],
-     ["Ability Score Improvement"],
-     ["Unarmored Movement improvement"],
-     ["Purity of Body"],
-     ["Monastic Tradition Feature"],
-     ["Ability Score Improvement"],
-     ["Tongue of the Sun and Moon"],
-     ["Diamond Soul"],
-     ["Timeless Body"],
-     ["Ability Score Improvement"],
-     ["Monastic Tradition Feature"],
-     ["Empty Body"],
-     ["Ability Score Improvement"],
-     ["Perfect Self"]
+      ["Unarmored Defense", "Martial Arts"],
+      ["Ki", "Unarmored Movement"],
+      ["Monastic Tradition", "Deflect Missiles"],
+      ["Ability Score Improvement", "Slow Fall"],
+      ["Extra Attack", "Stunning Strike"],
+      ["Ki-Empowered Strikes", "Monastic Tradition Feature"],
+      ["Evasion", "Stillness of Mind"],
+      ["Ability Score Improvement"],
+      ["Unarmored Movement improvement"],
+      ["Purity of Body"],
+      ["Monastic Tradition Feature"],
+      ["Ability Score Improvement"],
+      ["Tongue of the Sun and Moon"],
+      ["Diamond Soul"],
+      ["Timeless Body"],
+      ["Ability Score Improvement"],
+      ["Monastic Tradition Feature"],
+      ["Empty Body"],
+      ["Ability Score Improvement"],
+      ["Perfect Self"]
     ],
     "subclassFeaturesList":[]
   },
@@ -302,7 +282,7 @@
     "armorProficiencies":["Light","Medium","Heavy","Shields"],
     "weaponProficiencies":["Simple","Martial"],
     "tools":["None"],
-    "saving throws":["Wisdom","Charisma"],
+    "savingThrows":["Wisdom","Charisma"],
     "numberOfSkillChoices": 2,
     "skillChoiceArray":[
       "Athletics",
@@ -313,32 +293,28 @@
       "Religion"
     ],
     "equipment":
-      "You start with the following equipment, in addition to the equipment granted by your background:\n
-      (*a*) a martial weapon and a shield or (*b*) two martial weapons\n
-      (*a*) five javelins or (*b*) any simple melee weapon\n
-      (*a*) a priest’s pack or (*b*) an explorer’s pack\n
-      Chain mail and a holy symbol",
+    "You start with the following equipment, in addition to the equipment granted by your background:\n(*a*) a martial weapon and a shield or (*b*) two martial weapons\n(*a*) five javelins or (*b*) any simple melee weapon\n(*a*) a priest’s pack or (*b*) an explorer’s pack\nChain mail and a holy symbol",
     "features":[
-     ["Divine Sense", "Lay on Hands"],
-     ["Fighting Style", "Spellcasting", "Divine Smite"],
-     ["Divine Health", "Sacred Oath"],
-     ["Ability Score Improvement"],
-     ["Extra Attack"],
-     ["Aura of Protection"],
-     ["Sacred Oath feature"],
-     ["Ability Score Improvement"],
-     ["-"],
-     ["Aura of Courage"],
-     ["Improved Divine Smite"],
-     ["Ability Score Improvement"],
-     ["-"],
-     ["Cleansing Touch"],
-     ["Sacred Oath feature"],
-     ["Ability Score Improvement"],
-     ["-"],
-     ["Aura improvements"],
-     ["Ability Score Improvement"],
-     ["Sacred Oath feature"]
+      ["Divine Sense", "Lay on Hands"],
+      ["Fighting Style", "Spellcasting", "Divine Smite"],
+      ["Divine Health", "Sacred Oath"],
+      ["Ability Score Improvement"],
+      ["Extra Attack"],
+      ["Aura of Protection"],
+      ["Sacred Oath feature"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Aura of Courage"],
+      ["Improved Divine Smite"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Cleansing Touch"],
+      ["Sacred Oath feature"],
+      ["Ability Score Improvement"],
+      ["-"],
+      ["Aura improvements"],
+      ["Ability Score Improvement"],
+      ["Sacred Oath feature"]
     ],
     "subclassFeaturesList":[]
   },
@@ -350,7 +326,7 @@
     "armorProficiencies":["Light","Medium","Shields"],
     "weaponProficiencies":["Simple","Martial"],
     "tools":["None"],
-    "saving throws":["Strength","Dexterity"],
+    "savingThrows":["Strength","Dexterity"],
     "numberOfSkillChoices": 2,
     "skillChoiceArray":[
       "Animal Handling",
@@ -363,11 +339,7 @@
       "Survival"
     ],
     "equipment":
-      "You start with the following equipment, in addition to the equipment granted by your background\n
-      (*a*) scale mail or (*b*) leather armor\n
-      (*a*) two shortswords or (*b*) two simple melee weapons\n
-      (*a*) a dungeoneer’s pack or (*b*) an explorer’s pack\n
-      A longbow and a quiver of 20 arrows",
+    "You start with the following equipment, in addition to the equipment granted by your background\n(*a*) scale mail or (*b*) leather armor\n(*a*) two shortswords or (*b*) two simple melee weapons\n(*a*) a dungeoneer’s pack or (*b*) an explorer’s pack\nA longbow and a quiver of 20 arrows",
     "features":[
       ["Favored Enemy","Natural Explorer"],
       ["Fighting Style","Spellcasting"],
@@ -400,46 +372,43 @@
     "armorProficiencies":["Light"],
     "weaponProficiencies":["Simple","Hand Crossbows","Longswords","Rapiers","Shortswords"],
     "tools":["Thieeves' Tools"],
-    "saving throws":["Dexterity","Intelligence"],
+    "savingThrows":["Dexterity","Intelligence"],
     "numberOfSkillChoices": 4,
     "skillChoiceArray":[
-     "Acrobatics",
-     "Athletics",
-     "Deception",
-     "Insight",
-     "Intimidation",
-     "Investigation",
-     "Perception",
-     "Performance",
-     "Persuasion",
-     "Sleight of Hand",
-     "Stealth"
-   ],
-    "equipment":"You start with the following equipment, in addition to the equipment granted by your background:\n(*a*) a rapier or (*b*) a shortsword\n
-     (*a*) a shortbow and quiver of 20 arrows or (*b*) a shortsword\n
-     (*a*) a burglar’s pack, (*b*) a dungeoneer’s pack, or (*c*) an explorer’s pack\n
-     (*a*) Leather armor, two daggers, and thieves’ tools",
+      "Acrobatics",
+      "Athletics",
+      "Deception",
+      "Insight",
+      "Intimidation",
+      "Investigation",
+      "Perception",
+      "Performance",
+      "Persuasion",
+      "Sleight of Hand",
+      "Stealth"
+    ],
+    "equipment":"You start with the following equipment, in addition to the equipment granted by your background:\n(*a*) a rapier or (*b*) a shortsword\n(*a*) a shortbow and quiver of 20 arrows or (*b*) a shortsword\n(*a*) a burglar’s pack, (*b*) a dungeoneer’s pack, or (*c*) an explorer’s pack\n(*a*) Leather armor, two daggers, and thieves’ tools",
     "features":[
-       ["Expertise","Sneak Attack","Thieves’ Cant"],
-       ["Cunning Action"],
-       ["Roguish Archetype"],
-       ["Ability Score Improvement"],
-       ["Uncanny Dodge"],
-       ["Expertise"],
-       ["Evasion"],
-       ["Ability Score Improvement"],
-       ["Roguish Archetype feature"],
-       ["Ability Score Improvement"],
-       ["Reliable Talent"],
-       ["Ability Score Improvement"],
-       ["Roguish Archetype Feature"],
-       ["Blindsense"],
-       ["Slippery Mind"],
-       ["Ability Score Improvement"],
-       ["Roguish Archetype Feature"],
-       ["Elusive"],
-       ["Ability Score Improvement"],
-       ["Stroke of Luck"]
+      ["Expertise","Sneak Attack","Thieves’ Cant"],
+      ["Cunning Action"],
+      ["Roguish Archetype"],
+      ["Ability Score Improvement"],
+      ["Uncanny Dodge"],
+      ["Expertise"],
+      ["Evasion"],
+      ["Ability Score Improvement"],
+      ["Roguish Archetype feature"],
+      ["Ability Score Improvement"],
+      ["Reliable Talent"],
+      ["Ability Score Improvement"],
+      ["Roguish Archetype Feature"],
+      ["Blindsense"],
+      ["Slippery Mind"],
+      ["Ability Score Improvement"],
+      ["Roguish Archetype Feature"],
+      ["Elusive"],
+      ["Ability Score Improvement"],
+      ["Stroke of Luck"]
     ],
     "subclassFeaturesList":[]
   },
@@ -451,7 +420,7 @@
     "armorProficiencies":["None"],
     "weaponProficiencies":["Daggers","Darts","Slings","Quarterstaffs","Light Crossbows"],
     "tools":["None"],
-    "saving throws":["Constitution","Charisma"],
+    "savingThrows":["Constitution","Charisma"],
     "numberOfSkillChoices": 2,
     "skillChoiceArray":[
       "Arcana",
@@ -462,11 +431,7 @@
       "Religion"
     ],
     "equipment":
-      "You start with the following equipment, in addition to the equipment granted by your background:\n
-      (*a*) a light crossbow and 20 bolts or (*b*) any simple weapon\n
-      (*a*) a component pouch or (*b*) an arcane focus\n
-      (*a*) a dungeoneer’s pack or (*b*) an explorer’s pack\n
-      Two daggers",
+    "You start with the following equipment, in addition to the equipment granted by your background:\n(*a*) a light crossbow and 20 bolts or (*b*) any simple weapon\n(*a*) a component pouch or (*b*) an arcane focus\n(*a*) a dungeoneer’s pack or (*b*) an explorer’s pack\nTwo daggers",
     "features":[
       ["Spellcasting","Sorcerous Origin"],
       ["Font of Magic"],
@@ -499,7 +464,7 @@
     "armorProficiencies":["Light"],
     "weaponProficiencies":["Simple"],
     "tools":["None"],
-    "saving throws":["Wisdom","Charisma"],
+    "savingThrows":["Wisdom","Charisma"],
     "numberOfSkillChoices": 2,
     "skillChoiceArray":[
       "Arcana",
@@ -511,11 +476,7 @@
       "Religion"
     ],
     "equipment":
-      "You start with the following equipment, in addition to the equipment granted by your background:\n
-      *(a)* a light crossbow and 20 bolts or (*b*) any simple weapon\n
-      *(a)* a component pouch or (*b*) an arcane focus\n
-      *(a)* a scholar’s pack or (*b*) a dungeoneer’s pack\n
-      Leather armor, any simple weapon, and two daggers",
+    "You start with the following equipment, in addition to the equipment granted by your background:\n*(a)* a light crossbow and 20 bolts or (*b*) any simple weapon\n*(a)* a component pouch or (*b*) an arcane focus\n*(a)* a scholar’s pack or (*b*) a dungeoneer’s pack\nLeather armor, any simple weapon, and two daggers",
     "features":[],
     "subclassFeaturesList":[]
   },
@@ -527,7 +488,7 @@
     "armorProficiencies":["None"],
     "weaponProficiencies":["Daggers","Darts","Slings","Quarterstaffs","Light Crossbows"],
     "tools":["None"],
-    "saving throws":["Wisdom","Intelligence"],
+    "savingThrows":["Wisdom","Intelligence"],
     "numberOfSkillChoices": 2,
     "skillChoiceArray":[
       "Arcana",
@@ -538,11 +499,7 @@
       "Religion"
     ],
     "equipment":
-      "You start with the following equipment, in addition to the equipment granted by your background:\n
-      *(a)* a quarterstaff or (*b*) a dagger\n
-      *(a)* a component pouch or (*b*) an arcane focus\n
-      *(a)* a scholar’s pack or (*b*) an explorer’s pack\n
-      A spellbook",
+    "You start with the following equipment, in addition to the equipment granted by your background:\n*(a)* a quarterstaff or (*b*) a dagger\n*(a)* a component pouch or (*b*) an arcane focus\n*(a)* a scholar’s pack or (*b*) an explorer’s pack\nA spellbook",
     "features":[
       ["Spellcasting","Arcane Recovery"],
       ["Arcane Tradition"],
