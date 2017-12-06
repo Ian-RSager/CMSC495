@@ -1,0 +1,956 @@
+[
+	{
+		"id": "featureRage",
+		"name":"Rage",
+		"content":[],	
+		"description":"In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action. \n While raging, you gain the following benefits if you aren’t wearing heavy armor:\nYou have advantage on Strength checks and Strength saving throws.\nWhen you make a melee weapon attack using Strength, you gain a bonus to the damage roll that increases as you gain levels as a barbarian, as shown in the Rage Damage column of the Barbarian table.\nYou have resistance to bludgeoning, piercing, and slashing damage.\nIf you are able to cast spells, you can’t cast them or concentrate on them while raging.\nYour rage lasts for 1 minute. It ends early if you are knocked unconscious or if your turn ends and you haven’t attacked a hostile creature since your last turn or taken damage since then. You can also end your rage on your turn as a bonus action.\nOnce you have raged the number of times shown for your barbarian level in the Rages column of the Barbarian table, you must finish a long rest before you can rage again.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian"],
+		"levelingInfo":[
+			["Rages: ","2","2","3","3","3","4","4","4","4","4","4","5","5","5","5","5","6","6","6","Unlimited"],
+			["Rage Damage: ","2","2","2","2","2","2","2","2","3","3","3","3","3","3","3","4","4","4","4","4"]
+		]
+	},
+
+	{
+		"id":"featureUnarmoredDefense",
+		"name":"Unarmored Defense",
+		"content":[],
+		"description":"Barabarians: While you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit./nMonks: Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier. ",
+		"classes": ["Barbarian", "Monk"],
+		"tags":["Barbarian", "Monk"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureRecklessAttack",
+		"name":"Reckless Attack",
+		"content":[],
+		"description":"Starting at 2nd level, you can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly. Doing so gives you advantage on melee weapon attack rolls using Strength during this turn, but attack rolls against you have advantage until your next turn.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureDangerSense",
+		"name":"Danger Sense",
+		"content":[],
+		"description":"At 2nd level, you gain an uncanny sense of when things nearby aren’t as they should be, giving you an edge when you dodge away from danger. You have advantage on Dexterity saving throws against effects that you can see, such as traps and spells. To gain this benefit, you can’t be blinded, deafened, or incapacitated.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featurePrimalPath",
+		"name":"Primal Path",
+		"content":["featurePathOfTheBerserker","featurePathOfTheTotemWarrior"],
+		"description":"At 3rd level, you choose a path that shapes the nature of your rage. Choose the Path of the Berserker or the Path of the Totem Warrior, both detailed at the end of the class description. Your choice grants you features at 3rd level and again at 6th, 10th, and 14th levels.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian","Primal Path","Path of the Berserker","Path of the Totem Warrior"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureFastMovement",
+		"name":"Fast Movement",
+		"content":[],
+		"description":"Starting at 5th level, your speed increases by 10 feet while you aren’t wearing heavy armor.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureFeralInstinct",
+		"name":"Feral Instinct",
+		"content":[],
+		"description":"By 7th level, your instincts are so honed that you have advantage on initiative rolls./nAdditionally, if you are surprised at the beginning of combat and aren’t incapacitated, you can act normally on your first turn, but only if you enter your rage before doing anything else on that turn.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureBrutalCritical",
+		"name":"Brutal Critical",
+		"content":[],
+		"description":"Beginning at 9th level, you can roll one additional weapon damage die when determining the extra damage for a critical hit with a melee attack./nThis increases to two additional dice at 13th level and three additional dice at 17th level.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureRelentlessRage",
+		"name":"Relentless Rage",
+		"content":[],
+		"description":"Starting at 11th level, your rage can keep you fighting despite grievous wounds. If you drop to 0 hit points while you’re raging and don’t die outright, you can make a DC 10 Constitution saving throw. If you succeed, you drop to 1 hit point instead./nEach time you use this feature after the first, the DC increases by 5. When you finish a short or long rest, the DC resets to 10.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featurePersistentRage",
+		"name":"Persistent Rage",
+		"content":[],
+		"description":"Beginning at 15th level, your rage is so fierce that it ends early only if you fall unconscious or if you choose to end it.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureIndomitableMight",
+		"name":"Indomitable Might",
+		"content":[],
+		"description":"Beginning at 18th level, if your total for a Strength check is less than your Strength score, you can use that score in place of the total.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featurePrimalChampion",
+		"name":"Primal Champion",
+		"description":"At 20th level, you embody the power of the wilds. Your Strength and Constitution scores increase by 4. Your maximum for those scores is now 24.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featurePathOfTheBerserker",
+		"name":"Path Of The Berserker",
+		"content":["featureFrenzy","featureMindlessRage","featureIntimidatingPresence","featureRetaliation"],
+		"description":"For some barbarians, rage is a means to an end— that end being violence. The Path of the Berserker is a path of untrammeled fury, slick with blood. As you enter the berserker’s rage, you thrill in the chaos of battle, heedless of your own health or well-being.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian","Primal Path"],
+		"levelingInfo":[]
+	},
+	
+	{
+		"id":"featureFrenzy",
+		"name":"Frenzy",
+		"content":[],
+		"description":"Starting when you choose this path at 3rd level, you can go into a frenzy when you rage. If you do so, for the duration of your rage you can make a single melee weapon attack as a bonus action on each of your turns after this one. When your rage ends, you suffer one level of exhaustion (as described in appendix A).",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureMindlessRage",
+		"name":"Mindless Rage",
+		"content":[],
+		"description":"Beginning at 6th level, you can’t be charmed or frightened while raging. If you are charmed or frightened when you enter your rage, the effect is suspended for the duration of the rage.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureIntimidatingPresence",
+		"name":"Intimidating Presence",
+		"content":[],
+		"description":"Beginning at 10th level, you can use your action to frighten someone with your menacing presence. When you do so, choose one creature that you can see within 30 feet of you. If the creature can see or hear you, it must succeed on a Wisdom saving throw (DC equal to 8 + your proficiency bonus + your Charisma modifier) or be frightened of you until the end of your next turn. On subsequent turns, you can use your action to extend the duration of this effect on the frightened creature until the end of your next turn. This effect ends if the creature ends its turn out of line of sight or more than 60 feet away from you.\nIf the creature succeeds on its saving throw, you can’t use this feature on that creature again for 24 hours.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureRetaliation",
+		"name":"Retaliation",
+		"content":[],
+		"description":"Starting at 14th level, when you take damage from a creature that is within 5 feet of you, you can use your reaction to make a melee weapon attack against that creature.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian"],
+		"levelingInfo":[]
+	},
+
+    {
+		"id":"featurePathOfTheTotemWarrior",
+		"name":"Path of the Totem Warrior",
+		"content":["featureSpiritSeeker","featureSpiritTotem","featureAspectOfTheBeast","featureSpiritWalker","featureTotemicAttunement"],
+		"description":"The Path of the Totem Warrior is a spiritual journey, as the barbarian accepts a spirit animal as guide, protector, and inspiration. In battle, your totem spirit fills you with supernatural might, adding magical fuel to your barbarian rage.\nMost barbarian tribes consider a totem animal to be kin to a particular clan. In such cases, it is unusual for an individual to have more than one totem animal spirit, though exceptions exist.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian","Primal Path"],
+		"levelingInfo":[]
+    },
+
+    {
+		"id":"featureSpiritSeeker",
+		"name":"Spirit Seeker",
+		"content":[],
+		"description":"Yours is a path that seeks attunement with the natural world, giving you a kinship with beasts. At 3rd level when you adopt this path, you gain the ability to cast the beast sense and speak with animals spells, but only as rituals, as described in chapter 10.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian","Totem Warrior", "Primal Path"],
+		"levelingInfo":[]
+    },
+
+    {
+		"id":"featureTotemSpirt",
+		"name":"Totem Spirt",
+		"content":[
+			"Totem Spirit - Bear: While raging, you have resistance to all damage except psychic damage. The spirit of the bear makes you tough enough to stand up to any punishment.",
+			"Totem Spirit - Eagle: ","While you're raging and aren’t wearing heavy armor, other creatures have disadvantage on opportunity attack rolls against you, and you can use the Dash action as a bonus action on your turn. The spirit of the eagle makes you into a predator who can weave through the fray with ease.",
+			"Totem Spirit - Wolf: While you're raging, your friends have advantage on melee attack rolls against any creature within 5 feet of you that is hostile to you. The spirit of the wolf makes you a leader of hunters"
+		],
+		"description":"At 3rd level, when you adopt this path, you choose a totem spirit and gain its feature. You must make or acquire a physical totem object-an amulet or similar adornment-that incorporates fur or feathers, claws, teeth, or bones of the totem animal. At your option you also gain minor physical attributes that are reminiscent of your totem spirit. For example, if you have a bear totem spirit, you might be unusually hairy and thick-skinned, or if your totem is the eagle, your eyes turn bright yellow./nYour totem animal might be an animal related to those listed here but more appropriate to your homeland. For example, you could choose a hawk or vulture in place of an eagle.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian","Totem Warrior","Primal Path","Bear","Eagle","Wolf"],
+		"levelingInfo":[]
+    },
+
+    {
+		"id":"featureAspectOfTheBeast",
+		"name":"Aspect of the Beast",
+		"content":[
+			"Aspect of the Beast - Bear: You gain the might of a bear. Your carrying capacity (including maximum load and maximum lift) is doubled, and you have advantage on Strength checks made to push, pull, lift, or break objects.",
+			"Aspect of the Beast - Eagle: At 6th level: You gain the eyesight of an eagle. You can see up to 1 mile away with no difficulty, able to discern even fine details as though looking at something no more than 100 feet away from you. Additionally, dim light doesn't im pose disadvantage on your W isdom (Perception) checks.",
+			"Aspect of the Beast - Wolf: "You gain the hunting sensibilities of a wolf. You can track other creatures while traveling at a fast pace, and you can move stealthily while traveling at a normal pace (see chapter 8 for rules on travel pace)."		
+		],
+		"description":"At 6th level, you gain a magical benefit based on the totem animal of your choice. You can choose the same animal you selected at 3rd level or a different one.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian","Totem Warrior","Primal Path","Bear","Eagle","Wolf"],
+		"levelingInfo":[]
+    },
+
+    {
+		"id":"featureSpiritWalker",
+		"name":"Spirit Walker",
+		"content":[],
+		"description":"At 10th level, you can cast the commune with nature spell, but only as a ritual. When you do so, a spiritual version of one of the animals you chose for Totem Spirit or Aspect of the Beast appears to you to convey the information you seek.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian", "Totem Warrior", "Primal Path"],
+		"levelingInfo":[]
+    },
+
+    {
+		"id":"featureTotemicAttunement",
+		"name":"Totemic Attunement",
+		"content":[
+			"Totemic Attunement - Bear: While you’re raging, any creature within 5 feet of you that’s hostile to you has disadvantage on attack rolls against targets other than you or another character with this feature. An enemy is immune to this effect if it can’t see or hear you or if it can’t be frightened.",
+			"Totemic Attunement - Eagle: While raging, you have a flying speed equal to your current walking speed. This benefit works only in short bursts; you fall if you end your turn in the air and nothing else is holding you aloft.",
+			"Totemic Attunement - Wolf: While you’re raging, you can use a bonus action on your turn to knock a Large or smaller creature prone when you hit it with melee weapon attack."
+		],
+		"description":"At 14th level, you gain a magical benefit based on a totem animal of your choice. You can choose the same animal you selected previously or a different one.",
+		"classes": ["Barbarian"],
+		"tags":["Barbarian", "Totem Warrior", "Primal Path"],
+		"levelingInfo":[]
+    }, 
+
+	{
+		"id":"featureAbilityScoreImprovement",
+		"name":"Ability Score Improvement",
+		"content":[],
+		"description":"You can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can’t increase an ability score above 20 using this feature.",
+		"classes": ["Barbarian", "Bard","Cleric","Druid","Fighter","Monk","Paladin","Ranger", "Rogue", "Sorcerer","Warlock","Wizard"],
+		"tags":["Barbarian","Bard","Cleric","Druid","Fighter","Monk","Paladin","Ranger", "Rogue", "Sorcerer","Warlock","Wizard"],
+		"levelingInfo":[
+			["classBarbarian","0","0","0","1","0","0","0","1","0","0","0","1","0","0","0","1","0","0","1","0"],
+			["classBard","0","0","0","1","0","0","0","1","0","0","0","1","0","0","0","1","0","0","1","0"],
+			["classCleric","0","0","0","1","0","0","0","1","0","0","0","1","0","0","0","1","0","0","1","0"],
+			["classDruid","0","0","0","1","0","0","0","1","0","0","0","1","0","0","0","1","0","0","1","0"],
+			["classFighter","0","0","0","1","0","1","0","1","0","0","0","1","0","1","0","1","0","0","1","0"],
+			["classMonk","0","0","0","1","0","0","0","1","0","0","0","1","0","0","0","1","0","0","1","0"],
+			["classPaladin","0","0","0","1","0","0","0","1","0","0","0","1","0","0","0","1","0","0","1","0"],
+			["classRanger","0","0","0","1","0","0","0","1","0","0","0","1","0","0","0","1","0","0","1","0"],
+			["classRogue","0","0","0","1","0","0","0","1","0","1","0","1","0","0","0","1","0","0","1","0"],
+			["classSorcerer","0","0","0","1","0","0","0","1","0","0","0","1","0","0","0","1","0","0","1","0"],
+			["classWarlock","0","0","0","1","0","0","0","1","0","0","0","1","0","0","0","1","0","0","1","0"],
+			["classWizard","0","0","0","1","0","0","0","1","0","0","0","1","0","0","0","1","0","0","1","0"]
+		]
+	},
+
+    {
+		"id":"featureExtraAttack",
+		"name":"Extra Attack",
+		"content":[],	  
+		"description":"You can attack multiple times when taking the Attack action on your turn.",
+		"classes": ["Barbarian","Fighter","Monk","Paladin","Ranger"],
+		"tags":["Barbarian","Fighter","Monk","Paladin","Ranger"],
+		"levelingInfo":[
+			["classBarbarian",null,null,null,null,"1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+			["classBard",null,null,null,null,null,"1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+			["classCleric",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+			["classDruid",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+			["classFighter",null,null,null,null,"1","1","1","1","1","1","2","2","2","2","2","2","2","2","2","3"],
+			["classMonk",null,null,null,null,"1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+			["classPaladin",null,null,null,null,"1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+			["classRanger",null,null,null,null,"1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+			["classRogue",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+			["classSorcerer",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+			["classWarlock",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+			["classWizard",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]
+		]
+    },
+
+	{
+		"id":"featureSpellcastingBard",
+		"name":"Spellcasting",
+		"content":[
+			"spellBladeWard","spellDancingLights","spellFriends","spellLight","spellMageHand","spellMending","spellMessage","spellMinorIllusion","spellPrestidigitation","spellTrueStrike",
+			"spellViciousMockery","spellAnimalFriendship","spellBane","spellCharmPerson","spellComprehendLanguages","spellCureWounds","spellDetectMagic","spellDisguiseSelf","spellDissonantWhispers",
+			"spellFaerieFire","spellFeatherFall","spellHealingWord","spellHeroism","spellIdentify","spellIllusoryScript","spellLongstrider","spellSilentImage","spellSleep","spellSpeakWithAnimals",
+			"spellTashasHideousLaughter","spellThunderwave","spellUnseenServant","spellAnimalMessenger","spellBlindnessDeafness","spellCalmEmotions","spellCloudOfDaggers","spellCrownOfMadness",
+			"spellDetectThoughts","spellEnhanceAbility","spellEnthrall","spellHeatMetal","spellHoldPerson","spellInvisibility","spellKnock","spellLesserRestoration","spellLocateAnimalsOrPlants",
+			"spellLocateObject","spellMagicMouth","spellPhantasmalForce","spellSeeInvisibility","spellShatter","spellSilence","spellSuggestion","spellZoneOfTruth","spellBestowCurse","spellClairvoyance",
+			"spellDispelMagic","spellFear","spellFeignDeath","spellGlyphOfWarding","spellHypnoticPattern","spellLeomundsTinyHut","spellMajorImage","spellNondetection","spellPlantGrowth",
+			"spellSending","spellSpeakWithDead","spellSpeakWithPlants","spellStinkingCloud","spellTongues","spellCompulsion","spellConfusion","spellDimensionDoor","spellFreedomOfMovement",
+			"spellGreaterInvisibility","spellHallucinatoryTerrain","spellLocateCreature","spellPolymorph","spellAnimateObjects","spellAwaken","spellDominatePerson","spellDream","spellGeas",
+			"spellGreaterRestoration","spellHoldMonster","spellLegendLore","spellMassCureWounds","spellMislead","spellModifyMemory","spellPlanarBinding","spellRaiseDead","spellScrying",
+			"spellSeeming","spellTeleportationCircle","spellEyebite","spellFindThePath","spellGuardsAndWards","spellMassSuggestion","spellOttosIrresistibleDance","spellProgrammedIllucion",
+			"spellTrueSeeing","spellEtherealness","spellForcecage","spellMirageArcane","spellMordenkainensMagnificentMansion","spellMordenkainensSword","spellProjectImage","spellRegenerate",
+			"spellResurrection","spellSymbol","spellTeleport","spellDominateMonster","spellFeeblemind","spellGlibness","spellMindBlank","spellPowerWordStun","spellForesight","spellPowerWordHeal",
+			"spellPowerWordKill","spellTruePolymorph"
+		],
+		"description":"You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music. Your spells are part of your vast repertoire, magic that you can tune to different situations./nSpell Save DC = 8 + your proficiency bonus + your Charisma modifier /nSpell attack modifier = your proficiency bonus + your Charisma modifier",
+		"classes":["Bard"],
+		"tags":["Bard","Spellcasting"],
+		"levelingInfo":[
+			["2","4","2","","","","","","","",""],
+			["2","5","3","","","","","","","",""],
+			["2","6","4","2","","","","","","",""],
+			["3","7","4","3","","","","","","",""],
+			["3","8","4","3","2","","","","","",""],
+			["3","9","4","3","3","","","","","",""],
+			["3","10","4","3","3","1","","","","",""],
+			["3","11","4","3","3","2","","","","",""],
+			["3","12","4","3","3","3","1","","","",""],
+			["4","14","4","3","3","3","2","","","",""],
+			["4","15","4","3","3","3","2","1","","",""],
+			["4","15","4","3","3","3","2","1","","",""],
+			["4","16","4","3","3","3","2","1","1","",""],
+			["4","18","4","3","3","3","2","1","1","",""],
+			["4","19","4","3","3","3","2","1","1","1",""],
+			["4","19","4","3","3","3","2","1","1","1",""],
+			["4","20","4","3","3","3","2","1","1","1","1"],
+			["4","22","4","3","3","3","3","1","1","1","1"],
+			["4","22","4","3","3","3","3","2","1","1","1"],
+			["4","22","4","3","3","3","3","2","2","1","1"],
+		]
+	},
+
+	{
+		"id":"featureBardicInspiration",
+		"name":"Bardic Inspiration",
+		"content":[],
+		"description":"You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6./nOnce within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the GM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time./nYou can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest./nYour Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a d8 at 5th level, a d10 at 10th level, and a d12 at 15th level.",
+		"classes":["Bard"],
+		"tags":["Bard"],
+		"levelingInfo":[["Bardic Inspiration Die: ","d6","d6","d6","d6","d8","d8","d8","d8","d8","d10","d10","d10","d10","d10","d12","d12","d12","d12","d12","d12"]]
+	},
+
+	{
+		"id":"featureJackOfAllTrades",
+		"name":"Jack of All Trades",
+		"content":[],
+		"description":"Starting at 2nd level, you can add half your proficiency bonus, rounded down to any ability check you make that doesn't already include your proficiency bonus.",
+		"classes":["Bard"],
+		"tags":["Bard"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureSongOfRest",
+		"name":"Song of Rest",
+		"content":["],
+		"description":"Beginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance regain hit points at the end of the short rest by spending one or more Hit Dice, each of those creatures regains an extra 1d6 hit points./nThe extra hit points increase when you reach certain levels in this class: to 1d8 at 9th level, to 1d10 at 13th level, and to 1d12 at 17th level.",
+		"classes":["Bard"],
+		"tags":["Bard"],
+		"levelingInfo":[["Song of Rest Die: ","d6","d6","d6","d6","d6","d6","d6","d6","d8","d8","d8","d8","d10","d10","d10","d10","d12","d12","d12","d12"]]
+	},
+
+	{
+		"id":"featureBardColleges",
+		"name":"Bard Colleges",
+		"content":["featureCollegeOfLore","featureCollegeOfValor"],
+		"description":"The way of the bard is gregarious. Bards seek each other out to swap songs and stories, boast of their accomplishments, and share their knowledge. Bards form loose associations, which they call colleges, to facilitate their gatherings and preserve their traditions.",
+		"classes":["Bard"],
+		"tags":["Bard","Bard Colleges","College of Lore","College of Valor"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureCollegeOfLore",
+		"name":"College of Lore",
+		"content":["featureBonusProficienciesBard","featureCuttingWords","featureAdditionalMagicalSecrets","featurePeerlessSkill"],
+		"description":"Bards of the College of Lore know someting about most things, collecting bits of knowledge from sources as diverse as scholarly tomes and peasant tales./nWhether singing folk ballads in taverns or elaborate compositions in royal courts, these bards use their gifts to hold audiences spellbound. When the applause dies down, the audience members might find themselves questioning everything they held to be true, from their faith in the priesthood of the local temple to their loyalty to the king./nThe loyalty of these bards lies in the pursuit of beauty and truth, not in fealty to a monarch or following the tenets of a deity. A noble who keeps such a bard as a herald or advisor knows that the bard would rather be honest htan politic./nThe college's members gather in libraries and sometimes in actual colleges, complete with classrooms and dormitories, to share their lore with one another. They also meet at festivals or affairs of state, where they can expose corruption, unravel lies, and poke fun at self-important figures of authority.",
+		"classes":["Bard"],
+		"tags":["Bard","Bard Colleges","College of Lore"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureCollegeOfValor",
+		"name":"College of Valor",
+		"content":["featureBonusProficiencies","featureCombatInspiration","featureExtraAttack","featureBattleMagic"],
+		"description":"Bards of the College of Valor are daring skalds whose tales keep alive the memory of the great heroes of the past, and thereby inspire a new generation of heroes. These bards gather in mead halls or around great bonfires to sing the deeds of the mighty, both past and present. They travel the land to witness great events firsthand and to ensure that the meory of those events doesn't pass from the world. With their songs, they inspire others to reach the same heights of accomplishment as the heroes of old.",
+		"classes":["Bard"],
+		"tags":["Bard","Bard Colleges","College of Valor"],
+		"levelingInfo":[]
+	},	
+
+	{
+		"id":"featureExpertise",
+		"name":"Expertise",
+		"content":[],
+		"description":"At 3rd level, choose two of your skill proficiencies. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies. At 10th level you cn choose another two skill proficiencies to gain this benefit.",
+		"classes":["Bard"],
+		"tags":["Bard"],
+		"levelingInfo":[["","","2","","","","","","","2","","","","","","","","","",""]]
+	},
+
+	{
+		"id":"featureFontOfInspiration",
+		"name":"Font of Inspiration",
+		"content":[],
+		"description":"Beginning when you reach 5th level, you regain all of your expended uses of Bardic Inspiration when you finish a short or long rest.",
+		"classes":["Bard"],
+		"tags":["Bard"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureCountercharm",
+		"name":"Countercharm",
+		"content":[],
+		"description":"At 6th level, you gain the ability to use musical notes or words of power to disrupt mind-influencing effects. As an action, you can start a performance that lasts until the end of your next turn. During that time, you and any friendly creatures within 30 feet of you have advantage on saving throws against being frightened or charmed. A creature must be able to hear you to gain this benefit. The performance ends early if you are incapacitated or silenced or if you voluntarily end it (no action required).",
+		"classes":["Bard"],
+		"tags":["Bard"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureMagicalSecrets",
+		"name":"Magical Secrets",
+		"content":[],
+		"description":"By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines. Choose two spells from any class, including this one. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip./nThe chosen spells count as bard spells for you and are included in the number in the Spells Known column of the Bard table./nYou learn two additional spells from any class at 14th level and again at 18th level.",
+		"classes":["Bard"],
+		"tags":["Bard"],
+		"levelingInfo":[["","","","","","","","","","2","","","","2","","","","2","",""]]
+	},
+
+	{
+		"id":"featureSuperiorInspiration",
+		"name":"Superior Inspiration",
+		"content":[],
+		"description":"At 20th level, when you roll for initiative and have no uses of Bardic Inspiration left, you gain one use.",
+		"classes":["Bard"],
+		"tags":["Bard"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureBonusProficienciesBard",
+		"name":"Bonus Proficiencies",
+		"content":["When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice.","When you join the College of Valor at 3rd level, you gain proficiency with medium armor, shields, and martial weapons."],
+		"description":"When you join a college at 3rd level you gain proficiency with three skills of your choice if you choose the College of Lore or you gain proficiency with medium armor, shields and martial weapons if you choose the College of Valor.",
+		"classes":["Bard"],
+		"tags":["Bard","College of Lore","College of Valor"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureCuttingWords",
+		"name":"Cutting Words",
+		"content":[],
+		"description":"Also at 3rd level, you learn how to use your wit to distract, confuse, and otherwise sap the confidence and competence of others. When a creature that you can see within 60 feet of you makes an attack roll, an ability check, or a damage roll, you can use your reaction to expend one of your uses of Bardic Inspiration, rolling a Bardic Inspiration die and subtracting the number rolled from the creature’s roll. You can choose to use this feature after the creature makes its roll, but before the GM determines whether the attack roll or ability check succeeds or fails, or before the creature deals its damage. The creature is immune if it can’t hear you or if it’s immune to being charmed.",
+		"classes":["Bard"],
+		"tags":["Bard","College of Lore"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureAdditionalMagicalSecrets",
+		"name":"Additional Magical Secrets",
+		"content":[],
+		"description":"At 6th level, you learn two spells of your choice form any class. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. The chosen spells count as bard spells for you, but don't count against the number of bard spells you know.",
+		"classes":["Bard"],
+		"tags":["Bard","College of Lore"],
+		"levelingInfo":[["","","","","","2","","","","","","","","","","","","","",""]]
+	},
+
+	{
+		"id":"featurePeerlessSkill",
+		"name":"Peerless Skill",
+		"content":[],
+		"description":"Starting at 14th level, when you make an ability check, you can expend one use of Bardic Inspiration. Roll a Bardic Inspiration die and add the number rolled to your ability check. You can choose to do so after you roll the die for the ability check, but before the GM tells you whether you succeed or fail.",
+		"classes":["Bard"],
+		"tags":["Bard","College of Lore"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureCombatInspiration",
+		"name":"Combat Inspiration",
+		"content":[],
+		"description":"Also at 3rd level, you learn to inspire others in battle. A creature tht has a Bardic Inspiration die from you can roll that die and add the number rolled to a weapon damage roll it just made. Alternatively, when at attack roll is made against the creature, it can use its reaction to roll the Bardic Inspiration die and add the number rolled to its AC against that attack, after seeing the roll but before knowing whether it hits or misses.",
+		"classes":["Bard"],
+		"tags":["Bard","College of Valor"],
+		"levelingInfo":[],
+	},
+
+	{
+		"id":"featureBattleMagic",
+		"name":"Battle Magic",
+		"content":[],
+		"description":"At 14th level, you have mastered the art of weaving spellcasting and weapon use into a single harmonious act. When you use your action to cast a bard spell, you can make one weapon attack as a bonus action.",
+		"classes":["Bard"],
+		"tags":["Bard","College of Valor"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureSpellcastingCleric",
+		"name":"Spellcasting",
+		"content":[
+			"spellGuidance","spellLight","spellMending","spellResistance","spellSacredFlame","spellSpareTheDying","spellThaumaturgy","spellBane","spellBless","spellCommand",
+			"spellCreateOrDestroyWater","spellCureWounds","spellDetectEvilAndGood","spellDetectMagic","spellDetectPoisonAndDisease","spellGuidingBolt","spellHealingWord",
+			"spellInflictWOunds","spellProtectionFromEvilAndGood","spellPurifyFoodAndDrink","spellSanctuary","spellShieldOfFaith","spellAid","spellAugury","spellBlindnessDeafness",
+			"spellCalmEmotions","spellContinualFlame","spellEnhanceAbility","spellFindTraps","spellGentleRepose","spellHoldPerson","spellLesserRestoration","spellLocateObject",
+			"spellPrayerOfHealing","spellProtectionFromPoison","spellSilence","spellSpiritualWeapon","spellWardingBond","spellZoneOfTruth","spellAnimateDead","spellBeaconOfHope",
+			"spellBestowCurse","spellClairvoyance","spellCreateFoodAndWater","spellDaylight","spellDispelMagic","spellFeignDeath","spellGlyphOfWarding","spellMagicCircle",
+			"spellMassHealingWord","spellMeldIntoStone","spellProtectionFromEnergy","spellRemoveCurse","spellRevivify","spellSending","spellSpeakWithDead","spellSpiritGuardians",
+			"spellTongues","spellWaterWalk","spellBanishment","spellControlWater","spellDeathWard","spellDivination","spellFreedomOfMovement","spellGuardianOfFaith",
+			"spellLocateCreature","spellStoneShape","spellCommune","spellContagion","spellDispelGoodAndEvil","spellFlameStrike","spellGeas","spellGreaterRestoration","spellHallow",
+			"spellInsectPlague","spellLegendLore","spellMassCureWounds","spellPlanarBinding","spellRaiseDead","spellScrying","spellBladeBarrier","spellCreateUndead","spellFindThePath",
+			"spellForbiddance","spellHarm","spellHeal","spellHeroesFeast","spellPlanarAlly","spellTrueSeeing","spellWordOfRecall","spellConjureCelestial","spellDivineWord",
+			"spellEtherealness","spellFireStorm","spellPlaneShift","spellRegenerate","spellResurrection","spellSymbol","spellAntimagicField","spellControlWeather","spellEarthquake",
+			"spellHolyAura","spellAstralProjection","spellGate","spellMassHeal","spellTrueResurrection"
+		],
+		"description":"As a conduit for divine power, you can cast cleric spells/nSpell Save DC = 8 + your proficiency bonus + your Wisdom modifier/nSpell attack modifier = your proficiency bonus + your Wisdom modifier",
+		"classes":["Cleric"],
+		"tags":["Cleric"],
+		"levelingInfo":[
+			["3","2","","","","","","","",""],
+			["3","3","","","","","","","",""],
+			["3","4","2","","","","","","",""],
+			["4","4","3","","","","","","",""],
+			["4","4","3","2","","","","","",""],
+			["4","4","3","3","","","","","",""],
+			["4","4","3","3","1","","","","",""],
+			["4","4","3","3","2","","","","",""],
+			["4","4","3","3","3","1","","","",""],
+			["5","4","3","3","3","2","","","",""],
+			["5","4","3","3","3","2","1","","",""],
+			["5","4","3","3","3","2","1","","",""],
+			["5","4","3","3","3","2","1","1","",""],
+			["5","4","3","3","3","2","1","1","",""],
+			["5","4","3","3","3","2","1","1","1",""],
+			["5","4","3","3","3","2","1","1","1",""],
+			["5","4","3","3","3","2","1","1","1","1"],
+			["5","4","3","3","3","3","1","1","1","1"],
+			["5","4","3","3","3","3","2","1","1","1"],
+			["5","4","3","3","3","3","2","2","1","1"],		
+		]
+	},
+
+	{
+		"id":"featureDivineDomain",
+		"name":"Divine Domain",
+		"content":["featureKnowledgeDomain","featureLifeDomain","featureLightDomain","featureNatureDomain","featureTempestDomain","featureTrickeryDomain","featureWarDomain"],
+		"description":"Choose one domain related to your deity: Knowledge, Life, Light, Nature, Tempest, Trickery, or War. Each domain is detailed at the end of the class description, and each one provides examples of gods associated with it. Your choice grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Divine Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureKnowledgeDomain",
+		"name":"Knowledge Domain",
+		"content":["featureKnowledgeDomainSpells","featureBlessingsOfKnowledge","featureChannelDivinityKnowledgeOfTheAges","featureChannelDivinityReadThoughts","featurePotentSpellcasting","featureVisionsOfThePast"],
+		"description":"The gods of knowledge-including Oghma, Boccob, Gilean, Aureon, and Thoth-value learning and understanding above all. Some teach that knowledge is to be gathered and shared in libraries and universities, or promote the practical knowledge of craft and invention. Some deities hoard knowledge and keep its secretes to themselves. And some promise their followers that they will gain tremendous power if they unlock the secrets of the multiverse. Followers of these gods study esoteric lore, collect old tomes, delve into the secret places of the earth, and learn all they can. Some gods of knowledge promote the practical knowledge of craft and invention, including smith deities like Gond, Reorx, Onatar, Moradin, Hephaestus, and Goibhniu.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Knowledge Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureKnowledgeDomainSpells",
+		"name":"Knowledge Domain Spells",
+		"content":[],
+		"description":"You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don't cpount against your daily limit. If the spell isn't on the cleric spell list it is nonetheless a cleric spell for you./n1st level: command, indentify/n3rd level: augury, suggestion/n5th level: nondetection, speak with dead/n7th level: arcane eye, confusion/n9th level: legend lore, scrying",
+		"classes":["Cleric"],
+		"tags":["Cleric","Knowledge Domain"],
+		"levelingInfo":[
+			["spellCommand","spellIdentify"],
+			[],
+			["spellAugury","spellSuggestion"],
+			[],
+			["spellNondetection","spellSpeakWithDead"],
+			[],
+			["spellArcaneEye","spellConfusion"],
+			[],
+			["spellLegendLore","spellScrying"],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+		]
+	},
+
+	{
+		"id":"featureBlessingsOfKnowledge",
+		"name":"BLessings of Knowledge",
+		"content":[],
+		"description":"At 1st level, you learn two languages of your choice. You also become proficient in your choice of two of the following skills: Arcana, Histroy, Nature, or Religion./nYour proficiency bonus is doubled for any ability check you make that uses either of those skills.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Knowledge Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureChannelDivinityKnowledgeOfTheAges",
+		"name":"Channel Divinity: Knowledge of the Ages",
+		"content":[],
+		"description":"Starting at 2nd level, you can use your Channel Divinity to tap into a divine well of knowledge. As an action, you choose one skill or tool. For 10 minutes, you have proficiency with the chosen skill or tool.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Knowledge Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureChannelDivinityReadThoughts",
+		"name":"Channel Divinity: Read Thoughts",
+		"content":[],
+		"description":"At 6th level, you can use your Channel Divinity to read a creature's thoughts. You can then use your access to the creature's mind to command it./nAs an action, choose one creature that you can see within 60 feet of you. That creature must make a Wisdom saving throw. If the creature succeeds on the saving throw, you can't use this feature on it again until you finish a long rest./nIf the creature fails its save, you can read its surface thoughts (those foremost in its mind, reflecting its current emotions and what it is actively thinking about) when it is within 60 feet of you. This effect lasts for 1 minute./nDuring that time, you can use your action to end this effect and cast the suggestion spell on the creature without expending a spell slot. The target automatically fails its saving throw against the spell.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Knowledge Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featurePotentSpellcasting",
+		"name":"Potent Spellcasting",
+		"content":[],
+		"description":"Starting at 8th level, you add your Wisdom modifier to the damage you deal with any cleric cantrip.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Knowledge Domain","Light Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureVisionsOfThePast",
+		"name":"Visions of the Past",
+		"content":[],
+		"description":"Starting at 17th level, you can call up visions of the past that relate to an object you hold or your immediate surroundings. You must spend at least 1 minute in meditation and prayer, then receive dreamlike, shadowy glimpses of recent events. You can meditate in this way for a number of minutes equal to your Wisdom score and must maintain concentration during that time, as if you were casting a spell./nOnce you use this feature, you can't use it again until you finish a short or long rest./nObject Reading - Holding an object as you meditate, you can see visions of the object's previous owner. After meditating for 1 minute, you learn how the owner acquired and lost the object, as well as the most recent significant event involving the object and that owner. If the object was owned by another creature in the recent past (within a number of daysd equal to your Wisdom score), you can spend 1 additional minute for each owner to learn the same information about that creature./nArea Reading - As you meditate, you see visions of recent events in your immediate vicinity (a room, street, tunnel, clearing, or the like, up to a 50-foot cube), going back a number of days equal to your Wisdom score. For each minute you meditate, you learn about one significant event, beginning with the most recent. Significant events typically involve powerful emotions, such as battles and betrayals, marriages and murders, births and funerals. However they might also include more mundane events that are nevertheless important in your current situation.",
+		"classes":["Cleric"],
+		"tags":["Cleric"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureLifeDomain",
+		"name":"Life Domain",
+		"content":["featureLifeDomainSpells","featureBonusProficiencyLifeDomain","featureDiscipleOfLife","featureChannelDivinityPreserveLife","featureBlessedHealer","featureDivineStrike","featureSupremeHealing"],
+		"description":"The Life domain focuses on the vibrant positive energy-one of the fundamental forces of the universe-that sustains life. THe gods of life promote vitality and health through healing the sick and wounded, caring for those in need, and driving away the forces of death and undeath. Almost aany non-evil deity can claim influence over this domain, particularly agricultural deities (such as Chauntea, Arawai, and Demeter), sun gods (such as Lathander, Pelor, and Re-Horakhty), gods of healing or endurance (such as Ilmater, Mishakal, Apollo, and Dianccecht), and gods of home and community (such as Hestia, Hathor, and Bolderi).",
+		"classes":["Cleric"],
+		"tags":["Cleric","Life Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureLifeDomainSpells",
+		"name":"Life Domain Spells",
+		"content":[],
+		"description":"You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don't cpount against your daily limit. If the spell isn't on the cleric spell list it is nonetheless a cleric spell for you./n1st level: bless, cure wounds/n3rd level: lesser restoration, spiritual weapon/n5th level: beacon of hope, revivify/n7th level: death ward, guardian of faith/n9th level: mass cure wounds, raise dead",
+		"classes":["Cleric"],
+		"tags":["Cleric","Life Domain"],
+		"levelingInfo":[
+			["spellBless","spellCureWounds"],
+			[],
+			["spellLesserRestoration","spellSpiritualWeapon"],
+			[],
+			["spellBeaconOfHope","spellRevivify"],
+			[],
+			["spellDeathWard","spellGuardianOfFaith"],
+			[],
+			["spellMassCureWounds","spellRaiseDead"],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+		]
+	},
+
+	{
+		"id":"featureBonusProficiencyLifeDomain",
+		"name":"Bonus Proficiency",
+		"content":[],
+		"description":"When you choose this domain at 1st level, you gain proficiency with heavy armror.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Life Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureDiscipleOfLife",
+		"name":"Disciple of Life",
+		"content":[],
+		"description":"Also starting at 1st level, your healing spells are more effective. Whenever you use a spell of 1st level or higher to restore hit points to a creature, the creature regains additional hit points equal to 2 + the spell's level.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Life Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureChannelDivinityPreserveLife",
+		"name":"Channel Divinity: Preserve Life",
+		"content":[],
+		"description":"Starting at 2nd level, you can use your Channel Divinity to heal the badly injured./nAs an action, you present your holy symbol and evoke healing energy that can restore a number of hit points equal to five times your cleric level. Choose any creatures within 30 feet of you, and divide those hit points among them. This feature can restore a creature to no more than half of its hit point maximum. You can't use this feature on an undead or construct.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Life Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureBlessedHealer",
+		"name":"Blessed Healer",
+		"content":[],
+		"description":"Beginning at 6th level, the healing spells you cast on others heal you as well. When you cast a spell of 1st level or higher that restores hit points to a creature other than you, you regain hit points equal to 2 + the spell's level.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Life Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureDivineStrike",
+		"name":"Divine Strike",
+		"content":[],
+		"description":"At 8th level, you gain the ability to infuse your weapon strikes with divine energy. Once on each of your turns when you hit a creature with a weapon attack, you can cause the attack to deal an extra 1d8 radiant damage to the target. hen you reach 14th level, the extra damage increases to 2d8.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Life Domain"],
+		"levelingInfo":[["Radiant Damage Bonus: ",null,null,null,null,null,null,null,1d8,1d8,1d8,1d8,1d8,1d8,2d8,2d8,2d8,2d8,2d8,2d8,2d8]]
+	},
+
+	{
+		"id":"featureSupremeHealing",
+		"name":"Supreme Healing",
+		"content":[],
+		"description":"Starting at 17th level, when you would normally roll one or more dice to restore hit points with a spell, you instead use the highest nubmer possible for each die. For example, instead of restoring 2d6 hit points to a creature, you restore 12.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Life Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureLightDomain",
+		"name":"Light Domain",
+		"content":["featureLightDomainSpells","featureBonusCantripLightDomain","featureWardingFlare","featureChannelDivinityRadianceOfTheDawn","featureImprovedFlare","featurePotentSpellcasting","featureCoronaOfLight"],
+		"description":"Gods of light-including Helm, Lathander, Pholtus, Branchala, the Silver Flame, Belenus, Apollo, and Re-Horakhty- promote of rebirth and renewal, truth, vigilance, and beauty, often using the symbol of the sun. Some of these gods portrayed as the sun itself or as a charioteer who guides the sun across the sky. Others are tireless sentinels whose eyes pierce every shadow and see through every deception. Some are deities of beauty and artistry, who teach that art is a vehicle for the soul's improvement. Clerics of a god of light are enlightened souls infused with radiance and the power of their gods' discerning vision, charged with chasing away lies and burning away darkness.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Light Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureLightDomainSpells",
+		"name":"Light Domain Spells",
+		"content":[],
+		"description":"You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don't cpount against your daily limit. If the spell isn't on the cleric spell list it is nonetheless a cleric spell for you./n1st level: burning hands, faerie fire/n3rd level: flaming sphere, scorching ray/n5th level: daylight, fireball/n7th level: gaurdian of faith, wall of fire/n9th level: flame strike, scrying",
+		"classes":["Cleric"],
+		"tags":["Cleric","Light Domain"],
+		"levelingInfo":[
+			["spellBurningHands","spellFaerieFire"],
+			[],
+			["spellFlamingSphere","spellScorchingRay"],
+			[],
+			["spellDaylight","spellFireball"],
+			[],
+			["spellGuardianOfFaith","spellWallOfFire"],
+			[],
+			["spellFlameStrike","spellScrying"],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+		]
+	},
+
+	{
+		"id":"featureBonusCantripLightDomain",
+		"name":"Bonus Cantrip",
+		"content":["spellLight"],
+		"description":"When you choose this domain at 1st level, you gain the light cantrip if you don't already know it.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Light Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureWardingFlare",
+		"name":"Warding Flare",
+		"content":[],
+		"description":"Also at 1st level, you can interpose divine light between yourself and an attacking enemy. When you are attacked by a creature within 30 feet of you that you can see, you can use your reaction to impose disadvantage on the attack roll, causing light to flare before the attacker before it hits or misses. An attacker that can't be blinded is immune to this feature./nYou can use this feature a number of times equal to your Wisdom modifier (a minimum of once). You regain all expended uses when you finish a long rest.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Light Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureChannelDivinityRadianceOfTheDawn",
+		"name":"Channel Divinity: Radiance of the Dawn",
+		"content":[],
+		"description":"Starting at 2nd level, you can use your Channel Divinity to harness sunlight, banishing darkness and dealing radiant damage to your foes./nAs an action, you present your holy symbol, and any magical darkness within 30 feet of you is dispelled. Additionally, each hostile creature within 30 feet of you must make a Constitution saving throw. A creature takes radiant damage equal to 2d10 + your cleric level on a failed saving throw, and half as much damage on a successful one. A creature that has total cover from you id not affected.",
+		"classes":["Cleric"],
+		"tags":["Cleric"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureImprovedFlare",
+		"name":"Improved Flare",
+		"content":[],
+		"description":"Starting at 6th level, you can also use your Warding Flare feature when a creature that you can see within 30 feet of you attacks a creature other than you.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Light Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureCoronaOfLight",
+		"name":"Corona of Light",
+		"content":[],
+		"description":"Starting at 17th level, you canuse your action to activate an aura of sunlight that lasts for 1 minute or until you dismiss it using another action. You emit bright light in a 60-foot radius and dim light 30 feet beyond that. Your enemies in the bright light have disadvantage on saving throws against any spell that deals fire or radiant damage.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Light Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureNatureDomain",
+		"name":"Nature Domain",
+		"content":["featureNatureDomainSpells","featureAcolyteOfNature","featureBonusProficiencyNatureDomain","featureChannelDivinityCharmAnimalsAndPlants","featureDampenElements","featureDivineStrike","featureMasterOfNature"],
+		"description":"Gods of nature are as varied as the natural world itself, from inscrutable gods of the deep forests (such as Silvanus, Obad-Hai, Chislev, Balinor, and Pan) to friendly deities associated with particualr springs and groves (such as Eldath), Druids revere nature as a whole and might serve one of these deities, practicing mysterious rites and reciting all-but-forgotten prayers in their own secret tongue. But many of these gods have clerics as well, champions who take a more active role in advancing the interests of a particular nature god. These clerics might hunt the evil monstrosities that despoil the woodlands, bless the harvest of the faithful, or wither the crops of those who anger their gods.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Nature Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureNDomainSpells",
+		"name":"Nature Domain Spells",
+		"content":[],
+		"description":"You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don't cpount against your daily limit. If the spell isn't on the cleric spell list it is nonetheless a cleric spell for you./n1st level: animal friendship, speak with animals/n3rd level: barkskin, spike growth/n5th level: plant growth, wind wall/n7th level: dominate beast, grasping vine/n9th level: insect plague, tree stride",
+		"classes":["Cleric"],
+		"tags":["Cleric","Nature Domain"],
+		"levelingInfo":[
+			["spellAnimalFriendship","spellSpeakWithAnimals"],
+			[],
+			["spellBarkskin","spellSpikeGrowth"],
+			[],
+			["spellPlantGrowth","spellWindWall"],
+			[],
+			["spellDominateBeast","spellGraspingVine"],
+			[],
+			["spellInsectPlague","spellTreeStride"],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+		]
+	},
+
+	{
+		"id":"featureAcolyteOfNature",
+		"name":"Acolyte of Nature",
+		"content":[],
+		"description":"At  1st level, you learn one druid cantrip of your choice. You also gain proficiency in one of the following skills of your choice: Animal Handling, Nature, or Survival.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Nature Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureBonusProficiencyNatureDomain",
+		"name":"Bonus Proficiency",
+		"content":[],
+		"description":"When you choose this domain at 1st level, you gain proficiency with heavy armror.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Nature Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureChannelDivinityCharmAnimalsAndPlants",
+		"name":"Channel Divinity: Charm Animals and Plants",
+		"content":[],
+		"description":"Starting at 2nd level, you can use your Channel Divinity to charm animals and plants./nAs an action, you present your holy symbol and invoke the name of your deity. Each beast or plant creature that can see you within 30 feet of you must make a Wisdome saving throw. If the creature fails its saving throw, it is charmed by you for 1 minute or until it takes damage. While it is charmed by you, it is friendly to you and other creatures you designate.",
+		"classes":["Cleric"],
+		"tags":["Cleric","Nature Domain"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureDampenElements",
+		"name":"Dampen Elements",
+		"content":[],
+		"description":"Starting at 6th level, when you or a creature within 30 feet of you takes acid, cold, fire, lightning, or thunder damage, you can use your reaction to grant resistance to the creatureagainst that instance ofthe damage.",
+		"classes":["Cleric"],
+		"tags":["Cleric"],
+		"levelingInfo":[]
+	},
+
+	{
+		"id":"featureChannelDivinityTurnUndead",
+		"name":"Channel Divinity: Turn Undead",
+		"content":[],
+		"description":"At 2nd level, you gasin the ability to channel divine energy directly from your deity, using that energy to fuel magical effects. You start with two such effects: Turn undead and an effect determined by your domain. Some domains grant you additional effects as you advance in levels, as noted in the domain description./nWhen you use your Channel Divinity, you choose which effect to create. You must then complete a short or long rest to use your Channel Divinity again./nSome Channel Divinity effects require saving throws. When you use such an effect from this class, the DC equals your cleric spell save DC./nBeginning at 6th level, you can use your Channel Divinity twice between rests, and beginning at 18th level, you can use it three times between rests. When you finish a short or long rest, you regain your expended uses.",
+		"classes":["Cleric"],
+		"tags":["Cleric"],
+		"levelingInfo":[["Number of Channel Divinity uses: ","1","1","1","1","1","2","2","2","2","2","2","2","2","2","2","2","2","3","3","3"]]
+	},
+
+	{
+		"id":"featureDestroyUndead",
+		"name":"Destroy Undead",
+		"content":[],
+		"description":"Starting at 5th level, when an undead fails its saving throw against your Turn Undead feature, the creature is instantly destroyed if its challenge rating is at or below a certain threshold.",
+		"classes":["Cleric"],
+		"tags":["Cleric"],
+		"levelingInfo":["Destroys Undead of CR","null","null","null","null","1/2 or lower","1/2 or lower","1/2 or lower","1 or lower","1 or lower","1 or lower","2 or lower","2 or lower","2 or lower","3 or lower","3 or lower","3 or lower","4 or lower","4 or lower","4 or lower","4 or lower"]
+	},
+
+	{
+		"id":"featureDivineIntervention",
+		"name":"Divine Intervention",
+		"content":[],
+		"description":"Beginning at 10th level, you can call on your deity to intervene on your behalf when your need is great./nImploring your deity's aid requires you to use your action. Describe the assistance you seek, and roll percentile dice. If you roll a number equal to or lower than your cleric level, your deity intervenes. The DM chooses the nature of the intervention; the effect of any cleric spell or cleric domain spell would be appropriate./nIf your deity intervenes, you can't use this feature again for 7 days. Otherwise, you can use it again after you finish a long rest./nAt 20th level, your call for intervention succeeds automatically, no roll required.",
+		"classes":["Cleric"],
+		"tags":["Cleric"],
+		"levelingInfo":[]
+	},
+]
