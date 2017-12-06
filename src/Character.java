@@ -1,6 +1,5 @@
 package charactercreator;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,6 +35,7 @@ public class Character {
     private String background;                                      // The character's background.
     private int experiencePoints;                                   // The current value of experience the character has earned.
     private String alignment;                                       // The character's alignment.
+    private ArrayList<String> languages;                            // The languages the character can speak, in plain text.
     private int abilityScoreStrength;                               // The character's Strength value.
     private int abilityScoreDexterity;                              // The character's Dexterity value.
     private int abilityScoreConstitution;                           // The character's Constitution value.
@@ -52,30 +52,37 @@ public class Character {
     private int[] savingThrowFinalValueArray = new int[]{0,0,0,0,0,0};
     // An array saving the final values of each of the character's saving throws.
     // In order, these represent the saving throws for: (0)Strength, (1)Dexterity, (2)Constitution, (3)Intelligence, (4)Wisdom, (5)Charisma
-    private ArrayList<Item> itemsList = new ArrayList<>();          // A list of all items in the character's inventory.
-    private ArrayList<Skill> skillsList = new ArrayList<>();        // A list of all skills, intialized as a copy from the masterSkillList.
-    private ArrayList<Spell> knownSpells = new ArrayList<>();       // A list of ALL spells the character currently knows, via spellbook or innate memorization.
-    private ArrayList<Spell> memorizedSpells = new ArrayList<>();   // A list of the CURRENTLY MEMORIZED spells for the character.
-    private ArrayList<String> featuresList = new ArrayList<>();     // A list of all class features that the character possesses.  These are merely listed via their IDs.
+    private ArrayList<String> weaponProficiencyList = new ArrayList<>();    // A list of all weapons the character has proficiency in.
+    private ArrayList<String> armorProficiencyList = new ArrayList<>();     // A list of all types of armor the character has proficiency in.
+    private ArrayList<String> equippedWeaponsList;                          // A list of all currently equipped weapons, via their unique IDs.
+    private String equippedArmor;                                           // The unique ID of the armor currently worn by the character.
+    private String equippedShield;                                          // The unique ID of the shield currently worn by the character.
+    private ArrayList<Item> itemsList = new ArrayList<>();                  // A list of all items in the character's inventory.
+    private ArrayList<Skill> skillsList = new ArrayList<>();                // A list of all skills, intialized as a copy from the masterSkillList.
+    private ArrayList<Spell> knownSpells = new ArrayList<>();               // A list of ALL spells the character currently knows, via spellbook or innate memorization.
+    private ArrayList<Spell> memorizedSpells = new ArrayList<>();           // A list of the CURRENTLY MEMORIZED spells for the character.
+    private ArrayList<ClassFeature> featuresList = new ArrayList<>();       // A list of all class features that the character possesses.  These are merely listed via their IDs.
     
     /*
     THINGS TO ADD:
     
-    languages
+    recalculate method
     
-    equippedArmor(ArmorObject)
-    equippedShield(ArmorObject)
-    equippedWeaponsList(WeaponObject)
+    DONE languages
     
-    weapon proficiency list
-    armor proficiency list
+    DONE equippedArmor(ArmorObject)
+    DONE equippedShield(ArmorObject)
+    DONE equippedWeaponsList(WeaponObject)
+    
+    DONE weapon proficiency list
+    DONE armor proficiency list
     
     spell save DCs for all stats
     spell attack modifier for all stats
     
-    methods for memorizedSpells
+    DONE methods for memorizedSpells
     
-    methods for featuresList
+    DONE methods for featuresList
     */
     
     // Setters and getters.  Not all fields have a setter, due to the fact that values for these fields will be calculated internally.
@@ -156,6 +163,11 @@ public class Character {
     public void setAlignment(String alignmentIn) {this.alignment = alignmentIn;}
     public String getAlignment() {return this.alignment;}
     
+    // For languages.
+    public void addLanguage(String languageIn) {this.languages.add(languageIn);}
+    public void removeLanguage(String languageIn) {this.languages.remove(languageIn);}
+    public ArrayList<String> getLanguages() {return this.languages;}
+    
     // For Strength.
     public void setAbilityScoreStrength(int strengthIn) {this.abilityScoreStrength = strengthIn;}
     public int getAbilityScoreStrength() {return this.abilityScoreStrength;}
@@ -191,6 +203,29 @@ public class Character {
     
     // For saving throw final value array.
     public int[] getSavingThrowFinalValueArray() {return this.savingThrowFinalValueArray;}  // Getter.
+    
+    // For weapon proficiency list.
+    public void addWeaponProficiency(String weaponProficiencyIn) {this.weaponProficiencyList.add(weaponProficiencyIn);}
+    public void removeWeaponProficiency(String weaponProficiencyIn) {this.weaponProficiencyList.remove(weaponProficiencyIn);}
+    public ArrayList<String> getWeaponProficiencyList() {return this.weaponProficiencyList;}
+    
+    // For armor proficiency list.
+    public void addArmorProficiency(String armorProficiencyIn) {this.armorProficiencyList.add(armorProficiencyIn);}
+    public void removeArmorProficiency(String armorProficiencyIn) {this.armorProficiencyList.remove(armorProficiencyIn);}
+    public ArrayList<String> getArmorProficiencyList() {return this.armorProficiencyList;}
+    
+    // For equipped weapons list.
+    public void addEquippedWeapon(String weaponIn) {this.equippedWeaponsList.add(weaponIn);}
+    public void removeEquippedWeapon(String weaponIn) {this.equippedWeaponsList.remove(weaponIn);}
+    public ArrayList<String> getEquippedWeaponList() {return this.equippedWeaponsList;}
+    
+    // For equipped armor.
+    public void setEquippedArmor(String armorIn) {this.equippedArmor = armorIn;}
+    public String getEquippedArmor() {return this.equippedArmor;}
+    
+    // For equipped shield.
+    public void setEquippedShield(String shieldIn) {this.equippedShield = shieldIn;}
+    public String getEquippedShield() {return this.equippedShield;}
     
     // For items list.
     public ArrayList<Item> getItemsList() {return this.itemsList;} // Getter.
@@ -273,5 +308,38 @@ public class Character {
             this.knownSpells.remove(spellToRemoveIn);
         } // End if.
     } // End public void removeKnownSpell.
+    
+    // For getting the list of all known spells.
+    public ArrayList<Spell> getKnownSpells() {return this.knownSpells;}
+    
+    // For adding a spell to the Character's memorizedSpells list.
+    public void addMemorizedSpell(String spellIDIn) {
+        this.memorizedSpells.add(MasterLists.getSpellByID(spellIDIn));
+    } // End public void addKnownSpell.
+    
+    // For removing a spell from the Character's memorizedSpells list.
+    public void removeMemorizedSpell(Spell spellToRemoveIn) {
+        if (this.memorizedSpells.contains(spellToRemoveIn)) {
+            this.memorizedSpells.remove(spellToRemoveIn);
+        } // End if.
+    } // End public void removeKnownSpell.
+    
+    // For getting the list of all known spells.
+    public ArrayList<Spell> getMemorizedSpells() {return this.memorizedSpells;}
+    
+    // For adding a feature to the Character's featuresList.
+    public void addClassFeature(String classFeatureIDIn) {
+        this.featuresList.add(MasterLists.getClassFeatureByID(classFeatureIDIn));
+    } // End public void addClassFeature.
+    
+    // For removing a feature from the Character's featuresList.
+    public void removeClassFeature(ClassFeature classFeatureToRemoveIn) {
+        if (this.featuresList.contains(classFeatureToRemoveIn)) {
+            this.featuresList.remove(classFeatureToRemoveIn);
+        } // End if.
+    } // End public void removeClassFeature.
+    
+    // For getting the list of all known features.
+    public ArrayList<ClassFeature> getFeaturesList() {return this.featuresList;}
     
 } // End public class Character.
