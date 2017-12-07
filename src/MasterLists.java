@@ -27,7 +27,7 @@ public class MasterLists {
     private static String raceFileName = "race.json";                       // The directory for race.json.
     
     // Master method to create all master lists.
-    public void createMasterLists() {
+    public static void createMasterLists() {
        
     } // End public void createMasterLists.
     
