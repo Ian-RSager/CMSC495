@@ -1,3 +1,4 @@
+//package charactercreator;
 
 /*
  * This class is used to define Weapon objects.  A weapon is any item that can be used by a character to inflict
