@@ -59,6 +59,7 @@ public class ClassType extends Thing{
         for (String svt : this.savingThrows) {
             System.out.println("\t:" + svt);
         }
+
         System.out.println("Choose "+this.numberOfSkillChoices+" of the following possible skills:");
         for (String sca : this.skillChoicesArray) {
             System.out.println("\t:" + sca);
@@ -79,6 +80,9 @@ public class ClassType extends Thing{
     }
 
     // Only getter methods will be used, as these values should not change during the operation of the program.
+//    public String getID() {return this.id;}                       // already in Thing.java
+//    public String getName() {return this.name;}                   // already in Thing.java
+//    public String getDescription() {return this.description;}     // already in Thing.java
     public int[] getHitDice() {return this.hitDice;}
     public String[] getArmorProficiencies() {return this.armorProficiencies;}
     public String[] getWeaponProficiencies() {return this.weaponProficiencies;}
