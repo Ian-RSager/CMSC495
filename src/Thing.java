@@ -3,7 +3,7 @@
  * This class is not directly used within the program aside from acting as a superclass for all other support classes.
  */
 
-public class Thing {
+public class Thing implements java.io.Serializable {
     protected String id;                            // A unique string identifying the feature, for internal use only.
     protected String name;                          // The name of the feature, as the user will see it.
     protected String description;                   // A plain text description of the feature.
