@@ -1,3 +1,4 @@
+//package charactercreator;
 
 /*
  * This class is used to define Race objects.  A Race refers to the well, race, of the character.
