@@ -1,3 +1,5 @@
+//package charactercreator;
+
 /*
  * This class defines Skill objects, which allow the character to interact with the game world in a wide variety of ways.  They represent the
  * crystallization of some type of knowledge and/or training the character has practiced (or is naturally gifted at.)
