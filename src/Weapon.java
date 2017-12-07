@@ -1,4 +1,3 @@
-package charactercreator;
 
 /*
  * This class is used to define Weapon objects.  A weapon is any item that can be used by a character to inflict
@@ -22,26 +21,21 @@ public class Weapon extends Item {
     protected String versatileDamage = "";          // If the weapon is Versatile, this is damage done when it is wielded in both of the user's hands.
     protected boolean isSpecial = false;            // If the weapon has any special rules or properties.
     protected String isSpecialDescription = "";     // If the weapon is Special, a description of its special rules or properties.
-    
-    // Constructor for all fields relevant specifically to the Weapon class.  Good for loading objects from JSON files or creating new Weapon objects in the Character Creator.
-    public Weapon(String idIn, String nameIn, double singleWeightIn, String descriptionIn, int quantityIn, int singleCostIn, 
-            String damageIn, boolean isMeleeIn, boolean isRangedIn, boolean hasReachIn, int normalRangeIn, int maximumRangeIn, boolean isLoadingIn,
-            boolean hasFinesseIn, boolean isHeavyIn, boolean isLightIn, boolean isTwoHandedIn, boolean isVersatileIn, String versatileDamageIn,
-            boolean isSpecialIn, String isSpecialDescriptionIn) {
-        this.id = idIn;
-        this.name = nameIn;
-        this.singleWeight = singleWeightIn;
-        this.description = descriptionIn;
-        this.quantity = quantityIn;
-        this.singleCost = singleCostIn;
-        
-        this.totalWeight = this.singleWeight * this.quantity;
-        this.totalCost = this.singleCost * this.quantity;
-        
+    protected boolean isThrown;                     // If the weapon has the ability to be thrown, i.e. a dagger.
+
+    // Constructor to be used when reading in data from weapons.json
+    public Weapon(String idIn, String nameIn, int costIn, String costCurrencyIn, String damageIn, double weightIn,
+                  boolean isMeleeIn, boolean isRangedIn, boolean hasReachIn, boolean isThrownIn,
+                  int normalRangeIn, int maximumRangeIn, boolean isLoadingIn, boolean hasFinesseIn,
+                  boolean isHeavyIn, boolean isLightIn, boolean isTwoHandedIn, boolean isVersatileIn,
+                  boolean isSpecialIn, String versatileDamageIn, String isSpecialDescriptionIn, String descriptionIn) {
+
+        super(idIn, nameIn, costIn, costCurrencyIn, weightIn, descriptionIn);
         this.damage = damageIn;
         this.isMelee = isMeleeIn;
         this.isRanged = isRangedIn;
         this.hasReach = hasReachIn;
+        this.isThrown = isThrownIn;
         this.normalRange = normalRangeIn;
         this.maximumRange = maximumRangeIn;
         this.isLoading = isLoadingIn;
@@ -54,10 +48,40 @@ public class Weapon extends Item {
         this.isSpecial = isSpecialIn;
         this.isSpecialDescription = isSpecialDescriptionIn;
     } // End constructor for all fields.
-    
+
+    /**
+     * printData serves as a temporary QC. It will not necessarily be used during operation.
+     */
+    @Override
+    public void printData(){
+        super.printData();
+        try {
+            System.out.println("Damage : " + this.damage);
+            System.out.println("Armor Class: " + this.isMelee);
+            System.out.println("isRanged: " + this.isRanged);
+            System.out.println("hasReach: " + this.hasReach);
+            System.out.println("has Reach: " + this.isThrown);
+            System.out.println("Normal Range : " + this.normalRange);
+            System.out.println("Maximum Range : " + this.maximumRange);
+            System.out.println("is loading : " + this.isLoading);
+            System.out.println("has finesse: " + this.hasFinesse);
+            System.out.println("is heavy : " + this.isHeavy);
+            System.out.println("is light : " + this.isLight);
+            System.out.println("is 2-handed : " + this.isTwoHanded);
+            System.out.println("is versatile : " + this.isVersatile);
+            System.out.println("Versatility description : " + this.versatileDamage);
+            System.out.println("is special : " + this.isSpecial);
+            System.out.println("special description : " + this.isSpecialDescription);
+            System.out.println("Total cost is " + this.totalCost + " for " + this.quantity + " pieces, at " + this.singleCost + this.costCurrency + " per piece.");
+        }catch (Exception e){
+            System.out.println("\n\n\t **************  Weapon - OOPS ************** \n\n");
+        }
+
+    }
+
     // Getters and setters.
     // For damage.
-    public void setDamage(String damageIn) {this.damage = damageIn;}   
+    public void setDamage(String damageIn) {this.damage = damageIn;}
     public String getDamage() {return this.damage;}
     // For Melee flag.
     public void setIsMelee(boolean isMeleeIn) {this.isMelee = isMeleeIn;}
@@ -68,6 +92,9 @@ public class Weapon extends Item {
     // For Reach flag.
     public void setHasReach(boolean hasReachIn) {this.hasReach = hasReachIn;}
     public boolean getHasReach() {return this.hasReach;}
+    // For Thrown flag
+    public void setIsThrown(boolean isThrownIn){this.isThrown = isThrownIn;}
+    public boolean getIsThrown() {return this.isThrown;}
     // For normal range.
     public void setNormalRange(int normalRangeIn) {this.normalRange = normalRangeIn;}
     public int getNormalRange() {return this.normalRange;}
@@ -93,13 +120,13 @@ public class Weapon extends Item {
     public void setIsVersatile(boolean isVersatileIn) {this.isVersatile = isVersatileIn;}
     public boolean getIsVersatile() {return this.isVersatile;}
     // For Versatile damage.
-    public void setVersatileDamage(String versatileDamageIn) {this.versatileDamage = versatileDamageIn;}   
+    public void setVersatileDamage(String versatileDamageIn) {this.versatileDamage = versatileDamageIn;}
     public String getVersatileDamage() {return this.versatileDamage;}
     // For Special flag.
     public void setIsSpecial(boolean isSpecialIn) {this.isSpecial = isSpecialIn;}
     public boolean getIsSpecial() {return this.isSpecial;}
     // For Special description.
-    public void setIsSpecialDescription(String isSpecialDescriptionIn) {this.isSpecialDescription = isSpecialDescriptionIn;}   
+    public void setIsSpecialDescription(String isSpecialDescriptionIn) {this.isSpecialDescription = isSpecialDescriptionIn;}
     public String getIsSpecialDescription() {return this.isSpecialDescription;}
-    
+
 } // End public class Weapon.
