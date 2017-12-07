@@ -1,6 +1,6 @@
 /*
  * File: NewCharacter.java
- * Date: December 3, 2017
+ * Date: December 6, 2017
  * Purpose: Creates a Gui with a Card Layout to Step by Step allow the user
  *          to create a new D&D 5th Edition character.
  *
@@ -45,19 +45,24 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.JOptionPane;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.Dialog.ModalityType;
+import java.awt.Dimension;  
 import javax.swing.*;
 
 import java.awt.event.ComponentListener;
 import java.awt.geom.AffineTransform;
 import java.awt.Graphics2D;
 import java.awt.image.AffineTransformOp;
+import java.util.Random;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 @SuppressWarnings("serial")    //Suppress serialVersionUID warning when compiling with -Xlint
 
 
 //NewCharacter - Class to Display a Gui using a Card Layout
 //               to guide a user through creating a new character
-public class NewCharacter extends JFrame{
+public class NewCharacter extends JDialog{
 
     //Gui Panels
     private JPanel         cardPanel;  //Card Panel
@@ -74,30 +79,30 @@ public class NewCharacter extends JFrame{
 
     //Character being created
     //private Character myCharacter;
-	
+    
     //Constructor
-    public NewCharacter(){
+    public NewCharacter(JFrame parent){
         
         //Set up the Window
-        super("Create a Character");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super(parent,"Create a Character",ModalityType.APPLICATION_MODAL);
+        add(Box.createRigidArea(new Dimension(700, 685)));
         setSize (700, 685);
         setMinimumSize(new Dimension(700, 685));
         setLocationRelativeTo(null);
-		
-		try {
-			photo = ImageIO.read(new File("background2.jpg"));
-		    resizedPhoto = photo.getScaledInstance(700, 685, Image.SCALE_FAST);	
-			iiphoto.setImage(resizedPhoto);
-			background=new JLabel(iiphoto);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			background=new JLabel();
-		}
+        
+        try {
+            photo = ImageIO.read(new File("background2.jpg"));
+            resizedPhoto = photo.getScaledInstance(700, 685, Image.SCALE_FAST);	
+            iiphoto.setImage(resizedPhoto);
+            background=new JLabel(iiphoto);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            background=new JLabel();
+        }
         add(background);
         background.setLayout(new BorderLayout());
-		
+        
         //Create the individual cards
         card1 = new JPanelRace();
         card2 = new JPanelClass();
@@ -106,14 +111,14 @@ public class NewCharacter extends JFrame{
 
         //Create the Card Panel Layout
         cardPanel = new JPanel(new CardLayout());
-		cardPanel.setOpaque(false);
+        cardPanel.setOpaque(false);
         cardPanel.add(card1, "Card1");
         cardPanel.add(card2, "Card2");
         cardPanel.add(card3, "Card3");
         cardPanel.add(card4, "Card4");
 
         background.add(cardPanel,BorderLayout.CENTER);
-		
+        
         //Add a component listener to handle resizing the background image
         //if the window is resized
         background.addComponentListener(new ComponentAdapter () {
@@ -128,26 +133,44 @@ public class NewCharacter extends JFrame{
         //Create a new character to populate
 //        myCharacter = new Character();
 
+        //Dont allow user to close it
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
         //Display
         pack();
+        setLocationByPlatform(true);
         setVisible(false);
     }
-	
-	//newCharacterGui - method to create and display the new character creator gui
+    
+    //newCharacterGui - method to create and display the new character creator gui
     public void newCharacterGui(){
-	    this.setVisible(true);
+        this.setVisible(true);
     }
     
     //Main Test Function
     //Will be taken out when linked with the rest of the program
     public static void main(String[] args){
-        NewCharacter nc = new NewCharacter();
-		nc.newCharacterGui();
+        JFrame frame1 = new JFrame("DialogEx");
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.setSize (700, 685);
+        frame1.setMinimumSize(new Dimension(700, 685));
+        frame1.setLocationRelativeTo(null);
+        frame1.setVisible(true);
+      
+        NewCharacter nc = new NewCharacter(frame1);
+        nc.newCharacterGui();
+        
     }
 
-    
-    
 
+
+    //Getter method for character object
+//    public Character getCharacter(){
+//        return myCharacter;
+//    }
+
+    
+    
     //JPanelRace - Private Inner Class that handles the 
     //             panel used to obtain input regarding the 
     //             character's race
@@ -182,8 +205,8 @@ public class NewCharacter extends JFrame{
         
         //Scroll pane for jtextarea
         private JScrollPane jsp;
-		
-		//For Images
+        
+        //For Images
         private ImageIcon iicon = new ImageIcon();
 
         //Text Strings describing the races
@@ -264,13 +287,13 @@ public class NewCharacter extends JFrame{
             titleFont = new Font("Default", Font.BOLD, 26);
             raceLabel.setFont(titleFont);
             right.add(raceLabel,BorderLayout.NORTH);
-			
-			//Race Image
-			JLabel racePicture = new JLabel("",JLabel.CENTER);
+            
+            //Race Image
+            JLabel racePicture = new JLabel("",JLabel.CENTER);
             updateRaceImg("Dwarf.jpg",iicon);
             racePicture.setIcon(iicon);
             racePicture.setSize(180, 225);
-			right.add(racePicture,BorderLayout.CENTER);
+            right.add(racePicture,BorderLayout.CENTER);
 
             //Set up JTextArea for Description
             raceDescriptionTextArea.setEditable(false);
@@ -354,55 +377,55 @@ public class NewCharacter extends JFrame{
                     raceLabel.setText(rStr);
                     switch(rStr){
                         case "Dwarf":
-						    updateRaceImg("Dwarf.jpg",iicon);
+                            updateRaceImg("Dwarf.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[0]);
                             subRaceComboBox.addItem("Hill Dwarf");
                             subRaceComboBox.addItem("Mountain Dwarf");
                             break;
                         case "Elf":
-						    updateRaceImg("Elf.jpg",iicon);
+                            updateRaceImg("Elf.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[1]);
                             subRaceComboBox.addItem("High Elf");
                             subRaceComboBox.addItem("Wood Elf");
                             subRaceComboBox.addItem("Dark Elf");
                             break;
                         case "Human":
-						    updateRaceImg("Human.jpg",iicon);
+                            updateRaceImg("Human.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[2]);
                             break;
                         case "Halfling":
-						    updateRaceImg("Halfling.jpg",iicon);
+                            updateRaceImg("Halfling.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[3]);
                             subRaceComboBox.addItem("Lightfoot");
                             subRaceComboBox.addItem("Stout");
                             break;
                         case "Dragonborn":
-						    updateRaceImg("Dragonborn.jpg",iicon);
+                            updateRaceImg("Dragonborn.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[4]);
                             break;
                         case "Gnome":
-						    updateRaceImg("Gnome.jpg",iicon);
+                            updateRaceImg("Gnome.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[5]);
                             subRaceComboBox.addItem("Forest Gnome");
                             subRaceComboBox.addItem("Rock Gnome");
                             break;
                         case "Half-Elf":
-						    updateRaceImg("Half-elf.jpg",iicon);
+                            updateRaceImg("Half-elf.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[6]);
                             break;
                         case "Half-Orc":
-						    updateRaceImg("Half-orc.jpg",iicon);
+                            updateRaceImg("Half-orc.jpg",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[7]);
                             break;
                         case "Tiefling":
-						    updateRaceImg("Tiefling.png",iicon);
+                            updateRaceImg("Tiefling.png",iicon);
                             raceDescriptionTextArea.setText(raceDescrStr[8]);						
                             break;
                         default:
                             raceDescriptionTextArea.setText("Error, Invalid");	
                             break;
                     }
-					raceDescriptionTextArea.setCaretPosition(0);
+                    raceDescriptionTextArea.setCaretPosition(0);
 
                 }
             });
@@ -425,14 +448,15 @@ public class NewCharacter extends JFrame{
             //    myCharacter.setRace(subrace);
             //else
             //    myCharacter.setRace(race);
+            //myCharacter.initializeSkillsList();
             
             //Move to next card
             CardLayout c1 = (CardLayout)(cardPanel.getLayout());
             c1.next(cardPanel);
         }
 
-		//Updates the image associated with a race in the Gui
-		private void updateRaceImg(String imageName, ImageIcon imgIcon){
+        //Updates the image associated with a race in the Gui
+        private void updateRaceImg(String imageName, ImageIcon imgIcon){
             try {
                 //Read in original image
                 BufferedImage origImage;
@@ -490,7 +514,7 @@ public class NewCharacter extends JFrame{
         //Combo boxes
         private String [] classesStr      = {"Barbarian","Bard","Cleric","Druid",
                                            "Fighter","Monk","Paladin","Ranger",
-                                           "Rogue","Sorcerer","Wizard","Warlock"};
+                                           "Rogue","Sorcerer","Warlock","Wizard"};
         private JComboBox<String> classComboBox = new JComboBox<String> (classesStr);
         
         //Level Spinner (1 to 100, default 1, incr by 1)
@@ -502,14 +526,15 @@ public class NewCharacter extends JFrame{
         private JButton previousButton = new JButton ("< Prev");    
 
         private Font titleFont;
-		
-		//For Images
+        
+        //For Images
         private ImageIcon iicon = new ImageIcon();
         
         //Scroll pane for jtextarea
         private JScrollPane jsp;
 
         //Descriptions of the classes
+        private int classIndex = 0;
         private String [] classDescrStr   = {
             "Barbarians are savage warriors who deal out powerful blows from their mighty" +
             " weapons. They charge from foe to foe and seldom feel the pain of an enemy's" +
@@ -564,14 +589,14 @@ public class NewCharacter extends JFrame{
             "study of esoteric tomes, but by harnessing magic in their blood, waiting to be tapped and shaped. If wizards "+
             "wield magic as fighters wield swords, a sorcerer's magic is the arcing greataxe of a raging barbarian.",
             
-            "Wizards are scions of arcane magic. Wizards tap the true power that permeates the cosmos, research esoteric "+
-            "rituals that can alter time and space, and hurl balls of fire that incinerate massed foes. Wizards wield "+
-            "spells the way warriors brandish swords.",
-            
             "Warlocks channel arcane might wrested from primeval entities. They commune "+
             "with infernal intelligences and fey spirits, scour enemies with potent blasts "+
             "of eldritch power, and bedevil foes with hexing curses. Armed with esoteric "+
-            "secrets and dangerous lore, warlocks are clever and resourceful foes."
+            "secrets and dangerous lore, warlocks are clever and resourceful foes.",
+            
+            "Wizards are scions of arcane magic. Wizards tap the true power that permeates the cosmos, research esoteric "+
+            "rituals that can alter time and space, and hurl balls of fire that incinerate massed foes. Wizards wield "+
+            "spells the way warriors brandish swords."
         };
 
         //////////////////////
@@ -586,7 +611,7 @@ public class NewCharacter extends JFrame{
             helper.setLayout(new FlowLayout(FlowLayout.LEFT));
             helper.setOpaque(false);
             setLayout(new GridBagLayout());
-			setOpaque(false);
+            setOpaque(false);
             GridBagConstraints gbc = new GridBagConstraints();
 
             //Title
@@ -615,13 +640,13 @@ public class NewCharacter extends JFrame{
             titleFont = new Font("Default", Font.BOLD, 26);
             classLabel.setFont(titleFont);
             right.add(classLabel,BorderLayout.NORTH);
-			
-			//Class Image
-			JLabel classPicture = new JLabel("",JLabel.CENTER);
+            
+            //Class Image
+            JLabel classPicture = new JLabel("",JLabel.CENTER);
             updateClassImg("Barbarian.png",iicon);
             classPicture.setIcon(iicon);
             classPicture.setSize(180, 225);
-			right.add(classPicture,BorderLayout.CENTER);
+            right.add(classPicture,BorderLayout.CENTER);
 
             //Set up JTextArea for Description
             classDescriptionTextArea.setEditable(false);
@@ -657,6 +682,7 @@ public class NewCharacter extends JFrame{
             left.add(startingLevelLabel);
 
             //Starting Level
+            //spnLevl.setEditor(new JSpinner.DefaultEditor(spnLevl));
             helper.add(spnLevl);
             left.add(helper);
             
@@ -712,58 +738,71 @@ public class NewCharacter extends JFrame{
                     classLabel.setText(cStr);
                     switch(cStr){
                         case "Barbarian":
-						    updateClassImg("Barbarian.png",iicon);
+                            classIndex = 0;
+                            updateClassImg("Barbarian.png",iicon);
                             classDescriptionTextArea.setText(classDescrStr[0]);
                             break;
                         case "Bard":
-						    updateClassImg("Bard.jpg",iicon);
+                            classIndex = 1;
+                            updateClassImg("Bard.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[1]);
                             break;
                         case "Cleric":
-						    updateClassImg("Cleric.jpg",iicon);
+                            classIndex = 2;
+                            updateClassImg("Cleric.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[2]);
                             break;
                         case "Druid":
-						    updateClassImg("Druid.jpg",iicon);
+                            classIndex = 3;
+                            updateClassImg("Druid.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[3]);
                             break;
                         case "Fighter":
-						    updateClassImg("Fighter.jpg",iicon);
+                            classIndex = 4;
+                            updateClassImg("Fighter.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[4]);
                             break;
                         case "Monk":
-						    updateClassImg("Monk.jpg",iicon);
+                            classIndex = 5;
+                            updateClassImg("Monk.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[5]);
                             break;
                         case "Paladin":
-						    updateClassImg("Paladin.jpg",iicon);
+                            classIndex = 6;
+                            updateClassImg("Paladin.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[6]);
                             break;
                         case "Ranger":
-						    updateClassImg("Ranger.jpg",iicon);
+                            classIndex = 7;
+                            updateClassImg("Ranger.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[7]);
                             break;
                         case "Rogue":
-						    updateClassImg("Rogue.jpg",iicon);
+                            classIndex = 8;
+                            updateClassImg("Rogue.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[8]);						
                             break;
                         case "Sorcerer":
-						    updateClassImg("Sorcerer.png",iicon);
+                            classIndex = 9;
+                            updateClassImg("Sorcerer.png",iicon);
                             classDescriptionTextArea.setText(classDescrStr[9]);						
                             break;
-                        case "Wizard":
-						    updateClassImg("Wizard.jpg",iicon);
+                        case "Warlock":
+                            classIndex = 10;
+                            updateClassImg("Warlock.png",iicon);
                             classDescriptionTextArea.setText(classDescrStr[10]);						
                             break;
-                        case "Warlock":
-						    updateClassImg("Warlock.png",iicon);
+                        case "Wizard":
+                            classIndex = 11;
+                            updateClassImg("Wizard.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[11]);						
                             break;
+
                         default:
                             classDescriptionTextArea.setText("Error, Invalid");	
                             break;
                     }
-					classDescriptionTextArea.setCaretPosition(0);
+                    classDescriptionTextArea.setCaretPosition(0);
                 }
             });
         }
@@ -778,21 +817,31 @@ public class NewCharacter extends JFrame{
         //Moves to Next Card
         private void switchStateNext(){
             
+            //Initial Experience Point Values for levels 1 to 20
+            int exprPtArray[] = {0,300,900,2700,6500,14000,23000,34000,48000,64000,
+                                 85000,100000,120000,140000,165000,195000,225000,
+                                 265000,305000,355000};
+            int expPts = 0;
+            
+            if(((int)spnLevl.getValue()) > 20)
+                expPts = exprPtArray[19];
+            else
+                expPts = exprPtArray[((int)spnLevl.getValue())-1];
+            
             //Obtain and Validate, and store character data
 
             //Nothing to validate, combo boxes force valid data
 
             //Set class/starting level
-//            myCharacter.setClass(classLabel.getText());
-//            myCharacter.setLevel((int)spnLevl.getValue(););
-            
+//            myCharacter.setClassLevel((int)spnLevl.getValue(), classIndex);
+//            myCharacter.setExperiencePoints(expPts);
             //Go to next card
             CardLayout c1 = (CardLayout)(cardPanel.getLayout());
             c1.next(cardPanel);
         }
-		
-		//Updates the image associated with a class in the Gui
-		private void updateClassImg(String imageName, ImageIcon imgIcon){
+        
+        //Updates the image associated with a class in the Gui
+        private void updateClassImg(String imageName, ImageIcon imgIcon){
             try {
                 //Read in original image
                 BufferedImage origImage;
@@ -846,37 +895,42 @@ public class NewCharacter extends JFrame{
         private JLabel intelligenceLabel = new JLabel("Intelligence (INT)", JLabel.LEFT);
         private JLabel wisdomLabel = new JLabel("Wisdom (WIS)", JLabel.LEFT);
         private JLabel charismaLabel = new JLabel("Charisma (CHA)", JLabel.LEFT);
-        private JLabel totalPointsField = new JLabel("Total Points Assigned: 60", JLabel.LEFT);
+        private JLabel totalPointsField = new JLabel("Total Points Remaining: ", JLabel.LEFT);
+        private int remainingPts = 27;
+        private JLabel ptsRemainField = new JLabel(Integer.toString(remainingPts), JLabel.LEFT);
         
-        private JLabel rollStr = new JLabel("  0",JLabel.CENTER);
-        private JLabel rollDex = new JLabel("  0",JLabel.CENTER);
-        private JLabel rollCon = new JLabel("  0",JLabel.CENTER);
-        private JLabel rollInt = new JLabel("  0",JLabel.CENTER);
-        private JLabel rollWis = new JLabel("  0",JLabel.CENTER);
-        private JLabel rollCha = new JLabel("  0",JLabel.CENTER);
+        private JTextField rollStr = new JTextField("  0",2);
+        private JTextField rollDex = new JTextField("  0",2);
+        private JTextField rollCon = new JTextField("  0",2);
+        private JTextField rollInt = new JTextField("  0",2);
+        private JTextField rollWis = new JTextField("  0",2);
+        private JTextField rollCha = new JTextField("  0",2);
         
-        //Spinners (-100 to 100, default 10, incr by 1)
-        SpinnerNumberModel snm1 = new SpinnerNumberModel(new Integer(10),new Integer(-100),new Integer(100),new Integer(1));
-        SpinnerNumberModel snm2 = new SpinnerNumberModel(new Integer(10),new Integer(-100),new Integer(100),new Integer(1));
-        SpinnerNumberModel snm3 = new SpinnerNumberModel(new Integer(10),new Integer(-100),new Integer(100),new Integer(1));
-        SpinnerNumberModel snm4 = new SpinnerNumberModel(new Integer(10),new Integer(-100),new Integer(100),new Integer(1));
-        SpinnerNumberModel snm5 = new SpinnerNumberModel(new Integer(10),new Integer(-100),new Integer(100),new Integer(1));
-        SpinnerNumberModel snm6 = new SpinnerNumberModel(new Integer(10),new Integer(-100),new Integer(100),new Integer(1));		
-        JSpinner strengthJSpinner = new JSpinner(snm1);
-        JSpinner dexterityJSpinner = new JSpinner(snm2);
-        JSpinner constitutionJSpinner = new JSpinner(snm3);
-        JSpinner wisdomJSpinner = new JSpinner(snm4);
-        JSpinner intelligenceJSpinner = new JSpinner(snm5);
-        JSpinner charismaJSpinner = new JSpinner(snm6);
+        //Spinners (8 to 15, default 8, incr by 1)
+        private SpinnerNumberModel snm1 = new SpinnerNumberModel(new Integer(8),new Integer(8),new Integer(15),new Integer(1));
+        private SpinnerNumberModel snm2 = new SpinnerNumberModel(new Integer(8),new Integer(8),new Integer(15),new Integer(1));
+        private SpinnerNumberModel snm3 = new SpinnerNumberModel(new Integer(8),new Integer(8),new Integer(15),new Integer(1));
+        private SpinnerNumberModel snm4 = new SpinnerNumberModel(new Integer(8),new Integer(8),new Integer(15),new Integer(1));
+        private SpinnerNumberModel snm5 = new SpinnerNumberModel(new Integer(8),new Integer(8),new Integer(15),new Integer(1));
+        private SpinnerNumberModel snm6 = new SpinnerNumberModel(new Integer(8),new Integer(8),new Integer(15),new Integer(1));		
+        private JSpinner strengthJSpinner = new JSpinner(snm1);
+        private JSpinner dexterityJSpinner = new JSpinner(snm2);
+        private JSpinner constitutionJSpinner = new JSpinner(snm3);
+        private JSpinner wisdomJSpinner = new JSpinner(snm4);
+        private JSpinner intelligenceJSpinner = new JSpinner(snm5);
+        private JSpinner charismaJSpinner = new JSpinner(snm6);
         
+        //Radio Buttons
+        private JRadioButton rPt;    //Point Buy Method
+        private JRadioButton rRoll;  //Roll Method
         
         //Buttons
         private JButton saveAndContinueButton = new JButton ("Save and Continue >");    
         private JButton previousButton = new JButton ("< Prev");    
+        private int rolled = 0;
 
         private Font titleFont;
         
-
 
         //////////////////////
         // End of Variables //
@@ -942,42 +996,72 @@ public class NewCharacter extends JFrame{
             f1.setFont(titleFont);
             f1.add(strengthJSpinner);
             abilityPanel.add(f1);
-            abilityPanel.add(rollStr);
+            JPanel f7 = new JPanel(new FlowLayout());
+            f7.setOpaque(false);
+            f7.add(rollStr);
+            abilityPanel.add(f7);
+            (((JSpinner.DefaultEditor) strengthJSpinner.getEditor()).getTextField()).setColumns(2);
+            (((JSpinner.DefaultEditor) strengthJSpinner.getEditor()).getTextField()).setEditable(false);
 
             //Dexterity
             dexterityLabel.setFont(titleFont);
             abilityPanel.add(dexterityLabel);
             f2.add(dexterityJSpinner);
             abilityPanel.add(f2);
-            abilityPanel.add(rollDex);
+            JPanel f8 = new JPanel(new FlowLayout());
+            f8.setOpaque(false);
+            f8.add(rollDex);
+            abilityPanel.add(f8);
+            (((JSpinner.DefaultEditor) dexterityJSpinner.getEditor()).getTextField()).setColumns(2);
+            (((JSpinner.DefaultEditor) dexterityJSpinner.getEditor()).getTextField()).setEditable(false);
             
             //Constitution
             constitutionLabel.setFont(titleFont);
             abilityPanel.add(constitutionLabel);
             f3.add(constitutionJSpinner);
             abilityPanel.add(f3);
-            abilityPanel.add(rollCon);
-
+            JPanel f9 = new JPanel(new FlowLayout());
+            f9.setOpaque(false);
+            f9.add(rollCon);
+            abilityPanel.add(f9);
+            (((JSpinner.DefaultEditor) constitutionJSpinner.getEditor()).getTextField()).setColumns(2);
+            (((JSpinner.DefaultEditor) constitutionJSpinner.getEditor()).getTextField()).setEditable(false);
+            
             //Intelligence
             intelligenceLabel.setFont(titleFont);
             abilityPanel.add(intelligenceLabel);
             f4.add(intelligenceJSpinner);
             abilityPanel.add(f4);
-            abilityPanel.add(rollInt);
-
+            JPanel f10 = new JPanel(new FlowLayout());
+            f10.setOpaque(false);
+            f10.add(rollInt);
+            abilityPanel.add(f10);
+            (((JSpinner.DefaultEditor) intelligenceJSpinner.getEditor()).getTextField()).setColumns(2);
+            (((JSpinner.DefaultEditor) intelligenceJSpinner.getEditor()).getTextField()).setEditable(false);
+            
             //Wisdom
             wisdomLabel.setFont(titleFont);
             abilityPanel.add(wisdomLabel);
             f5.add(wisdomJSpinner);
             abilityPanel.add(f5);
-            abilityPanel.add(rollWis);
-
+            JPanel f11 = new JPanel(new FlowLayout());
+            f11.setOpaque(false);
+            f11.add(rollWis);
+            abilityPanel.add(f11);
+            (((JSpinner.DefaultEditor) wisdomJSpinner.getEditor()).getTextField()).setColumns(2);
+            (((JSpinner.DefaultEditor) wisdomJSpinner.getEditor()).getTextField()).setEditable(false);
+            
             //Charisma
             charismaLabel.setFont(titleFont);
             abilityPanel.add(charismaLabel);
             f6.add(charismaJSpinner);
-            abilityPanel.add(f6);	
-            abilityPanel.add(rollCha);		
+            abilityPanel.add(f6);
+            JPanel f12 = new JPanel(new FlowLayout());
+            f12.setOpaque(false);
+            f12.add(rollCha);
+            abilityPanel.add(f12);
+            (((JSpinner.DefaultEditor) charismaJSpinner.getEditor()).getTextField()).setColumns(2);
+            (((JSpinner.DefaultEditor) charismaJSpinner.getEditor()).getTextField()).setEditable(false);
             
             //Add Panel to the Main Panel
             gbc.fill = GridBagConstraints.NONE;
@@ -990,8 +1074,8 @@ public class NewCharacter extends JFrame{
             
             //Radio Button Group to Choose between Rolled Abilities
             //or Point assigned abilities
-            JRadioButton rPt   = new JRadioButton("Use Point Buy");
-            JRadioButton rRoll = new JRadioButton("Use Roll");
+            rPt   = new JRadioButton("Use Point Buy");
+            rRoll = new JRadioButton("Use Roll");
             ButtonGroup rgroup = new ButtonGroup();
             rPt.setOpaque(false);
             rPt.setFont(titleFont);
@@ -1006,8 +1090,13 @@ public class NewCharacter extends JFrame{
             gbc.insets = new Insets(0,0,5,0);  //bottom padding
             gbc.anchor = GridBagConstraints.LAST_LINE_START;
             gbc.gridwidth = GridBagConstraints.RELATIVE;
+            JPanel ptsPanel = new JPanel(new FlowLayout());
+            ptsPanel.setOpaque(false);
             totalPointsField.setFont(titleFont);
-            add(totalPointsField, gbc);
+            ptsRemainField.setFont(titleFont);
+            ptsPanel.add(totalPointsField);
+            ptsPanel.add(ptsRemainField);
+            add(ptsPanel, gbc);
             
             //Radio Button Selection
             gbc.gridx = 0;
@@ -1041,11 +1130,99 @@ public class NewCharacter extends JFrame{
 
 
             setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+            
+            //JSpinner Listeners for Ability Scores
+            strengthJSpinner.addChangeListener(listener);
+            dexterityJSpinner.addChangeListener(listener);
+            constitutionJSpinner.addChangeListener(listener);
+            wisdomJSpinner.addChangeListener(listener);
+            intelligenceJSpinner.addChangeListener(listener);
+            charismaJSpinner.addChangeListener(listener);
 
             //Action Listeners
+            bRoll.addActionListener   (e -> rollDiceForABScores());
             saveAndContinueButton.addActionListener   (e -> switchStateNext());
             previousButton.addActionListener   (e -> switchStatePrev());
             
+        }
+        
+        //Listens for an Ability Score Spinner to be clicked
+        //Updates remaining points on every click
+        //Remaining points are allowed to go negative, but must be zero
+        //when continuing to the next screen
+        ChangeListener listener = new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                int pts1 = getABCost((int)strengthJSpinner.getValue());
+                int pts2 = getABCost((int)dexterityJSpinner.getValue());
+                int pts3 = getABCost((int)constitutionJSpinner.getValue());
+                int pts4 = getABCost((int)wisdomJSpinner.getValue());
+                int pts5 = getABCost((int)intelligenceJSpinner.getValue());
+                int pts6 = getABCost((int)charismaJSpinner.getValue());
+
+                remainingPts = 27-(pts1+pts2+pts3+pts4+pts5+pts6);
+                ptsRemainField.setText(Integer.toString(remainingPts));
+            }
+        };
+        
+        //Returns ability score cost
+        //Values taken from D&D Players Handbook
+        private int getABCost(int score){
+            switch(score){
+                case 8:
+                    return 0;
+                case 9:
+                    return 1;
+                case 10:
+                    return 2;
+                case 11:
+                    return 3;
+                case 12:
+                    return 4;
+                case 13:
+                    return 5;
+                case 14:
+                    return 7;
+                case 15:
+                    return 9;
+                default:
+                    return 0;
+            }
+        }
+
+        
+        //Dice Roll Method For Ability Scores
+        private void rollDiceForABScores(){
+
+            //Assign Scores
+            rolled = 1;
+            rollStr.setText(Integer.toString(rollDice4x()));
+            rollDex.setText(Integer.toString(rollDice4x()));
+            rollCon.setText(Integer.toString(rollDice4x()));
+            rollInt.setText(Integer.toString(rollDice4x()));
+            rollWis.setText(Integer.toString(rollDice4x()));
+            rollCha.setText(Integer.toString(rollDice4x()));
+        }
+        
+        //Returns the value from rolling four
+        //6-sided dice and removing the smallest roll
+        private int rollDice4x(){
+            int smallest = 0;
+            int total = 0;
+            Random rand = new Random();
+
+            int dice1 = rand.nextInt(7);
+            smallest = dice1;
+            int dice2 = rand.nextInt(7);
+            if(dice2 < smallest)
+                smallest = dice2;
+            int dice3 = rand.nextInt(7);
+            if(dice3 < smallest)
+                smallest = dice3;
+            int dice4 = rand.nextInt(7);
+            if(dice4 < smallest)
+                smallest = dice4;
+            total = dice1+dice2+dice3+dice4-smallest;
+            return total;
         }
 
         //Method to go to Previous Card
@@ -1058,8 +1235,52 @@ public class NewCharacter extends JFrame{
         //Method to go to Next Card
         private void switchStateNext(){
             
-            //Obtain and Validate, and store character data
-            // (TBD)
+            //Obtain data, Validate, and store character data
+            int str, dex, con, intel, wis, cha;
+           
+            if(rRoll.isSelected()){
+                //Make sure they rolled 
+                if(rolled == 0){
+                    JOptionPane.showMessageDialog(null,"All abilities 0.  Please Click the Roll Button.",
+                    "Error",JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                
+                str = Integer.parseInt(rollStr.getText());
+                dex = Integer.parseInt(rollDex.getText());
+                con = Integer.parseInt(rollCon.getText());
+                intel = Integer.parseInt(rollInt.getText());
+                wis = Integer.parseInt(rollWis.getText());
+                cha = Integer.parseInt(rollCha.getText());
+            }
+            else if(rPt.isSelected()){
+                
+                //Remaining Points to spend need to be 0
+                if(remainingPts != 0){
+                    JOptionPane.showMessageDialog(null, 
+                    "Remaining Purchase Points should be 0.","Error",JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                
+                str = (int)strengthJSpinner.getValue();
+                dex = (int)dexterityJSpinner.getValue();
+                con = (int)constitutionJSpinner.getValue();
+                intel = (int)wisdomJSpinner.getValue();
+                wis = (int)intelligenceJSpinner.getValue();
+                cha = (int)charismaJSpinner.getValue();
+            }
+            else{
+                //Need to select Point Buy or Roll Ability Score Method
+                JOptionPane.showMessageDialog(null, 
+                    "Please Click the Point Buy or Roll Option.","Error",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            //myCharacter.setAbilityScoreStrength(str);
+            //myCharacter.setAbilityScoreDexterity(dex);
+            //myCharacter.setAbilityScoreConstitution(con);
+            //myCharacter.setAbilityScoreIntelligence(intel);
+            //myCharacter.setAbilityScoreWisdom(wis);
+            //myCharacter.setAbilityScoreCharisma(cha);
             
             //Go to next card
             CardLayout c1 = (CardLayout)(cardPanel.getLayout());
@@ -1118,13 +1339,13 @@ public class NewCharacter extends JFrame{
         private JButton previousButton = new JButton ("< Prev");    
 
         private Font titleFont;
-		
-		private String[] charImages = {"Augrek_Brighthelm.png", "Beldora.png", 
-		    "Darathra_Shendrel.png", "Darz_Helgar.png",
-      		"Duvessa_Shane.png", "Ghelryn_Foehammer.png", "Lifferlas.png", "Markham_Southwell.png",
-		    "Miros_Xelbrin.png", "Narth_Tezrin.png", "Naxene_Drathkala.png", "Oren_Yogilvy.png",
-			"Othovir.png", "Shalvus_Martholio.png", "Sir_Baric_Nylef.png", "Sirac_of_Suzail.png",
-			"Urgala_Meltimer.png", "Zi_Liang.png"};
+        
+        private String[] charImages = {"Augrek_Brighthelm.png", "Beldora.png", 
+            "Darathra_Shendrel.png", "Darz_Helgar.png",
+            "Duvessa_Shane.png", "Ghelryn_Foehammer.png", "Lifferlas.png", "Markham_Southwell.png",
+            "Miros_Xelbrin.png", "Narth_Tezrin.png", "Naxene_Drathkala.png", "Oren_Yogilvy.png",
+            "Othovir.png", "Shalvus_Martholio.png", "Sir_Baric_Nylef.png", "Sirac_of_Suzail.png",
+            "Urgala_Meltimer.png", "Zi_Liang.png"};
         private int charImgIndex = 0;
         private ImageIcon iicon;
 
@@ -1180,7 +1401,7 @@ public class NewCharacter extends JFrame{
             photoLabel.setSize(50, 50);
             //Show Image
             right.add(photoLabel,BorderLayout.CENTER);
-			        
+                    
             //Create and initialize the character selection buttons.
             JPanel iFlow = new JPanel(new FlowLayout(FlowLayout.CENTER));
             iFlow.setOpaque(false);
@@ -1206,7 +1427,7 @@ public class NewCharacter extends JFrame{
             imgNextButton.addActionListener (e -> getNextCharacterImg());
             iFlow.add(imgNextButton);
             right.add(iFlow,BorderLayout.SOUTH);
-	
+    
             
             ////////////////////////////////////
             // Left Panel - User Entered Data //
@@ -1285,18 +1506,18 @@ public class NewCharacter extends JFrame{
             generateCharacterSheetButton.addActionListener   (e -> generateCharacter());
             previousButton.addActionListener   (e -> switchStatePrev());
         }
-		
+        
         //Cycles through the character photo selection
         private void getPrevCharacterImg(){
-			
+            
             //Adjust image name index
             charImgIndex--;
             if(charImgIndex < 0)
                 charImgIndex = charImages.length-1;
-						
+                        
             updateCharacterImg(charImgIndex);		
         }
-	
+    
         private void getNextCharacterImg(){
 
             BufferedImage characterImage;
@@ -1349,19 +1570,36 @@ public class NewCharacter extends JFrame{
         //Method to go to Next Card
         private void generateCharacter(){
             
-            //Obtain and Validate, and store character data			
-			//myCharacter.setName(nameTextField.getText());
+            //Obtain and Validate, and store character data	
+            
+            //Make sure something is in name,weight,height text boxes
+            if(nameTextField.getText().length() == 0){
+                JOptionPane.showMessageDialog(null,"Name is empty.",
+                    "Error",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if(heightTextField.getText().length() == 0){
+                JOptionPane.showMessageDialog(null,"Height is empty.",
+                    "Error",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if(weightTextField.getText().length() == 0){
+                JOptionPane.showMessageDialog(null,"Weight is empty.",
+                    "Error",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            //myCharacter.setName(nameTextField.getText());
             //myCharacter.TBD(weightTextField.getText());
             //myCharacter.TBD(heightTextField.getText());
             //myCharacter.TBD(sexComboBox.getSelectedItem());
-			//myCharacter.setAlignment(alignmentComboBox.getSelectedItem());
-			//myCharacter.setBackground(backgroundComboBox.getSelectedItem());
-			//myCharacter.TBD("Portraits/" + charImages[charImgIndex]);
-			
-			//Validate Name, Weight, Height
-			
+            //myCharacter.setAlignment(alignmentComboBox.getSelectedItem());
+            //myCharacter.setBackground(backgroundComboBox.getSelectedItem());
+            //myCharacter.TBD("Portraits/" + charImages[charImgIndex]);
+            
+            
             //Go to Main Gui
-
+            dispose();
         }
 
     }
