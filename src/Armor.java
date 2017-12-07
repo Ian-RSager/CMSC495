@@ -1,11 +1,10 @@
-package charactercreator;
-
 /*
  * This class is used to define Armor objects.  These are pieces of body armor or shields that a character will wear in order
  * to gain extra protection from attacks.
  */
 
 public class Armor extends Item {
+
     protected String armorType = "Light";           // Whether the armor is classified as Light, Medium, Heavy, or a Shield.
     protected int armorClass = 0;                   // The bonus amount of armor this object adds to the character's base 10 armor class.
     protected int maxDexterityBonus = 99;           // The maximum amount of the character's Dexterity attribute bonus they can apply to their armor class if wearing this item.
@@ -13,50 +12,75 @@ public class Armor extends Item {
     protected String doffTime = "1 action";         // The amount of time it takes to take this armor off.
     protected int strengthThreshold = 0;            // The minimum amount of Strength needed to use this armor without penalty.
     protected boolean hasStealthPenalty = false;    // Whether or not the armor imposes Disadvantage on all Stealth checks by the character while equipped.
-    
-    // Constructor for all fields relevant specifically to the Armor class.  Good for loading objects from JSON files or creating new Weapon objects in the Character Creator.
-    public Armor(String idIn, String nameIn, double singleWeightIn, String descriptionIn, int quantityIn, int singleCostIn,
-            String armorTypeIn, int armorClassIn, int maxDexterityBonusIn, String donTimeIn, String doffTimeIn, int strengthThresholdIn, boolean hasStealthPenaltyIn) {
-        this.id = idIn;
-        this.name = nameIn;
-        this.singleWeight = singleWeightIn;
-        this.description = descriptionIn;
-        this.quantity = quantityIn;
-        this.singleCost = singleCostIn;
-        
-        this.totalWeight = this.singleWeight * this.quantity;
-        this.totalCost = this.singleCost * this.quantity;
-        
+
+
+    //Constructor to be used when reading in data from armor.json
+    public Armor(String idIn, String nameIn, int costIn, String costCurrencyIn,
+                 double weightIn, String armorTypeIn, int armorClassIn,
+                 int maxDexterityBonusIn, String donTimeIn, String doffTimeIn,
+                 int strengthThresholdIn, boolean hasStealthPenaltyIn, String descriptionIn){
+
+        super(idIn, nameIn, costIn, costCurrencyIn, weightIn, descriptionIn);
         this.armorType = armorTypeIn;
         this.armorClass = armorClassIn;
         this.maxDexterityBonus = maxDexterityBonusIn;
         this.donTime = donTimeIn;
         this.doffTime = doffTimeIn;
         this.strengthThreshold = strengthThresholdIn;
-        this.hasStealthPenalty = hasStealthPenaltyIn;
-    } // End constructor for all fields.
-    
-    // Getters and setters.
-    // For armor type.
-    public void setArmorType(String armorTypeIn) {this.armorType = armorTypeIn;}   
-    public String getArmorType() {return this.armorType;}
-    // For armor class.
-    public void setArmorClass(int armorClassIn) {this.armorClass = armorClassIn;}
-    public int getArmorClass() {return this.armorClass;}
-    // For max Dexterity bonus.
+        this.hasStealthPenalty =hasStealthPenaltyIn;
+
+    }
+
+    /**
+     * printData() serves as a temporary QC. It will not necessarily be used during operation.
+     */
+    @Override
+    public void printData(){
+
+        super.printData();
+        try {
+            System.out.println("Armor Type: " + this.armorType);
+            System.out.println("Armor Class: " + this.armorClass);
+            System.out.println("Maximum Dexterity Bonus : " + this.maxDexterityBonus);
+            System.out.println("Don time: " + this.donTime);
+            System.out.println("Doff Time: " + this.doffTime);
+            if (this.strengthThreshold > 0)
+                System.out.println("Character's speed is decreased by 10 feet, without a strength of " + this.strengthThreshold + " or higher.");
+            else
+                System.out.println("This armor does not have a speed penalty.");
+            if (hasStealthPenalty)
+                System.out.println("This armor has a penalty to stealth attempts.");
+            else
+                System.out.println("This armor does not have a penalty to stealth attempts.");
+            System.out.println("Total cost is " + this.totalCost + " for " + this.quantity + " pieces, at " + this.singleCost + this.costCurrency + " per piece.");
+        }catch (Exception e){
+            System.out.println("\n\n\t ************** Armor - OOPS ************** \n\n");
+        }
+
+    }
+
+
+    // Getters and Setters
+    public void setArmorType(String armorTypeIn){this.armorType = armorTypeIn;}
+    public String getArmorType(){return this.armorType;}
+
+    public void setArmorClass(int armorClassIn){this.armorClass = armorClassIn;}
+    public int getArmorClass(){return this.armorClass;}
+
     public void setMaxDexterityBonus(int maxDexterityBonusIn) {this.maxDexterityBonus = maxDexterityBonusIn;}
-    public int getMaxDexterityBonus() {return this.maxDexterityBonus;}
-    // For don time.
-    public void setDonTime(String donTimeIn) {this.donTime = donTimeIn;}   
-    public String getDonTime() {return this.donTime;}
-    // For doff time.
-    public void setDoffTime(String doffTimeIn) {this.doffTime = doffTimeIn;}   
-    public String getDoffTime() {return this.doffTime;}
-    // For Strength threshold.
-    public void setStrengthThreshold(int strengthThresholdIn) {this.strengthThreshold = strengthThresholdIn;}
-    public int getStrengthThreshold() {return this.strengthThreshold;}
-    // For Stealth penalty.
-    public void setHasStealthPenalty(boolean hasStealthPenaltyIn) {this.hasStealthPenalty = hasStealthPenaltyIn;}
-    public boolean getHasStealthPenalty() {return this.hasStealthPenalty;}
-    
+    public int getMaxDexterityBonus(){return this.maxDexterityBonus;}
+
+    public void setDonTime(String donTimeIn){this.armorType = donTimeIn;}
+    public String getDonTime(){return this.donTime;}
+
+    public void setDoffTime(String doffTimeIn){this.armorType = doffTimeIn;}
+    public String getDoffTime(){return this.doffTime;}
+
+    public void setStrengthThreshold(int strengthThresholdIn){this.strengthThreshold = strengthThresholdIn;}
+    public int getStrengthThreshold(){return this.strengthThreshold;}
+
+    public void setHasStealthPenalty(boolean hasStealthPenaltyIn){this.hasStealthPenalty = hasStealthPenaltyIn;}
+    public boolean getHasStealthPenalty(){return this.hasStealthPenalty;}
+
+
 } // End public class Armor.
