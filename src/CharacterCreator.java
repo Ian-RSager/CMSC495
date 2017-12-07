@@ -1,17 +1,24 @@
-
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -20,6 +27,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,6 +50,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.DefaultFormatter;
 
 public class CharacterCreator {
@@ -173,6 +182,64 @@ public class CharacterCreator {
         fileMenu.add(saveSheetMenuItem);
         fileMenu.add(quitMenuItem);
         
+     // Menu bar listeners
+        
+        newSheetMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Object[] options = {"Create New Character", "Load Character"};
+		        int selection = JOptionPane.showConfirmDialog(newSheetMenuItem, "Would you like to save the current character?");
+				switch (selection) {
+				case JOptionPane.CANCEL_OPTION:
+					break;
+				case JOptionPane.NO_OPTION:
+					frame.dispose();
+					NewCharacter nc = new NewCharacter();
+					nc.newCharacterGui();
+					break;
+				case JOptionPane.YES_OPTION:
+					saveCharacter();
+					frame.dispose();
+					NewCharacter nc2 = new NewCharacter();
+					nc2.newCharacterGui();
+					break;
+				}
+			}        	
+        });
+        
+        quitMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int selection = JOptionPane.showConfirmDialog(newSheetMenuItem, "Would you like to save the current character?");
+				switch (selection) {
+				case JOptionPane.CANCEL_OPTION:
+					break;
+				case JOptionPane.NO_OPTION:
+					System.exit(0);
+					break;
+				case JOptionPane.YES_OPTION:
+					saveCharacter();
+					System.exit(0);
+					break;
+				}
+			}
+        	
+        });
+
+		saveSheetMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				saveCharacter();
+			}
+		});
+
+		loadSheetMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				loadCharacter();
+			}
+		});
+		
         
         /*
          * Set Tabbed pane
@@ -464,37 +531,91 @@ public class CharacterCreator {
         frame.setVisible(true);
     }
     
-    
-    public static void main(String[] args) {
-    		MasterLists.createMasterLists();
-        Object[] options = {"Create New Character", "Load Character"};
-        int selection = JOptionPane.showOptionDialog(null, "Welcome to Character Creator!\nSelect an Option:",
-                                                     "Character Creator", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-                                                     null,     //do not use a custom Icon
-                                                     options,  //the titles of buttons
-                                                     null); //default button title
-        switch(selection) {
-            case 0:
-                NewCharacter nc = new NewCharacter();
-                nc.newCharacterGui();
-                break;
-            case 1:
-                Character testCharacter = new Character();
-                testCharacter.setName("Test Char");
-               // testCharacter.setLevel(4);
-                testCharacter.setAbilityScoreCharisma(5);
-                testCharacter.setAbilityScoreDexterity(6);
-                testCharacter.setSpeed(15);
-                CharacterCreator c = new CharacterCreator(testCharacter);
-                c.display();
-                break;
-            case JOptionPane.CLOSED_OPTION:
-                System.exit(0);
-        }
-        
-        
+    private void saveCharacter() {
+    	JFileChooser jfc = new JFileChooser(".");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("ser file", "ser");
+		jfc.addChoosableFileFilter(filter);
+		jfc.setFileFilter(filter);
+		int returnVal = jfc.showSaveDialog(saveSheetMenuItem);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			File file = jfc.getSelectedFile();
+			try {
+				FileOutputStream fos = new FileOutputStream(file);
+				System.out.println("saved");
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
+				oos.writeObject(character);
+				oos.close();
+			}
+
+			catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
     }
     
+    private void loadCharacter() {
+		JFileChooser jfc = new JFileChooser(".");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("ser file", "ser");
+		jfc.addChoosableFileFilter(filter);
+		jfc.setFileFilter(filter);
+		int returnVal = jfc.showOpenDialog(loadSheetMenuItem);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			File file = jfc.getSelectedFile();
+			try {
+				frame.dispose();
+				FileInputStream fis = new FileInputStream(file);
+				ObjectInputStream ois = new ObjectInputStream(fis);
+				Character loadCharacter = (Character) ois.readObject();
+				CharacterCreator l = new CharacterCreator(loadCharacter);
+				l.display();
+				ois.close();
+			}
+
+			catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+    
+    
+	public static void main(String[] args) throws InvocationTargetException, InterruptedException {
+		EventQueue.invokeAndWait(new Runnable() {
+			@Override
+			public void run() {
+				MasterLists.createMasterLists();
+				Object[] options = { "Create New Character", "Load Character" };
+				int selection = JOptionPane.showOptionDialog(null, "Welcome to Character Creator!\nSelect an Option:",
+						"Character Creator", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, // do not
+																											// use a
+																											// custom
+																											// Icon
+						options, // the titles of buttons
+						null); // default button title
+				switch (selection) {
+				case 0:
+					NewCharacter nc = new NewCharacter();
+					nc.newCharacterGui();
+					break;
+				case 1:
+					Character loadCharacter = new Character();
+					CharacterCreator c = new CharacterCreator(loadCharacter);
+					c.display();
+					c.loadCharacter();
+					break;
+				case JOptionPane.CLOSED_OPTION:
+					System.exit(0);
+					break;
+				}
+			}
+		});
+
+	}
 }
 
 class TransparentJCheckBox extends JCheckBox {
@@ -570,7 +691,7 @@ class BasicInfoPanel extends JPanel {
         basicInfoValueSpinner.setOpaque(false);
         basicInfoValueSpinner.getEditor().setOpaque(false);
         JFormattedTextField textField = ((JSpinner.DefaultEditor)basicInfoValueSpinner.getEditor()).getTextField();
-        textField.setBackground(new Color(0,0,0,0));
+        textField.setOpaque(false);
         textField.setColumns(2);
         textField.setBorder(new EmptyBorder(0,0,0,5));
         textField.setEditable(false);
@@ -635,7 +756,7 @@ class AbilityScorePanel extends JPanel {
         spinner.setOpaque(false);
         spinner.getEditor().setOpaque(false);
         JFormattedTextField textField = ((JSpinner.DefaultEditor)spinner.getEditor()).getTextField();
-        textField.setBackground(new Color(0,0,0,0));
+        textField.setOpaque(false);
         textField.setColumns(2);
         textField.setBorder(new EmptyBorder(0,0,0,5));
         textField.setEditable(false);
@@ -743,7 +864,7 @@ class StatsPanel extends JPanel {
 	        spinner.setOpaque(false);
 	        spinner.getEditor().setOpaque(false);
 	        JFormattedTextField textField = ((JSpinner.DefaultEditor)spinner.getEditor()).getTextField();
-	        textField.setBackground(new Color(0,0,0,0));
+	        textField.setOpaque(false);
 	        textField.setColumns(2);
 	        textField.setBorder(new EmptyBorder(0,0,0,5));
 	        textField.setEditable(false);   
