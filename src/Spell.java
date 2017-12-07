@@ -1,3 +1,5 @@
+//package charactercreator;
+
 /*
  * This class defines Spell objects, magical incantations that allow the character to manipulate reality in fantastical ways.
  */
