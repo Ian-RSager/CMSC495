@@ -1,3 +1,5 @@
+//package charactercreator;
+
 /*
  * This class is used to define ClassFeature objects.  A ClassFeature is a particular mechanic that a character has access to due to
  * one or more of the character classes that they have gained levels in.
