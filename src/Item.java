@@ -1,3 +1,5 @@
+//package charactercreator;
+
 /*
  * This class is used to define Item objects.  An Item object is the basic type of any physical thing a character can have in their
  * inventory.  Other classes will extend the Item class to add specific features needed for weapons, armor, etc.
