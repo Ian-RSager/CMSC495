@@ -1,5 +1,6 @@
 package charactercreator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,7 +13,7 @@ import java.util.stream.*;
  * class, race, level, or other constant values.
  */
 
-public class Character {
+public class Character implements Serializable {
     private int id;                                                 // Unique number ID for the character, for potential future use if more than one character can be opened at the same time.
     private String name;                                            // The character's name.
     private String race;                                            // The character's race, subraces are considered their own race.
@@ -36,6 +37,10 @@ public class Character {
     private int experiencePoints;                                   // The current value of experience the character has earned.
     private String alignment;                                       // The character's alignment.
     private ArrayList<String> languages;                            // The languages the character can speak, in plain text.
+    private int weight;                                             // The character's weight.
+    private int height;                                             // The character's height.
+    private String characterImg;                                    // The path to the file used for the character's image.
+    private String sex;                                             // The character's sex.
     private int abilityScoreStrength;                               // The character's Strength value.
     private int abilityScoreDexterity;                              // The character's Dexterity value.
     private int abilityScoreConstitution;                           // The character's Constitution value.
@@ -68,6 +73,11 @@ public class Character {
     
     recalculate method
     
+    DONE weight
+    DONE height
+    DONE sex
+    DONE character image
+    
     DONE languages
     
     DONE equippedArmor(ArmorObject)
@@ -84,6 +94,11 @@ public class Character {
     
     DONE methods for featuresList
     */
+    
+    // Blank constructor.
+    public Character() {
+        // Isn't this exciting?!
+    } // End blank constructor.
     
     // Setters and getters.  Not all fields have a setter, due to the fact that values for these fields will be calculated internally.
     // For ID.
@@ -167,6 +182,22 @@ public class Character {
     public void addLanguage(String languageIn) {this.languages.add(languageIn);}
     public void removeLanguage(String languageIn) {this.languages.remove(languageIn);}
     public ArrayList<String> getLanguages() {return this.languages;}
+    
+    // For weight.
+    public void setHeight(int heightIn) {this.height = heightIn;}
+    public int getHeight() {return this.height;}
+    
+    // For sex.
+    public void setSex(String sexIn) {this.sex = sexIn;}
+    public String getSex() {return this.sex;}
+    
+    // For character image.
+    public void setCharacterImg(String characterImgIn) {this.characterImg = characterImgIn;}
+    public String getCharacterImg() {return this.characterImg;}
+    
+    // For height.
+    public void setWeight(int weightIn) {this.weight = weightIn;}
+    public int getWeight() {return this.weight;}
     
     // For Strength.
     public void setAbilityScoreStrength(int strengthIn) {this.abilityScoreStrength = strengthIn;}
@@ -341,5 +372,14 @@ public class Character {
     
     // For getting the list of all known features.
     public ArrayList<ClassFeature> getFeaturesList() {return this.featuresList;}
+    
+    ////////////////////////
+    // Recalculate Method //
+    ////////////////////////
+    
+    // This method will recalculate and re-correlate all data in Character.java.  To be used whenever a Attribute or any other notable field changes.
+    public void recalculate() {
+        
+    } // End recalculate method.
     
 } // End public class Character.
