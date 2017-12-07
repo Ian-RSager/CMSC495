@@ -1,3 +1,5 @@
+//package charactercreator;
+
 /*
  * This class is used to define Armor objects.  These are pieces of body armor or shields that a character will wear in order
  * to gain extra protection from attacks.
