@@ -701,7 +701,7 @@
     "cost":5,
     "costCurrency": "Gold",
     "damage": "1d8 piercing",
-    "weight": ,
+    "weight": 2,
     "isMelee": true,
     "isRanged": false,
     "hasReach": false,
