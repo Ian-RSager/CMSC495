@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -17,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -582,30 +584,38 @@ public class CharacterCreator {
 	}
     
     
-    public static void main(String[] args) {
-    		MasterLists.createMasterLists();
-        Object[] options = {"Create New Character", "Load Character"};
-        int selection = JOptionPane.showOptionDialog(null, "Welcome to Character Creator!\nSelect an Option:",
-                                                     "Character Creator", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
-                                                     null,     //do not use a custom Icon
-                                                     options,  //the titles of buttons
-                                                     null); //default button title
-        switch(selection) {
-            case 0:
-                NewCharacter nc = new NewCharacter();
-                nc.newCharacterGui();
-                break;
-            case 1:
-                Character loadCharacter = new Character();
-            		CharacterCreator c = new CharacterCreator(loadCharacter);
-            		c.display();
-            		c.loadCharacter();
-                break;
-            case JOptionPane.CLOSED_OPTION:
-                System.exit(0);
-                break;
-        } 
-    }    
+	public static void main(String[] args) throws InvocationTargetException, InterruptedException {
+		EventQueue.invokeAndWait(new Runnable() {
+			@Override
+			public void run() {
+				MasterLists.createMasterLists();
+				Object[] options = { "Create New Character", "Load Character" };
+				int selection = JOptionPane.showOptionDialog(null, "Welcome to Character Creator!\nSelect an Option:",
+						"Character Creator", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, // do not
+																											// use a
+																											// custom
+																											// Icon
+						options, // the titles of buttons
+						null); // default button title
+				switch (selection) {
+				case 0:
+					NewCharacter nc = new NewCharacter();
+					nc.newCharacterGui();
+					break;
+				case 1:
+					Character loadCharacter = new Character();
+					CharacterCreator c = new CharacterCreator(loadCharacter);
+					c.display();
+					c.loadCharacter();
+					break;
+				case JOptionPane.CLOSED_OPTION:
+					System.exit(0);
+					break;
+				}
+			}
+		});
+
+	}
 }
 
 class TransparentJCheckBox extends JCheckBox {
