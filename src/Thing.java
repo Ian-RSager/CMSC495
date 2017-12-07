@@ -1,3 +1,5 @@
+//package charactercreator;
+
 /**
  * This class creates Thing objects and serves as a structural class.
  * This class is not directly used within the program aside from acting as a superclass for all other support classes.
