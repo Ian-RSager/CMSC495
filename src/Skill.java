@@ -53,13 +53,10 @@ public class Skill extends Thing {
     public void setRelevantAbilityScore(String relevantAbilityScoreIn) {this.relevantAbilityScore = relevantAbilityScoreIn;}
     public String getRelevantAbilityScore() {return this.relevantAbilityScore;}
 
-    /**
-     * The following is commented out until we decide weather to add it to the .json file or not
-     */
     // For isProficient.
-//    public void setIsProficient(boolean isProficientIn) {this.isProficient = isProficientIn;} // shouldn't this be in character.java?
-//    public boolean getIsProficient() {return this.isProficient;}                              // shouldn't this be in character.java?
-//    // For miscellaneous bonus.
-//    public void setMiscBonus(int miscBonusIn) {this.miscBonus = miscBonusIn;}
-//    public int getMiscBonus() {return this.miscBonus;}
+   public void setIsProficient(boolean isProficientIn) {this.isProficient = isProficientIn;} // shouldn't this be in character.java?
+   public boolean getIsProficient() {return this.isProficient;}                              // shouldn't this be in character.java?
+   // For miscellaneous bonus.
+   public void setMiscBonus(int miscBonusIn) {this.miscBonus = miscBonusIn;}
+   public int getMiscBonus() {return this.miscBonus;}
 }
