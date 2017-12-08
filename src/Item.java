@@ -1,54 +1,72 @@
-package charactercreator;
+//package charactercreator;
 
 /*
  * This class is used to define Item objects.  An Item object is the basic type of any physical thing a character can have in their
  * inventory.  Other classes will extend the Item class to add specific features needed for weapons, armor, etc.
  */
 
-public class Item {
-    protected String id = "";           // A unique string identifying the item, for internal use only.
-    protected String name = "";         // The name of the item, as the user will see it.
+public class Item extends Thing{
+
+//    protected int cost;
+    protected double weight;
+    protected String costCurrency;      // The currency of the item, i.e. gold pieces, silver pieces, or copper pieces
     protected double singleWeight = 0;  // The weight of just one of this item.
     protected double totalWeight = 0;   // The weight of the total quantity of this item.
-    protected String description = "";  // A description of the item.
     protected int quantity = 1;         // The number of this item carried by the character.
     protected int singleCost = 0;       // The cost of just one of this item.
     protected int totalCost = 0;        // The cost of the total quantity of this item.
-    
-    // Constructor, all fields minus totals.  Best used for reading in items from a JSON or saved character file.
-    public Item(String idIn, String nameIn, double singleWeightIn, String descriptionIn, int quantityIn, int singleCostIn) {
-        this.id = idIn;
-        this.name = nameIn;
+
+    //Constructor to be used when reading in data from items.json
+    public Item(String idIn,String nameIn,int costIn, String costCurrencyIn, double singleWeightIn, String descriptionIn){
+        super(idIn, nameIn, descriptionIn);
+        this.singleCost = costIn;
         this.singleWeight = singleWeightIn;
-        this.description = descriptionIn;
-        this.quantity = quantityIn;
-        this.singleCost = singleCostIn;
-        
+        this.costCurrency = costCurrencyIn;
+
         this.totalWeight = this.singleWeight * this.quantity;
         this.totalCost = this.singleCost * this.quantity;
-    } // End constructor, all fields.
-    
-    // Blank constructor.
-    public Item() {
+    }//end constructor
+
+    // blank constructor
+    public Item(){
         this.id = "defaultItem";
-        this.name = "Default Item";
-        this.singleWeight = 0.0;
-        this.totalWeight = 0.0;
+        this.name = "default Item";
         this.description = "A really generic item.";
-        this.quantity = 1;
         this.singleCost = 0;
+        this.singleWeight = 0.0;
+        this.costCurrency = "Gold";
+        this.quantity = 1;
+        this.totalWeight = 1;
         this.totalCost = 0;
-    } // End blank constructor.
-    
+    }// end blank constructor
+
+
+    /**
+     * printData serves as a temporary QC. It will not necessarily be used during operation.
+     */
+    @Override
+    public void printData() {
+
+        super.printData();
+        try {
+            System.out.println("Weight per item: " + this.singleWeight);
+            System.out.println("Total cost is " + this.totalCost + " for " + this.quantity + " pieces, at " + this.singleCost + this.costCurrency + " per piece.");
+        }catch (Exception e){
+            System.out.println("\n\n\t **************  Item - OOPS ************** \n\n");
+        }
+    }
+
     // Setters and getters.  Note that no setters are available for totalWeight or totalCost.  This is intentional, as these numbers are automatically
     // manipulated within this class when needed.  At all other times, these numbers should only be altered by editing the quantity of the item currently
     // in the character's inventory.
+
+
+    // cost currency, GP, SP, or CP
+    public void setCostCurrency(String costCurrencyIn) {this.costCurrency = costCurrencyIn;}
+    public String getCostCurrency() {return this.costCurrency;}
+
     // For ID.
-    public void setID(String idIn) {this.id = idIn;}   
-    public String getID() {return this.id;}
-    // For name.
-    public void setName(String nameIn) {this.name = nameIn;}
-    public String getName() {return this.name;}
+    public void setID(String idIn) {this.id = idIn;}
     // For singleWeight.
     public void setSingleWeight(double weightIn) {this.singleWeight = weightIn;}
     public double getSingleWeight() {return this.singleWeight;}
@@ -56,7 +74,6 @@ public class Item {
     public double getTotalWeight() {return this.totalWeight;}
     // For description.
     public void setDescription(String descriptionIn) {this.description = descriptionIn;}
-    public String getDescription() {return this.description;}
     // Get quantity.
     public int getQuantity() {return this.quantity;}
     // Set quantity.  Note that this will automatically update totalWeight and totalCost.
@@ -70,4 +87,6 @@ public class Item {
     public int getSingleCost() {return this.singleCost;}
     // For totalCost.
     public double getTotalCost() {return this.totalCost;}
+
+
 } // End public class Item.
