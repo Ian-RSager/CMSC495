@@ -8,9 +8,9 @@
 public class Skill extends Thing {
     protected String[] classes;                 // a list of classes that could use each feature
     protected String[] tags;                     // a list of tag words assoiated with this feature -- included for future versions.
+    protected String relevantAbilityScore = "Strength"; // Which ability score will be used when calculating ability bonus values.
 
     //The following are not part of a json file and I'm not sure how we want to use these....
-//    protected String relevantAbilityScore = "Strength"; // Which ability score will be used when calculating ability bonus values.
 //    protected boolean isProficient = false;             // Whether or not the character is proficient with this skill, and will receive their Proficiency Bonus when using it.
 //    protected int miscBonus = 0;                        // Any additional bonuses the character has to this skill.
 
@@ -34,6 +34,7 @@ public class Skill extends Thing {
             for (String eachClass : classes) {
                 System.out.println("\t:" + eachClass);
             }
+            System.out.println("Ability score: "+this.relevantAbilityScore);
             System.out.println("Tags");
             for (String eachTag : tags) {
                 System.out.println("\t:" + eachTag);
@@ -49,15 +50,16 @@ public class Skill extends Thing {
     public String[] getClasses(){return this.classes;}
     public void setClasses(String[] newClassesIn ) {this.classes = newClassesIn;}
 
+    // For relevant ability score.
+    public void setRelevantAbilityScore(String relevantAbilityScoreIn) {this.relevantAbilityScore = relevantAbilityScoreIn;}
+    public String getRelevantAbilityScore() {return this.relevantAbilityScore;}
+
     /**
      * The following is commented out until we decide weather to add it to the .json file or not
      */
     // For isProficient.
 //    public void setIsProficient(boolean isProficientIn) {this.isProficient = isProficientIn;} // shouldn't this be in character.java?
 //    public boolean getIsProficient() {return this.isProficient;}                              // shouldn't this be in character.java?
-//    // For relevant ability score.
-//    public void setRelevantAbilityScore(String relevantAbilityScoreIn) {this.relevantAbilityScore = relevantAbilityScoreIn;}
-//    public String getRelevantAbilityScore() {return this.relevantAbilityScore;}
 //    // For miscellaneous bonus.
 //    public void setMiscBonus(int miscBonusIn) {this.miscBonus = miscBonusIn;}
 //    public int getMiscBonus() {return this.miscBonus;}
