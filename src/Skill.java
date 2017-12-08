@@ -10,9 +10,8 @@ public class Skill extends Thing {
     protected String[] tags;                     // a list of tag words assoiated with this feature -- included for future versions.
     protected String relevantAbilityScore = "Strength"; // Which ability score will be used when calculating ability bonus values.
 
-    //The following are not part of a json file and I'm not sure how we want to use these....
-//    protected boolean isProficient = false;             // Whether or not the character is proficient with this skill, and will receive their Proficiency Bonus when using it.
-//    protected int miscBonus = 0;                        // Any additional bonuses the character has to this skill.
+   protected boolean isProficient = false;             // Whether or not the character is proficient with this skill, and will receive their Proficiency Bonus when using it.
+   protected int miscBonus = 0;                        // Any additional bonuses the character has to this skill.
 
 
     //Constructor to be used when reading in data from skills.json
