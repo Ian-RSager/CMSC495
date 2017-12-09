@@ -20,10 +20,9 @@ public class Skill extends Thing {
         this.classes = classesIn;
         this.relevantAbilityScore = relevantAbilityScoreIn;
         this.tags = tagsIn;
-
         this.isProficient = false;
         this.miscBonus = 0;
-    }
+    } // end constructor method
 
     /**
      * printData serves as a temporary QC. It will not necessarily be used during operation.
@@ -44,9 +43,10 @@ public class Skill extends Thing {
         } catch (Exception e) {
             System.out.println("Skill file not found");
         }
-    }
+    }// end printData()
 
     // Setters and getters.
+    // For associated tags
     public String[] getTags() {
         return this.tags;
     }
@@ -55,6 +55,7 @@ public class Skill extends Thing {
         this.tags = newTagsIn;
     }
 
+    // For associated classTypes
     public String[] getClasses() {
         return this.classes;
     }
