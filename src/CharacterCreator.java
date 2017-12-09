@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -19,10 +20,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -40,6 +45,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -51,11 +57,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultFormatter;
 
 public class CharacterCreator {
     
     Character character;
+    MasterLists msl;
     
     JFrame frame;
     
@@ -124,13 +132,16 @@ public class CharacterCreator {
     JScrollPane inventoryScrollPane;
     JButton addItemButton;
     JButton removeItemButton;
-   
+    
     TransparentJPanel spellsPanel;
+    JTextPane spellsTextPane;
     TransparentJPanel spellsButtonsPanel;
     TransparentJPanel spellsDisplayPanel;
     JScrollPane spellsScrollPane;
-    JButton addSpellButton;
-    JButton removeSpellButton;
+    JLabel addSpellLabel;
+    JComboBox addSpellComboBox;
+    JLabel removeSpellLabel;
+    JComboBox removeSpellComboBox;
     
     //top menu bar components
     JMenuBar menuBar;
@@ -146,10 +157,10 @@ public class CharacterCreator {
      */
     
     
-    public CharacterCreator(Character inCharacter) {
+    public CharacterCreator(Character inCharacter, MasterLists msl) {
         
         this.character = inCharacter;
-        
+        this.msl = msl;
         
         /*
          * Set frame
@@ -182,64 +193,64 @@ public class CharacterCreator {
         fileMenu.add(saveSheetMenuItem);
         fileMenu.add(quitMenuItem);
         
-     // Menu bar listeners
+        // Menu bar listeners
         
         newSheetMenuItem.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//Object[] options = {"Create New Character", "Load Character"};
-		        int selection = JOptionPane.showConfirmDialog(newSheetMenuItem, "Would you like to save the current character?");
-				switch (selection) {
-				case JOptionPane.CANCEL_OPTION:
-					break;
-				case JOptionPane.NO_OPTION:
-					frame.dispose();
-					NewCharacter nc = new NewCharacter();
-					nc.newCharacterGui();
-					break;
-				case JOptionPane.YES_OPTION:
-					saveCharacter();
-					frame.dispose();
-					NewCharacter nc2 = new NewCharacter();
-					nc2.newCharacterGui();
-					break;
-				}
-			}        	
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Object[] options = {"Create New Character", "Load Character"};
+                int selection = JOptionPane.showConfirmDialog(newSheetMenuItem, "Would you like to save the current character?");
+                switch (selection) {
+                    case JOptionPane.CANCEL_OPTION:
+                        break;
+                    case JOptionPane.NO_OPTION:
+                        frame.dispose();
+                        //NewCharacter nc = new NewCharacter();
+                        //nc.newCharacterGui();
+                        break;
+                    case JOptionPane.YES_OPTION:
+                        saveCharacter();
+                        frame.dispose();
+                        //NewCharacter nc2 = new NewCharacter();
+                        //nc2.newCharacterGui();
+                        break;
+                }
+            }
         });
         
         quitMenuItem.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int selection = JOptionPane.showConfirmDialog(newSheetMenuItem, "Would you like to save the current character?");
-				switch (selection) {
-				case JOptionPane.CANCEL_OPTION:
-					break;
-				case JOptionPane.NO_OPTION:
-					System.exit(0);
-					break;
-				case JOptionPane.YES_OPTION:
-					saveCharacter();
-					System.exit(0);
-					break;
-				}
-			}
-        	
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selection = JOptionPane.showConfirmDialog(newSheetMenuItem, "Would you like to save the current character?");
+                switch (selection) {
+                    case JOptionPane.CANCEL_OPTION:
+                        break;
+                    case JOptionPane.NO_OPTION:
+                        System.exit(0);
+                        break;
+                    case JOptionPane.YES_OPTION:
+                        saveCharacter();
+                        System.exit(0);
+                        break;
+                }
+            }
+            
         });
-
-		saveSheetMenuItem.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				saveCharacter();
-			}
-		});
-
-		loadSheetMenuItem.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				loadCharacter();
-			}
-		});
-		
+        
+        saveSheetMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                saveCharacter();
+            }
+        });
+        
+        loadSheetMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                loadCharacter();
+            }
+        });
+        
         
         /*
          * Set Tabbed pane
@@ -270,19 +281,20 @@ public class CharacterCreator {
         photoNamePanel.setLayout(new BorderLayout());
         topMainPanel.add(photoNamePanel, BorderLayout.WEST);
         BufferedImage photo;
-        try {
-            photo = ImageIO.read(new File("portraits/Beldora.png"));
-            Image resizedPhoto = photo.getScaledInstance(80, 112, Image.SCALE_SMOOTH);
-            photoLabel = new JLabel(new ImageIcon(resizedPhoto));
-            //photoLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        photoLabel.setSize(50, 50);
-        photoNamePanel.add(photoLabel, BorderLayout.CENTER);
-        nameLabel = new JLabel(character.getName(), SwingConstants.CENTER);
+		try {
+			photo = ImageIO.read(new File(character.getCharacterImg()));
+			Image resizedPhoto = photo.getScaledInstance(80, 112, Image.SCALE_SMOOTH);
+			photoLabel = new JLabel(new ImageIcon(resizedPhoto));
+			// photoLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2, true));
+			photoLabel.setSize(50, 50);
+			photoNamePanel.add(photoLabel, BorderLayout.CENTER);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			//System.out.println("No image found");
+		}
         
+        nameLabel = new JLabel(character.getName(), SwingConstants.CENTER);
         nameLabel.setFont(new Font(null, Font.BOLD, 20));
         photoNamePanel.add(nameLabel, BorderLayout.SOUTH);
         photoNamePanel.setBorder(new EmptyBorder(0, 13, 0, 7));
@@ -328,7 +340,7 @@ public class CharacterCreator {
         abilityScoresPanel.add(wisdomPanel);
         charismaPanel = new AbilityScorePanel("Charisma", character);
         abilityScoresPanel.add(charismaPanel);
-     
+        
         
         // Center panel
         centerPanel = new TransparentJPanel();
@@ -363,23 +375,23 @@ public class CharacterCreator {
         int[] savingThrowFinalArray = character.getSavingThrowFinalValueArray();
         boolean[] savingThrowProficiencyArray = character.getSavingThrowProficiencyArray();
         for (int i=0; i<savingThrows.length; i++) {
-        		String text = String.valueOf(savingThrowFinalArray[i]) + " " + savingThrows[i];
-        		savingThrowsPanel.add(new TransparentJCheckBox(text, savingThrowProficiencyArray[i])); 
+            String text = String.valueOf(savingThrowFinalArray[i]) + " " + savingThrows[i];
+            savingThrowsPanel.add(new TransparentJCheckBox(text, savingThrowProficiencyArray[i]));
         }
         
         
         // Skills panel
         String[] skills = {"Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
-        	    "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature",
-        	    "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand",
-        	    "Stealth", "Survival"};
+            "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature",
+            "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand",
+            "Stealth", "Survival"};
         
         int[]skillModifierArray = character.getTotalSkillModifierArray();
         for(int i=0; i<skills.length; i++) {
             boolean selected = false;
-            //if (inCharacter.getSkillList().contains(skill)) selected = true; 
+            //if (inCharacter.getSkillList().contains(skill)) selected = true;
             skillsPanel.add(new TransparentJCheckBox(String.valueOf(skillModifierArray[i]) +
-            		" " + skills[i] + "     ", selected));
+                                                     " " + skills[i] + "     ", selected));
             
         }
         
@@ -419,7 +431,8 @@ public class CharacterCreator {
         removeFeatureButton = new JButton("Remove Feature");
         featuresButtonsPanel.add(addFeatureButton);
         featuresButtonsPanel.add(removeFeatureButton);
-        featuresPanel.add(featuresButtonsPanel, BorderLayout.SOUTH);
+        //can be added later if buttons desired
+        //featuresPanel.add(featuresButtonsPanel, BorderLayout.SOUTH);
         
         //equipped items panel buttons
         equippedItemsButtonsPanel = new TransparentJPanel();
@@ -428,9 +441,8 @@ public class CharacterCreator {
         unequipItemButton = new JButton("Unequip Item");
         equippedItemsButtonsPanel.add(equipItemButton);
         equippedItemsButtonsPanel.add(unequipItemButton);
-        equippedItemsPanel.add(equippedItemsButtonsPanel, BorderLayout.SOUTH);
-        
-        
+        //can be added later if buttons desired
+        //equippedItemsPanel.add(equippedItemsButtonsPanel, BorderLayout.SOUTH);
         
         // features display panel
         featuresDisplayPanel = new TransparentJPanel();
@@ -470,6 +482,8 @@ public class CharacterCreator {
         equippedItemsPanel.add(languagesPanel, BorderLayout.NORTH); // add languages above equipment
         languagesPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
                                                                                                  Color.BLACK, 1, true), "Languages"));
+        //        String languagesKnown;
+        //        character.getLanguages().
         languagesLabel = new JLabel("Dwarvish, Common, Giant, Halfling");
         languagesPanel.add(languagesLabel);
         
@@ -490,10 +504,10 @@ public class CharacterCreator {
         inventoryDisplayPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
                                                                                                         Color.BLACK, 1, true), "Inventory"));
         inventoryScrollPane = new JScrollPane(inventoryDisplayPanel);
-            for (Item item: character.getItemsList()) {
-                    String itemDescription = item.name + "\n\t" + item.description + "\n";
-                    inventoryDisplayPanel.add(new JLabel(itemDescription));
-            }
+        for (Item item: character.getItemsList()) {
+            String itemDescription = item.name + "\n\t" + item.description + "\n";
+            inventoryDisplayPanel.add(new JLabel(itemDescription));
+        }
         
         inventoryPanel.setLayout(new BorderLayout());
         inventoryButtonsPanel = new TransparentJPanel();
@@ -504,27 +518,117 @@ public class CharacterCreator {
         inventoryButtonsPanel.add(removeItemButton);
         
         inventoryPanel.add(inventoryDisplayPanel, BorderLayout.CENTER);
-        inventoryPanel.add(inventoryButtonsPanel, BorderLayout.SOUTH);
+        //can be added later if buttons desired
+        //inventoryPanel.add(inventoryButtonsPanel, BorderLayout.SOUTH);
         
-        //spells panel
-        spellsDisplayPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
-                                                                                              Color.BLACK, 1, true), "Spells"));
-        spellsScrollPane = new JScrollPane(spellsDisplayPanel);
-//        for (Spell spell: character.getKnownSpells) {
-//                String spellDescription = spell.name + "\n\t" + spell.description + "\n";
-//                inventoryDisplayPanel.add(new JLabel(spellDescription));
-//        }
-    
-		spellsPanel.setLayout(new BorderLayout());
-		spellsButtonsPanel = new TransparentJPanel();
-		spellsButtonsPanel.setLayout(new GridLayout(1,0));
-		addSpellButton = new JButton("Add Spell");
-		removeSpellButton = new JButton("Remove Spell");
-		spellsButtonsPanel.add(addSpellButton);
-		spellsButtonsPanel.add(removeSpellButton);
-		
-		spellsPanel.add(spellsDisplayPanel, BorderLayout.CENTER);
+        //spells panel                                                                                             Color.BLACK, 1, true), "Spells"));
+        spellsTextPane = new JTextPane();
+        spellsTextPane.setOpaque(false);
+        spellsTextPane.setLayout(new BoxLayout(spellsTextPane, BoxLayout.Y_AXIS));
+        spellsScrollPane = new JScrollPane(spellsTextPane);
+        spellsScrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
+                Color.BLACK, 1, true), "Spells"));
+        spellsScrollPane.setOpaque(false);
+        spellsScrollPane.getViewport().setOpaque(false);
+        spellsScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        
+        HashMap<String, Spell> spellMap = MasterLists.getMasterSpellList();
+        ArrayList<String> spellList = new ArrayList<String>();
+        for (Spell spell: spellMap.values()) {
+        		spellList.add(spell.name);
+        }
+        
+        	ArrayList<JLabel> displayedSpellsList = new ArrayList<>();
+        	
+        ArrayList<Spell> knownSpells = character.getKnownSpells();
+            for (Spell spell: knownSpells) {
+                    String spellDescription = "<html><b>" + spell.name + "</b><br>&emsp;&emsp;" + spell.description + "<br><br></html>";
+                    displayedSpellsList.add(new JLabel(spellDescription));
+            }
+        for (JLabel spellLabel: displayedSpellsList) {
+        		spellsTextPane.insertComponent(spellLabel);
+        }
+        
+        	ArrayList<String> currentSpellList = new ArrayList<String>();
+        	for (Spell knownSpell: knownSpells) {
+        		currentSpellList.add(knownSpell.name);
+        }
+        spellsPanel.setLayout(new BorderLayout());
+        spellsButtonsPanel = new TransparentJPanel();
+        spellsButtonsPanel.setLayout(new GridLayout(1,0));
+        addSpellLabel = new JLabel("Add New Spell:");
+        addSpellLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        	
+        Collections.sort(spellList, String.CASE_INSENSITIVE_ORDER);
+        String[] spellOptions = spellList.toArray(new String[spellList.size()]);
+        addSpellComboBox = new JComboBox(spellOptions);  
+        addSpellComboBox.addActionListener((ActionEvent e) -> {
+			String choice = (String) addSpellComboBox.getSelectedItem();
+			Spell newSpell = spellMap.get(choice);
+			displayedSpellsList.add(new JLabel("<html><b>Name: " + newSpell.name + 
+					"</b><br>Level: " + newSpell.level + 
+					"</b><br>Duration: " + newSpell.duration + 
+					"</b><br>Range: " + newSpell.range + 
+					"</b><br>Casting time: " + newSpell.castingTime + 					
+					"<br>Description: " +newSpell.description + "<br><br></html>"));
+			spellsTextPane.removeAll();
+			for (JLabel spellLabel: displayedSpellsList) {
+        			spellsTextPane.insertComponent(spellLabel);
+			}
+			spellList.remove(newSpell.name);
+			addSpellComboBox.setModel(new DefaultComboBoxModel(spellList.toArray(new String[spellList.size()])));
+			currentSpellList.add(newSpell.name);
+			//Collections.sort(currentSpellList, String.CASE_INSENSITIVE_ORDER);
+			removeSpellComboBox.setModel(new DefaultComboBoxModel(currentSpellList.toArray(new String[currentSpellList.size()])));
+        });
+        
+        removeSpellLabel = new JLabel("Remove Spell:");
+        removeSpellLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        removeSpellComboBox = new JComboBox(character.getMemorizedSpells().toArray(new String[character.getMemorizedSpells().size()]));
+        removeSpellComboBox.addActionListener((ActionEvent e) -> {
+			String choice = (String) removeSpellComboBox.getSelectedItem();
+			int labelIndexToRemove=0;
+			for (int i=0; i<displayedSpellsList.size(); i++) {
+				if (displayedSpellsList.get(i).getText().startsWith("<html><b>" + choice)) {
+					labelIndexToRemove = i;
+					System.out.println(labelIndexToRemove);
+				}
+			}
+
+			displayedSpellsList.remove(labelIndexToRemove);
+			//spellsTextPane.remove(labelIndexToRemove);
+			//spellsTextPane.removeAll();
+			try {
+				spellsTextPane.getDocument().remove(labelIndexToRemove, 1);
+			} catch (BadLocationException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			spellsTextPane.revalidate();
+			spellsTextPane.repaint();		
+			System.out.println(displayedSpellsList.size());
+			for (JLabel spellLabelToDisplay: displayedSpellsList) {
+				System.out.println(spellLabelToDisplay.getText());
+        			spellsTextPane.add(spellLabelToDisplay);
+			}
+			
+			Spell removedSpell = spellMap.get(choice);
+			spellList.add(0, removedSpell.name);
+			Collections.sort(spellList, String.CASE_INSENSITIVE_ORDER);
+			addSpellComboBox.setModel(new DefaultComboBoxModel(spellList.toArray(new String[spellList.size()])));
+			currentSpellList.remove(removedSpell.name);
+			removeSpellComboBox.setModel(new DefaultComboBoxModel(currentSpellList.toArray(new String[currentSpellList.size()])));
+        });
+        
+        spellsButtonsPanel.add(addSpellLabel);
+        spellsButtonsPanel.add(addSpellComboBox);
+        spellsButtonsPanel.add(removeSpellLabel);
+        spellsButtonsPanel.add(removeSpellComboBox);   
+        
+        spellsPanel.add(spellsScrollPane, BorderLayout.CENTER);
         spellsPanel.add(spellsButtonsPanel, BorderLayout.SOUTH);
+        
+        
     }
     
     private void display() {
@@ -532,90 +636,92 @@ public class CharacterCreator {
     }
     
     private void saveCharacter() {
-    	JFileChooser jfc = new JFileChooser(".");
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("ser file", "ser");
-		jfc.addChoosableFileFilter(filter);
-		jfc.setFileFilter(filter);
-		int returnVal = jfc.showSaveDialog(saveSheetMenuItem);
-		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			File file = jfc.getSelectedFile();
-			try {
-				FileOutputStream fos = new FileOutputStream(file);
-				System.out.println("saved");
-				ObjectOutputStream oos = new ObjectOutputStream(fos);
-				oos.writeObject(character);
-				oos.close();
-			}
-
-			catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+        JFileChooser jfc = new JFileChooser(".");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("ser file", "ser");
+        jfc.addChoosableFileFilter(filter);
+        jfc.setFileFilter(filter);
+        int returnVal = jfc.showSaveDialog(saveSheetMenuItem);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = jfc.getSelectedFile();
+            File saveFile = new File(file.getAbsolutePath() + ".ser");
+            try {
+                FileOutputStream fos = new FileOutputStream(saveFile);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(character);
+                oos.close();
+            }
+            
+            catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
     
     private void loadCharacter() {
-		JFileChooser jfc = new JFileChooser(".");
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("ser file", "ser");
-		jfc.addChoosableFileFilter(filter);
-		jfc.setFileFilter(filter);
-		int returnVal = jfc.showOpenDialog(loadSheetMenuItem);
-		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			File file = jfc.getSelectedFile();
-			try {
-				frame.dispose();
-				FileInputStream fis = new FileInputStream(file);
-				ObjectInputStream ois = new ObjectInputStream(fis);
-				Character loadCharacter = (Character) ois.readObject();
-				CharacterCreator l = new CharacterCreator(loadCharacter);
-				l.display();
-				ois.close();
-			}
-
-			catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+        JFileChooser jfc = new JFileChooser(".");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("ser file", "ser");
+        jfc.addChoosableFileFilter(filter);
+        jfc.setFileFilter(filter);
+        int returnVal = jfc.showOpenDialog(loadSheetMenuItem);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = jfc.getSelectedFile();
+            try {
+                frame.dispose();
+                FileInputStream fis = new FileInputStream(file);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                Character loadCharacter = (Character) ois.readObject();
+                CharacterCreator l = new CharacterCreator(loadCharacter, msl);
+                l.display();
+                ois.close();
+            }
+            
+            catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     
     
-	public static void main(String[] args) throws InvocationTargetException, InterruptedException {
-		EventQueue.invokeAndWait(new Runnable() {
-			@Override
-			public void run() {
-				MasterLists.createMasterLists();
-				Object[] options = { "Create New Character", "Load Character" };
-				int selection = JOptionPane.showOptionDialog(null, "Welcome to Character Creator!\nSelect an Option:",
-						"Character Creator", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, // do not
-																											// use a
-																											// custom
-																											// Icon
-						options, // the titles of buttons
-						null); // default button title
-				switch (selection) {
-				case 0:
-					NewCharacter nc = new NewCharacter();
-					nc.newCharacterGui();
-					break;
-				case 1:
-					Character loadCharacter = new Character();
-					CharacterCreator c = new CharacterCreator(loadCharacter);
-					c.display();
-					c.loadCharacter();
-					break;
-				case JOptionPane.CLOSED_OPTION:
-					System.exit(0);
-					break;
-				}
-			}
-		});
-
-	}
+    public static void main(String[] args) throws InvocationTargetException, InterruptedException {
+        
+        EventQueue.invokeAndWait(new Runnable() {
+            @Override
+            public void run() {
+            	    MasterLists msl = new MasterLists();
+                Object[] options = {"Create New Character", "Load Character"};
+                int selection = JOptionPane.showOptionDialog(null, "Welcome to Character Creator!\nSelect an Option:",
+                                                             "Character Creator", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
+                                                             null,     //do not use a custom Icon
+                                                             options,  //the titles of buttons
+                                                             null); //default button title
+                switch(selection) {
+                    case 0:
+                        //NewCharacter nc = new NewCharacter();
+                        //nc.newCharacterGui();
+                    		Character testChar = new Character();
+                    		CharacterCreator test = new CharacterCreator(testChar, msl);
+                    		test.display();
+                        break;
+                    case 1:
+                        Character loadCharacter = new Character();
+                        CharacterCreator c = new CharacterCreator(loadCharacter, msl);
+                        c.display();
+                        c.loadCharacter();
+                        break;
+                    case JOptionPane.CLOSED_OPTION:
+                        System.exit(0);
+                        break;
+                }
+            }
+        });
+        
+    }
 }
 
 class TransparentJCheckBox extends JCheckBox {
@@ -685,7 +791,7 @@ class BasicInfoPanel extends JPanel {
         JSpinner basicInfoValueSpinner;
         int spinnerValue = Integer.valueOf(value);
         remove(basicInfoValue);
-        SpinnerModel model = new SpinnerNumberModel(spinnerValue, 0, 99, 1);
+        SpinnerModel model = new SpinnerNumberModel(spinnerValue, 0, 9999, 1);
         basicInfoValueSpinner = new JSpinner(model);
         basicInfoValueSpinner.setFont(new Font(null, Font.BOLD, 24));
         basicInfoValueSpinner.setOpaque(false);
@@ -720,6 +826,8 @@ class AbilityScorePanel extends JPanel {
     JLabel abilityScoreNameLabel;
     JSpinner spinner;
     JLabel modifierLabel;
+    int value = 0;
+    int modifier = 0;
     
     public AbilityScorePanel(String inAbility, Character inCharacter) {
         
@@ -730,9 +838,7 @@ class AbilityScorePanel extends JPanel {
         Border inside = new CompoundBorder(border, padding);
         setBorder(new CompoundBorder(margin, inside));
         setLayout(new BorderLayout());
-        
-        int value = 0;
-        
+         
         switch(inAbility) {
             case "Strength" : value = inCharacter.getAbilityScoreStrength();
                 break;
@@ -750,7 +856,7 @@ class AbilityScorePanel extends JPanel {
                 break;
         }
         
-        SpinnerModel model = new SpinnerNumberModel(value, 0, 99, 1);
+        SpinnerModel model = new SpinnerNumberModel(value, 0, 30, 1);
         spinner = new JSpinner(model);
         spinner.setFont(new Font(null, Font.BOLD, 24));
         spinner.setOpaque(false);
@@ -790,14 +896,18 @@ class AbilityScorePanel extends JPanel {
                     default:
                         break;
                 }
-                
+                modifier = AttributeBonusCalculator.getAttributeBonus((int) spinner.getValue());
+                String modifierString = String.valueOf(modifier);
+                if (modifier > 0) modifierString = "+" + modifierString;
+                modifierLabel.setText(" (" + modifierString + ")");
             }
         });
         
         abilityScoreNameLabel = new JLabel(inAbility, SwingConstants.CENTER);
-        String fillerModifier = String.valueOf(Math.round(Math.random()*10 - 5));
-        if (Integer.valueOf(fillerModifier) > 0) fillerModifier = "+" + fillerModifier;
-        modifierLabel = new JLabel((" (" + fillerModifier + ")"), SwingConstants.RIGHT);
+        modifier = AttributeBonusCalculator.getAttributeBonus(value);
+        String modifierString = String.valueOf(modifier);
+        if (modifier > 0) modifierString = "+" + modifierString;
+        modifierLabel = new JLabel((" (" + modifierString + ")"), SwingConstants.RIGHT);
         modifierLabel.setFont(new Font(null, Font.ITALIC, 11));
         add(abilityScoreNameLabel, BorderLayout.NORTH);
         JPanel helperPanel = new TransparentJPanel();
@@ -830,80 +940,80 @@ class StatsPanel extends JPanel {
         
         switch (inStat) {
             case "Hit Points" :
-            		value = inCharacter.getHitPointsCurrent();
+                value = inCharacter.getHitPointsCurrent();
                 break;
             case "Armor Class" :
-            		value = inCharacter.getArmorClass();
+                value = inCharacter.getArmorClass();
                 break;
             case "Initiative" :
-            		value = inCharacter.getInitiative();
+                value = inCharacter.getInitiative();
                 break;
             case "Proficiency Bonus" :
-            		value = inCharacter.getProficiencyBonus();
+                value = inCharacter.getProficiencyBonus();
                 break;
             case "Speed" :
                 value = inCharacter.getSpeed();
                 break;
             case "Passive Perception" :
-            		value = inCharacter.getPassivePerception();
+                value = inCharacter.getPassivePerception();
                 break;
         }
         
-         
+        
         if (inStat.matches("Proficiency Bonus") || inStat.matches("Passive Perception")) {
-        		JLabel statLabel = new JLabel(String.valueOf(value));
-        		statLabel.setFont(new Font(null, Font.BOLD, 20));
-        		statLabel.setHorizontalAlignment(JLabel.CENTER);
-        		add(statLabel, BorderLayout.CENTER);
+            JLabel statLabel = new JLabel(String.valueOf(value));
+            statLabel.setFont(new Font(null, Font.BOLD, 20));
+            statLabel.setHorizontalAlignment(JLabel.CENTER);
+            add(statLabel, BorderLayout.CENTER);
         }
         
         else {
-	        SpinnerModel model = new SpinnerNumberModel(value, 0, 99, 1);
-	        JSpinner spinner = new JSpinner(model);
-	        spinner.setFont(new Font(null, Font.BOLD, 20));
-	        spinner.setOpaque(false);
-	        spinner.getEditor().setOpaque(false);
-	        JFormattedTextField textField = ((JSpinner.DefaultEditor)spinner.getEditor()).getTextField();
-	        textField.setOpaque(false);
-	        textField.setColumns(2);
-	        textField.setBorder(new EmptyBorder(0,0,0,5));
-	        textField.setEditable(false);   
-	        JPanel helperPanel = new TransparentJPanel();
-	        helperPanel.add(spinner);
-	        add(helperPanel, BorderLayout.CENTER);
-	        
-	     // listener to change set new values in character.java if spinner buttons are used
-	        DefaultFormatter formatter = (DefaultFormatter) textField.getFormatter();
-	        formatter.setCommitsOnValidEdit(true);
-	        spinner.addChangeListener(new ChangeListener() {
-	            
-	            @Override
-	            public void stateChanged(ChangeEvent e) {
-	                switch (inStat) {
-	                    case "Hit Points":
-	                        inCharacter.setHitPointsCurrent((int) spinner.getValue());
-	                        break;
-	                    case "Armor Class":
-	                        inCharacter.setArmorClass((int) spinner.getValue());
-	                        break;
-	                    case "Initiative":
-	                        inCharacter.setInitiative((int) spinner.getValue());
-	                        break;
-	                    case "Proficiency Bonus":
-	                        
-	                        break;
-	                    case "Speed":
-	                        inCharacter.setSpeed((int) spinner.getValue());
-	                        break;
-	                    case "Passive Perception":
-	                        
-	                        break;
-	                    default:
-	                        break;
-	                }
-	                
-	            }
-	        });
+            SpinnerModel model = new SpinnerNumberModel(value, 0, 99, 1);
+            JSpinner spinner = new JSpinner(model);
+            spinner.setFont(new Font(null, Font.BOLD, 20));
+            spinner.setOpaque(false);
+            spinner.getEditor().setOpaque(false);
+            JFormattedTextField textField = ((JSpinner.DefaultEditor)spinner.getEditor()).getTextField();
+            textField.setOpaque(false);
+            textField.setColumns(2);
+            textField.setBorder(new EmptyBorder(0,0,0,5));
+            textField.setEditable(false);
+            JPanel helperPanel = new TransparentJPanel();
+            helperPanel.add(spinner);
+            add(helperPanel, BorderLayout.CENTER);
+            
+            // listener to change set new values in character.java if spinner buttons are used
+            DefaultFormatter formatter = (DefaultFormatter) textField.getFormatter();
+            formatter.setCommitsOnValidEdit(true);
+            spinner.addChangeListener(new ChangeListener() {
+                
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    switch (inStat) {
+                        case "Hit Points":
+                            inCharacter.setHitPointsCurrent((int) spinner.getValue());
+                            break;
+                        case "Armor Class":
+                            inCharacter.setArmorClass((int) spinner.getValue());
+                            break;
+                        case "Initiative":
+                            inCharacter.setInitiative((int) spinner.getValue());
+                            break;
+                        case "Proficiency Bonus":
+                            
+                            break;
+                        case "Speed":
+                            inCharacter.setSpeed((int) spinner.getValue());
+                            break;
+                        case "Passive Perception":
+                            
+                            break;
+                        default:
+                            break;
+                    }
+                    
+                }
+            });
         }
     }
 }
