@@ -43,8 +43,8 @@ public class MasterLists {
 
 
     // array of file names
-    private static String fileNames[] = {"classTypes.json","races.json", "features.json",
-            "items.json","armor.json","weapons.json","skills.json","spells.json"};
+    private static String fileNames[] = {"classTypes.json", "race.json", "TestFeaturesList.json",
+            "items.json", "armor.json", "weapons.json", "skill.json", "spells.json"};
 
     private static Class[] classList= { ClassType.class, Race.class, ClassFeature.class,
     Item.class, Armor.class, Weapon.class, Skill.class, Spell.class};
