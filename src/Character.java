@@ -11,6 +11,18 @@ import java.util.stream.*;
  * This class serves as a way to store the data that defines a given Character object.  That is to say, all the fields and information that one would reasonably
  * expect to need to know about an adventurer in Dungeons and Dragons - name, race, inventory, spells, alignment, and so on, that is NOT directly tied to the character's
  * class, race, level, or other constant values.
+ *
+ * To Do List:
+ * recalculate method
+ * spell save DCs for all stats
+ * spell attack modifier for all stats
+ * 
+ * Change Log:
+ * --12/7/2017--
+ * Altered setAbilityScoreConstitution method to properly account for changes to hit point values.
+ * Fully implemented recalculate() method.
+ * --12/10/2017--
+ * Altered removeKnownSpell method, hopefully resolving a null pointer error.
  */
 
 public class Character implements Serializable {
@@ -67,33 +79,6 @@ public class Character implements Serializable {
     private ArrayList<Spell> knownSpells = new ArrayList<>();               // A list of ALL spells the character currently knows, via spellbook or innate memorization.
     private ArrayList<Spell> memorizedSpells = new ArrayList<>();           // A list of the CURRENTLY MEMORIZED spells for the character.
     private ArrayList<ClassFeature> featuresList = new ArrayList<>();       // A list of all class features that the character possesses.  These are merely listed via their IDs.
-    
-    /*
-    THINGS TO ADD:
-    
-    recalculate method
-    
-    DONE weight
-    DONE height
-    DONE sex
-    DONE character image
-    
-    DONE languages
-    
-    DONE equippedArmor(ArmorObject)
-    DONE equippedShield(ArmorObject)
-    DONE equippedWeaponsList(WeaponObject)
-    
-    DONE weapon proficiency list
-    DONE armor proficiency list
-    
-    spell save DCs for all stats
-    spell attack modifier for all stats
-    
-    DONE methods for memorizedSpells
-    
-    DONE methods for featuresList
-    */
     
     // Blank constructor.
     public Character() {
@@ -208,7 +193,12 @@ public class Character implements Serializable {
     public int getAbilityScoreDexterity() {return this.abilityScoreDexterity;}
     
     // For Constitution.
-    public void setAbilityScoreConstitution(int constitutionIn) {this.abilityScoreConstitution = constitutionIn;}
+    public void setAbilityScoreConstitution(int constitutionIn) {   // Method accounts for potential alterations in maximum hit point values by reverting level-based Constitution bonuses
+        int currentHPValue = this.hitPointsMaximum;                 // before changing Constutition value and then re-calculating them with the new Constitution value.
+        currentHPValue -= this.level * AttributeBonusCalculator.getAttributeBonus(this.abilityScoreConstitution);
+        this.abilityScoreConstitution = constitutionIn;
+        this.hitPointsMaximum = currentHPValue + (this.level * AttributeBonusCalculator.getAttributeBonus(this.abilityScoreConstitution));
+    } // End setAbilityScoreConstitution.
     public int getAbilityScoreConstitution() {return this.abilityScoreConstitution;}
     
     // For Intelligence.
@@ -335,9 +325,12 @@ public class Character implements Serializable {
     
     // For removing a spell from the Character's knownSpells list.
     public void removeKnownSpell(Spell spellToRemoveIn) {
-        if (this.knownSpells.contains(spellToRemoveIn)) {
-            this.knownSpells.remove(spellToRemoveIn);
-        } // End if.
+            for (Spell spell: this.getKnownSpells()) {
+                if (spellToRemoveIn.getName().matches(spell.getName())) {
+                    this.knownSpells.remove(spellToRemoveIn);
+                    System.out.println("success");
+                } // End if.
+            } // End for.
     } // End public void removeKnownSpell.
     
     // For getting the list of all known spells.
@@ -377,9 +370,139 @@ public class Character implements Serializable {
     // Recalculate Method //
     ////////////////////////
     
-    // This method will recalculate and re-correlate all data in Character.java.  To be used whenever a Attribute or any other notable field changes.
+    // This method will recalculate and re-correlate all data in Character.java.  To be used whenever an Attribute or any other notable field changes.
     public void recalculate() {
-        
+        int preCalculateHitPointMaxBase = this.hitPointsMaximum - (this.level * AttributeBonusCalculator.getAttributeBonus(this.abilityScoreConstitution));     // Calculate base hitpoints.
+        this.level = IntStream.of(this.levelArray).sum();                                                                                                       // Recalculate level, as all other values key off this.
+        this.hitPointsMaximum = preCalculateHitPointMaxBase + (this.level * AttributeBonusCalculator.getAttributeBonus(this.abilityScoreConstitution));         // Calculate max hitpoints based on current level.
+        // Now, recalculate proficiency bonus.
+        switch (this.level) {
+            case 1: case 2: case 3: case 4:
+                this.proficiencyBonus = 2;
+                break;
+            case 5: case 6: case 7: case 8:
+                this.proficiencyBonus = 3;
+                break;
+            case 9: case 10: case 11: case 12:
+                this.proficiencyBonus = 4;
+                break;
+            case 13: case 14: case 15: case 16:
+                this.proficiencyBonus = 5;
+                break;
+            case 17: case 18: case 19: case 20:
+                this.proficiencyBonus = 6;
+                break;
+            default:
+                this.proficiencyBonus = 2;
+                break;
+        } // End switch (this.level).
+        this.initiative = 10 + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreDexterity);  // Recalculate initiative.
+        // Iterate through skills list.  Update bonuses with new values.  Dump total values into totalSkillModifierArray.
+        for (int i = 0; i < skillsList.size(); i++) {
+            Skill currentSkill = skillsList.get(i);
+            String relevantAbilityScore = currentSkill.getRelevantAbilityScore().toLowerCase();
+            switch (relevantAbilityScore) {
+                case "strength":
+                    if (currentSkill.getIsProficient()) {
+                        totalSkillModifierArray[i] = this.proficiencyBonus + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreStrength) + currentSkill.getMiscBonus();
+                    } else {
+                        totalSkillModifierArray[i] = AttributeBonusCalculator.getAttributeBonus(this.abilityScoreStrength) + currentSkill.getMiscBonus();
+                    } // End if else.
+                    break;
+                case "dexterity":
+                    if (currentSkill.getIsProficient()) {
+                        totalSkillModifierArray[i] = this.proficiencyBonus + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreDexterity) + currentSkill.getMiscBonus();
+                    } else {
+                        totalSkillModifierArray[i] = AttributeBonusCalculator.getAttributeBonus(this.abilityScoreDexterity) + currentSkill.getMiscBonus();
+                    } // End if else.
+                    break;
+                case "constitution":
+                    if (currentSkill.getIsProficient()) {
+                        totalSkillModifierArray[i] = this.proficiencyBonus + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreConstitution) + currentSkill.getMiscBonus();
+                    } else {
+                        totalSkillModifierArray[i] = AttributeBonusCalculator.getAttributeBonus(this.abilityScoreConstitution) + currentSkill.getMiscBonus();
+                    } // End if else.
+                    break;
+                case "intelligence":
+                    if (currentSkill.getIsProficient()) {
+                        totalSkillModifierArray[i] = this.proficiencyBonus + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreIntelligence) + currentSkill.getMiscBonus();
+                    } else {
+                        totalSkillModifierArray[i] = AttributeBonusCalculator.getAttributeBonus(this.abilityScoreIntelligence) + currentSkill.getMiscBonus();
+                    } // End if else.
+                    break;
+                case "wisdom":
+                    if (currentSkill.getIsProficient()) {
+                        totalSkillModifierArray[i] = this.proficiencyBonus + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreWisdom) + currentSkill.getMiscBonus();
+                    } else {
+                        totalSkillModifierArray[i] = AttributeBonusCalculator.getAttributeBonus(this.abilityScoreWisdom) + currentSkill.getMiscBonus();
+                    } // End if else.
+                    break;
+                case "charisma":
+                    if (currentSkill.getIsProficient()) {
+                        totalSkillModifierArray[i] = this.proficiencyBonus + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreCharisma) + currentSkill.getMiscBonus();
+                    } else {
+                        totalSkillModifierArray[i] = AttributeBonusCalculator.getAttributeBonus(this.abilityScoreCharisma) + currentSkill.getMiscBonus();
+                    } // End if else.
+                    break;
+            } // End switch.
+        } // End for.
+        // Update values for saving throws.
+        for (int i = 0; i < this.savingThrowProficiencyArray.length; i++) {
+            switch (i) {
+                case 0:
+                    if (this.savingThrowProficiencyArray[0] == true) {
+                        this.savingThrowFinalValueArray[0] = this.proficiencyBonus + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreStrength);
+                    } else {
+                        this.savingThrowFinalValueArray[0] = AttributeBonusCalculator.getAttributeBonus(this.abilityScoreStrength);
+                    } // End if/else.
+                    break;
+                case 1:
+                    if (this.savingThrowProficiencyArray[1] == true) {
+                        this.savingThrowFinalValueArray[1] = this.proficiencyBonus + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreDexterity);
+                    } else {
+                        this.savingThrowFinalValueArray[1] = AttributeBonusCalculator.getAttributeBonus(this.abilityScoreDexterity);
+                    } // End if/else.
+                    break;
+                case 2:
+                    if (this.savingThrowProficiencyArray[2] == true) {
+                        this.savingThrowFinalValueArray[2] = this.proficiencyBonus + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreConstitution);
+                    } else {
+                        this.savingThrowFinalValueArray[2] = AttributeBonusCalculator.getAttributeBonus(this.abilityScoreConstitution);
+                    } // End if/else.
+                    break;
+                case 3:
+                    if (this.savingThrowProficiencyArray[3] == true) {
+                        this.savingThrowFinalValueArray[3] = this.proficiencyBonus + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreIntelligence);
+                    } else {
+                        this.savingThrowFinalValueArray[3] = AttributeBonusCalculator.getAttributeBonus(this.abilityScoreIntelligence);
+                    } // End if/else.
+                    break;
+                case 4:
+                    if (this.savingThrowProficiencyArray[4] == true) {
+                        this.savingThrowFinalValueArray[4] = this.proficiencyBonus + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreWisdom);
+                    } else {
+                        this.savingThrowFinalValueArray[4] = AttributeBonusCalculator.getAttributeBonus(this.abilityScoreWisdom);
+                    } // End if/else.
+                    break;
+                case 5:
+                    if (this.savingThrowProficiencyArray[5] == true) {
+                        this.savingThrowFinalValueArray[5] = this.proficiencyBonus + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreCharisma);
+                    } else {
+                        this.savingThrowFinalValueArray[5] = AttributeBonusCalculator.getAttributeBonus(this.abilityScoreCharisma);
+                    } // End if/else.
+                    break;
+            } // End switch (i).
+        } // End for.
+        // Recalculate passive perception.
+        for (Skill characterSkill : this.skillsList) {
+            if (characterSkill.getID().equalsIgnoreCase("skillPerception")) {
+                if (characterSkill.getIsProficient()) {
+                    this.passivePerception = 10 + this.proficiencyBonus + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreWisdom) + characterSkill.getMiscBonus();
+                } else {
+                    this.passivePerception = 10 + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreWisdom) + characterSkill.getMiscBonus();
+                } // End if/else.
+            } // End if.
+        } // End for.
     } // End recalculate method.
     
 } // End public class Character.
