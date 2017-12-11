@@ -1,3 +1,4 @@
+import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -7,10 +8,16 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.List;
+import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,8 +30,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.ListIterator;
 
 import javax.imageio.ImageIO;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -46,6 +56,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.KeyStroke;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -94,16 +105,19 @@ public class CharacterCreator {
     TransparentJPanel skillsAndThrowsPanel;
     TransparentJPanel savingThrowsPanel;
     TransparentJPanel skillsPanel;
-    
+    String[] skills = {"Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
+            "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature",
+            "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand",
+            "Stealth", "Survival"};
     
     //stats subpanel components
     TransparentJPanel statsPanel;
-    JPanel hitPointsPanel;
-    JPanel armorClassPanel;
-    JPanel initiativePanel;
-    JPanel proficiencyBonusPanel;
-    JPanel speedPanel;
-    JPanel passivePerceptionPanel;
+    StatsPanel hitPointsPanel;
+    StatsPanel armorClassPanel;
+    StatsPanel initiativePanel;
+    StatsPanel proficiencyBonusPanel;
+    StatsPanel speedPanel;
+    StatsPanel passivePerceptionPanel;
     
     //features, equippedItems, langauges subpanel
     TransparentJPanel featuresAndEquippedItemsSubPanel;
@@ -157,7 +171,7 @@ public class CharacterCreator {
      */
     
     
-    public CharacterCreator(Character inCharacter, MasterLists msl) {
+    public CharacterCreator(Character inCharacter) {
         
         this.character = inCharacter;
         this.msl = msl;
@@ -328,17 +342,17 @@ public class CharacterCreator {
         abilityScoresPanel = new TransparentJPanel();
         abilityScoresPanel.setLayout(new GridLayout(0,1));
         mainPanel.add(abilityScoresPanel, BorderLayout.WEST);
-        strengthPanel = new AbilityScorePanel("Strength", character);
+        strengthPanel = new AbilityScorePanel("Strength", character, this);
         abilityScoresPanel.add(strengthPanel);
-        dexterityPanel = new AbilityScorePanel("Dexterity", character);
+        dexterityPanel = new AbilityScorePanel("Dexterity", character, this);
         abilityScoresPanel.add(dexterityPanel);
-        constitutionPanel = new AbilityScorePanel("Constitution", character);
+        constitutionPanel = new AbilityScorePanel("Constitution", character, this);
         abilityScoresPanel.add(constitutionPanel);
-        intelligencePanel = new AbilityScorePanel("Intelligence", character);
+        intelligencePanel = new AbilityScorePanel("Intelligence", character, this);
         abilityScoresPanel.add(intelligencePanel);
-        wisdomPanel = new AbilityScorePanel("Wisdom", character);
+        wisdomPanel = new AbilityScorePanel("Wisdom", character, this);
         abilityScoresPanel.add(wisdomPanel);
-        charismaPanel = new AbilityScorePanel("Charisma", character);
+        charismaPanel = new AbilityScorePanel("Charisma", character, this);
         abilityScoresPanel.add(charismaPanel);
         
         
@@ -375,41 +389,56 @@ public class CharacterCreator {
         int[] savingThrowFinalArray = character.getSavingThrowFinalValueArray();
         boolean[] savingThrowProficiencyArray = character.getSavingThrowProficiencyArray();
         for (int i=0; i<savingThrows.length; i++) {
+        	final int index = i;
             String text = String.valueOf(savingThrowFinalArray[i]) + " " + savingThrows[i];
-            savingThrowsPanel.add(new TransparentJCheckBox(text, savingThrowProficiencyArray[i]));
+            TransparentJCheckBox tjcb = new TransparentJCheckBox(text, savingThrowProficiencyArray[i]);
+            savingThrowsPanel.add(tjcb);
+            tjcb.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(tjcb.isSelected() == false) character.setSavingThrowProficiencyArrayValue(index, false);
+					else character.setSavingThrowProficiencyArrayValue(index, true);      	
+				}
+			});
         }
         
         
         // Skills panel
-        String[] skills = {"Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
-            "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature",
-            "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand",
-            "Stealth", "Survival"};
-        
+
         int[]skillModifierArray = character.getTotalSkillModifierArray();
+        ArrayList<Skill> characterSkillProficiency = character.getSkillsList();
         for(int i=0; i<skills.length; i++) {
-            boolean selected = false;
-            //if (inCharacter.getSkillList().contains(skill)) selected = true;
-            skillsPanel.add(new TransparentJCheckBox(String.valueOf(skillModifierArray[i]) +
-                                                     " " + skills[i] + "     ", selected));
+        	final int index = i;
+			boolean selected = characterSkillProficiency.get(i).isProficient;
+			TransparentJCheckBox tjcb = new TransparentJCheckBox(String.valueOf(skillModifierArray[i]) +
+                                                     " " + skills[i] + "     ", selected);
+            skillsPanel.add(tjcb);
+            tjcb.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(tjcb.isSelected() == false) character.getSkillsList().get(index).setIsProficient(false);
+					else character.getSkillsList().get(index).setIsProficient(true);     	
+				}
+			});
             
         }
         
+
         // Stats panel
         statsPanel = new TransparentJPanel();
         statsPanel.setLayout(new GridLayout(0,1));
         centerSubPanel.add(statsPanel, BorderLayout.WEST);
-        hitPointsPanel = new StatsPanel("Hit Points", character);
+        hitPointsPanel = new StatsPanel("Hit Points", character, this);
         statsPanel.add(hitPointsPanel);
-        armorClassPanel = new StatsPanel("Armor Class", character);
+        armorClassPanel = new StatsPanel("Armor Class", character, this);
         statsPanel.add(armorClassPanel);
-        initiativePanel = new StatsPanel("Initiative", character);
+        initiativePanel = new StatsPanel("Initiative", character, this);
         statsPanel.add(initiativePanel);
-        proficiencyBonusPanel = new StatsPanel("Proficiency Bonus", character);
+        proficiencyBonusPanel = new StatsPanel("Proficiency Bonus", character, this);
         statsPanel.add(proficiencyBonusPanel);
-        speedPanel = new StatsPanel("Speed", character);
+        speedPanel = new StatsPanel("Speed", character, this);
         statsPanel.add(speedPanel);
-        passivePerceptionPanel = new StatsPanel("Passive Perception", character);
+        passivePerceptionPanel = new StatsPanel("Passive Perception", character, this);
         statsPanel.add(passivePerceptionPanel);
         
         // features and equipped items subpanel
@@ -482,9 +511,11 @@ public class CharacterCreator {
         equippedItemsPanel.add(languagesPanel, BorderLayout.NORTH); // add languages above equipment
         languagesPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
                                                                                                  Color.BLACK, 1, true), "Languages"));
-        //        String languagesKnown;
-        //        character.getLanguages().
-        languagesLabel = new JLabel("Dwarvish, Common, Giant, Halfling");
+        String languagesKnown = "";
+        for (String language: character.getLanguages()) {
+        	languagesKnown = languagesKnown + "   " + language;
+        }
+        languagesLabel = new JLabel(languagesKnown);
         languagesPanel.add(languagesLabel);
         
         // inventory and spells page
@@ -523,6 +554,7 @@ public class CharacterCreator {
         
         //spells panel                                                                                             Color.BLACK, 1, true), "Spells"));
         spellsTextPane = new JTextPane();
+        spellsTextPane.setEditable(false);
         spellsTextPane.setOpaque(false);
         spellsTextPane.setLayout(new BoxLayout(spellsTextPane, BoxLayout.Y_AXIS));
         spellsScrollPane = new JScrollPane(spellsTextPane);
@@ -538,21 +570,27 @@ public class CharacterCreator {
         		spellList.add(spell.name);
         }
         
-        	ArrayList<JLabel> displayedSpellsList = new ArrayList<>();
+        ArrayList<JLabel> displayedSpellsList = new ArrayList<>();
         	
         ArrayList<Spell> knownSpells = character.getKnownSpells();
             for (Spell spell: knownSpells) {
-                    String spellDescription = "<html><b>" + spell.name + "</b><br>&emsp;&emsp;" + spell.description + "<br><br></html>";
+                    String spellDescription = "<html><b>Name: " + spell.name + 
+        					"</b><br>Level: " + spell.level + 
+        					"</b><br>Duration: " + spell.duration + 
+        					"</b><br>Range: " + spell.range + 
+        					"</b><br>Casting time: " + spell.castingTime + 					
+        					"<br>Description: " + spell.description + "<br><br></html>";
                     displayedSpellsList.add(new JLabel(spellDescription));
             }
         for (JLabel spellLabel: displayedSpellsList) {
         		spellsTextPane.insertComponent(spellLabel);
         }
         
-        	ArrayList<String> currentSpellList = new ArrayList<String>();
+        ArrayList<String> currentSpellList = new ArrayList<String>();
         	for (Spell knownSpell: knownSpells) {
         		currentSpellList.add(knownSpell.name);
         }
+        	
         spellsPanel.setLayout(new BorderLayout());
         spellsButtonsPanel = new TransparentJPanel();
         spellsButtonsPanel.setLayout(new GridLayout(1,0));
@@ -565,6 +603,7 @@ public class CharacterCreator {
         addSpellComboBox.addActionListener((ActionEvent e) -> {
 			String choice = (String) addSpellComboBox.getSelectedItem();
 			Spell newSpell = spellMap.get(choice);
+			character.addKnownSpell(choice);
 			displayedSpellsList.add(new JLabel("<html><b>Name: " + newSpell.name + 
 					"</b><br>Level: " + newSpell.level + 
 					"</b><br>Duration: " + newSpell.duration + 
@@ -587,30 +626,23 @@ public class CharacterCreator {
         removeSpellComboBox = new JComboBox(character.getMemorizedSpells().toArray(new String[character.getMemorizedSpells().size()]));
         removeSpellComboBox.addActionListener((ActionEvent e) -> {
 			String choice = (String) removeSpellComboBox.getSelectedItem();
-			int labelIndexToRemove=0;
-			for (int i=0; i<displayedSpellsList.size(); i++) {
-				if (displayedSpellsList.get(i).getText().startsWith("<html><b>" + choice)) {
-					labelIndexToRemove = i;
-					System.out.println(labelIndexToRemove);
+			character.removeKnownSpell(spellMap.get(choice));
+			
+			ListIterator<JLabel> iter = displayedSpellsList.listIterator();
+			while (iter.hasNext()) {
+				if(iter.next().getText().startsWith("<html><b>Name: " + choice)) {
+					iter.remove();
 				}
 			}
-
-			displayedSpellsList.remove(labelIndexToRemove);
-			//spellsTextPane.remove(labelIndexToRemove);
-			//spellsTextPane.removeAll();
-			try {
-				spellsTextPane.getDocument().remove(labelIndexToRemove, 1);
-			} catch (BadLocationException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			spellsTextPane.revalidate();
-			spellsTextPane.repaint();		
-			System.out.println(displayedSpellsList.size());
+			
+			spellsTextPane.removeAll();
 			for (JLabel spellLabelToDisplay: displayedSpellsList) {
-				System.out.println(spellLabelToDisplay.getText());
-        			spellsTextPane.add(spellLabelToDisplay);
-			}
+				spellsTextPane.selectAll();
+        		spellsTextPane.add(spellLabelToDisplay);
+			}			
+			spellsTextPane.revalidate();
+			spellsTextPane.repaint();
+			//spellsTextPane.setCaretPosition(0);
 			
 			Spell removedSpell = spellMap.get(choice);
 			spellList.add(0, removedSpell.name);
@@ -627,8 +659,8 @@ public class CharacterCreator {
         
         spellsPanel.add(spellsScrollPane, BorderLayout.CENTER);
         spellsPanel.add(spellsButtonsPanel, BorderLayout.SOUTH);
-        
-        
+
+        refresh();
     }
     
     private void display() {
@@ -672,7 +704,7 @@ public class CharacterCreator {
                 FileInputStream fis = new FileInputStream(file);
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 Character loadCharacter = (Character) ois.readObject();
-                CharacterCreator l = new CharacterCreator(loadCharacter, msl);
+                CharacterCreator l = new CharacterCreator(loadCharacter);
                 l.display();
                 ois.close();
             }
@@ -687,13 +719,58 @@ public class CharacterCreator {
         }
     }
     
+    public void refresh() {
+    	character.recalculate();
+    	
+    	//stats panel refresh
+    	hitPointsPanel.value = character.getHitPointsCurrent();
+    	hitPointsPanel.model.setValue(hitPointsPanel.value);
+        armorClassPanel.value = character.getArmorClass();
+        armorClassPanel.model.setValue(armorClassPanel.value);
+        initiativePanel.value = character.getInitiative();
+        initiativePanel.model.setValue(initiativePanel.value);
+        proficiencyBonusPanel.value = character.getInitiative();
+        proficiencyBonusPanel.statLabel.setText(String.valueOf(proficiencyBonusPanel.value));
+        speedPanel.value = character.getSpeed();
+        speedPanel.model.setValue(speedPanel.value);        
+        passivePerceptionPanel.value = character.getPassivePerception();
+        passivePerceptionPanel.statLabel.setText(String.valueOf(passivePerceptionPanel.value));
+        
+        //saving throws panel refresh   
+        String[] savingThrows = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"};
+        int[] savingThrowFinalArray = character.getSavingThrowFinalValueArray();
+        boolean[] savingThrowProficiencyArray = character.getSavingThrowProficiencyArray();       
+        Component[] savingThrowsComponent = savingThrowsPanel.getComponents();
+        for (int i=0; i<savingThrowsComponent.length; i++) {
+            if(savingThrowsComponent[i] instanceof TransparentJCheckBox) {
+        		TransparentJCheckBox tjcb = (TransparentJCheckBox)savingThrowsComponent[i];
+        		tjcb.setText(String.valueOf(savingThrowFinalArray[i]) + " " + savingThrows[i]);
+        	}
+            
+        }
+          
+        //skills panel refresh
+        int[]skillModifierArray = character.getTotalSkillModifierArray();
+        ArrayList<Skill> characterSkillProficiency = character.getSkillsList();
+        Component[] skillsComponent = skillsPanel.getComponents();
+        for(int i=0; i<skillsComponent.length; i++) {
+        	if (skillsComponent[i] instanceof TransparentJCheckBox) {
+        		TransparentJCheckBox tjcb = (TransparentJCheckBox)skillsComponent[i];
+        		tjcb.setText(String.valueOf(skillModifierArray[i]) +
+                                                     " " + skills[i] + "     ");
+    			boolean selected = characterSkillProficiency.get(i).isProficient;
+    			tjcb.setSelected(selected);
+        	}          
+        }   	
+    }
+    
     
     public static void main(String[] args) throws InvocationTargetException, InterruptedException {
         
         EventQueue.invokeAndWait(new Runnable() {
             @Override
             public void run() {
-            	    MasterLists msl = new MasterLists();
+            	MasterLists msl = new MasterLists();
                 Object[] options = {"Create New Character", "Load Character"};
                 int selection = JOptionPane.showOptionDialog(null, "Welcome to Character Creator!\nSelect an Option:",
                                                              "Character Creator", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
@@ -705,12 +782,30 @@ public class CharacterCreator {
                         //NewCharacter nc = new NewCharacter();
                         //nc.newCharacterGui();
                     		Character testChar = new Character();
-                    		CharacterCreator test = new CharacterCreator(testChar, msl);
+                    		testChar.setCharacterImg("Portraits/Othovir.png");
+                    		testChar.setName("Horace");
+                    		testChar.setAbilityScoreCharisma(5);
+                    		testChar.setAbilityScoreConstitution(10);
+                    		testChar.setAbilityScoreDexterity(16);
+                    		testChar.setAbilityScoreStrength(5);
+                    		testChar.setAbilityScoreWisdom(18);
+                    		testChar.setAbilityScoreIntelligence(10);
+                    		testChar.setFaction("Faction X");
+                    		testChar.setBackground("Background B");
+                    		testChar.setHitPointsCurrent(20);
+                    		testChar.setSpeed(4);
+                    		testChar.setRace("Dwarf");
+                    		testChar.setHitPointsCurrent(20);
+                    		testChar.setArmorClass(5);
+                    		testChar.addLanguage("Dwarvish");
+                    		testChar.addLanguage("Elvish");
+                    		testChar.setAlignment("Lawful Cabbage");
+                    		CharacterCreator test = new CharacterCreator(testChar);
                     		test.display();
                         break;
                     case 1:
                         Character loadCharacter = new Character();
-                        CharacterCreator c = new CharacterCreator(loadCharacter, msl);
+                        CharacterCreator c = new CharacterCreator(loadCharacter);
                         c.display();
                         c.loadCharacter();
                         break;
@@ -720,7 +815,6 @@ public class CharacterCreator {
                 }
             }
         });
-        
     }
 }
 
@@ -826,10 +920,10 @@ class AbilityScorePanel extends JPanel {
     JLabel abilityScoreNameLabel;
     JSpinner spinner;
     JLabel modifierLabel;
-    int value = 0;
+    int value = 1;
     int modifier = 0;
     
-    public AbilityScorePanel(String inAbility, Character inCharacter) {
+    public AbilityScorePanel(String inAbility, Character inCharacter, CharacterCreator cc) {
         
         setOpaque(false);
         Border margin = new EmptyBorder(5,5,0,5);
@@ -856,7 +950,7 @@ class AbilityScorePanel extends JPanel {
                 break;
         }
         
-        SpinnerModel model = new SpinnerNumberModel(value, 0, 30, 1);
+        SpinnerModel model = new SpinnerNumberModel(value, 1, 30, 1);
         spinner = new JSpinner(model);
         spinner.setFont(new Font(null, Font.BOLD, 24));
         spinner.setOpaque(false);
@@ -900,6 +994,7 @@ class AbilityScorePanel extends JPanel {
                 String modifierString = String.valueOf(modifier);
                 if (modifier > 0) modifierString = "+" + modifierString;
                 modifierLabel.setText(" (" + modifierString + ")");
+                cc.refresh();           
             }
         });
         
@@ -920,11 +1015,16 @@ class AbilityScorePanel extends JPanel {
 class StatsPanel extends JPanel {
     JLabel statNameLabel;
     JLabel statNumberLabel;
+    String inStat;
+    public JLabel statLabel;
+    public SpinnerModel model;
+    public int value = 0;
     
-    public StatsPanel(String inStat, Character inCharacter)
+    public StatsPanel(String inStat, Character inCharacter, CharacterCreator cc)
     
     {
-        setOpaque(false);
+    	this.inStat = inStat;
+    	setOpaque(false);
         Border margin = new EmptyBorder(5,5,0,5);
         
         Border padding = new EmptyBorder(5,5,5,5);
@@ -936,7 +1036,6 @@ class StatsPanel extends JPanel {
         statNameLabel = new JLabel(inStat, SwingConstants.CENTER);
         add(statNameLabel, BorderLayout.NORTH);
         
-        int value = 0;
         
         switch (inStat) {
             case "Hit Points" :
@@ -959,16 +1058,15 @@ class StatsPanel extends JPanel {
                 break;
         }
         
-        
         if (inStat.matches("Proficiency Bonus") || inStat.matches("Passive Perception")) {
-            JLabel statLabel = new JLabel(String.valueOf(value));
+            statLabel = new JLabel(String.valueOf(value));
             statLabel.setFont(new Font(null, Font.BOLD, 20));
             statLabel.setHorizontalAlignment(JLabel.CENTER);
             add(statLabel, BorderLayout.CENTER);
         }
         
         else {
-            SpinnerModel model = new SpinnerNumberModel(value, 0, 99, 1);
+            model = new SpinnerNumberModel(value, 0, 99, 1);
             JSpinner spinner = new JSpinner(model);
             spinner.setFont(new Font(null, Font.BOLD, 20));
             spinner.setOpaque(false);
@@ -1011,9 +1109,11 @@ class StatsPanel extends JPanel {
                         default:
                             break;
                     }
+                    cc.refresh();
                     
                 }
             });
-        }
+        }    
     }
 }
+
