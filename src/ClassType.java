@@ -1,11 +1,13 @@
-//package charactercreator;
+package charactercreator;
+
+import java.io.Serializable;
 
 /*
  * This class is used to define ClassType objects, more commonly referred to simply as classes, or character classes.  These objects contain the necessary data and references
  * to generate a character class.
  */
 
-public class ClassType extends Thing{
+public class ClassType extends Thing implements Serializable {
 
     protected int[] hitDice;                        // An array determining which hit die the character uses.  There are 4 possible values, signifying: d6, d8, d10, d12.
     protected String[] armorProficiencies;          // A list of the armor proficiencies the character gets.

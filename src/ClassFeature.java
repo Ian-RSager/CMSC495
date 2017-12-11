@@ -1,14 +1,15 @@
-//package charactercreator;
+package charactercreator;
 
 /*
  * This class is used to define ClassFeature objects.  A ClassFeature is a particular mechanic that a character has access to due to
  * one or more of the character classes that they have gained levels in.
  */
 
+import java.io.Serializable;
 import java.util.Map;
 
 
-public class ClassFeature extends Thing{
+public class ClassFeature extends Thing implements Serializable {
 
     protected String[] classes;                     // An array of the classes, based on the class id tags, which have access to this feature.  Includes subclasses.
     protected String[] tags;                        // Plain text tags of the relevant classes or other descriptors which may be used to search for or describe this feature.

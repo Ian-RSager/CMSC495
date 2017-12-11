@@ -1,4 +1,6 @@
-//package charactercreator;
+package charactercreator;
+
+import java.io.Serializable;
 
 /*
  * This class is used to define Weapon objects.  A weapon is any item that can be used by a character to inflict
@@ -6,7 +8,7 @@
  * maximumRange values to indicate the appropriate ranges to use when thrown.
  */
 
-public class Weapon extends Item {
+public class Weapon extends Item implements Serializable {
     protected String damage = "1";                  // A value representing the damage the weapon can inflict, as a number of multi-sided dice.
     protected boolean isMelee = true;               // If the weapon is designed to be used in melee.
     protected boolean isRanged = false;             // If the weapon is designed to be used at range.

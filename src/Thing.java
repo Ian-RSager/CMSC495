@@ -1,4 +1,4 @@
-//package charactercreator;
+package charactercreator;
 
 /**
  * This class creates Thing objects and serves as a structural class.

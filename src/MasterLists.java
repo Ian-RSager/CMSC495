@@ -1,3 +1,5 @@
+package charactercreator;
+
 /**
  * MasterLists.java  -- Created by cwilbur on 12/3/17.
  * CMSC495 -- Class project
@@ -12,8 +14,9 @@ import java.io.BufferedReader;
         import java.util.HashMap;
 
         import com.google.gson.Gson;
+import java.io.Serializable;
 
-public class MasterLists {
+public class MasterLists implements Serializable {
     private static HashMap<String, Spell> masterSpellList;                  // Master spell list.
     private static HashMap<String, Skill> masterSkillList;                  // Master skill list.
     private static HashMap<String, Item> masterItemList;                    // Master item list.

@@ -1,11 +1,13 @@
-//package charactercreator;
+package charactercreator;
+
+import java.io.Serializable;
 
 /*
  * This class defines Skill objects, which allow the character to interact with the game world in a wide variety of ways.  They represent the
  * crystallization of some type of knowledge and/or training the character has practiced (or is naturally gifted at.)
  */
 
-public class Skill extends Thing {
+public class Skill extends Thing implements Serializable {
     protected String[] classes;                         // a list of classes that could use each feature
     protected String[] tags;                            // a list of tag words assoiated with this feature -- included for future versions.
     protected String relevantAbilityScore = "Strength"; // Which ability score will be used when calculating ability bonus values.
