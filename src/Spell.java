@@ -1,12 +1,13 @@
-//package charactercreator;
+package charactercreator;
 
 /*
  * This class defines Spell objects, magical incantations that allow the character to manipulate reality in fantastical ways.
  */
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class Spell extends Thing{
+public class Spell extends Thing implements Serializable {
     protected String castingTime;                   // How long the spell takes to cast.
     protected String[] classes;                     // An array of the names of all classes capable of casting this spell.
     protected Map<String, Object> components;       // The components needed to cast the spell.

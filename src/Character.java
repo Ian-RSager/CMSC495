@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.stream.*;
 
@@ -13,7 +14,6 @@ import java.util.stream.*;
  * class, race, level, or other constant values.
  *
  * To Do List:
- * recalculate method
  * spell save DCs for all stats
  * spell attack modifier for all stats
  * 
@@ -23,42 +23,46 @@ import java.util.stream.*;
  * Fully implemented recalculate() method.
  * --12/10/2017--
  * Altered removeKnownSpell method, hopefully resolving a null pointer error.
+ * --12/11/2017
+ * Altered removeKnownSpell AGAIN, hopefully the issue is really resolved this time.
+ * Initialized all fields to deal with null pointer exceptions.
+ * Added method to return a formatted String of all the Character's levels.
  */
 
 public class Character implements Serializable {
-    private int id;                                                 // Unique number ID for the character, for potential future use if more than one character can be opened at the same time.
-    private String name;                                            // The character's name.
-    private String race;                                            // The character's race, subraces are considered their own race.
-    private int level;                                              // The character's total level.
+    private int id = 0;                                             // Unique number ID for the character, for potential future use if more than one character can be opened at the same time.
+    private String name = "Name";                                   // The character's name.
+    private String race = "Race";                                   // The character's race, subraces are considered their own race.
+    private int level = 0;                                          // The character's total level.
     private int[] levelArray = new int[]{0,0,0,0,0,0,0,0,0,0,0,0};  
     // The total levels the character has in each class.
     // In order, these represent levels of: (0)Barbarian, (1)Bard, (2)Cleric, (3)Druid, (4)Fighter, (5)Monk, (6)Paladin, (7)Ranger, (8)Rogue, (9)Sorcerer, (10)Warlock, (11)Wizard.
     private String[] subClassArray = new String[]{"","","","","","","","","","","",""};
     // The subclass the character has chosen for a given class.
     // In order, these represent levels of: (0)Barbarian, (1)Bard, (2)Cleric, (3)Druid, (4)Fighter, (5)Monk, (6)Paladin, (7)Ranger, (8)Rogue, (9)Sorcerer, (10)Warlock, (11)Wizard.
-    private String faction;                                         // The faction the character currently belongs to.
-    private int proficiencyBonus;                                   // The character's current proficency bonus, based on their character level.
-    private int hitPointsMaximum;                                   // The character's maximum hit points.
-    private int hitPointsCurrent;                                   // The character's current hit points.
-    private int armorClass;                                         // The character's current armor class.
-    private int initiative;                                         // The character's initiative modifier.
-    private int passivePerception;                                  // The character's passive perception (which is 10 + the Perception skill value).
-    private String size;                                            // The character's size (small, medium, large, etc.)
-    private int speed;                                              // The character's speed, in feet per round.
-    private String background;                                      // The character's background.
-    private int experiencePoints;                                   // The current value of experience the character has earned.
-    private String alignment;                                       // The character's alignment.
-    private ArrayList<String> languages;                            // The languages the character can speak, in plain text.
-    private int weight;                                             // The character's weight.
-    private int height;                                             // The character's height.
-    private String characterImg;                                    // The path to the file used for the character's image.
-    private String sex;                                             // The character's sex.
-    private int abilityScoreStrength;                               // The character's Strength value.
-    private int abilityScoreDexterity;                              // The character's Dexterity value.
-    private int abilityScoreConstitution;                           // The character's Constitution value.
-    private int abilityScoreIntelligence;                           // The character's Intelligence value.
-    private int abilityScoreWisdom;                                 // The character's Wisdom value.
-    private int abilityScoreCharisma;                               // The character's Charisma value.
+    private String faction = "Faction";                             // The faction the character currently belongs to.
+    private int proficiencyBonus = 0;                               // The character's current proficency bonus, based on their character level.
+    private int hitPointsMaximum = 0;                               // The character's maximum hit points.
+    private int hitPointsCurrent = 0;                               // The character's current hit points.
+    private int armorClass = 10;                                    // The character's current armor class.
+    private int initiative = 0;                                     // The character's initiative modifier.
+    private int passivePerception = 0;                              // The character's passive perception (which is 10 + the Perception skill value).
+    private String size = "Size";                                   // The character's size (small, medium, large, etc.)
+    private int speed = 30;                                         // The character's speed, in feet per round.
+    private String background = "Background";                       // The character's background.
+    private int experiencePoints = 0;                               // The current value of experience the character has earned.
+    private String alignment = "Alignment";                         // The character's alignment.
+    private ArrayList<String> languages = new ArrayList<>();        // The languages the character can speak, in plain text.
+    private int weight = 0;                                         // The character's weight.
+    private int height = 0;                                         // The character's height.
+    private String characterImg = "characterImg";                   // The path to the file used for the character's image.
+    private String sex = "Sex";                                     // The character's sex.
+    private int abilityScoreStrength = 1;                           // The character's Strength value.
+    private int abilityScoreDexterity = 1;                          // The character's Dexterity value.
+    private int abilityScoreConstitution = 1;                       // The character's Constitution value.
+    private int abilityScoreIntelligence = 1;                       // The character's Intelligence value.
+    private int abilityScoreWisdom = 1;                             // The character's Wisdom value.
+    private int abilityScoreCharisma = 1;                           // The character's Charisma value.
     private int[] totalSkillModifierArray = new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     // The total modifier for each of the character's skills.
     // In order, these represent the modifiers for: (0)Acrobatics, (1)Animal Handling, (2)Arcana, (3)Athletics, (4)Deception, (5)History, (6)Insight, (7)Intimidation, 
@@ -71,9 +75,9 @@ public class Character implements Serializable {
     // In order, these represent the saving throws for: (0)Strength, (1)Dexterity, (2)Constitution, (3)Intelligence, (4)Wisdom, (5)Charisma
     private ArrayList<String> weaponProficiencyList = new ArrayList<>();    // A list of all weapons the character has proficiency in.
     private ArrayList<String> armorProficiencyList = new ArrayList<>();     // A list of all types of armor the character has proficiency in.
-    private ArrayList<String> equippedWeaponsList;                          // A list of all currently equipped weapons, via their unique IDs.
-    private String equippedArmor;                                           // The unique ID of the armor currently worn by the character.
-    private String equippedShield;                                          // The unique ID of the shield currently worn by the character.
+    private ArrayList<String> equippedWeaponsList = new ArrayList<>();      // A list of all currently equipped weapons, via their unique IDs.
+    private String equippedArmor = "Equipped Armor";                        // The unique ID of the armor currently worn by the character.
+    private String equippedShield = "Equipped Shield";                      // The unique ID of the shield currently worn by the character.
     private ArrayList<Item> itemsList = new ArrayList<>();                  // A list of all items in the character's inventory.
     private ArrayList<Skill> skillsList = new ArrayList<>();                // A list of all skills, intialized as a copy from the masterSkillList.
     private ArrayList<Spell> knownSpells = new ArrayList<>();               // A list of ALL spells the character currently knows, via spellbook or innate memorization.
@@ -82,7 +86,7 @@ public class Character implements Serializable {
     
     // Blank constructor.
     public Character() {
-        // Isn't this exciting?!
+        initializeSkillsList();
     } // End blank constructor.
     
     // Setters and getters.  Not all fields have a setter, due to the fact that values for these fields will be calculated internally.
@@ -107,8 +111,119 @@ public class Character implements Serializable {
         this.level = IntStream.of(levelArray).sum();
         // recalculate();
     } // End set class level.
+    
     // Allows the programmer to get the entire level array.
     public int[] getLevelArray() {return this.levelArray;}
+    
+    // Allows the programmer to get a fully formatted String, displaying the character's levels in each class.  For front end use only.
+    public String getLevelString() {
+        String returnString = "";
+        boolean firstLevelWritten = false;
+        
+        for (int i = 0; i < this.levelArray.length; i++) {
+            if (this.levelArray[i] > 0) {    // Only display the levels a character has in a class, if they have one or more levels in that class.
+                switch (i) {
+                    case 0:
+                        if (firstLevelWritten) {
+                            returnString += " , Barbarian " + this.levelArray[i];
+                        } else {
+                            returnString += "Barbarian " + this.levelArray[i];
+                            firstLevelWritten = true;
+                        } // End if/else.
+                        break;
+                    case 1:
+                        if (firstLevelWritten) {
+                            returnString += " , Bard " + this.levelArray[i];
+                        } else {
+                            returnString += "Bard " + this.levelArray[i];
+                            firstLevelWritten = true;
+                        } // End if/else.
+                        break;
+                    case 2:
+                        if (firstLevelWritten) {
+                            returnString += " , Cleric " + this.levelArray[i];
+                        } else {
+                            returnString += "Cleric " + this.levelArray[i];
+                            firstLevelWritten = true;
+                        } // End if/else.
+                        break;
+                    case 3:
+                        if (firstLevelWritten) {
+                            returnString += " , Druid " + this.levelArray[i];
+                        } else {
+                            returnString += "Druid " + this.levelArray[i];
+                            firstLevelWritten = true;
+                        } // End if/else.
+                        break;
+                    case 4:
+                        if (firstLevelWritten) {
+                            returnString += " , Fighter " + this.levelArray[i];
+                        } else {
+                            returnString += "Fighter " + this.levelArray[i];
+                            firstLevelWritten = true;
+                        } // End if/else.
+                        break;
+                    case 5:
+                        if (firstLevelWritten) {
+                            returnString += " , Monk " + this.levelArray[i];
+                        } else {
+                            returnString += "Monk " + this.levelArray[i];
+                            firstLevelWritten = true;
+                        } // End if/else.
+                        break;
+                    case 6:
+                        if (firstLevelWritten) {
+                            returnString += " , Paladin " + this.levelArray[i];
+                        } else {
+                            returnString += "Paladin " + this.levelArray[i];
+                            firstLevelWritten = true;
+                        } // End if/else.
+                        break;
+                    case 7:
+                        if (firstLevelWritten) {
+                            returnString += " , Ranger " + this.levelArray[i];
+                        } else {
+                            returnString += "Ranger " + this.levelArray[i];
+                            firstLevelWritten = true;
+                        } // End if/else.
+                        break;
+                    case 8:
+                        if (firstLevelWritten) {
+                            returnString += " , Rogue " + this.levelArray[i];
+                        } else {
+                            returnString += "Rogue " + this.levelArray[i];
+                            firstLevelWritten = true;
+                        } // End if/else.
+                        break;
+                    case 9:
+                        if (firstLevelWritten) {
+                            returnString += " , Sorcerer " + this.levelArray[i];
+                        } else {
+                            returnString += "Sorcerer " + this.levelArray[i];
+                            firstLevelWritten = true;
+                        } // End if/else.
+                        break;
+                    case 10:
+                        if (firstLevelWritten) {
+                            returnString += " , Warlock " + this.levelArray[i];
+                        } else {
+                            returnString += "Warlock " + this.levelArray[i];
+                            firstLevelWritten = true;
+                        } // End if/else.
+                        break;
+                    case 11:
+                        if (firstLevelWritten) {
+                            returnString += " , Wizard " + this.levelArray[i];
+                        } else {
+                            returnString += "Wizard " + this.levelArray[i];
+                            firstLevelWritten = true;
+                        } // End if/else.
+                        break;
+                } // End switch (i).
+            } // End if.
+        } // End for.
+        return returnString;
+    } // End public String getLevelString();
     
     // For subClass array.  This setter method requires the programmer to enter the index to be altered, as well as the new value for that index in the subClass array.
     public void setSubClass(int indexIn, String subClassIn) {
@@ -325,12 +440,12 @@ public class Character implements Serializable {
     
     // For removing a spell from the Character's knownSpells list.
     public void removeKnownSpell(Spell spellToRemoveIn) {
-            for (Spell spell: this.getKnownSpells()) {
-                if (spellToRemoveIn.getName().matches(spell.getName())) {
-                    this.knownSpells.remove(spellToRemoveIn);
-                    System.out.println("success");
+            ListIterator<Spell> iter = (ListIterator<Spell>) this.getKnownSpells().listIterator();
+            while (iter.hasNext()) {
+                if (iter.next().getName().equals(spellToRemoveIn.getName())) {
+                    iter.remove();
                 } // End if.
-            } // End for.
+            } // End while.
     } // End public void removeKnownSpell.
     
     // For getting the list of all known spells.

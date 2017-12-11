@@ -1,11 +1,13 @@
-//package charactercreator;
+package charactercreator;
+
+import java.io.Serializable;
 
 /*
  * This class is used to define Armor objects.  These are pieces of body armor or shields that a character will wear in order
  * to gain extra protection from attacks.
  */
 
-public class Armor extends Item {
+public class Armor extends Item implements Serializable {
 
     protected String armorType = "Light";           // Whether the armor is classified as Light, Medium, Heavy, or a Shield.
     protected int armorClass = 0;                   // The bonus amount of armor this object adds to the character's base 10 armor class.

@@ -1,4 +1,4 @@
-//package charactercreator;
+package charactercreator;
 
 /*
  * This class is used to define Item objects.  An Item object is the basic type of any physical thing a character can have in their

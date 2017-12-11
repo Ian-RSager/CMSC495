@@ -1,10 +1,12 @@
-//package charactercreator;
+package charactercreator;
+
+import java.io.Serializable;
 
 /*
  * This class is used to define Race objects.  A Race refers to the well, race, of the character.
  */
 
-public class Race extends Thing{
+public class Race extends Thing implements Serializable{
     protected int[] abilityScore;                   // A list of the which ability scores receive a bonus.  In order these represent: Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma.
     protected int age;                              // The default age of the race.
     protected int heightInches;                     // The default height, in inches, of the race.
