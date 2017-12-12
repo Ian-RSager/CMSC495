@@ -25,19 +25,6 @@ public class Thing implements java.io.Serializable {
 
     }
 
-    /**
-     * printData serves as a temporary QC. It will not necessarily be used during operation.
-     */
-    public void printData() {
-        try {
-            System.out.println("\nId: " + this.id);
-            System.out.println("Name: " + this.name);
-            System.out.println("Description: " + this.description);
-        }catch (Exception e){
-            System.out.println("\n\n\t **************  Item - OOPS ************** \n\n");
-        }
-    }
-
     //Getters
     public String getID() {return this.id;}
     public String getName() {return this.name;}
