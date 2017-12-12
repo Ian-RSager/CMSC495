@@ -37,52 +37,7 @@ public class ClassType extends Thing implements Serializable {
         this.equipment = equipmentIn;
         this.features = featuresIn;
         this.subClassFeaturesList = subClassFeaturesListIn;
-    }
-
-    /**
-     * printData serves as a temporary QC. It will not necessarily be used during operation.
-     */
-    @Override
-    public void printData(){
-        super.printData();
-        try{
-        int count = 6;
-        for(int num: this.hitDice) {
-            if (num > 0)
-                System.out.println("HitDice : "+ num +"d" + count);
-            count+=2;
-        }
-        System.out.println("Armor Proficiencies:");
-        for (String ap : this.armorProficiencies) {
-            System.out.println("\t:" + ap);
-        }
-        System.out.println("Weapon Proficiencies:");
-        for (String wp : this.weaponProficiencies) {
-            System.out.println("\t:" + wp);
-        }
-        System.out.println("Saving throws for:");
-        for (String svt : this.savingThrows) {
-            System.out.println("\t:" + svt);
-        }
-
-        System.out.println("Choose "+this.numberOfSkillChoices+" of the following possible skills:");
-        for (String sca : this.skillChoicesArray) {
-            System.out.println("\t:" + sca);
-        }
-
-        System.out.println("Available tools:");
-        for (String eachTool : this.tools) {
-            System.out.println("\t:" + eachTool);
-        }
-        System.out.println("Equipment: "+this.equipment);
-        System.out.println("Features: ");
-        for(String[] eachFeature: this.features)
-            for(String eaFeature: eachFeature)
-                System.out.println("\t:"+eaFeature);
-        }catch (Exception e){
-            System.out.println("\n\n\t ************** ClassType - OOPS ************** \n\n");
-        }
-    }
+    }// end constructor
 
     // Only getter methods will be used, as these values should not change during the operation of the program.
     public int[] getHitDice() {return this.hitDice;}
