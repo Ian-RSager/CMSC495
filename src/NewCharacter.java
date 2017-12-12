@@ -1,13 +1,10 @@
 /*
  * File: NewCharacter.java
- * Date: December 6, 2017
+ * Date: December 11, 2017
  * Purpose: Creates a Gui with a Card Layout to Step by Step allow the user
  *          to create a new D&D 5th Edition character.
  *
- * First draft of Gui is complete, but all backend code needs to be written.
- * Background image and resizing added.
- * Character image selection added.
- * Many listeners still need to be implemented.
+ * TODO: add popup feature window
  */
 //package charactercreator;
 
@@ -48,6 +45,8 @@ import java.awt.event.*;
 import java.awt.Dialog.ModalityType;
 import java.awt.Dimension;  
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.util.*;
 
 import java.awt.event.ComponentListener;
 import java.awt.geom.AffineTransform;
@@ -62,7 +61,7 @@ import javax.swing.event.ChangeListener;
 
 //NewCharacter - Class to Display a Gui using a Card Layout
 //               to guide a user through creating a new character
-public class NewCharacter extends JDialog{
+public class NewCharacter extends JFrame{
 
     //Gui Panels
     private JPanel         cardPanel;  //Card Panel
@@ -78,14 +77,14 @@ public class NewCharacter extends JDialog{
     private JLabel background;
 
     //Character being created
-    //private Character myCharacter;
+    private Character myCharacter;
+    private int hitdice = 0;   //Character's hit dice
     
     //Constructor
-    public NewCharacter(JFrame parent){
+    public NewCharacter(){
         
         //Set up the Window
-        super(parent,"Create a Character",ModalityType.APPLICATION_MODAL);
-        add(Box.createRigidArea(new Dimension(700, 685)));
+        super("Create a Character");
         setSize (700, 685);
         setMinimumSize(new Dimension(700, 685));
         setLocationRelativeTo(null);
@@ -131,7 +130,7 @@ public class NewCharacter extends JDialog{
         });
 
         //Create a new character to populate
-//        myCharacter = new Character();
+        myCharacter = new Character();
 
         //Dont allow user to close it
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -150,14 +149,14 @@ public class NewCharacter extends JDialog{
     //Main Test Function
     //Will be taken out when linked with the rest of the program
     public static void main(String[] args){
-        JFrame frame1 = new JFrame("DialogEx");
-        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame1.setSize (700, 685);
-        frame1.setMinimumSize(new Dimension(700, 685));
-        frame1.setLocationRelativeTo(null);
-        frame1.setVisible(true);
+        //JFrame frame1 = new JFrame("DialogEx");
+        //frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame1.setSize (700, 685);
+        //frame1.setMinimumSize(new Dimension(700, 685));
+        //frame1.setLocationRelativeTo(null);
+        //frame1.setVisible(true);
       
-        NewCharacter nc = new NewCharacter(frame1);
+        NewCharacter nc = new NewCharacter();
         nc.newCharacterGui();
         
     }
@@ -165,9 +164,9 @@ public class NewCharacter extends JDialog{
 
 
     //Getter method for character object
-//    public Character getCharacter(){
-//        return myCharacter;
-//    }
+    public Character getCharacter(){
+        return myCharacter;
+    }
 
     
     
@@ -444,11 +443,12 @@ public class NewCharacter extends JDialog{
             //That's how we are handling it in Character.java
             String race = raceLabel.getText();
             String subrace = subraceLabel.getText();
-            //if(subrace.length() > 0)
-            //    myCharacter.setRace(subrace);
-            //else
-            //    myCharacter.setRace(race);
-            //myCharacter.initializeSkillsList();
+            if(subrace.length() > 0)
+                myCharacter.setRace(subrace);
+            else
+                myCharacter.setRace(race);
+//            MasterLists.createMasterLists();
+//            myCharacter.initializeSkillsList();
             
             //Move to next card
             CardLayout c1 = (CardLayout)(cardPanel.getLayout());
@@ -499,7 +499,7 @@ public class NewCharacter extends JDialog{
         ///////////////
         // Variables //
         ///////////////
-
+        private ArrayList<String> selectedFeatList = null;
 
         //Text Area for displaying information about the selected class
         private JTextArea classDescriptionTextArea = new JTextArea ();
@@ -518,14 +518,20 @@ public class NewCharacter extends JDialog{
         private JComboBox<String> classComboBox = new JComboBox<String> (classesStr);
         
         //Level Spinner (1 to 100, default 1, incr by 1)
-        SpinnerNumberModel snm = new SpinnerNumberModel(new Integer(1),new Integer(1),new Integer(100),new Integer(1));
-        JSpinner spnLevl = new JSpinner(snm);
+        //SpinnerNumberModel snm = new SpinnerNumberModel(new Integer(1),new Integer(1),new Integer(100),new Integer(1));
+        
+		//Week 7 -- Group decision to fix Level at 1 to simplify project because of features
+		SpinnerNumberModel snm = new SpinnerNumberModel(new Integer(1),new Integer(1),new Integer(1),new Integer(1));
+		JSpinner spnLevl = new JSpinner(snm);
     
         //Buttons
+        private JButton addFeatures = new JButton("Add Features");
         private JButton saveAndContinueButton = new JButton ("Save and Continue >");    
         private JButton previousButton = new JButton ("< Prev");    
 
         private Font titleFont;
+        private JDialog featModalDialog;
+        private JList<String> featJlist;
         
         //For Images
         private ImageIcon iicon = new ImageIcon();
@@ -613,6 +619,9 @@ public class NewCharacter extends JDialog{
             setLayout(new GridBagLayout());
             setOpaque(false);
             GridBagConstraints gbc = new GridBagConstraints();
+            
+            //Init preselected class variable
+            hitdice = 12;
 
             //Title
             titleFont = new Font("Default", Font.BOLD, 32);
@@ -682,9 +691,12 @@ public class NewCharacter extends JDialog{
             left.add(startingLevelLabel);
 
             //Starting Level
-            //spnLevl.setEditor(new JSpinner.DefaultEditor(spnLevl));
+			(((JSpinner.DefaultEditor) spnLevl.getEditor()).getTextField()).setColumns(2);
+            (((JSpinner.DefaultEditor) spnLevl.getEditor()).getTextField()).setEditable(false);
             helper.add(spnLevl);
             left.add(helper);
+            
+            left.add(addFeatures);
             
             //Add Left Panel to Gridbag Layout
             gbc.fill = GridBagConstraints.NONE;
@@ -723,6 +735,7 @@ public class NewCharacter extends JDialog{
             setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
             //Action Listeners - Next/Prev Buttons
+            addFeatures.addActionListener (e -> featureDialog());
             saveAndContinueButton.addActionListener   (e -> switchStateNext());
             previousButton.addActionListener   (e -> switchStatePrev());
             
@@ -739,61 +752,73 @@ public class NewCharacter extends JDialog{
                     switch(cStr){
                         case "Barbarian":
                             classIndex = 0;
+                            hitdice = 12;
                             updateClassImg("Barbarian.png",iicon);
                             classDescriptionTextArea.setText(classDescrStr[0]);
                             break;
                         case "Bard":
                             classIndex = 1;
+                            hitdice = 8;
                             updateClassImg("Bard.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[1]);
                             break;
                         case "Cleric":
                             classIndex = 2;
+                            hitdice = 8;
                             updateClassImg("Cleric.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[2]);
                             break;
                         case "Druid":
                             classIndex = 3;
+                            hitdice = 8;
                             updateClassImg("Druid.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[3]);
                             break;
                         case "Fighter":
                             classIndex = 4;
+                            hitdice = 10;
                             updateClassImg("Fighter.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[4]);
                             break;
                         case "Monk":
                             classIndex = 5;
+                            hitdice = 8;
                             updateClassImg("Monk.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[5]);
                             break;
                         case "Paladin":
                             classIndex = 6;
+                            hitdice = 10;
                             updateClassImg("Paladin.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[6]);
                             break;
                         case "Ranger":
                             classIndex = 7;
+                            hitdice = 10;
                             updateClassImg("Ranger.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[7]);
                             break;
                         case "Rogue":
                             classIndex = 8;
+                            hitdice = 8;
                             updateClassImg("Rogue.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[8]);						
                             break;
                         case "Sorcerer":
                             classIndex = 9;
+                            hitdice = 6;
                             updateClassImg("Sorcerer.png",iicon);
                             classDescriptionTextArea.setText(classDescrStr[9]);						
                             break;
                         case "Warlock":
                             classIndex = 10;
+                            hitdice = 8;
                             updateClassImg("Warlock.png",iicon);
                             classDescriptionTextArea.setText(classDescrStr[10]);						
                             break;
                         case "Wizard":
                             classIndex = 11;
+                            hitdice = 6;
                             updateClassImg("Wizard.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[11]);						
                             break;
@@ -833,8 +858,17 @@ public class NewCharacter extends JDialog{
             //Nothing to validate, combo boxes force valid data
 
             //Set class/starting level
-//            myCharacter.setClassLevel((int)spnLevl.getValue(), classIndex);
-//            myCharacter.setExperiencePoints(expPts);
+            myCharacter.setClassLevel((int)spnLevl.getValue(), classIndex);
+            myCharacter.setExperiencePoints(expPts);
+            
+            
+            //Add Features that were selected from selectedFeatList, if any were
+            if(selectedFeatList != null){
+                //ArrayList<ClassFeature> getFeaturesList()
+                //myCharacter.addClassFeature();
+                //myCharacter.removeClassFeature();
+            }
+            
             //Go to next card
             CardLayout c1 = (CardLayout)(cardPanel.getLayout());
             c1.next(cardPanel);
@@ -870,6 +904,61 @@ public class NewCharacter extends JDialog{
                 e.printStackTrace();
             }   
         }
+        
+        
+        private void featureDialog(){
+            selectedFeatList = null;
+            JButton saveFeat = new JButton("Save Selected Features");
+            JPanel featPanel = new JPanel(new BorderLayout());
+            JLabel info = new JLabel("Select all character features (Use Ctrl/Shift)",JLabel.CENTER);
+            featModalDialog = new JDialog(null, "Feature Selection", ModalityType.APPLICATION_MODAL);
+            featModalDialog.add(Box.createRigidArea(new Dimension(400, 400)));
+            featModalDialog.setSize (400, 400);
+            featModalDialog.setMinimumSize(new Dimension(400, 400));
+            
+            final DefaultListModel<String> modelList;    
+            modelList = new DefaultListModel<>();  
+            
+      //      MasterLists ml = new MasterLists();
+            
+            //Add Features to the list Here (Based on class)...
+            modelList.addElement("Feature1");  
+            modelList.addElement("Feature2");  
+            modelList.addElement("Feature3");  
+            modelList.addElement("Feature4");  
+            //
+            
+            
+            featJlist = new JList<>(modelList);  
+            featJlist.setBounds(300,300, 75,75);  
+            JScrollPane listScroller = new JScrollPane(featJlist);
+            listScroller.setPreferredSize(new Dimension(300, 300));
+            saveFeat.addActionListener(e -> closeFeatureDialog());
+            
+            featPanel.add(info,BorderLayout.NORTH);
+            featPanel.add(listScroller,BorderLayout.CENTER);
+            featPanel.add(saveFeat,BorderLayout.SOUTH);
+            
+            //List of features to select using shift/ctrl and clicking mouse
+            featModalDialog.add(featPanel);
+            
+            featModalDialog.pack();
+            featModalDialog.setLocationByPlatform(true);
+            featModalDialog.setVisible(true);
+            featModalDialog.setLocationRelativeTo(null);
+            
+
+            
+            return;
+        }
+
+        
+        private void closeFeatureDialog(){
+            selectedFeatList = (ArrayList<String>) featJlist.getSelectedValuesList();
+
+            featModalDialog.setVisible(false);
+            featModalDialog.dispose();
+        }
 
     }
 
@@ -899,12 +988,16 @@ public class NewCharacter extends JDialog{
         private int remainingPts = 27;
         private JLabel ptsRemainField = new JLabel(Integer.toString(remainingPts), JLabel.LEFT);
         
-        private JTextField rollStr = new JTextField("  0",2);
-        private JTextField rollDex = new JTextField("  0",2);
-        private JTextField rollCon = new JTextField("  0",2);
-        private JTextField rollInt = new JTextField("  0",2);
-        private JTextField rollWis = new JTextField("  0",2);
-        private JTextField rollCha = new JTextField("  0",2);
+        private JLabel hitPointsText = new JLabel("Hit Points: ", JLabel.LEFT);
+        private int hitPts = 0;
+        private JLabel hitPointsField = new JLabel(Integer.toString(remainingPts), JLabel.LEFT);
+        
+        private JTextField rollStr = new JTextField("0",2);
+        private JTextField rollDex = new JTextField("0",2);
+        private JTextField rollCon = new JTextField("0",2);
+        private JTextField rollInt = new JTextField("0",2);
+        private JTextField rollWis = new JTextField("0",2);
+        private JTextField rollCha = new JTextField("0",2);
         
         //Spinners (8 to 15, default 8, incr by 1)
         private SpinnerNumberModel snm1 = new SpinnerNumberModel(new Integer(8),new Integer(8),new Integer(15),new Integer(1));
@@ -1074,7 +1167,7 @@ public class NewCharacter extends JDialog{
             
             //Radio Button Group to Choose between Rolled Abilities
             //or Point assigned abilities
-            rPt   = new JRadioButton("Use Point Buy");
+            rPt   = new JRadioButton("Use Point Buy",true);
             rRoll = new JRadioButton("Use Roll");
             ButtonGroup rgroup = new ButtonGroup();
             rPt.setOpaque(false);
@@ -1083,6 +1176,9 @@ public class NewCharacter extends JDialog{
             rRoll.setFont(titleFont);
             rgroup.add(rPt);
             rgroup.add(rRoll);
+            
+            rPt.addActionListener(e -> calculateHitPoints());
+            rRoll.addActionListener(e -> calculateHitPoints());
             
             //Total Points Assigned
             gbc.gridx = 0;
@@ -1096,6 +1192,14 @@ public class NewCharacter extends JDialog{
             ptsRemainField.setFont(titleFont);
             ptsPanel.add(totalPointsField);
             ptsPanel.add(ptsRemainField);
+            //Hit Points
+            hitPointsText.setFont(titleFont);
+            hitPointsField.setFont(titleFont);
+            hitPointsText.setBorder(new EmptyBorder(0, 50, 0, 0));
+
+            calculateHitPoints();
+            ptsPanel.add(hitPointsText);
+            ptsPanel.add(hitPointsField);
             add(ptsPanel, gbc);
             
             //Radio Button Selection
@@ -1161,8 +1265,33 @@ public class NewCharacter extends JDialog{
 
                 remainingPts = 27-(pts1+pts2+pts3+pts4+pts5+pts6);
                 ptsRemainField.setText(Integer.toString(remainingPts));
+                
+                calculateHitPoints();
             }
         };
+        
+        private void calculateHitPoints(){
+            int constitution = getConst();
+            if(constitution >= 0){
+                hitPts = hitdice + abilityScoreToModifier(constitution);
+                hitPointsField.setText(Integer.toString(hitPts));
+            }
+            else{
+                hitPts = 0;
+                hitPointsField.setText(" ");
+            }
+        }
+        
+        private int getConst(){
+            
+            //return the const.
+            if(rRoll.isSelected())
+                return Integer.parseInt(rollCon.getText());
+            else if(rPt.isSelected())
+                return (int)constitutionJSpinner.getValue();
+            else
+                return -1;
+        }
         
         //Returns ability score cost
         //Values taken from D&D Players Handbook
@@ -1188,6 +1317,11 @@ public class NewCharacter extends JDialog{
                     return 0;
             }
         }
+        
+        //Returns the modifier associated with an ability score
+        private int abilityScoreToModifier(int abscore){
+            return (abscore-10)/2;
+        }
 
         
         //Dice Roll Method For Ability Scores
@@ -1201,6 +1335,9 @@ public class NewCharacter extends JDialog{
             rollInt.setText(Integer.toString(rollDice4x()));
             rollWis.setText(Integer.toString(rollDice4x()));
             rollCha.setText(Integer.toString(rollDice4x()));
+            
+            //Update hit points
+            calculateHitPoints();
         }
         
         //Returns the value from rolling four
@@ -1275,12 +1412,23 @@ public class NewCharacter extends JDialog{
                     "Please Click the Point Buy or Roll Option.","Error",JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            //myCharacter.setAbilityScoreStrength(str);
-            //myCharacter.setAbilityScoreDexterity(dex);
-            //myCharacter.setAbilityScoreConstitution(con);
-            //myCharacter.setAbilityScoreIntelligence(intel);
-            //myCharacter.setAbilityScoreWisdom(wis);
-            //myCharacter.setAbilityScoreCharisma(cha);
+            myCharacter.setAbilityScoreStrength(str);
+            myCharacter.setAbilityScoreDexterity(dex);
+            myCharacter.setAbilityScoreConstitution(con);
+            myCharacter.setAbilityScoreIntelligence(intel);
+            myCharacter.setAbilityScoreWisdom(wis);
+            myCharacter.setAbilityScoreCharisma(cha);
+            
+            //Hit Points
+            if(hitPts > 0){
+                myCharacter.setHitPointsCurrent(hitPts);
+                myCharacter.setHitPointsMaximum(hitPts);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, 
+                    "Hit Points Incorrect.","Error",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             
             //Go to next card
             CardLayout c1 = (CardLayout)(cardPanel.getLayout());
@@ -1307,8 +1455,8 @@ public class NewCharacter extends JDialog{
         private JLabel additionalInfoScreenLabel = new JLabel("Additional Information", JLabel.CENTER);
     
         private JLabel nameLabel   = new JLabel("Name:", JLabel.LEFT);
-        private JLabel weightLabel = new JLabel("Weight:", JLabel.LEFT);
-        private JLabel heightLabel = new JLabel("Height:", JLabel.LEFT);
+        private JLabel weightLabel = new JLabel("Weight (lbs):", JLabel.LEFT);
+        private JLabel heightLabel = new JLabel("Height (Ft):", JLabel.LEFT);
         private JLabel sexLabel = new JLabel("Sex:", JLabel.LEFT);
         private JLabel alignmentLabel = new JLabel("Alignment:", JLabel.LEFT);
         private JLabel backgroundLabel = new JLabel("Background:", JLabel.LEFT);
@@ -1334,7 +1482,6 @@ public class NewCharacter extends JDialog{
     
 
         //Buttons
-        private JButton uploadImageButton = new JButton("Upload an image");
         private JButton generateCharacterSheetButton = new JButton ("Generate Character Sheet");    
         private JButton previousButton = new JButton ("< Prev");    
 
@@ -1520,8 +1667,6 @@ public class NewCharacter extends JDialog{
     
         private void getNextCharacterImg(){
 
-            BufferedImage characterImage;
-
             //Adjust image name index			
             charImgIndex++;
             if(charImgIndex >= charImages.length)
@@ -1588,17 +1733,34 @@ public class NewCharacter extends JDialog{
                     "Error",JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            
-            //myCharacter.setName(nameTextField.getText());
-            //myCharacter.TBD(weightTextField.getText());
-            //myCharacter.TBD(heightTextField.getText());
-            //myCharacter.TBD(sexComboBox.getSelectedItem());
-            //myCharacter.setAlignment(alignmentComboBox.getSelectedItem());
-            //myCharacter.setBackground(backgroundComboBox.getSelectedItem());
-            //myCharacter.TBD("Portraits/" + charImages[charImgIndex]);
+
+            //Make sure Id contains only numbers
+            int weight, height;
+            try{
+               weight = Integer.parseInt(weightTextField.getText());
+            }
+            catch(NumberFormatException ee){
+                JOptionPane.showMessageDialog(null,"Invalid Weight Input, Should be a number!");
+                return;
+            }
+            try{
+               height = Integer.parseInt(heightTextField.getText());
+            }
+            catch(NumberFormatException ee){
+                JOptionPane.showMessageDialog(null,"Invalid Height Input, Should be a number!");
+                return;
+            }
+            myCharacter.setName(nameTextField.getText());
+            myCharacter.setWeight(weight);
+            myCharacter.setHeight(height);
+            myCharacter.setSex((String)sexComboBox.getSelectedItem());
+            myCharacter.setAlignment((String)alignmentComboBox.getSelectedItem());
+            myCharacter.setBackground((String)backgroundComboBox.getSelectedItem());
+            myCharacter.setCharacterImg("Portraits/" + charImages[charImgIndex]);
             
             
             //Go to Main Gui
+            setVisible(false);
             dispose();
         }
 
