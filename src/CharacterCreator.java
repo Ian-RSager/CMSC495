@@ -219,14 +219,14 @@ public class CharacterCreator {
                         break;
                     case JOptionPane.NO_OPTION:
                         frame.dispose();
-                        //NewCharacter nc = new NewCharacter();
-                        //nc.newCharacterGui();
+                        NewCharacter nc = new NewCharacter();
+                        nc.newCharacterGui();
                         break;
                     case JOptionPane.YES_OPTION:
                         saveCharacter();
                         frame.dispose();
-                        //NewCharacter nc2 = new NewCharacter();
-                        //nc2.newCharacterGui();
+                        NewCharacter nc2 = new NewCharacter();
+                        nc2.newCharacterGui();
                         break;
                 }
             }
@@ -663,7 +663,7 @@ public class CharacterCreator {
         refresh();
     }
     
-    private void display() {
+    public void display() {
         frame.setVisible(true);
     }
     
@@ -779,29 +779,29 @@ public class CharacterCreator {
                                                              null); //default button title
                 switch(selection) {
                     case 0:
-                        //NewCharacter nc = new NewCharacter();
-                        //nc.newCharacterGui();
-                    		Character testChar = new Character();
-                    		testChar.setCharacterImg("Portraits/Othovir.png");
-                    		testChar.setName("Horace");
-                    		testChar.setAbilityScoreCharisma(5);
-                    		testChar.setAbilityScoreConstitution(10);
-                    		testChar.setAbilityScoreDexterity(16);
-                    		testChar.setAbilityScoreStrength(5);
-                    		testChar.setAbilityScoreWisdom(18);
-                    		testChar.setAbilityScoreIntelligence(10);
-                    		testChar.setFaction("Faction X");
-                    		testChar.setBackground("Background B");
-                    		testChar.setHitPointsCurrent(20);
-                    		testChar.setSpeed(4);
-                    		testChar.setRace("Dwarf");
-                    		testChar.setHitPointsCurrent(20);
-                    		testChar.setArmorClass(5);
-                    		testChar.addLanguage("Dwarvish");
-                    		testChar.addLanguage("Elvish");
-                    		testChar.setAlignment("Lawful Cabbage");
-                    		CharacterCreator test = new CharacterCreator(testChar);
-                    		test.display();
+                        NewCharacter nc = new NewCharacter();
+                        nc.newCharacterGui();
+//                    		Character testChar = new Character();
+//                    		testChar.setCharacterImg("Portraits/Othovir.png");
+//                    		testChar.setName("Horace");
+//                    		testChar.setAbilityScoreCharisma(5);
+//                    		testChar.setAbilityScoreConstitution(10);
+//                    		testChar.setAbilityScoreDexterity(16);
+//                    		testChar.setAbilityScoreStrength(5);
+//                    		testChar.setAbilityScoreWisdom(18);
+//                    		testChar.setAbilityScoreIntelligence(10);
+//                    		testChar.setFaction("Faction X");
+//                    		testChar.setBackground("Background B");
+//                    		testChar.setHitPointsCurrent(20);
+//                    		testChar.setSpeed(4);
+//                    		testChar.setRace("Dwarf");
+//                    		testChar.setHitPointsCurrent(20);
+//                    		testChar.setArmorClass(5);
+//                    		testChar.addLanguage("Dwarvish");
+//                    		testChar.addLanguage("Elvish");
+//                    		testChar.setAlignment("Lawful Cabbage");
+//                    		CharacterCreator test = new CharacterCreator(testChar);
+//                    		test.display();
                         break;
                     case 1:
                         Character loadCharacter = new Character();
