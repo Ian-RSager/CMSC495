@@ -80,6 +80,9 @@ public class NewCharacter extends JFrame{
     private Character myCharacter;
     private int hitdice = 0;   //Character's hit dice
     
+    private  MasterLists ml;
+    private ArrayList<String> selectedFeatList = null;
+    
     //Constructor
     public NewCharacter(){
         
@@ -130,6 +133,7 @@ public class NewCharacter extends JFrame{
         });
 
         //Create a new character to populate
+        ml = new MasterLists();
         myCharacter = new Character();
 
         //Dont allow user to close it
@@ -447,8 +451,6 @@ public class NewCharacter extends JFrame{
                 myCharacter.setRace(subrace);
             else
                 myCharacter.setRace(race);
-//            MasterLists.createMasterLists();
-//            myCharacter.initializeSkillsList();
             
             //Move to next card
             CardLayout c1 = (CardLayout)(cardPanel.getLayout());
@@ -499,7 +501,7 @@ public class NewCharacter extends JFrame{
         ///////////////
         // Variables //
         ///////////////
-        private ArrayList<String> selectedFeatList = null;
+        
 
         //Text Area for displaying information about the selected class
         private JTextArea classDescriptionTextArea = new JTextArea ();
@@ -609,7 +611,7 @@ public class NewCharacter extends JFrame{
         // End of Variables //
         //////////////////////
 
-
+        private String selectedClass = "Barbarian";
         //Constructor
         public JPanelClass(){
 
@@ -619,6 +621,7 @@ public class NewCharacter extends JFrame{
             setLayout(new GridBagLayout());
             setOpaque(false);
             GridBagConstraints gbc = new GridBagConstraints();
+            
             
             //Init preselected class variable
             hitdice = 12;
@@ -747,76 +750,91 @@ public class NewCharacter extends JFrame{
                     
                     Object selected = comboBox.getSelectedItem();
                     String cStr = selected.toString();
+                    
+                    //Change of class, erase all features
+                    selectedFeatList = null;
                                         
                     classLabel.setText(cStr);
                     switch(cStr){
                         case "Barbarian":
+                            selectedClass = "Barbarian";
                             classIndex = 0;
                             hitdice = 12;
                             updateClassImg("Barbarian.png",iicon);
                             classDescriptionTextArea.setText(classDescrStr[0]);
                             break;
                         case "Bard":
+                            selectedClass = "Bard";
                             classIndex = 1;
                             hitdice = 8;
                             updateClassImg("Bard.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[1]);
                             break;
                         case "Cleric":
+                            selectedClass = "Cleric";
                             classIndex = 2;
                             hitdice = 8;
                             updateClassImg("Cleric.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[2]);
                             break;
                         case "Druid":
+                            selectedClass = "Druid";
                             classIndex = 3;
                             hitdice = 8;
                             updateClassImg("Druid.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[3]);
                             break;
                         case "Fighter":
+                            selectedClass = "Fighter";
                             classIndex = 4;
                             hitdice = 10;
                             updateClassImg("Fighter.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[4]);
                             break;
                         case "Monk":
+                            selectedClass = "Monk";
                             classIndex = 5;
                             hitdice = 8;
                             updateClassImg("Monk.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[5]);
                             break;
                         case "Paladin":
+                            selectedClass = "Paladin";
                             classIndex = 6;
                             hitdice = 10;
                             updateClassImg("Paladin.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[6]);
                             break;
                         case "Ranger":
+                            selectedClass = "Ranger";
                             classIndex = 7;
                             hitdice = 10;
                             updateClassImg("Ranger.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[7]);
                             break;
                         case "Rogue":
+                            selectedClass = "Rogue";
                             classIndex = 8;
                             hitdice = 8;
                             updateClassImg("Rogue.jpg",iicon);
                             classDescriptionTextArea.setText(classDescrStr[8]);						
                             break;
                         case "Sorcerer":
+                            selectedClass = "Sorcerer";
                             classIndex = 9;
                             hitdice = 6;
                             updateClassImg("Sorcerer.png",iicon);
                             classDescriptionTextArea.setText(classDescrStr[9]);						
                             break;
                         case "Warlock":
+                            selectedClass = "Warlock";
                             classIndex = 10;
                             hitdice = 8;
                             updateClassImg("Warlock.png",iicon);
                             classDescriptionTextArea.setText(classDescrStr[10]);						
                             break;
                         case "Wizard":
+                            selectedClass = "Wizard";
                             classIndex = 11;
                             hitdice = 6;
                             updateClassImg("Wizard.jpg",iicon);
@@ -860,14 +878,6 @@ public class NewCharacter extends JFrame{
             //Set class/starting level
             myCharacter.setClassLevel((int)spnLevl.getValue(), classIndex);
             myCharacter.setExperiencePoints(expPts);
-            
-            
-            //Add Features that were selected from selectedFeatList, if any were
-            if(selectedFeatList != null){
-                //ArrayList<ClassFeature> getFeaturesList()
-                //myCharacter.addClassFeature();
-                //myCharacter.removeClassFeature();
-            }
             
             //Go to next card
             CardLayout c1 = (CardLayout)(cardPanel.getLayout());
@@ -919,14 +929,13 @@ public class NewCharacter extends JFrame{
             final DefaultListModel<String> modelList;    
             modelList = new DefaultListModel<>();  
             
-      //      MasterLists ml = new MasterLists();
-            
             //Add Features to the list Here (Based on class)...
-            modelList.addElement("Feature1");  
-            modelList.addElement("Feature2");  
-            modelList.addElement("Feature3");  
-            modelList.addElement("Feature4");  
-            //
+            ClassType selection = ml.getClassTypeByID(selectedClass);
+            int numFeatures = selection.features[0].length;
+            for(int n = 0; n < numFeatures; n++){
+                String feat = selection.features[0][n];
+                modelList.addElement(feat); 
+            }
             
             
             featJlist = new JList<>(modelList);  
@@ -1476,7 +1485,7 @@ public class NewCharacter extends JFrame{
         private String [] backgroundStr      = {"Acolyte","Criminal","Folk Hero","Noble",
                                                 "Sage","Soldier","Charlatan","Entertainer",
                                                 "Guild Artisan","Hermit","Outlander","Urchin",
-                                                "Caravan Specialist","Guild Merchant","Hermit",
+                                                "Caravan Specialist","Guild Merchant",
                                                 "Outlander","Knight","Sailor","Pirate"};
         private JComboBox<String> backgroundComboBox = new JComboBox<String> (backgroundStr);
     
@@ -1492,7 +1501,7 @@ public class NewCharacter extends JFrame{
             "Duvessa_Shane.png", "Ghelryn_Foehammer.png", "Lifferlas.png", "Markham_Southwell.png",
             "Miros_Xelbrin.png", "Narth_Tezrin.png", "Naxene_Drathkala.png", "Oren_Yogilvy.png",
             "Othovir.png", "Shalvus_Martholio.png", "Sir_Baric_Nylef.png", "Sirac_of_Suzail.png",
-            "Urgala_Meltimer.png", "Zi_Liang.png"};
+            "Urgala_Meltimer.png", "Zi_Liang.png", "cabbage.jpg"};
         private int charImgIndex = 0;
         private ImageIcon iicon;
 
@@ -1758,6 +1767,15 @@ public class NewCharacter extends JFrame{
             myCharacter.setBackground((String)backgroundComboBox.getSelectedItem());
             myCharacter.setCharacterImg("Portraits/" + charImages[charImgIndex]);
             
+            
+            //Add Features that were selected from selectedFeatList, if any were
+            //Do it here so that you dont need to remove if they hit the back button
+            if(selectedFeatList != null){
+                int numFeats = selectedFeatList.size();
+                for(int n = 0; n < numFeats; n++){
+                    myCharacter.addClassFeature(selectedFeatList.get(n));
+                }
+            }
             
             //Go to Main Gui
             setVisible(false);
