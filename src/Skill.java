@@ -26,27 +26,6 @@ public class Skill extends Thing implements Serializable {
         this.miscBonus = 0;
     } // end constructor method
 
-    /**
-     * printData serves as a temporary QC. It will not necessarily be used during operation.
-     */
-    @Override
-    public void printData() {
-        super.printData();
-        try {
-            System.out.println("Class");
-            for (String eachClass : classes) {
-                System.out.println("\t:" + eachClass);
-            }
-            System.out.println("Ability score: " + this.relevantAbilityScore);
-            System.out.println("Tags");
-            for (String eachTag : tags) {
-                System.out.println("\t:" + eachTag);
-            }
-        } catch (Exception e) {
-            System.out.println("Skill file not found");
-        }
-    }// end printData()
-
     // Setters and getters.
     // For associated tags
     public String[] getTags() {

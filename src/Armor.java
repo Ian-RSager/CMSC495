@@ -17,7 +17,6 @@ public class Armor extends Item implements Serializable {
     protected int strengthThreshold = 0;            // The minimum amount of Strength needed to use this armor without penalty.
     protected boolean hasStealthPenalty = false;    // Whether or not the armor imposes Disadvantage on all Stealth checks by the character while equipped.
 
-
     //Constructor to be used when reading in data from armor.json
     public Armor(String idIn, String nameIn, int costIn, String costCurrencyIn,
                  double weightIn, String armorTypeIn, int armorClassIn,
@@ -33,36 +32,7 @@ public class Armor extends Item implements Serializable {
         this.strengthThreshold = strengthThresholdIn;
         this.hasStealthPenalty =hasStealthPenaltyIn;
 
-    }
-
-    /**
-     * printData() serves as a temporary QC. It will not necessarily be used during operation.
-     */
-    @Override
-    public void printData(){
-
-        super.printData();
-        try {
-            System.out.println("Armor Type: " + this.armorType);
-            System.out.println("Armor Class: " + this.armorClass);
-            System.out.println("Maximum Dexterity Bonus : " + this.maxDexterityBonus);
-            System.out.println("Don time: " + this.donTime);
-            System.out.println("Doff Time: " + this.doffTime);
-            if (this.strengthThreshold > 0)
-                System.out.println("Character's speed is decreased by 10 feet, without a strength of " + this.strengthThreshold + " or higher.");
-            else
-                System.out.println("This armor does not have a speed penalty.");
-            if (hasStealthPenalty)
-                System.out.println("This armor has a penalty to stealth attempts.");
-            else
-                System.out.println("This armor does not have a penalty to stealth attempts.");
-            System.out.println("Total cost is " + this.totalCost + " for " + this.quantity + " pieces, at " + this.singleCost + this.costCurrency + " per piece.");
-        }catch (Exception e){
-            System.out.println("\n\n\t ************** Armor - OOPS ************** \n\n");
-        }
-
-    }
-
+    }// end constructor
 
     // Getters and Setters
     public void setArmorType(String armorTypeIn){this.armorType = armorTypeIn;}

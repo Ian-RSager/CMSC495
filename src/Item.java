@@ -41,25 +41,9 @@ public class Item extends Thing{
     }// end blank constructor
 
 
-    /**
-     * printData serves as a temporary QC. It will not necessarily be used during operation.
-     */
-    @Override
-    public void printData() {
-
-        super.printData();
-        try {
-            System.out.println("Weight per item: " + this.singleWeight);
-            System.out.println("Total cost is " + this.totalCost + " for " + this.quantity + " pieces, at " + this.singleCost + this.costCurrency + " per piece.");
-        }catch (Exception e){
-            System.out.println("\n\n\t **************  Item - OOPS ************** \n\n");
-        }
-    }
-
     // Setters and getters.  Note that no setters are available for totalWeight or totalCost.  This is intentional, as these numbers are automatically
     // manipulated within this class when needed.  At all other times, these numbers should only be altered by editing the quantity of the item currently
     // in the character's inventory.
-
 
     // cost currency, GP, SP, or CP
     public void setCostCurrency(String costCurrencyIn) {this.costCurrency = costCurrencyIn;}
