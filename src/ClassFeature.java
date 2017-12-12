@@ -14,11 +14,11 @@ public class ClassFeature extends Thing implements Serializable {
     protected String[] classes;                     // An array of the classes, based on the class id tags, which have access to this feature.  Includes subclasses.
     protected String[] tags;                        // Plain text tags of the relevant classes or other descriptors which may be used to search for or describe this feature.
     protected String[][] levelingInfo;              // An array of the elements of the feature that change based upon the character's level in the relevant class.
-    protected Map<String, Object> content;           // An Array of applicable features
+    protected String[] content;           // An Array of applicable features
 
 
     //Constructor to be used when reading in data from features.json
-    public ClassFeature(String idIn, String nameIn, Map<String, Object>  contentIn,
+    public ClassFeature(String idIn, String nameIn, String[]  contentIn,
                         String descriptionIn, String[] classesIn,
                         String[] tagsIn, String[][] levelingInfoIn){
 
