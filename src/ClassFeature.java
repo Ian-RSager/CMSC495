@@ -28,37 +28,7 @@ public class ClassFeature extends Thing implements Serializable {
         this.levelingInfo = levelingInfoIn;
         this.content=contentIn;
 
-    }
-
-    /**
-     * printData serves as a temporary QC. It will not necessarily be used during operation.
-     */
-    @Override
-    public void printData() {
-        super.printData();
-        try {
-            System.out.println("Classes: ");
-            for (String eachClass : classes)
-                System.out.println("\t:" + eachClass);
-            System.out.println("Tags: ");
-            for (String eachTag : tags)
-                System.out.println("\t:" + eachTag);
-            System.out.println("Miscellaneous information: ");
-            for (String[] stringAry : levelingInfo) {
-                System.out.println("--" + stringAry[0].toString());
-                for (String s : stringAry)
-                    System.out.println("\t:" + s);
-            }
-            System.out.println("Components:");
-            if (!content.isEmpty()) {
-                for (Map.Entry<String, Object> entry : this.content.entrySet()) {
-                    System.out.println("\t" + entry.getKey() + ": " + entry.getValue().toString());
-                }
-            }
-        }catch (Exception e){
-            System.out.println("\n\n\t ************** ClassFeatures - OOPS ************** \n\n");
-        }
-    }
+    }// end constructor 
 
     // Only getter methods will be used, as these values should not change during the operation of the program.
     public String[] getClasses() {return this.classes;}
