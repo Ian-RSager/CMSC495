@@ -25,28 +25,6 @@ public class Race extends Thing implements Serializable{
         this.traits = traitsIn;
     } // End constructor for use with JSON files.
 
-    /**
-     * printData serves as a temporary QC. It will not necessarily be used during operation.
-     */
-    @Override
-    public void printData(){
-        super.printData();
-        try {
-            System.out.println("Ability score : " + this.abilityScore);//ab score
-            System.out.println("This race is considered an adult at " + this.age + " years old.");//age
-            System.out.println("Average height in inches : " + this.heightInches);//hight
-            if (isMedium) System.out.println("This race is a mediume sized race.");
-            else System.out.println("This race is a small sized race.");
-            System.out.println("This race can move " + this.speed + " spaces per move.");//speed
-            for (String[] eachTrait : this.traits)
-                for (String eaTrait : eachTrait)
-                    System.out.println("\t:" + eaTrait);
-        }catch (Exception e){
-            System.out.println("\n\n\t **************  Race - OOPS ************** \n\n");
-        }
-    }
-
-
     // Getter methods.  No setter methods are provided, as Race objects should never change while the programming is running.
     public int[] getAbilityScore() {return this.abilityScore;}
     public int getAge() {return this.age;}
