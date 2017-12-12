@@ -40,7 +40,7 @@ public class MasterLists implements Serializable {
     protected Gson gson;                        // JSON file parser
 
     // array of file names
-    private static String fileNames[] = {"classType.json","race.json", "exampleFeatures.json",
+    private static String fileNames[] = {"classType.json","race.json", "features.json",
             "items.json","armor.json","weapons.json","skill.json","spells.json"};
   
     //Constructor
