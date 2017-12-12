@@ -1485,7 +1485,7 @@ public class NewCharacter extends JFrame{
         private String [] backgroundStr      = {"Acolyte","Criminal","Folk Hero","Noble",
                                                 "Sage","Soldier","Charlatan","Entertainer",
                                                 "Guild Artisan","Hermit","Outlander","Urchin",
-                                                "Caravan Specialist","Guild Merchant","Hermit",
+                                                "Caravan Specialist","Guild Merchant",
                                                 "Outlander","Knight","Sailor","Pirate"};
         private JComboBox<String> backgroundComboBox = new JComboBox<String> (backgroundStr);
     
@@ -1501,7 +1501,7 @@ public class NewCharacter extends JFrame{
             "Duvessa_Shane.png", "Ghelryn_Foehammer.png", "Lifferlas.png", "Markham_Southwell.png",
             "Miros_Xelbrin.png", "Narth_Tezrin.png", "Naxene_Drathkala.png", "Oren_Yogilvy.png",
             "Othovir.png", "Shalvus_Martholio.png", "Sir_Baric_Nylef.png", "Sirac_of_Suzail.png",
-            "Urgala_Meltimer.png", "Zi_Liang.png"};
+            "Urgala_Meltimer.png", "Zi_Liang.png", "cabbage.jpg"};
         private int charImgIndex = 0;
         private ImageIcon iicon;
 
