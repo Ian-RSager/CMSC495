@@ -52,36 +52,6 @@ public class Weapon extends Item implements Serializable {
         this.isSpecialDescription = isSpecialDescriptionIn;
     } // End constructor for all fields.
 
-    /**
-     * printData serves as a temporary QC. It will not necessarily be used during operation.
-     */
-    @Override
-    public void printData(){
-        super.printData();
-        try {
-            System.out.println("Damage : " + this.damage);
-            System.out.println("Armor Class: " + this.isMelee);
-            System.out.println("isRanged: " + this.isRanged);
-            System.out.println("hasReach: " + this.hasReach);
-            System.out.println("has Reach: " + this.isThrown);
-            System.out.println("Normal Range : " + this.normalRange);
-            System.out.println("Maximum Range : " + this.maximumRange);
-            System.out.println("is loading : " + this.isLoading);
-            System.out.println("has finesse: " + this.hasFinesse);
-            System.out.println("is heavy : " + this.isHeavy);
-            System.out.println("is light : " + this.isLight);
-            System.out.println("is 2-handed : " + this.isTwoHanded);
-            System.out.println("is versatile : " + this.isVersatile);
-            System.out.println("Versatility description : " + this.versatileDamage);
-            System.out.println("is special : " + this.isSpecial);
-            System.out.println("special description : " + this.isSpecialDescription);
-            System.out.println("Total cost is " + this.totalCost + " for " + this.quantity + " pieces, at " + this.singleCost + this.costCurrency + " per piece.");
-        }catch (Exception e){
-            System.out.println("\n\n\t **************  Weapon - OOPS ************** \n\n");
-        }
-
-    }
-
     // Getters and setters.
     // For damage.
     public void setDamage(String damageIn) {this.damage = damageIn;}
