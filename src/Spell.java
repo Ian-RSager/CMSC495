@@ -36,37 +36,6 @@ public class Spell extends Thing implements Serializable {
         this.type = type;
     }
 
-    @Override
-    public void printData() throws NullPointerException{
-        super.printData();
-        try {
-            System.out.println("Casting time: " + this.castingTime);
-            System.out.println("Classes:");
-            for (String eachClass : this.classes) {
-                System.out.println("\t" + eachClass);
-            }
-            System.out.println("Components:");
-            if(!components.isEmpty()){
-                for (Map.Entry<String, Object> entry : this.components.entrySet()) {
-                    System.out.println("\t" + entry.getKey() + ": " + entry.getValue().toString());
-                }
-            }
-            System.out.println("Duration: " + this.duration);
-            System.out.println("Level: " + this.level);
-            System.out.println("Range: " + this.range);
-            System.out.println("canBeRitual: " + this.canBeRitual.toString());
-            System.out.println("School: " + this.school);
-            System.out.println("Tags:");
-            for (String eachTag : this.tags) {
-                System.out.println("\t" + eachTag);
-            }
-            System.out.println("Type: " + this.type);
-        }catch (NullPointerException npe){
-            System.out.println("\n\n\t ************** Spell - OOPS ************** \n\n");
-        }
-    }
-
-
     // Setters and getters.
     // For classes.
     public void setClasses(String[] classesIn) {this.classes = classesIn;}
@@ -75,12 +44,10 @@ public class Spell extends Thing implements Serializable {
     public void setLevel(String levelIn) {this.level = levelIn;}
     public String getLevel() {return this.level;}
 
-
     // For components.
     // Currently read in as objects...
     public void setComponents(Map<String, Object> componentsIn) {this.components = componentsIn;}
     public Map<String, Object> getComponents() {return this.components;}
-
 
     // For description.
     public void setDescription(String descriptionIn) {this.description = descriptionIn;}
@@ -99,8 +66,6 @@ public class Spell extends Thing implements Serializable {
     // For Ritual flag.
     public void setCanBeRitual(boolean canBeRitualIn) {this.canBeRitual = canBeRitualIn;}
     public boolean getCanBeRitual() {return this.canBeRitual;}
-
-
 
 }
 
