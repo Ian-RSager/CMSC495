@@ -3,10 +3,8 @@
  * Date: December 11, 2017
  * Purpose: Creates a Gui with a Card Layout to Step by Step allow the user
  *          to create a new D&D 5th Edition character.
- *
- * TODO: add popup feature window
  */
-//package charactercreator;
+
 
 
 
@@ -446,7 +444,7 @@ public class NewCharacter extends JFrame{
             //Set race/subrace.  Race is the subrace if it exists. Otherwise its the race.
             //That's how we are handling it in Character.java
             String race = raceLabel.getText();
-            String subrace = subraceLabel.getText();
+            String subrace = (String)subRaceComboBox.getSelectedItem();
             if(subrace.length() > 0)
                 myCharacter.setRace(subrace);
             else
@@ -694,7 +692,7 @@ public class NewCharacter extends JFrame{
             left.add(startingLevelLabel);
 
             //Starting Level
-			(((JSpinner.DefaultEditor) spnLevl.getEditor()).getTextField()).setColumns(2);
+            (((JSpinner.DefaultEditor) spnLevl.getEditor()).getTextField()).setColumns(2);
             (((JSpinner.DefaultEditor) spnLevl.getEditor()).getTextField()).setEditable(false);
             helper.add(spnLevl);
             left.add(helper);
@@ -875,8 +873,8 @@ public class NewCharacter extends JFrame{
 
             //Nothing to validate, combo boxes force valid data
 
-            //Set class/starting level
-            myCharacter.setClassLevel((int)spnLevl.getValue(), classIndex);
+            //Set class/starting level (level 1 only)
+            myCharacter.setClassLevel(classIndex,1);
             myCharacter.setExperiencePoints(expPts);
             
             //Go to next card
@@ -950,14 +948,12 @@ public class NewCharacter extends JFrame{
             
             //List of features to select using shift/ctrl and clicking mouse
             featModalDialog.add(featPanel);
-            
+
             featModalDialog.pack();
             featModalDialog.setLocationByPlatform(true);
+            featModalDialog.setLocationRelativeTo(this);            
             featModalDialog.setVisible(true);
-            featModalDialog.setLocationRelativeTo(null);
-            
 
-            
             return;
         }
 
@@ -1469,11 +1465,13 @@ public class NewCharacter extends JFrame{
         private JLabel sexLabel = new JLabel("Sex:", JLabel.LEFT);
         private JLabel alignmentLabel = new JLabel("Alignment:", JLabel.LEFT);
         private JLabel backgroundLabel = new JLabel("Background:", JLabel.LEFT);
+        private JLabel factionLabel = new JLabel("Faction:", JLabel.LEFT);
 
         //Text Fields		
         private JTextField nameTextField   = new JTextField("", 10);
         private JTextField weightTextField = new JTextField("", 10);
-        private JTextField heightTextField = new JTextField("", 10);		
+        private JTextField heightTextField = new JTextField("", 10);
+        private JTextField factionTextField = new JTextField("", 10);
 
         //Combo boxes
         private String [] sexStr      = {"Male","Female"};
@@ -1542,7 +1540,6 @@ public class NewCharacter extends JFrame{
             ///////////////////////////////////////////
             JPanel right = new JPanel(new BorderLayout());
             right.setOpaque(false);
-            BufferedImage characterImage;
             JLabel photoLabel = new JLabel();
             
             JLabel imgselect = new JLabel("Character Image",JLabel.CENTER);
@@ -1606,6 +1603,11 @@ public class NewCharacter extends JFrame{
             heightTextField.setFont(titleFont);
             left.add(heightLabel);
             left.add(heightTextField);
+            
+            factionLabel.setFont(titleFont);
+            factionTextField.setFont(titleFont);
+            left.add(factionLabel);
+            left.add(factionTextField);
             
             sexLabel.setFont(titleFont);
             sexComboBox.setFont(titleFont);
@@ -1742,8 +1744,28 @@ public class NewCharacter extends JFrame{
                     "Error",JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            if(factionTextField.getText().length() == 0){
+                JOptionPane.showMessageDialog(null,"Faction is empty.",
+                    "Error",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            //Make sure name is <= 12 characters
+            if(nameTextField.getText().length() > 12){
+                JOptionPane.showMessageDialog(null,"Name is limited to 12 characters.",
+                    "Error",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            //Make sure faction is <= 12 characters
+            if(factionTextField.getText().length() > 12){
+                JOptionPane.showMessageDialog(null,"Faction is limited to 12 characters.",
+                    "Error",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
 
-            //Make sure Id contains only numbers
+            //Make sure weight/height contain only numbers
             int weight, height;
             try{
                weight = Integer.parseInt(weightTextField.getText());
@@ -1759,14 +1781,16 @@ public class NewCharacter extends JFrame{
                 JOptionPane.showMessageDialog(null,"Invalid Height Input, Should be a number!");
                 return;
             }
+            
+            //Set character values
             myCharacter.setName(nameTextField.getText());
+            myCharacter.setFaction(factionTextField.getText());
             myCharacter.setWeight(weight);
             myCharacter.setHeight(height);
             myCharacter.setSex((String)sexComboBox.getSelectedItem());
             myCharacter.setAlignment((String)alignmentComboBox.getSelectedItem());
             myCharacter.setBackground((String)backgroundComboBox.getSelectedItem());
             myCharacter.setCharacterImg("Portraits/" + charImages[charImgIndex]);
-            
             
             //Add Features that were selected from selectedFeatList, if any were
             //Do it here so that you dont need to remove if they hit the back button
@@ -1776,6 +1800,10 @@ public class NewCharacter extends JFrame{
                     myCharacter.addClassFeature(selectedFeatList.get(n));
                 }
             }
+            
+            //Alex's new initialize method goes here
+            //Covers language, items, etc.
+            //myCharacter.initializeCharacter();
             
             //Go to Main Gui
             setVisible(false);
