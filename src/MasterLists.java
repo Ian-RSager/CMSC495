@@ -1,20 +1,19 @@
 package charactercreator;
 
 /**
- * MasterLists.java  -- Created by cwilbur on 12/3/17.
+ * MasterLists.java
  * CMSC495 -- Class project
  * Class responsible for reading in multiple JSON data files
  * and creating applicable objects from data.
  */
 
 import java.io.BufferedReader;
-        import java.io.FileNotFoundException;
-        import java.io.FileReader;
-        import java.io.IOException;
-        import java.util.HashMap;
-
-        import com.google.gson.Gson;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
 import java.io.Serializable;
+import com.google.gson.Gson;
 
 public class MasterLists implements Serializable {
     private static HashMap<String, Spell> masterSpellList;                  // Master spell list.
@@ -26,66 +25,35 @@ public class MasterLists implements Serializable {
     private static HashMap<String, ClassFeature> masterClassFeatureList;    // Master class feature list.
     private static HashMap<String, Race> masterRaceList;                    // Master character race list.
 
-    private static ClassType[] classTypeArray;
-    private static Spell[] spellArray;
-    private static Skill[] skillArray;
-    private static Race[] raceArray;
-    private static ClassFeature[] classFeatureArray;
-    private static Weapon[] weaponArray;
-    private static Armor[] armorArray;
-    private static Item[] itemArray;
-
+    private static ClassType[] classTypeArray;              // Temp object array used in creation of master list
+    private static Spell[] spellArray;                      // Temp object array used in creation of master list
+    private static Skill[] skillArray;                      // Temp object array used in creation of master list
+    private static Race[] raceArray;                        // Temp object array used in creation of master list
+    private static ClassFeature[] classFeatureArray;        // Temp object array used in creation of master list
+    private static Weapon[] weaponArray;                    // Temp object array used in creation of master list
+    private static Armor[] armorArray;                      // Temp object array used in creation of master list
+    private static Item[] itemArray;                        // Temp object array used in creation of master list
 
     protected FileReader fileReader;
     protected BufferedReader bufferedReader;
-    protected String jsonString = "";
-    protected Thing[] thingArray;
-
-    protected Gson gson;
-    protected HashMap<String, Thing> masterThingMap;
-
+    protected String jsonString = "";           // temp string to hold file data prior to creation of master list
+    protected Gson gson;                        // JSON file parser
 
     // array of file names
     private static String fileNames[] = {"classType.json","race.json", "exampleFeatures.json",
             "items.json","armor.json","weapons.json","skill.json","spells.json"};
   
-    private static Class[] classList= { ClassType.class, Race.class, ClassFeature.class,
-    Item.class, Armor.class, Weapon.class, Skill.class, Spell.class};
-
-    private static HashMap[] mapList = {masterClassTypeList, masterRaceList, masterClassFeatureList,
-    masterItemList, masterArmorList, masterWeaponList, masterSpellList, masterSkillList};
-    private static Object[] arrayList ={classTypeArray, raceArray, classFeatureArray, itemArray,
-    armorArray, weaponArray, skillArray, spellArray};
-
-    //QC tool to indicate
-    private boolean[] flags = {false, false,false, false,false, false,false, false };
-
     //Constructor
     public MasterLists() {
 
-        for (int i =0; i<flags.length ; i++ ){
+        // Loops through all files
+        // For each file, data is read in and made into a string
+        // which is then used to create multiple objects which are loaded into applicable hashMaps.
+        for (int i =0; i<fileNames.length ; i++ ){
             fileReader(fileNames[i]);
             buildMasterHashMap( i );
-        }
-
-        // attempt to loop through creation of hashmap which will replace buildMasterHashMap
-        // Currenlty:  (line 71) classList[i] is not recognized as a class
-        // currently:  (line 72) foreach is not applicable to arrrayList
-//        for(int i =0 ; i <flags.length ; i++){
-//            fileReader(fileNames[i]);
-//            mapList[i] = new HashMap<String, classList[i]>();
-//            for (ClassType thing : arrayList[i])
-//                mapList[i].put(thing.name, thing);
-//        }
-
-        //QC to verify that each file was read.
-        for (int k = 0 ; k < 8 ; k++){
-            if (flags[k])
-                System.out.println(fileNames[k]+ " is complete: ");
-            else
-                System.out.println("false" +k);
-        }
-    }
+        }// end loop
+    }// end constructor method
 
     // File reader
     public void fileReader(String fileName){
@@ -111,7 +79,7 @@ public class MasterLists implements Serializable {
             System.out.println("Error reading file '"+ fileName + "'");
         }
 
-    }
+    }// end fileReader method
 
     public void buildMasterHashMap(int num){
         gson = new Gson();
@@ -122,7 +90,6 @@ public class MasterLists implements Serializable {
                 masterClassTypeList = new HashMap<String, ClassType>();
                 for (ClassType thing : classTypeArray) {
                     masterClassTypeList.put(thing.name, thing);
-                    thing.printData();
                 }
                 break;
             case 1:
@@ -130,7 +97,6 @@ public class MasterLists implements Serializable {
                 masterRaceList = new HashMap<String, Race>();
                 for (Race thing : raceArray){
                     masterRaceList.put(thing.name, thing);
-                thing.printData();
                 }
                 break;
             case 2:
@@ -138,7 +104,6 @@ public class MasterLists implements Serializable {
                 masterClassFeatureList = new HashMap<String, ClassFeature>();
                 for (ClassFeature thing : classFeatureArray){
                     masterClassFeatureList.put(thing.name, thing);
-                    thing.printData();
                 }
                 break;
             case 3:
@@ -146,7 +111,6 @@ public class MasterLists implements Serializable {
                 masterItemList = new HashMap<String, Item>();
                 for (Item thing : itemArray){
                     masterItemList.put(thing.name, thing);
-                    thing.printData();
                 }
                 break;
             case 4:
@@ -154,7 +118,6 @@ public class MasterLists implements Serializable {
                 masterArmorList = new HashMap<String, Armor>();
                 for (Armor thing : armorArray){
                     masterArmorList.put(thing.name, thing);
-                    thing.printData();
                 }
                 break;
             case 5:
@@ -162,7 +125,6 @@ public class MasterLists implements Serializable {
                 masterWeaponList = new HashMap<String, Weapon>();
                 for (Weapon thing : weaponArray){
                     masterWeaponList.put(thing.name, thing);
-                    thing.printData();
                 }
                 break;
             case 6:
@@ -170,7 +132,6 @@ public class MasterLists implements Serializable {
                 masterSkillList = new HashMap<String, Skill>();
                 for (Skill thing : skillArray){
                     masterSkillList.put(thing.name, thing);
-                    thing.printData();
                 }
                 break;
             case 7:
@@ -178,13 +139,10 @@ public class MasterLists implements Serializable {
                 masterSpellList = new HashMap<String, Spell>();
                 for (Spell thing : spellArray){
                     masterSpellList.put(thing.name, thing);
-                    thing.printData();
                 }
                 break;
-        }
-
-        flags[num]=true;
-    }
+        }//end switch
+    }// end public void buildMasterHashmap()
 
     // Master method to create all master lists.
     public static void createMasterLists() {
@@ -196,32 +154,71 @@ public class MasterLists implements Serializable {
 
     } // End private void createMasterSpellList.
 
-
-    // Getter method using id
     // Getters.  No setters are provided as no master list should change during the course of the program's operation.
-    // There is a getter for the entirety of each master list, as well as a getter for the relevant Object type via ID (which acts as the HashMap key.)
-    public static HashMap<String, Spell> getMasterSpellList() {return masterSpellList;}
-    public static Spell getSpellByID(String IDIn) {return masterSpellList.get(IDIn);}
+    // There is a getter for the entirety of each master list, 
+    // as well as a getter for the relevant Object type via ID (which acts as the HashMap key.)
+    public static HashMap<String, Spell> getMasterSpellList() {
+            return masterSpellList;
+    }
+        
+    public static Spell getSpellByID(String IDIn) {
+            return masterSpellList.get(IDIn);
+    }
 
-    public static HashMap<String, Skill> getMasterSkillList() {return masterSkillList;}
-    public static Skill getSkillByID(String IDIn) {return masterSkillList.get(IDIn);}
+    public static HashMap<String, Skill> getMasterSkillList() {
+            return masterSkillList;
+    }
+        
+    public static Skill getSkillByID(String IDIn) {
+            return masterSkillList.get(IDIn);
+    }
 
-    public static HashMap<String, Item> getMasterItemList() {return masterItemList;}
-    public static Item getItemByID(String IDIn) {return masterItemList.get(IDIn);}
+    public static HashMap<String, Item> getMasterItemList() {
+            return masterItemList;
+    }
+        
+    public static Item getItemByID(String IDIn) {
+            return masterItemList.get(IDIn);
+    }
 
-    public static HashMap<String, Weapon> getMasterWeaponList() {return masterWeaponList;}
-    public static Weapon getWeaponByID(String IDIn) {return masterWeaponList.get(IDIn);}
+    public static HashMap<String, Weapon> getMasterWeaponList() {
+            return masterWeaponList;
+    }
+        
+    public static Weapon getWeaponByID(String IDIn) {
+            return masterWeaponList.get(IDIn);
+    }
 
-    public static HashMap<String, Armor> getMasterArmorList() {return masterArmorList;}
-    public static Armor getArmorByID(String IDIn) {return masterArmorList.get(IDIn);}
+    public static HashMap<String, Armor> getMasterArmorList() {
+            return masterArmorList;
+    }
+        
+    public static Armor getArmorByID(String IDIn) {
+            return masterArmorList.get(IDIn);
+    }
 
-    public static HashMap<String, ClassType> getMasterClassTypeList() {return masterClassTypeList;}
-    public static ClassType getClassTypeByID(String IDIn) {return masterClassTypeList.get(IDIn);}
+    public static HashMap<String, ClassType> getMasterClassTypeList() {
+            return masterClassTypeList;
+    }
+        
+    public static ClassType getClassTypeByID(String IDIn) {
+            return masterClassTypeList.get(IDIn);
+    }
 
-    public static HashMap<String, ClassFeature> getMasterClassFeatureList() {return masterClassFeatureList;}
-    public static ClassFeature getClassFeatureByID(String IDIn) {return masterClassFeatureList.get(IDIn);}
+    public static HashMap<String, ClassFeature> getMasterClassFeatureList() {
+            return masterClassFeatureList;
+    }
+        
+    public static ClassFeature getClassFeatureByID(String IDIn) {
+            return masterClassFeatureList.get(IDIn);
+    }
 
-    public static HashMap<String, Race> getMasterRaceList() {return masterRaceList;}
-    public static Race getRaceByID(String IDIn) {return masterRaceList.get(IDIn);}
+    public static HashMap<String, Race> getMasterRaceList() {
+            return masterRaceList;
+    }
+        
+    public static Race getRaceByID(String IDIn) {
+            return masterRaceList.get(IDIn);
+    }
 
 }
