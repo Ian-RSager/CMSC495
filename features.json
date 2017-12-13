@@ -357,8 +357,8 @@
     "name": "Totem Spirt",
     "content": [
       "Totem Spirit - Bear: While raging, you have resistance to all damage except psychic damage. The spirit of the bear makes you tough enough to stand up to any punishment.",
-      "Totem Spirit - Eagle: While you\'re raging and aren’t wearing heavy armor, other creatures have disadvantage on opportunity attack rolls against you, and you can use the Dash action as a bonus action on your turn. The spirit of the eagle makes you into a predator who can weave through the fray with ease.",
-      "Totem Spirit - Wolf: While you\'re raging, your friends have advantage on melee attack rolls against any creature within 5 feet of you that is hostile to you. The spirit of the wolf makes you a leader of hunters"
+      "Totem Spirit - Eagle: While you're raging and aren't wearing heavy armor, other creatures have disadvantage on opportunity attack rolls against you, and you can use the Dash action as a bonus action on your turn. The spirit of the eagle makes you into a predator who can weave through the fray with ease.",
+      "Totem Spirit - Wolf: While you're raging, your friends have advantage on melee attack rolls against any creature within 5 feet of you that is hostile to you. The spirit of the wolf makes you a leader of hunters"
     ],
     "description": "At 3rd level, when you adopt this path, you choose a totem spirit and gain its feature. You must make or acquire a physical totem object-an amulet or similar adornment-that incorporates fur or feathers, claws, teeth, or bones of the totem animal. At your option you also gain minor physical attributes that are reminiscent of your totem spirit. For example, if you have a bear totem spirit, you might be unusually hairy and thick-skinned, or if your totem is the eagle, your eyes turn bright yellow.\nYour totem animal might be an animal related to those listed here but more appropriate to your homeland. For example, you could choose a hawk or vulture in place of an eagle.",
     "classes": [
@@ -381,7 +381,7 @@
     "name": "Aspect of the Beast",
     "content": [
       "Aspect of the Beast - Bear: You gain the might of a bear. Your carrying capacity (including maximum load and maximum lift) is doubled, and you have advantage on Strength checks made to push, pull, lift, or break objects.",
-      "Aspect of the Beast - Eagle: You gain the eyesight of an eagle. You can see up to 1 mile away with no difficulty, able to discern even fine details as though looking at something no more than 100 feet away from you. Additionally, dim light doesn\'t im pose disadvantage on your W isdom (Perception) checks.",
+      "Aspect of the Beast - Eagle: You gain the eyesight of an eagle. You can see up to 1 mile away with no difficulty, able to discern even fine details as though looking at something no more than 100 feet away from you. Additionally, dim light doesn't im pose disadvantage on your W isdom (Perception) checks.",
       "Aspect of the Beast - Wolf: You gain the hunting sensibilities of a wolf. You can track other creatures while traveling at a fast pace, and you can move stealthily while traveling at a normal pace (see chapter 8 for rules on travel pace)."
     ],
     "description": "At 6th level, you gain a magical benefit based on the totem animal of your choice. You can choose the same animal you selected at 3rd level or a different one.",
@@ -1485,7 +1485,7 @@
     "id": "featureJackOfAllTrades",
     "name": "Jack of All Trades",
     "content": [],
-    "description": "Starting at 2nd level, you can add half your proficiency bonus, rounded down to any ability check you make that doesn\'t already include your proficiency bonus.",
+    "description": "Starting at 2nd level, you can add half your proficiency bonus, rounded down to any ability check you make that doesn't already include your proficiency bonus.",
     "classes": [
       "Bard"
     ],
@@ -1563,7 +1563,7 @@
       "featureAdditionalMagicalSecrets",
       "featurePeerlessSkill"
     ],
-    "description": "Bards of the College of Lore know someting about most things, collecting bits of knowledge from sources as diverse as scholarly tomes and peasant tales.\nWhether singing folk ballads in taverns or elaborate compositions in royal courts, these bards use their gifts to hold audiences spellbound. When the applause dies down, the audience members might find themselves questioning everything they held to be true, from their faith in the priesthood of the local temple to their loyalty to the king.\nThe loyalty of these bards lies in the pursuit of beauty and truth, not in fealty to a monarch or following the tenets of a deity. A noble who keeps such a bard as a herald or advisor knows that the bard would rather be honest htan politic.\nThe college\'s members gather in libraries and sometimes in actual colleges, complete with classrooms and dormitories, to share their lore with one another. They also meet at festivals or affairs of state, where they can expose corruption, unravel lies, and poke fun at self-important figures of authority.",
+    "description": "Bards of the College of Lore know someting about most things, collecting bits of knowledge from sources as diverse as scholarly tomes and peasant tales.\nWhether singing folk ballads in taverns or elaborate compositions in royal courts, these bards use their gifts to hold audiences spellbound. When the applause dies down, the audience members might find themselves questioning everything they held to be true, from their faith in the priesthood of the local temple to their loyalty to the king.\nThe loyalty of these bards lies in the pursuit of beauty and truth, not in fealty to a monarch or following the tenets of a deity. A noble who keeps such a bard as a herald or advisor knows that the bard would rather be honest htan politic.\nThe college's members gather in libraries and sometimes in actual colleges, complete with classrooms and dormitories, to share their lore with one another. They also meet at festivals or affairs of state, where they can expose corruption, unravel lies, and poke fun at self-important figures of authority.",
     "classes": [
       "Bard"
     ],
@@ -1585,7 +1585,7 @@
       "featureExtraAttack",
       "featureBattleMagic"
     ],
-    "description": "Bards of the College of Valor are daring skalds whose tales keep alive the memory of the great heroes of the past, and thereby inspire a new generation of heroes. These bards gather in mead halls or around great bonfires to sing the deeds of the mighty, both past and present. They travel the land to witness great events firsthand and to ensure that the meory of those events doesn\'t pass from the world. With their songs, they inspire others to reach the same heights of accomplishment as the heroes of old.",
+    "description": "Bards of the College of Valor are daring skalds whose tales keep alive the memory of the great heroes of the past, and thereby inspire a new generation of heroes. These bards gather in mead halls or around great bonfires to sing the deeds of the mighty, both past and present. They travel the land to witness great events firsthand and to ensure that the meory of those events doesn't pass from the world. With their songs, they inspire others to reach the same heights of accomplishment as the heroes of old.",
     "classes": [
       "Bard"
     ],
@@ -1755,7 +1755,7 @@
     "id": "featureAdditionalMagicalSecrets",
     "name": "Additional Magical Secrets",
     "content": [],
-    "description": "At 6th level, you learn two spells of your choice form any class. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. The chosen spells count as bard spells for you, but don\'t count against the number of bard spells you know.",
+    "description": "At 6th level, you learn two spells of your choice form any class. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. The chosen spells count as bard spells for you, but don't count against the number of bard spells you know.",
     "classes": [
       "Bard"
     ],
@@ -2249,7 +2249,7 @@
     "id": "featureKnowledgeDomainSpells",
     "name": "Knowledge Domain Spells",
     "content": [],
-    "description": "You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don\'t count against your daily limit. If the spell isn\'t on the cleric spell list it is nonetheless a cleric spell for you.\n1st level: command, indentify\n3rd level: augury, suggestion\n5th level: nondetection, speak with dead\n7th level: arcane eye, confusion\n9th level: legend lore, scrying",
+    "description": "You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don't count against your daily limit. If the spell isn't on the cleric spell list it is nonetheless a cleric spell for you.\n1st level: command, indentify\n3rd level: augury, suggestion\n5th level: nondetection, speak with dead\n7th level: arcane eye, confusion\n9th level: legend lore, scrying",
     "classes": [
       "Cleric"
     ],
@@ -2331,7 +2331,7 @@
     "id": "featureChannelDivinityReadThoughts",
     "name": "Channel Divinity: Read Thoughts",
     "content": [],
-    "description": "At 6th level, you can use your Channel Divinity to read a creature\'s thoughts. You can then use your access to the creature\'s mind to command it.\nAs an action, choose one creature that you can see within 60 feet of you. That creature must make a Wisdom saving throw. If the creature succeeds on the saving throw, you can\'t use this feature on it again until you finish a long rest.\nIf the creature fails its save, you can read its surface thoughts (those foremost in its mind, reflecting its current emotions and what it is actively thinking about) when it is within 60 feet of you. This effect lasts for 1 minute.\nDuring that time, you can use your action to end this effect and cast the suggestion spell on the creature without expending a spell slot. The target automatically fails its saving throw against the spell.",
+    "description": "At 6th level, you can use your Channel Divinity to read a creature's thoughts. You can then use your access to the creature's mind to command it.\nAs an action, choose one creature that you can see within 60 feet of you. That creature must make a Wisdom saving throw. If the creature succeeds on the saving throw, you can't use this feature on it again until you finish a long rest.\nIf the creature fails its save, you can read its surface thoughts (those foremost in its mind, reflecting its current emotions and what it is actively thinking about) when it is within 60 feet of you. This effect lasts for 1 minute.\nDuring that time, you can use your action to end this effect and cast the suggestion spell on the creature without expending a spell slot. The target automatically fails its saving throw against the spell.",
     "classes": [
       "Cleric"
     ],
@@ -2364,7 +2364,7 @@
     "id": "featureVisionsOfThePast",
     "name": "Visions of the Past",
     "content": [],
-    "description": "Starting at 17th level, you can call up visions of the past that relate to an object you hold or your immediate surroundings. You must spend at least 1 minute in meditation and prayer, then receive dreamlike, shadowy glimpses of recent events. You can meditate in this way for a number of minutes equal to your Wisdom score and must maintain concentration during that time, as if you were casting a spell.\nOnce you use this feature, you can\'t use it again until you finish a short or long rest.\nObject Reading - Holding an object as you meditate, you can see visions of the object\'s previous owner. After meditating for 1 minute, you learn how the owner acquired and lost the object, as well as the most recent significant event involving the object and that owner. If the object was owned by another creature in the recent past (within a number of daysd equal to your Wisdom score), you can spend 1 additional minute for each owner to learn the same information about that creature.\nArea Reading - As you meditate, you see visions of recent events in your immediate vicinity (a room, street, tunnel, clearing, or the like, up to a 50-foot cube), going back a number of days equal to your Wisdom score. For each minute you meditate, you learn about one significant event, beginning with the most recent. Significant events typically involve powerful emotions, such as battles and betrayals, marriages and murders, births and funerals. However they might also include more mundane events that are nevertheless important in your current situation.",
+    "description": "Starting at 17th level, you can call up visions of the past that relate to an object you hold or your immediate surroundings. You must spend at least 1 minute in meditation and prayer, then receive dreamlike, shadowy glimpses of recent events. You can meditate in this way for a number of minutes equal to your Wisdom score and must maintain concentration during that time, as if you were casting a spell.\nOnce you use this feature, you can't use it again until you finish a short or long rest.\nObject Reading - Holding an object as you meditate, you can see visions of the object's previous owner. After meditating for 1 minute, you learn how the owner acquired and lost the object, as well as the most recent significant event involving the object and that owner. If the object was owned by another creature in the recent past (within a number of daysd equal to your Wisdom score), you can spend 1 additional minute for each owner to learn the same information about that creature.\nArea Reading - As you meditate, you see visions of recent events in your immediate vicinity (a room, street, tunnel, clearing, or the like, up to a 50-foot cube), going back a number of days equal to your Wisdom score. For each minute you meditate, you learn about one significant event, beginning with the most recent. Significant events typically involve powerful emotions, such as battles and betrayals, marriages and murders, births and funerals. However they might also include more mundane events that are nevertheless important in your current situation.",
     "classes": [
       "Cleric"
     ],
@@ -2403,7 +2403,7 @@
     "id": "featureLifeDomainSpells",
     "name": "Life Domain Spells",
     "content": [],
-    "description": "You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don\'t count against your daily limit. If the spell isn\'t on the cleric spell list it is nonetheless a cleric spell for you.\n1st level: bless, cure wounds\n3rd level: lesser restoration, spiritual weapon\n5th level: beacon of hope, revivify\n7th level: death ward, guardian of faith\n9th level: mass cure wounds, raise dead",
+    "description": "You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don't count against your daily limit. If the spell isn't on the cleric spell list it is nonetheless a cleric spell for you.\n1st level: bless, cure wounds\n3rd level: lesser restoration, spiritual weapon\n5th level: beacon of hope, revivify\n7th level: death ward, guardian of faith\n9th level: mass cure wounds, raise dead",
     "classes": [
       "Cleric"
     ],
@@ -2469,7 +2469,7 @@
     "id": "featureDiscipleOfLife",
     "name": "Disciple of Life",
     "content": [],
-    "description": "Also starting at 1st level, your healing spells are more effective. Whenever you use a spell of 1st level or higher to restore hit points to a creature, the creature regains additional hit points equal to 2 + the spell\'s level.",
+    "description": "Also starting at 1st level, your healing spells are more effective. Whenever you use a spell of 1st level or higher to restore hit points to a creature, the creature regains additional hit points equal to 2 + the spell's level.",
     "classes": [
       "Cleric"
     ],
@@ -2485,7 +2485,7 @@
     "id": "featureChannelDivinityPreserveLife",
     "name": "Channel Divinity: Preserve Life",
     "content": [],
-    "description": "Starting at 2nd level, you can use your Channel Divinity to heal the badly injured.\nAs an action, you present your holy symbol and evoke healing energy that can restore a number of hit points equal to five times your cleric level. Choose any creatures within 30 feet of you, and divide those hit points among them. This feature can restore a creature to no more than half of its hit point maximum. You can\'t use this feature on an undead or construct.",
+    "description": "Starting at 2nd level, you can use your Channel Divinity to heal the badly injured.\nAs an action, you present your holy symbol and evoke healing energy that can restore a number of hit points equal to five times your cleric level. Choose any creatures within 30 feet of you, and divide those hit points among them. This feature can restore a creature to no more than half of its hit point maximum. You can't use this feature on an undead or construct.",
     "classes": [
       "Cleric"
     ],
@@ -2501,7 +2501,7 @@
     "id": "featureBlessedHealer",
     "name": "Blessed Healer",
     "content": [],
-    "description": "Beginning at 6th level, the healing spells you cast on others heal you as well. When you cast a spell of 1st level or higher that restores hit points to a creature other than you, you regain hit points equal to 2 + the spell\'s level.",
+    "description": "Beginning at 6th level, the healing spells you cast on others heal you as well. When you cast a spell of 1st level or higher that restores hit points to a creature other than you, you regain hit points equal to 2 + the spell's level.",
     "classes": [
       "Cleric"
     ],
@@ -2579,7 +2579,7 @@
       "featurePotentSpellcasting",
       "featureCoronaOfLight"
     ],
-    "description": "Gods of light-including Helm, Lathander, Pholtus, Branchala, the Silver Flame, Belenus, Apollo, and Re-Horakhty- promote of rebirth and renewal, truth, vigilance, and beauty, often using the symbol of the sun. Some of these gods portrayed as the sun itself or as a charioteer who guides the sun across the sky. Others are tireless sentinels whose eyes pierce every shadow and see through every deception. Some are deities of beauty and artistry, who teach that art is a vehicle for the soul\'s improvement. Clerics of a god of light are enlightened souls infused with radiance and the power of their gods\' discerning vision, charged with chasing away lies and burning away darkness.",
+    "description": "Gods of light-including Helm, Lathander, Pholtus, Branchala, the Silver Flame, Belenus, Apollo, and Re-Horakhty- promote of rebirth and renewal, truth, vigilance, and beauty, often using the symbol of the sun. Some of these gods portrayed as the sun itself or as a charioteer who guides the sun across the sky. Others are tireless sentinels whose eyes pierce every shadow and see through every deception. Some are deities of beauty and artistry, who teach that art is a vehicle for the soul's improvement. Clerics of a god of light are enlightened souls infused with radiance and the power of their gods' discerning vision, charged with chasing away lies and burning away darkness.",
     "classes": [
       "Cleric"
     ],
@@ -2595,7 +2595,7 @@
     "id": "featureLightDomainSpells",
     "name": "Light Domain Spells",
     "content": [],
-    "description": "You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don\'t count against your daily limit. If the spell isn\'t on the cleric spell list it is nonetheless a cleric spell for you.\n1st level: burning hands, faerie fire\n3rd level: flaming sphere, scorching ray\n5th level: daylight, fireball\n7th level: gaurdian of faith, wall of fire\n9th level: flame strike, scrying",
+    "description": "You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don't count against your daily limit. If the spell isn't on the cleric spell list it is nonetheless a cleric spell for you.\n1st level: burning hands, faerie fire\n3rd level: flaming sphere, scorching ray\n5th level: daylight, fireball\n7th level: gaurdian of faith, wall of fire\n9th level: flame strike, scrying",
     "classes": [
       "Cleric"
     ],
@@ -2647,7 +2647,7 @@
     "content": [
       "spellLight"
     ],
-    "description": "When you choose this domain at 1st level, you gain the light cantrip if you don\'t already know it.",
+    "description": "When you choose this domain at 1st level, you gain the light cantrip if you don't already know it.",
     "classes": [
       "Cleric"
     ],
@@ -2663,7 +2663,7 @@
     "id": "featureWardingFlare",
     "name": "Warding Flare",
     "content": [],
-    "description": "Also at 1st level, you can interpose divine light between yourself and an attacking enemy. When you are attacked by a creature within 30 feet of you that you can see, you can use your reaction to impose disadvantage on the attack roll, causing light to flare before the attacker before it hits or misses. An attacker that can\'t be blinded is immune to this feature.\nYou can use this feature a number of times equal to your Wisdom modifier (a minimum of once). You regain all expended uses when you finish a long rest.",
+    "description": "Also at 1st level, you can interpose divine light between yourself and an attacking enemy. When you are attacked by a creature within 30 feet of you that you can see, you can use your reaction to impose disadvantage on the attack roll, causing light to flare before the attacker before it hits or misses. An attacker that can't be blinded is immune to this feature.\nYou can use this feature a number of times equal to your Wisdom modifier (a minimum of once). You regain all expended uses when you finish a long rest.",
     "classes": [
       "Cleric"
     ],
@@ -2750,7 +2750,7 @@
     "id": "featureNatureDomainSpells",
     "name": "Nature Domain Spells",
     "content": [],
-    "description": "You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don\'t count against your daily limit. If the spell isn\'t on the cleric spell list it is nonetheless a cleric spell for you.\n1st level: animal friendship, speak with animals\n3rd level: barkskin, spike growth\n5th level: plant growth, wind wall\n7th level: dominate beast, grasping vine\n9th level: insect plague, tree stride",
+    "description": "You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don't count against your daily limit. If the spell isn't on the cleric spell list it is nonetheless a cleric spell for you.\n1st level: animal friendship, speak with animals\n3rd level: barkskin, spike growth\n5th level: plant growth, wind wall\n7th level: dominate beast, grasping vine\n9th level: insect plague, tree stride",
     "classes": [
       "Cleric"
     ],
@@ -2942,7 +2942,7 @@
     "id": "featureTempestDomainSpells",
     "name": "Tempest Domain Spells",
     "content": [],
-    "description": "You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don\'t count against your daily limit. If the spell isn\'t on the cleric spell list it is nonetheless a cleric spell for you.\n1st level: fog cloud, thunderwave\n3rd level: gust of wind, shatter\n5th level: call lightning, sleet storm\n7th level: control water, ice storm\n9th level: destructive wave, insect plague",
+    "description": "You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don't count against your daily limit. If the spell isn't on the cleric spell list it is nonetheless a cleric spell for you.\n1st level: fog cloud, thunderwave\n3rd level: gust of wind, shatter\n5th level: call lightning, sleet storm\n7th level: control water, ice storm\n9th level: destructive wave, insect plague",
     "classes": [
       "Cleric"
     ],
@@ -3117,7 +3117,7 @@
       "featureDivineStrikeTrickeryDomain",
       "featureImprovedDuplicity"
     ],
-    "description": "Gods of trickery-such as Tymora, Beshaba, Olidammara, the Traveler, Garl Glittergold, and Loki-are mischief-makers and instigators who stand as a constant challenge to the accepted order among both gods and mortals. They\'re patrons of theives, scoundrels, gamblers, rebels, and liberators. Their clerics are a  disruptive force in the world, puncturing pride, mocking tyrants, stealing from the rich, freeing captives, and flouting hollow traditions. They prefer subterfuge, pranks, deception, and theft rather than direct confrontation.",
+    "description": "Gods of trickery-such as Tymora, Beshaba, Olidammara, the Traveler, Garl Glittergold, and Loki-are mischief-makers and instigators who stand as a constant challenge to the accepted order among both gods and mortals. They're patrons of theives, scoundrels, gamblers, rebels, and liberators. Their clerics are a  disruptive force in the world, puncturing pride, mocking tyrants, stealing from the rich, freeing captives, and flouting hollow traditions. They prefer subterfuge, pranks, deception, and theft rather than direct confrontation.",
     "classes": [
       "Cleric"
     ],
@@ -3133,7 +3133,7 @@
     "id": "featureTrickeryDomainSpells",
     "name": "Trickery Domain Spells",
     "content": [],
-    "description": "You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don\'t count against your daily limit. If the spell isn\'t on the cleric spell list it is nonetheless a cleric spell for you.\n1st level: charm person, disguise self\n3rd level: mirror image, pass without trace\n5th level: blink, dispel magic\n7th level: dimension door, polymorph\n9th level: dominate person, modify memory",
+    "description": "You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don't count against your daily limit. If the spell isn't on the cleric spell list it is nonetheless a cleric spell for you.\n1st level: charm person, disguise self\n3rd level: mirror image, pass without trace\n5th level: blink, dispel magic\n7th level: dimension door, polymorph\n9th level: dominate person, modify memory",
     "classes": [
       "Cleric"
     ],
@@ -3199,7 +3199,7 @@
     "id": "featureChannelDivinityInvokeDuplicity",
     "name": "Channel Divinity: Invoke Duplicity",
     "content": [],
-    "description": "Starting at 2nd level, you can use your Channel Divinity to create an illusory duplicate of yourself.\nAs an action, you create a perfect illusion of yourself that lasts for 1 minute, or until you lose your concentration (as if you were concentrating on a spell). The illusion appears in an unoccupied space that you can see within 30 feet of you. As a bonus action on your turn, you can move the illusion up to 30 feet to a space you can see, but it must remain within 120 feet of you.\nFor the duration, you can cast spells as though you were in hte illusion\'s space, but you must use your own senses. Additionally, when both you and your illusion are within 5 feet of a creature that can see the illusion, you have advantage on attack rolls against that creature, given how distracting the illusion is to the target.",
+    "description": "Starting at 2nd level, you can use your Channel Divinity to create an illusory duplicate of yourself.\nAs an action, you create a perfect illusion of yourself that lasts for 1 minute, or until you lose your concentration (as if you were concentrating on a spell). The illusion appears in an unoccupied space that you can see within 30 feet of you. As a bonus action on your turn, you can move the illusion up to 30 feet to a space you can see, but it must remain within 120 feet of you.\nFor the duration, you can cast spells as though you were in hte illusion's space, but you must use your own senses. Additionally, when both you and your illusion are within 5 feet of a creature that can see the illusion, you have advantage on attack rolls against that creature, given how distracting the illusion is to the target.",
     "classes": [
       "Cleric"
     ],
@@ -3309,7 +3309,7 @@
     "id": "featureWarDomainSpells",
     "name": "War Domain Spells",
     "content": [],
-    "description": "You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don\'t count against your daily limit. If the spell isn\'t on the cleric spell list it is nonetheless a cleric spell for you.\n1st level: divine favor, shield of faith\n3rd level: magic weapon, spiritual weapon\n5th level: crusader\'s mantle, spirit guardians\n7th level: freedom of movement, stoneskin\n9th level: flame strike, hold monster",
+    "description": "You gain the following spells at the indicated Cleric level. Once you gain these spells they are always prepared and don't count against your daily limit. If the spell isn't on the cleric spell list it is nonetheless a cleric spell for you.\n1st level: divine favor, shield of faith\n3rd level: magic weapon, spiritual weapon\n5th level: crusader's mantle, spirit guardians\n7th level: freedom of movement, stoneskin\n9th level: flame strike, hold monster",
     "classes": [
       "Cleric"
     ],
@@ -3405,7 +3405,7 @@
   },
   {
     "id": "featureChannelDivinityWarGodsBlessing",
-    "name": "Channel Divinity: War God\'s Blessing",
+    "name": "Channel Divinity: War God's Blessing",
     "content": [],
     "description": "At 6th level, when a creature within 30 feet of you makes an attack roll, you can use your reaction to grant that creature a +10 bonus to the roll, using your Channel Divinity. You make this choice after you see the roll, but before the DM says whether the attack hits or misses.",
     "classes": [
@@ -3529,7 +3529,7 @@
     "id": "featureDivineIntervention",
     "name": "Divine Intervention",
     "content": [],
-    "description": "Beginning at 10th level, you can call on your deity to intervene on your behalf when your need is great.\nImploring your deity\'s aid requires you to use your action. Describe the assistance you seek, and roll percentile dice. If you roll a number equal to or lower than your cleric level, your deity intervenes. The DM chooses the nature of the intervention; the effect of any cleric spell or cleric domain spell would be appropriate.\nIf your deity intervenes, you can\'t use this feature again for 7 days. Otherwise, you can use it again after you finish a long rest.\nAt 20th level, your call for intervention succeeds automatically, no roll required.",
+    "description": "Beginning at 10th level, you can call on your deity to intervene on your behalf when your need is great.\nImploring your deity's aid requires you to use your action. Describe the assistance you seek, and roll percentile dice. If you roll a number equal to or lower than your cleric level, your deity intervenes. The DM chooses the nature of the intervention; the effect of any cleric spell or cleric domain spell would be appropriate.\nIf your deity intervenes, you can't use this feature again for 7 days. Otherwise, you can use it again after you finish a long rest.\nAt 20th level, your call for intervention succeeds automatically, no roll required.",
     "classes": [
       "Cleric"
     ],
@@ -3910,7 +3910,7 @@
     "id": "featureDruidic",
     "name": "Druidic",
     "content": [],
-    "description": "You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message\'s presence witha successful DC 15 Wisdom(Perception) check but can\'t decipher it without magic.",
+    "description": "You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot the message's presence witha successful DC 15 Wisdom(Perception) check but can't decipher it without magic.",
     "classes": [
       "Druid"
     ],
@@ -3925,7 +3925,7 @@
     "id": "featureWildShape",
     "name": "Wild Shape",
     "content": [],
-    "description": "Starting at 2nd level, you can use your action to magically assume the shape of a beast that you have seen before. You can use this feature twice. You regain expended uses when you finish a short or long reast.\nYour druid level determines the beasts you can transform into.\nYou can stay in a beast shape for a number of hours equal to hald your druid level (rounded down). You then revert to your normal form unless you expend another use of this feature. You can revert to your normal form earlier by using a bonus action on your turn. You automatically revert if you fall unconscious, drop to 0 hit points, or die.\nWhile you are transformed, the following rules apply:\n-Your game statistics are replaces by the statistics of the beast, but you retain your alignment, personality, Intelligence, Wisdom, and Charisma scores. You also retain all of your skill and saving throw proficiencies, in addition to gaining those of the creature. If the creature has the same proficiency as you and the bonus in its statblock is higher than yours, use the creature\'s bonus instead of yours. If the creature has any legendary or lair actions, you can\'t use them.\n-When you transform, you assume the beast\'s hit points and Hit Dice. Whe nyou revert to your normal form, you return to the number of hit points you had before you transformed. However, if you revert as a result of dropping to 0 hit points, any excess damage carries over to your normal form. For example, if you take 10 damage in animal form and have only 1 hit point left, you revert and take 9 damage. As long as the excess damage doesn\'t reduce your normal form to 0 hit pointds, you aren\'t knocked unconscious.\n-You can\'t cast spells, and your ability to speak or take any action that requires hands is limited to the capabilities of your beast form. Transforming doesn\'t break your concentration on a spell you\'ve already cast, however, or prevent you from taking actions that are part of a spell, such as call lightning, that you\'ve arleady cast.\n-You retain the benefit of any features from your class, race, or other source and can use them if the new form is physically capable of doing so. However, you can\'t use any of your special senses, such as darkvision, unless your new form also has that sense.\n-You choose whether your equipment falls to the ground in your space, merges into your new form, or is worn by it. Worn equipment functions as normal, but the DM decides whether it is practical for the new form to wear a piece of equipment, based on the creature\'s shape and size. Your equipment doesn\'t change size or shape to match the new form, and any equipment that the new form can\'t wear must either fall to the ground or merge with it. Equipment that mergers with the form has no effect until you leave the form.",
+    "description": "Starting at 2nd level, you can use your action to magically assume the shape of a beast that you have seen before. You can use this feature twice. You regain expended uses when you finish a short or long reast.\nYour druid level determines the beasts you can transform into.\nYou can stay in a beast shape for a number of hours equal to hald your druid level (rounded down). You then revert to your normal form unless you expend another use of this feature. You can revert to your normal form earlier by using a bonus action on your turn. You automatically revert if you fall unconscious, drop to 0 hit points, or die.\nWhile you are transformed, the following rules apply:\n-Your game statistics are replaces by the statistics of the beast, but you retain your alignment, personality, Intelligence, Wisdom, and Charisma scores. You also retain all of your skill and saving throw proficiencies, in addition to gaining those of the creature. If the creature has the same proficiency as you and the bonus in its statblock is higher than yours, use the creature's bonus instead of yours. If the creature has any legendary or lair actions, you can't use them.\n-When you transform, you assume the beast's hit points and Hit Dice. Whe nyou revert to your normal form, you return to the number of hit points you had before you transformed. However, if you revert as a result of dropping to 0 hit points, any excess damage carries over to your normal form. For example, if you take 10 damage in animal form and have only 1 hit point left, you revert and take 9 damage. As long as the excess damage doesn't reduce your normal form to 0 hit pointds, you aren't knocked unconscious.\n-You can't cast spells, and your ability to speak or take any action that requires hands is limited to the capabilities of your beast form. Transforming doesn't break your concentration on a spell you've already cast, however, or prevent you from taking actions that are part of a spell, such as call lightning, that you've arleady cast.\n-You retain the benefit of any features from your class, race, or other source and can use them if the new form is physically capable of doing so. However, you can't use any of your special senses, such as darkvision, unless your new form also has that sense.\n-You choose whether your equipment falls to the ground in your space, merges into your new form, or is worn by it. Worn equipment functions as normal, but the DM decides whether it is practical for the new form to wear a piece of equipment, based on the creature's shape and size. Your equipment doesn't change size or shape to match the new form, and any equipment that the new form can't wear must either fall to the ground or merge with it. Equipment that mergers with the form has no effect until you leave the form.",
     "classes": [
       "Druid"
     ],
@@ -4044,7 +4044,7 @@
       "featureNaturesWard",
       "featureNaturesSanctuary"
     ],
-    "description": "The Circle of the Land is made up of mystics and sages who safeguard ancient knowledge and rites through a vast oral tradition. These druids meet within sacred circles of trees or standing stones to whisper primal secrets in Druidic. The circle\'s wisest members preside as the chief priests of communities that hold to the Old Faith and serve as advisors to the rulers of those folk. As a member of this circle, your magic is influenced by the land where you were initiated into the circle\'s mysterious rites.",
+    "description": "The Circle of the Land is made up of mystics and sages who safeguard ancient knowledge and rites through a vast oral tradition. These druids meet within sacred circles of trees or standing stones to whisper primal secrets in Druidic. The circle's wisest members preside as the chief priests of communities that hold to the Old Faith and serve as advisors to the rulers of those folk. As a member of this circle, your magic is influenced by the land where you were initiated into the circle's mysterious rites.",
     "classes": [
       "Druid"
     ],
@@ -4077,7 +4077,7 @@
     "id": "featureNaturalRecovery",
     "name": "Natural Recovery",
     "content": [],
-    "description": "Starting at 2nd level, you can regain some of your magical energy by sitting in meditation and communing with nature. During a short rest, you choose expended spell slotsto recover. The spell slots can have a combined level that is equal to or less than half your druid level (rounded up), and none of the slots can be 6th level or higher. You can\'t use this feature again until you finish a long rest.\nFor example, when you are a 4th-level druid, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level slot or two 1st-level slots.",
+    "description": "Starting at 2nd level, you can regain some of your magical energy by sitting in meditation and communing with nature. During a short rest, you choose expended spell slotsto recover. The spell slots can have a combined level that is equal to or less than half your druid level (rounded up), and none of the slots can be 6th level or higher. You can't use this feature again until you finish a long rest.\nFor example, when you are a 4th-level druid, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level slot or two 1st-level slots.",
     "classes": [
       "Druid"
     ],
@@ -4125,7 +4125,7 @@
     "id": "featureBeastSpells",
     "name": "Beast Spells",
     "content": [],
-    "description": "Beginning at 18th level, you can cast many of your druid spells in any shape you assume using Wild Shape. You can perform the somatic and verbal components of a druid spell while in a beast shape, but you aren\'t able to provide material components.",
+    "description": "Beginning at 18th level, you can cast many of your druid spells in any shape you assume using Wild Shape. You can perform the somatic and verbal components of a druid spell while in a beast shape, but you aren't able to provide material components.",
     "classes": [
       "Druid"
     ],
@@ -4162,7 +4162,7 @@
       "featureProtection",
       "featureTwoWeaponFighting"
     ],
-    "description": "You adopt a particular style of fighting as your specialty. Choose one of the following options. You can\'t take a Fighting Style option more than once, even if you later get to choose again. The options are Archery, Defense, Dueling, Great Weapon Fighting, Protection, Two-Weapon Fighting.",
+    "description": "You adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose again. The options are Archery, Defense, Dueling, Great Weapon Fighting, Protection, Two-Weapon Fighting.",
     "classes": [
       "fighter"
     ],
@@ -4282,7 +4282,7 @@
     "id": "featureMartialArts",
     "name": "Martial Arts",
     "content": [],
-    "description": "At 1st level, your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords and any simple melee weapons that don\'t have the two-handed or heavy property.\nYou gain the following benefits while you are unarmed or wielding only monk weapons and you aren\'t wearing armor or wielding a shield:\n-You can use Dexterity instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.\n-You can roll a d4 in place of the normal damage your unarmed strike or monk weapon. This die changes as you gain monk levels, as shown in the Martial Arts column of the Monk table.\n-When you use the Attack action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action. For example if you take the Attack action and attack with a quarterstaff, you can also make an unarmed strike as a bonus action, assuming you haven\'t already taken a bonus action this turn.\nCertain monestaries use specialized forms of the monk weapons. For example, you might use a club that is two lengths of wood connected by a short chain (called nunchaku) or a sickle with a shorter, straighter blade (called a kama). Whatever name you use for a monk weapon, you can use the game statistics p[rovided for the weapon in chapter 5.",
+    "description": "At 1st level, your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords and any simple melee weapons that don't have the two-handed or heavy property.\nYou gain the following benefits while you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield:\n-You can use Dexterity instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.\n-You can roll a d4 in place of the normal damage your unarmed strike or monk weapon. This die changes as you gain monk levels, as shown in the Martial Arts column of the Monk table.\n-When you use the Attack action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action. For example if you take the Attack action and attack with a quarterstaff, you can also make an unarmed strike as a bonus action, assuming you haven't already taken a bonus action this turn.\nCertain monestaries use specialized forms of the monk weapons. For example, you might use a club that is two lengths of wood connected by a short chain (called nunchaku) or a sickle with a shorter, straighter blade (called a kama). Whatever name you use for a monk weapon, you can use the game statistics p[rovided for the weapon in chapter 5.",
     "classes": [
       "Monk"
     ],
@@ -4384,7 +4384,7 @@
     "id": "featureNaturalExplorer",
     "name": "Natural Explorer",
     "content": [],
-    "description": "You are particularly familiar with one type of natural encironment and are adept at traveling and surviving in such regions. Choose one type of favorfed terrain: arctic, coast, desert, forest, grassland, mountain, swamp, or the Underdark. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you\'re proficient in.\nWhile traveling for an hour or more in your favored terrain, ou gain the following benefits:\n-Difficult terrain doesn\'t slow your group\'s travel.\n-Your group can\'t become lost except by magical means.\n-Even when you are engaged in another activity while traveling (such as foraging, navigating, or tracking), you remain alert to danger.\n-When you forage, you find twice as much food as you normally would.\n-While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.\nYou choose additional favored terrain types at 6th and 10th level.",
+    "description": "You are particularly familiar with one type of natural encironment and are adept at traveling and surviving in such regions. Choose one type of favorfed terrain: arctic, coast, desert, forest, grassland, mountain, swamp, or the Underdark. When you make an Intelligence or Wisdom check related to your favored terrain, your proficiency bonus is doubled if you are using a skill that you're proficient in.\nWhile traveling for an hour or more in your favored terrain, ou gain the following benefits:\n-Difficult terrain doesn't slow your group's travel.\n-Your group can't become lost except by magical means.\n-Even when you are engaged in another activity while traveling (such as foraging, navigating, or tracking), you remain alert to danger.\n-When you forage, you find twice as much food as you normally would.\n-While tracking other creatures, you also learn their exact number, their sizes, and how long ago they passed through the area.\nYou choose additional favored terrain types at 6th and 10th level.",
     "classes": [
       "Ranger"
     ],
@@ -4399,7 +4399,7 @@
     "id": "featureExpertiseRogue",
     "name": "Expertise",
     "content": [],
-    "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves\' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves\' tools) to gain this benefit.",
+    "description": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies.\nAt 6th level, you can choose two more of your proficiencies (in skills or with thieves' tools) to gain this benefit.",
     "classes": [
       "Rogue"
     ],
@@ -4435,7 +4435,7 @@
     "id": "featureSneakAttack",
     "name": "Sneak Attack",
     "content": [],
-    "description": "Beginning at 1st level, you know how to strike subtly and exploit a foe\'s distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or ranged weapon.\nThe amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the Rogue table.",
+    "description": "Beginning at 1st level, you know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on the attack roll. The attack must use a finesse or ranged weapon.\nThe amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the Rogue table.",
     "classes": [
       "Rogue"
     ],
@@ -4471,7 +4471,7 @@
     "id": "featureThievesCant",
     "name": "",
     "content": [],
-    "description": "During your rogue training you learned thieves\' cant, a secret mix of dialect, jargo, and code that allows you to hide messages in seemingly normal conversation. Only another creature that knows thieves\' cant understands such messages. It takes four times longer to convey such a message than it does to speak the same idea plainly.\nIn addition, you understand  a set of secret signs and symbols used to convey short, simple messages, such as whether an area is dangerous or the territory of a thieves\' guild, whether loot is nearby, or whether the people in an area are easy marks or will provide a safe house for thieves on the run.",
+    "description": "During your rogue training you learned thieves' cant, a secret mix of dialect, jargo, and code that allows you to hide messages in seemingly normal conversation. Only another creature that knows thieves' cant understands such messages. It takes four times longer to convey such a message than it does to speak the same idea plainly.\nIn addition, you understand  a set of secret signs and symbols used to convey short, simple messages, such as whether an area is dangerous or the territory of a thieves' guild, whether loot is nearby, or whether the people in an area are easy marks or will provide a safe house for thieves on the run.",
     "classes": [
       "Rogue"
     ],
@@ -4941,7 +4941,7 @@
     "id": "featureDraconicResilience",
     "name": "Draconic Resilience",
     "content": [],
-    "description": "As magic flows through your body, it causes physical traits of your dragon ancestors to emerge. At 1st level, your hit point maximum increases by 1 and increases by 1 again whenever you gain a level in this class.\nAdditionally, parts of your skin are covered by a thin sheen of dragon-like scales. When you aren\'y wearing armor, your AC equals 13 + your Dexterity modifier.",
+    "description": "As magic flows through your body, it causes physical traits of your dragon ancestors to emerge. At 1st level, your hit point maximum increases by 1 and increases by 1 again whenever you gain a level in this class.\nAdditionally, parts of your skin are covered by a thin sheen of dragon-like scales. When you aren'y wearing armor, your AC equals 13 + your Dexterity modifier.",
     "classes": [
       "Sorcerer"
     ],
@@ -5029,7 +5029,7 @@
       "featureTheArchfeyExpandedSpellList",
       "featureFeyPresence"
     ],
-    "description": "Your patron is a lord or lady of the fey, a creature of legend who holds secrets that were forgotten before the mortal races were born. This being\'s motivations are often inscrutable, and sometimes whimsical, and might involve striving for grater magical power or the setling of age-old grudges. Beings of this sort include the Prince of Frost; the Queen of Air and Darkness, ruler of the Gleaming Court; Titania of the Summer Court; her consort Oberon, the Green Lord; Hyrsam, the prince of Fools; and ancient hags.",
+    "description": "Your patron is a lord or lady of the fey, a creature of legend who holds secrets that were forgotten before the mortal races were born. This being's motivations are often inscrutable, and sometimes whimsical, and might involve striving for grater magical power or the setling of age-old grudges. Beings of this sort include the Prince of Frost; the Queen of Air and Darkness, ruler of the Gleaming Court; Titania of the Summer Court; her consort Oberon, the Green Lord; Hyrsam, the prince of Fools; and ancient hags.",
     "classes": [
       "Warlock"
     ],
@@ -5095,7 +5095,7 @@
     "id": "featureFeyPresence",
     "name": "Fey Presence",
     "content": [],
-    "description": "Starting at 1st level, your patron bestows upon you the ability to project the beguiling and fearsome presence of the fey. As an action, you can cause each creature in a 10-foot cube originating from you to make a Wisdom saving throw against your warlock spell save DC. THe creatures that fail their saving throws are all charmed or frightened by you (your choice) until the end of your next turn.\nOnce you use this feature, you can\'t use it again until you finish a short or long rest.",
+    "description": "Starting at 1st level, your patron bestows upon you the ability to project the beguiling and fearsome presence of the fey. As an action, you can cause each creature in a 10-foot cube originating from you to make a Wisdom saving throw against your warlock spell save DC. THe creatures that fail their saving throws are all charmed or frightened by you (your choice) until the end of your next turn.\nOnce you use this feature, you can't use it again until you finish a short or long rest.",
     "classes": [
       "Warlock"
     ],
@@ -5114,7 +5114,7 @@
       "featureTheFiendExpandedSpellList",
       "featureDarkOnesBlessing"
     ],
-    "description": "You have made a pact with a fiend from the lower planes of existence, a being whose aims are evil, even if you strive against those aims. Such beings desire the corruption or destruction of all things, ultimately including you. Fiends powerful enough to forge a pact include demon lords such as Demogorgon, Orcus, Fraz\'Urb-luu, and Baphomet; archdevils such as Asmodeus, Dispater, Mephistopheles, and Belial; pit fiends and balors that are especially mighty; and ultroloths and other lords of the yugoloths.",
+    "description": "You have made a pact with a fiend from the lower planes of existence, a being whose aims are evil, even if you strive against those aims. Such beings desire the corruption or destruction of all things, ultimately including you. Fiends powerful enough to forge a pact include demon lords such as Demogorgon, Orcus, Fraz'Urb-luu, and Baphomet; archdevils such as Asmodeus, Dispater, Mephistopheles, and Belial; pit fiends and balors that are especially mighty; and ultroloths and other lords of the yugoloths.",
     "classes": [
       "Warlock"
     ],
@@ -5178,7 +5178,7 @@
   },
   {
     "id": "featureDarkOnesBlessing",
-    "name": "Dark One\'s Blessing",
+    "name": "Dark One's Blessing",
     "content": [],
     "description": "Starting at 1st level, when you reduce a hostile creature to 0 hit points, you gain temporary hit points equal to your Charisma modifier + your warlock level (minimum of 1).",
     "classes": [
@@ -5215,7 +5215,7 @@
     "id": "featureTheFGreatOldOneExpandedSpellList",
     "name": "The Great Old One Expanded Spell List",
     "content": [],
-    "description": "The Great Old One lets you choose from an expanded list of spells when you learn a warlock spell. The following spells are added to the warlock spell list for you.\n1st level spells: dissonant whispers, Tasha\'s hideous laughter\n2nd level spells: detect thoughts, phantasmal force\n3rd level spells: clairvoyance, sending\n4th level spells: dominate beast, Evard\'s black tentacles\n5th level spells: dominate person, telekinesis",
+    "description": "The Great Old One lets you choose from an expanded list of spells when you learn a warlock spell. The following spells are added to the warlock spell list for you.\n1st level spells: dissonant whispers, Tasha's hideous laughter\n2nd level spells: detect thoughts, phantasmal force\n3rd level spells: clairvoyance, sending\n4th level spells: dominate beast, Evard's black tentacles\n5th level spells: dominate person, telekinesis",
     "classes": [
       "Warlock"
     ],
@@ -5265,7 +5265,7 @@
     "id": "featureAwakenedMind",
     "name": "Awakened Mind",
     "content": [],
-    "description": "Starting at 1st level, your alien knowledge gives you the ability to touch the minds of outher creatures. You can communicate telepathically wih any creature you can see within 30 feet of you. You don\'t need to share a language with the creature for it to understand your telepathic utterances, but the creature must be able to understand at least one language.",
+    "description": "Starting at 1st level, your alien knowledge gives you the ability to touch the minds of outher creatures. You can communicate telepathically wih any creature you can see within 30 feet of you. You don't need to share a language with the creature for it to understand your telepathic utterances, but the creature must be able to understand at least one language.",
     "classes": [
       "Warlock"
     ],
@@ -5983,7 +5983,7 @@
     "id": "featureArcaneRecovery",
     "name": "Arcane Recovery",
     "content": [],
-    "description": "You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. THe spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.\nFor example, if you\'re a 4th level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots.",
+    "description": "You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. THe spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.\nFor example, if you're a 4th level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots.",
     "classes": [
       "Wizard"
     ],
