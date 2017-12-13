@@ -14,6 +14,7 @@ import java.util.stream.*;
  * class, race, level, or other constant values.
  *
  * To Do List:
+ * INITIALIZE LANGUAGES / EQUIPMENT / SAVING THROWS / SKILLS
  * spell save DCs for all stats
  * spell attack modifier for all stats
  * 
@@ -27,6 +28,8 @@ import java.util.stream.*;
  * Altered removeKnownSpell AGAIN, hopefully the issue is really resolved this time.
  * Initialized all fields to deal with null pointer exceptions.
  * Added method to return a formatted String of all the Character's levels.
+ * --12/12/2017--
+ * Added getCharacterSkillByID method.
  */
 
 public class Character implements Serializable {
@@ -413,6 +416,16 @@ public class Character implements Serializable {
     // For skillsList.
     public ArrayList<Skill> getSkillsList() {return this.skillsList;} // Getter.
     
+    // A method used to get a skill in the character's skillsList by ID.
+    public Skill getCharacterSkillByID(String skillIDToGetIn) {
+        for (Skill currentSkill : this.skillsList) {
+            if (currentSkill.getID().equalsIgnoreCase(skillIDToGetIn)) {
+                return currentSkill;
+            } // End if.
+        } // End for.
+        return MasterLists.getSkillByID("skillAthletics");
+    } // End public Skill getCharacterSkillByID.
+    
     // Only to be used when creating a new character.  Copies the master list of Skill objects into skillsList, overwriting all data.
     public void initializeSkillsList() {
         Map<String, Skill> currentMasterSkillMap = MasterLists.getMasterSkillList();
@@ -480,6 +493,214 @@ public class Character implements Serializable {
     
     // For getting the list of all known features.
     public ArrayList<ClassFeature> getFeaturesList() {return this.featuresList;}
+    
+    /////////////////////////////////
+    // Initialize Character Method //
+    /////////////////////////////////
+    
+    // This method will initialize the character's starting languages, equipment, saving throws, and skills, based upon their race and class choices.
+    public void initializeCharacter() {
+        this.languages.add("Common"); // All races can speak Common.
+        
+        switch (this.race) {
+            case "Hill Dwarf": case "Mountain Dwarf":
+                this.languages.add("Dwarvish");
+                break;
+            case "High Elf":
+                this.languages.add("Elvish");
+                this.languages.add("Celestial");
+                break;
+            case "Dark Elf":
+                this.languages.add("Elvish");
+                this.languages.add("Undercommon");
+                break;
+            case "Wood Elf":
+                this.languages.add("Elvish");
+                this.languages.add("Sylvan");
+                break;
+            case "Stout": case "LightFoot":
+                this.languages.add("Halfling");
+                break;
+            case "Human":
+                this.languages.add("Orc");
+                break;
+            case "Dragonborn":
+                this.languages.add("Draconic");
+                break;
+            case "Forest Gnome": case "Rock Gnome":
+                this.languages.add("Gnomish");
+                break;
+            case "Half-Elf":
+                this.languages.add("Elvish");
+                this.languages.add("Orc");
+                break;
+            case "Half-Orc":
+                this.languages.add("Orc");
+                break;
+            case "Tiefling":
+                this.languages.add("Infernal");
+                break;
+        } // End switch (this.race).
+        
+        // Determine the index of the class so that all saving throws, equipment, and skills can be assigned properly, based upon this chosen class.
+        int classIndex = 0;
+        for (int i = 0; i < this.levelArray.length; i++) {
+            if (this.levelArray[i] != 0) {
+                classIndex = i;
+                return;
+            } // End if.
+        } // End for.
+        
+        switch (classIndex) {
+            case 0: // Barbarian
+                populateLevelOneFeatures("classBarbarian");                                             // Populate level 1 Barbarian features.
+                this.savingThrowProficiencyArray = new boolean[]{true,false,true,false,false,false};    // Barbarians are proficient in Strength and Constitution saving throws.
+                this.getCharacterSkillByID("skillAthletics").setIsProficient(true);                     // Barbarians are proficient in Athletics and Intimidation.
+                this.getCharacterSkillByID("skillIntimidation").setIsProficient(true);
+                this.addItem(MasterLists.getWeaponByID("weaponGreataxe"), 1);                           // Barbarian starting gear includes a greataxe...
+                this.addItem(MasterLists.getWeaponByID("weaponHandaxe"), 2);                            // 2 handaxes...
+                this.addItem(MasterLists.getItemByID("itemExplorersPack"), 1);                          // explorer's pack...
+                this.addItem(MasterLists.getWeaponByID("weaponJavelin"), 4);                            // and 4 javelins.
+                break;
+            case 1: // Bard
+                populateLevelOneFeatures("classBard");                                                  // Populate level 1 Bard features.
+                this.savingThrowProficiencyArray = new boolean[]{false,true,false,false,false,true};    // Bards are proficient in Dexterity and Charisma saving throws.
+                this.getCharacterSkillByID("skillPerformance").setIsProficient(true);                   // Bards are proficient in Performance, Persuasion, and Sleight of Hand.
+                this.getCharacterSkillByID("skillPersuasion").setIsProficient(true);
+                this.getCharacterSkillByID("skillSleightOfHand").setIsProficient(true);
+                this.addItem(MasterLists.getWeaponByID("weaponRapier"), 1);                             // Bard starting gear includes a rapier...
+                this.addItem(MasterLists.getItemByID("itemDiplomatsPack"), 1);                          // diplomat's pack...
+                this.addItem(MasterLists.getItemByID("itemLute"), 1);                                   // and a lute.
+                break;
+            case 2: // Cleric
+                populateLevelOneFeatures("classCleric");                                                // Populate level 1 Cleric features.
+                this.savingThrowProficiencyArray = new boolean[]{false,false,false,false,true,true};    // Clerics are proficient in Wisdom and Charisma saving throws.
+                this.getCharacterSkillByID("skillInsight").setIsProficient(true);                       // Clerics are proficient in Insight and Religion.
+                this.getCharacterSkillByID("skillReligion").setIsProficient(true);
+                this.addItem(MasterLists.getWeaponByID("weaponMace"), 1);                               // Cleric starting gear includes a mace...
+                this.addItem(MasterLists.getArmorByID("armorScaleMailMediumArmor"), 1);                 // scale mail...
+                this.addItem(MasterLists.getWeaponByID("weaponCrossbowLight"), 1);                      // light crossbow...
+                this.addItem(MasterLists.getItemByID("itemCrossbowBolts20"), 1);                        // 20 crossbow bolts...
+                this.addItem(MasterLists.getArmorByID("armorShield"), 1);                               // shield...
+                this.addItem(MasterLists.getItemByID("itemReliquary"), 1);                              // and a holy symbol in the form of a reliquary.
+                break;
+            case 3: // Druid
+                populateLevelOneFeatures("classDruid");                                                 // Populate level 1 Druid features.
+                this.savingThrowProficiencyArray = new boolean[]{false,false,false,true,true,false};    // Druids are proficient in Intelligence and Wisdom saving throws.
+                this.getCharacterSkillByID("skillNature").setIsProficient(true);                        // Druids are proficient in Nature and Perception.
+                this.getCharacterSkillByID("skillPerception").setIsProficient(true);
+                this.addItem(MasterLists.getArmorByID("armorShield"), 1);                               // Druid starting gear includes a shield...
+                this.addItem(MasterLists.getWeaponByID("weaponScimitar"), 1);                           // scimitar...
+                this.addItem(MasterLists.getArmorByID("armorLeatherLightArmor"), 1);                    // leather armor...
+                this.addItem(MasterLists.getItemByID("itemExplorersPack"), 1);                          // explorer's pack...
+                this.addItem(MasterLists.getItemByID("itemSprigOfMistletoe"), 1);                       // and a druidic focus in the form of a sprig of mistletoe.
+                break;
+            case 4: // Fighter
+                populateLevelOneFeatures("classFighter");                                               // Populate level 1 Fighter features.
+                this.savingThrowProficiencyArray = new boolean[]{true,false,true,false,false,false};    // Fighters are proficient in Strength and Constitution saving throws.
+                this.getCharacterSkillByID("skillAthletics").setIsProficient(true);                     // Fighters are proficient in Athletics and Perception.
+                this.getCharacterSkillByID("skillPerception").setIsProficient(true);
+                this.addItem(MasterLists.getArmorByID("armorChainMailHeavyArmor"), 1);                  // Fighter starting gear includes chainmail...
+                this.addItem(MasterLists.getWeaponByID("weaponLongsword"), 1);                          // longsword...
+                this.addItem(MasterLists.getArmorByID("armorShield"), 1);                               // shield...
+                this.addItem(MasterLists.getWeaponByID("weaponCrossbowLight"), 1);                      // light crossbow...
+                this.addItem(MasterLists.getItemByID("itemCrossbowBolts20"), 1);                        // 20 crossbow bolts...
+                this.addItem(MasterLists.getItemByID("itemDungeoneersPack"), 1);                        // and a dungeoneer's pack.
+                break;
+            case 5: // Monk
+                populateLevelOneFeatures("classMonk");                                                  // Populate level 1 Monk features.
+                this.savingThrowProficiencyArray = new boolean[]{true,true,false,false,false,false};    // Monks are proficient in Strength and Dexterity saving throws.
+                this.getCharacterSkillByID("skillAcrobatics").setIsProficient(true);                    // Monks are proficient in Acrobatics and Athletics.
+                this.getCharacterSkillByID("skillAthletics").setIsProficient(true);
+                this.addItem(MasterLists.getWeaponByID("weaponQuarterstaff"), 1);                       // Monk starting gear includes a quarterstaff...
+                this.addItem(MasterLists.getItemByID("itemDungeoneersPack"), 1);                        // dungeoneer's pack...
+                this.addItem(MasterLists.getWeaponByID("weaponDart"), 10);                              // and 10 darts.
+                break;
+            case 6: // Paladin
+                populateLevelOneFeatures("classPaladin");                                               // Populate level 1 Paladin features.
+                this.savingThrowProficiencyArray = new boolean[]{false,false,false,false,true,true};    // Paladins are proficient in Wisdom and Charisma saving throws.
+                this.getCharacterSkillByID("skillPersuasion").setIsProficient(true);                    // Paladins are proficient in Persuasion and Religion.
+                this.getCharacterSkillByID("skillReligion").setIsProficient(true);
+                this.addItem(MasterLists.getWeaponByID("weaponWarhammer"), 1);                          // Paladin starting gear includes a warhammer...
+                this.addItem(MasterLists.getArmorByID("armorShield"), 1);                               // shield...
+                this.addItem(MasterLists.getWeaponByID("weaponJavelin"), 5);                            // 5 javelins...
+                this.addItem(MasterLists.getItemByID("itemPriestsPack"), 1);                            // priests' pack...
+                this.addItem(MasterLists.getArmorByID("armorChainMailHeavyArmor"), 1);                  // chainmail...
+                this.addItem(MasterLists.getItemByID("itemAmulet"), 1);                                 // and a holy symbol in the form of an amulet.
+                break;
+            case 7: // Ranger
+                populateLevelOneFeatures("classRanger");                                                // Populate level 1 Ranger features.
+                this.savingThrowProficiencyArray = new boolean[]{true,true,false,false,false,false};    // Rangers are proficient in Strength and Dexterity saving throws.
+                this.getCharacterSkillByID("skillAnimalHandling").setIsProficient(true);                // Rangers are proficient in Animal Handling and Survival.
+                this.getCharacterSkillByID("skillSurvival").setIsProficient(true);
+                this.addItem(MasterLists.getArmorByID("armorScaleMailMediumArmor"), 1);                 // Ranger starting gear includes scale mail...
+                this.addItem(MasterLists.getWeaponByID("weaponShortsword"), 2);                         // two shortswords...
+                this.addItem(MasterLists.getItemByID("itemExplorersPack"), 1);                          // explorer's pack...
+                this.addItem(MasterLists.getWeaponByID("weaponLongbow"), 1);                            // longbow...
+                this.addItem(MasterLists.getItemByID("itemQuiver"), 1);                                 // quiver...
+                this.addItem(MasterLists.getItemByID("itemArrows20"), 1);                               // and 20 arrows.
+                break;
+            case 8: // Rogue
+                populateLevelOneFeatures("classRogue");                                                 // Populate level 1 Rogue features.
+                this.savingThrowProficiencyArray = new boolean[]{false,true,false,true,false,false};    // Rogues are proficient in Dexterity and Intelligence saving throws.
+                this.getCharacterSkillByID("skillAcrobatics").setIsProficient(true);                    // Rogues are proficient in Acrobatics, Deception, Perception, and Stealth.
+                this.getCharacterSkillByID("skillDeception").setIsProficient(true);
+                this.getCharacterSkillByID("skillPerception").setIsProficient(true);
+                this.getCharacterSkillByID("skillStealth").setIsProficient(true);
+                this.addItem(MasterLists.getWeaponByID("weaponShortsword"), 1);                         // Rogue starting gear includes a shortsword...
+                this.addItem(MasterLists.getWeaponByID("weaponShortbow"), 1);                           // shortbow...
+                this.addItem(MasterLists.getItemByID("itemQuiver"), 1);                                 // quiver...
+                this.addItem(MasterLists.getItemByID("itemArrows20"), 1);                               // 20 arrows...
+                this.addItem(MasterLists.getItemByID("itemBurglarsPack"), 1);                           // burglar's pack...
+                this.addItem(MasterLists.getArmorByID("armorLeatherLightArmor"), 1);                    // leather armor...
+                this.addItem(MasterLists.getWeaponByID("weaponDagger"), 2);                             // 2 daggers...
+                this.addItem(MasterLists.getItemByID("itemThievesTools"), 1);                           // and thieves' tools.
+                break;
+            case 9: // Sorcerer
+                populateLevelOneFeatures("classSorcerer");                                              // Populate level 1 Sorcerer features.
+                this.savingThrowProficiencyArray = new boolean[]{false,false,true,false,false,true};    // Sorcerers are proficient in Constitution and Charisma saving throws.
+                this.getCharacterSkillByID("skillArcana").setIsProficient(true);                        // Sorcerers are proficient in Arcana and Persuasion.
+                this.getCharacterSkillByID("skillPersuasion").setIsProficient(true);
+                this.addItem(MasterLists.getWeaponByID("weaponQuarterstaff"), 1);                       // Sorcerer starting gear includes a quarterstaff...
+                this.addItem(MasterLists.getItemByID("itemComponentPouch"), 1);                         // component pouch...
+                this.addItem(MasterLists.getItemByID("itemDungeoneersPack"), 1);                        // dungeoneer's pack...
+                this.addItem(MasterLists.getWeaponByID("weaponDagger"), 2);                             // and two daggers.
+                break;
+            case 10: // Warlock
+                populateLevelOneFeatures("classWarlock");                                               // Populate level 1 Warlock features.
+                this.savingThrowProficiencyArray = new boolean[]{false,false,false,false,true,true};    // Warlocks are proficient in Wisdom and Charisma saving throws.
+                this.getCharacterSkillByID("skillArcana").setIsProficient(true);                        // Warlocks are proficient in Arcana and Investigation.
+                this.getCharacterSkillByID("skillInvestigation").setIsProficient(true); 
+                this.addItem(MasterLists.getWeaponByID("weaponQuarterstaff"), 1);                       // Warlock starting gear includes a quarterstaff...
+                this.addItem(MasterLists.getItemByID("itemComponentPouch"), 1);                         // component pouch...
+                this.addItem(MasterLists.getItemByID("itemScholarsPack"), 1);                           // scholar's pack...
+                this.addItem(MasterLists.getArmorByID("armorLeatherLightArmor"), 1);                    // leather armor...
+                this.addItem(MasterLists.getWeaponByID("weaponHandaxe"), 1);                            // handaxe...
+                this.addItem(MasterLists.getWeaponByID("weaponDagger"), 2);                             // and two daggers.
+                break;
+            case 11: // Wizard
+                populateLevelOneFeatures("classWizard");                                                // Populate level 1 Wizard features.
+                this.savingThrowProficiencyArray = new boolean[]{false,false,false,true,true,false};    // Wizards are proficient in Intelligence and Wisdom saving throws.
+                this.getCharacterSkillByID("skillArcana").setIsProficient(true);                        // Wizards are proficient in Arcana and History.
+                this.getCharacterSkillByID("skillHistory").setIsProficient(true);
+                this.addItem(MasterLists.getWeaponByID("weaponQuarterstaff"), 1);                       // Wizard starting gear includes a quarterstaff...
+                this.addItem(MasterLists.getItemByID("itemComponentPouch"), 1);                         // component pouch...
+                this.addItem(MasterLists.getItemByID("itemScholarsPack"), 1);                           // scholar's pack...
+                this.addItem(MasterLists.getItemByID("itemSpellbook"), 1);                              // and a spellbook.
+                break;
+        } // End switch (classIndex).   
+    } // End public void initializeCharacter.
+    
+    // Helper method to add level 1 features to the class based upon the class ID.
+    private void populateLevelOneFeatures(String classIDIn) {
+        ClassType currentClass = MasterLists.getClassTypeByID(classIDIn);
+        
+        String featureString[] = currentClass.getFeatures()[0];
+            
+        for (String feature : featureString) {
+            this.featuresList.add(MasterLists.getClassFeatureByID(feature));
+        } // End for.
+    } // End private void populateLevelOneFeatures.
     
     ////////////////////////
     // Recalculate Method //
