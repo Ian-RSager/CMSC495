@@ -500,7 +500,7 @@
     "isVersatile": false,
     "isSpecial": true,
     "versatileDamage": "",
-    "isSpecialDescription": "You have disadvantage when you use a lance to attack a target within 5 feet of you. Also, a lance requires two hands to wield when you aren't mounted.",
+    "isSpecialDescription": "You have disadvantage when you use a lance to attack a target within 5 feet of you. Also, a lance requires two hands to wield when you aren\'t mounted.",
     "description": "A melee weapon used to attack a target within 5 feet of you."
   },
   {

@@ -2,7 +2,7 @@
   {
     "id": "skillAcrobatics",
     "name": "Acrobatics",
-    "description": "Your Dexterity (Acrobatics) check check covers your attempt to stay on your feet in a tricky situation, such as when you're trying to run across a sheet of ice, balance on a tightrope, or stay upright on a rocking ship's deck. The GM might also call for a Dexterity (Acrobatics) check to see if you can perform acrobatic stunts, including dives, rolls, somersaults, and flips.",
+    "description": "Your Dexterity (Acrobatics) check check covers your attempt to stay on your feet in a tricky situation, such as when you\'re trying to run across a sheet of ice, balance on a tightrope, or stay upright on a rocking ship\'s deck. The GM might also call for a Dexterity (Acrobatics) check to see if you can perform acrobatic stunts, including dives, rolls, somersaults, and flips.",
     "classes":[ "Bard","Fighter","Monk","Rogue"],
     "relevantAbilityScore":"Dexterity",
     "tags":["Dex","Dexterity","Bard","Fighter","Monk","Rogue"]
@@ -10,7 +10,7 @@
   {
     "id": "skillAnimalHandling",
     "name": "Animal Handling",
-    "description": "When there is any question whether you can calm down a domesticated animal, keep a mount from getting spooked, or intuit an animal's intentions, the GM might call for a Wisdom (Animal Handling) check. You also make a Wisdom (Animal Handling) check to control your mount when you attempt a risky maneuver.",
+    "description": "When there is any question whether you can calm down a domesticated animal, keep a mount from getting spooked, or intuit an animal\'s intentions, the GM might call for a Wisdom (Animal Handling) check. You also make a Wisdom (Animal Handling) check to control your mount when you attempt a risky maneuver.",
     "classes":["Barbarian","Bard","Druid","Fighter","Ranger"],
     "relevantAbilityScore":"Wisdom",
     "tags":["Wis","Wisdom","Bard","Fighter","Monk","Rogue"]
@@ -50,7 +50,7 @@
   {
     "id": "skillInsight",
     "name": "Insight",
-    "description": "Your Wisdom (Insight) check decides whether you can determine the true intentions of a creature, such as when searching out a lie or predicting someone's next move. Doing so involves gleaning clues from body language, speech habits, and changes in mannerisms.",
+    "description": "Your Wisdom (Insight) check decides whether you can determine the true intentions of a creature, such as when searching out a lie or predicting someone\'s next move. Doing so involves gleaning clues from body language, speech habits, and changes in mannerisms.",
     "classes":["Bard","Cleric","Druid","Fighter","Monk","Paladin","Ranger","Rogue","Sorcerer","Wizard"],
     "relevantAbilityScore":"Wisdom",
     "tags":["Wis","Wisdom","Bard","Cleric","Druid","Fighter","Monk","Paladin","Ranger","Rogue","Sorcerer","Wizard"]
@@ -122,7 +122,7 @@
   {
     "id": "skillSleightOfHand",
     "name": "Sleight of Hand",
-    "description": "Whenever you attempt an act of legerdemain or manual trickery, such as planting something on someone else or concealing an object on your person, make a Dexterity (Sleight of Hand) check. The GM might also call for a Dexterity (Sleight of Hand) check to determine whether you can lift a coin purse off another person or slip something out of another person's pocket.",
+    "description": "Whenever you attempt an act of legerdemain or manual trickery, such as planting something on someone else or concealing an object on your person, make a Dexterity (Sleight of Hand) check. The GM might also call for a Dexterity (Sleight of Hand) check to determine whether you can lift a coin purse off another person or slip something out of another person\'s pocket.",
     "classes":["Bard","Rogue"],
     "relevantAbilityScore":"Dexterity",
     "tags":["Dex","Dexterity","Bard","Rogue"]

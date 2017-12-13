@@ -9,7 +9,7 @@
   },
   {
     "id": "itemDiplomatsPack",
-    "name": "Diplomat's Pack",
+    "name": "Diplomat\'s Pack",
     "singleCost":39,
     "costCurrency": "Gold",
     "singleWeight": 1,
@@ -17,7 +17,7 @@
   },
   {
     "id": "itemDungeoneersPack",
-    "name": "Dungeoneer's Pack",
+    "name": "Dungeoneer\'s Pack",
     "singleCost":12,
     "costCurrency": "Gold",
     "singleWeight": 1,
@@ -25,7 +25,7 @@
   },
   {
     "id": "itemEntertainersPack",
-    "name": "Entertainer's Pack",
+    "name": "Entertainer\'s Pack",
     "singleCost":40,
     "costCurrency": "Gold",
     "singleWeight": 1,
@@ -33,7 +33,7 @@
   },
   {
     "id": "itemExplorersPack",
-    "name": "Explorer's Pack",
+    "name": "Explorer\'s Pack",
     "singleCost":10,
     "costCurrency": "Gold",
     "singleWeight": 1,
@@ -41,7 +41,7 @@
   },
   {
     "id": "itemPriestsPack",
-    "name": "Priest's Pack",
+    "name": "Priest\'s Pack",
     "singleCost":19,
     "costCurrency": "Gold",
     "singleWeight": null,
@@ -49,7 +49,7 @@
   },
   {
     "id": "itemScholarsPack",
-    "name": "Scholar's Pack",
+    "name": "Scholar\'s Pack",
     "singleCost":40,
     "costCurrency": "Copper",
     "singleWeight": null,
@@ -73,11 +73,11 @@
   },
   {
     "id": "itemAlchemistsFireFlask",
-    "name": "Alchemist's fire (flask)",
+    "name": "Alchemist\'s fire (flask)",
     "singleCost":50,
     "costCurrency": "Gold",
     "singleWeight": 1,
-    "description": "Alchemist’s Fire. This sticky, adhesive fluid ignites when exposed to air. As an action, you can throw this flask up to 20 feet, shattering it on impact. Make a ranged attack against a creature or object, treating the alchemist&#39;s fire as an improvised weapon. On a hit, the target takes 1d4 fire damage at the start of each of its turns. A creature can end this damage by using its action to make a DC 10 Dexterity check to extinguish the flames."
+    "description": "Alchemist’s Fire. This sticky, adhesive fluid ignites when exposed to air. As an action, you can throw this flask up to 20 feet, shattering it on impact. Make a ranged attack against a creature or object, treating the alchemist\'s fire as an improvised weapon. On a hit, the target takes 1d4 fire damage at the start of each of its turns. A creature can end this damage by using its action to make a DC 10 Dexterity check to extinguish the flames."
   },
   {
     "id": "itemArrows20",
@@ -305,7 +305,7 @@
   },
   {
     "id": "itemClimbersKit",
-    "name": "Climber's kit",
+    "name": "Climber\'s kit",
     "singleCost":25,
     "costCurrency": "Gold",
     "singleWeight": 12,
@@ -337,7 +337,7 @@
   },
   {
     "id": "itemClothesTravelers",
-    "name": "Clothes, traveler's",
+    "name": "Clothes, traveler\'s",
     "singleCost":2,
     "costCurrency": "Gold",
     "singleWeight": 4,
@@ -349,7 +349,7 @@
     "singleCost":25,
     "costCurrency": "Gold",
     "singleWeight": 2,
-    "description": "Component Pouch. A component pouch is a small, watertight leather belt pouch that has compartments to hold all the material components and other special items you need to cast your spells, except for those components that have a specific cost (as indicated in a spell&#39;s description). ***Crowbar. Using a crowbar grants advantage to Strength checks where the crowbar’s leverage can be applied."
+    "description": "Component Pouch. A component pouch is a small, watertight leather belt pouch that has compartments to hold all the material components and other special items you need to cast your spells, except for those components that have a specific cost (as indicated in a spell\'s description). ***Crowbar. Using a crowbar grants advantage to Strength checks where the crowbar’s leverage can be applied."
   },
   {
     "id": "itemCrowbar",
@@ -445,7 +445,7 @@
     "singleCost":5,
     "costCurrency": "Gold",
     "singleWeight": 1,
-    "description": "Holy Symbol. A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. Appendix PH-B &quot;Fantasy-Historical Pantheons&quot; lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+    "description": "Holy Symbol. A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. Appendix PH-B \"Fantasy-Historical Pantheons\" lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
   },
   {
     "id": "itemEmblem",
@@ -453,7 +453,7 @@
     "singleCost":5,
     "costCurrency": "Gold",
     "singleWeight": null,
-    "description": "Holy Symbol. A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. Appendix PH-B &quot;Fantasy-Historical Pantheons&quot; lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+    "description": "Holy Symbol. A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. Appendix PH-B \"Fantasy-Historical Pantheons\" lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
   },
   {
     "id": "itemReliquary",
@@ -461,7 +461,7 @@
     "singleCost":5,
     "costCurrency": "Gold",
     "singleWeight": 2,
-    "description": "Holy Symbol. A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. Appendix PH-B &quot;Fantasy-Historical Pantheons&quot; lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
+    "description": "Holy Symbol. A holy symbol is a representation of a god or pantheon. It might be an amulet depicting a symbol representing a deity, the same symbol carefully engraved or inlaid as an emblem on a shield, or a tiny box holding a fragment of a sacred relic. Appendix PH-B \"Fantasy-Historical Pantheons\" lists the symbols commonly associated with many gods in the multiverse. A cleric or paladin can use a holy symbol as a spellcasting focus. To use the symbol in this way, the caster must hold it in hand, wear it visibly, or bear it on a shield."
   },
   {
     "id": "itemHolyWater ",
@@ -729,7 +729,7 @@
   },
   {
     "id": "itemScaleMerchants",
-    "name": "Scale, merchant's",
+    "name": "Scale, merchant\'s",
     "singleCost":5,
     "costCurrency": "Gold",
     "singleWeight": 3,
@@ -849,139 +849,139 @@
   },
   {
     "id": "itemAlchemistsSupplies",
-    "name": "Alchemist's supplies",
+    "name": "Alchemist\'s supplies",
     "singleCost":50,
     "costCurrency": "Gold",
     "singleWeight": 8,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemBrewersSupplies",
-    "name": "Brewer's supplies",
+    "name": "Brewer\'s supplies",
     "singleCost":20,
     "costCurrency": "Gold",
     "singleWeight": 9,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemCaligraphersSupplies",
-    "name": "Caligrapher's supplies",
+    "name": "Caligrapher\'s supplies",
     "singleCost":10,
     "costCurrency": "Gold",
     "singleWeight": 5,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemCarpentersTools",
-    "name": "Carpenter's tools",
+    "name": "Carpenter\'s tools",
     "singleCost":8,
     "costCurrency": "Gold",
     "singleWeight": 6,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemCartagraphersTools",
-    "name": "Cartagrapher's tools",
+    "name": "Cartagrapher\'s tools",
     "singleCost":15,
     "costCurrency": "Gold",
     "singleWeight": 6,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemCobblersTools",
-    "name": "Cobbler's tools",
+    "name": "Cobbler\'s tools",
     "singleCost":5,
     "costCurrency": "Gold",
     "singleWeight": 1,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemCooksUtensils",
-    "name": "Cook's utensils",
+    "name": "Cook\'s utensils",
     "singleCost":1,
     "costCurrency": "Gold",
     "singleWeight": 8,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemGlassblowersTools",
-    "name": "Glassblower's tools",
+    "name": "Glassblower\'s tools",
     "singleCost":30,
     "costCurrency": "Gold",
     "singleWeight": 5,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemJewelersTools",
-    "name": "Jeweler's tools",
+    "name": "Jeweler\'s tools",
     "singleCost":25,
     "costCurrency": "Gold",
     "singleWeight": 2,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemLeatherWorkersTools",
-    "name": "Leatherworker's tools",
+    "name": "Leatherworker\'s tools",
     "singleCost":5,
     "costCurrency": "Gold",
     "singleWeight": 5,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemMasonsTools",
-    "name": "Mason's tools",
+    "name": "Mason\'s tools",
     "singleCost":10,
     "costCurrency": "Gold",
     "singleWeight": 8,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemPaintersSupplies",
-    "name": "Painter's supplies",
+    "name": "Painter\'s supplies",
     "singleCost":10,
     "costCurrency": "Gold",
     "singleWeight": 5,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemPottersTools",
-    "name": "Potter's tools",
+    "name": "Potter\'s tools",
     "singleCost":10,
     "costCurrency": "Gold",
     "singleWeight": 3,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemSmithsTools",
-    "name": "Smith's tools",
+    "name": "Smith\'s tools",
     "singleCost":20,
     "costCurrency": "Gold",
     "singleWeight": 8,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemTinkersTools",
-    "name": "Tinker's tools",
+    "name": "Tinker\'s tools",
     "singleCost":50,
     "costCurrency": "Gold",
     "singleWeight": 10,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemWeaversTools",
-    "name": "Weaver's tools",
+    "name": "Weaver\'s tools",
     "singleCost":1,
     "costCurrency": "Gold",
     "singleWeight": 5,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemWoodCarversTools",
-    "name": "Woodcarver's tools",
+    "name": "Woodcarver\'s tools",
     "singleCost":1,
     "costCurrency": "Gold",
     "singleWeight": 5,
-    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan's tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan's tools requires a separate proficiency"
+    "description": "Includes the items needed to pursue this craft or trade. Profeciency with a set of artisan\'s tools lets you add your proficiency bonus to any ability checks you make using the tools in your craft. Each Type of artisan\'s tools requires a separate proficiency"
   },
   {
     "id": "itemDisguiseKit",
@@ -1121,23 +1121,23 @@
   },
   {
     "id": "itemNavigatorTools",
-    "name": "Navigator's tools",
+    "name": "Navigator\'s tools",
     "singleCost":25,
     "costCurrency": "Gold",
     "singleWeight": 2,
-    "description": "This set of instruments is used for navigation at sea. Proficiency with navigator's tools lets you chart a ship's course and follow navigataion charts. In addition, these tools allow you to add your proficiency bonus to any ability check you make to avoid getting lost at sea."
+    "description": "This set of instruments is used for navigation at sea. Proficiency with navigator\'s tools lets you chart a ship\'s course and follow navigataion charts. In addition, these tools allow you to add your proficiency bonus to any ability check you make to avoid getting lost at sea."
   },
   {
     "id": "itemPoisonerKit",
-    "name": "Poisoner's kit",
+    "name": "Poisoner\'s kit",
     "singleCost":50,
     "costCurrency": "Gold",
     "singleWeight": 2,
-    "description": "A poisoner's kit includes the vials, chemicals, and other equipment necessary for the creation of poisons. Proficiency with this kit lets you add your profeciency bonus to any ability checks you make to craft or use poisons."
+    "description": "A poisoner\'s kit includes the vials, chemicals, and other equipment necessary for the creation of poisons. Proficiency with this kit lets you add your profeciency bonus to any ability checks you make to craft or use poisons."
   },
   {
     "id": "itemThievesTools",
-    "name": "Thieves' tools",
+    "name": "Thieves\' tools",
     "singleCost":25,
     "costCurrency": "Gold",
     "singleWeight": 2,

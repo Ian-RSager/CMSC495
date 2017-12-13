@@ -32,7 +32,7 @@
   {
     "id": "raceMountainDwarf",
     "name": "Mountain Dwarf",
-    "description": "As a mountain dwarf, you're strong and hardy, accustomed to a difficult life in rugged terrain. You're probably on the tall side (for a dwarf), and tend toward lighter coloration.",
+    "description": "As a mountain dwarf, you\'re strong and hardy, accustomed to a difficult life in rugged terrain. You\'re probably on the tall side (for a dwarf), and tend toward lighter coloration.",
     "ability score": [1,0,2,0,0,0],
     "age": 50,
     "heightInches": 48,
@@ -132,7 +132,7 @@
   {
     "id":"raceStout",
     "name": "Stout",
-    "description": "As a stout halfling, you're hardier than average and have some resistance to poison. some say that stouts have dwarven blood. ",
+    "description": "As a stout halfling, you\'re hardier than average and have some resistance to poison. some say that stouts have dwarven blood. ",
     "ability score": [0,2,1,0,0,0],
     "age": 20,
     "heightInches": 31,
