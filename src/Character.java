@@ -14,7 +14,6 @@ import java.util.stream.*;
  * class, race, level, or other constant values.
  *
  * To Do List:
- * INITIALIZE LANGUAGES / EQUIPMENT / SAVING THROWS / SKILLS
  * spell save DCs for all stats
  * spell attack modifier for all stats
  * 
@@ -30,6 +29,9 @@ import java.util.stream.*;
  * Added method to return a formatted String of all the Character's levels.
  * --12/12/2017--
  * Added getCharacterSkillByID method.
+ * Fully created initializeCharacter method.
+ * --12/13/2017--
+ * Hopefully bugfixes to initializeCharacter method.
  */
 
 public class Character implements Serializable {
@@ -375,8 +377,8 @@ public class Character implements Serializable {
             Item itemToIncrement = this.getInventoryItemByID(itemIn.getID());
             itemToIncrement.setQuantity(itemToIncrement.getQuantity() + quantityToAddIn);
         } else {
-            this.itemsList.add(itemIn);
             itemIn.setQuantity(quantityToAddIn);
+            this.itemsList.add(itemIn);
         } // End if/else.
     } // End add item method.
     
@@ -547,7 +549,7 @@ public class Character implements Serializable {
         for (int i = 0; i < this.levelArray.length; i++) {
             if (this.levelArray[i] != 0) {
                 classIndex = i;
-                return;
+                break;
             } // End if.
         } // End for.
         
