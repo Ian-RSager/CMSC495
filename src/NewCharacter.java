@@ -1,6 +1,6 @@
 /*
  * File: NewCharacter.java
- * Date: December 11, 2017
+ * Date: December 13, 2017
  * Purpose: Creates a Gui with a Card Layout to Step by Step allow the user
  *          to create a new D&D 5th Edition character.
  */
@@ -78,7 +78,7 @@ public class NewCharacter extends JFrame{
     private Character myCharacter;
     private int hitdice = 0;   //Character's hit dice
     
-    private  MasterLists ml;
+//    private  MasterLists ml;
     private ArrayList<String> selectedFeatList = null;
     
     //Constructor
@@ -131,7 +131,7 @@ public class NewCharacter extends JFrame{
         });
 
         //Create a new character to populate
-        ml = new MasterLists();
+        //ml = new MasterLists();
         myCharacter = new Character();
 
         //Dont allow user to close it
@@ -696,8 +696,9 @@ public class NewCharacter extends JFrame{
             (((JSpinner.DefaultEditor) spnLevl.getEditor()).getTextField()).setEditable(false);
             helper.add(spnLevl);
             left.add(helper);
-            
-            left.add(addFeatures);
+    
+   // Remove feature selection         
+  //          left.add(addFeatures);
             
             //Add Left Panel to Gridbag Layout
             gbc.fill = GridBagConstraints.NONE;
@@ -928,7 +929,7 @@ public class NewCharacter extends JFrame{
             modelList = new DefaultListModel<>();  
             
             //Add Features to the list Here (Based on class)...
-            ClassType selection = ml.getClassTypeByID(selectedClass);
+            ClassType selection = MasterLists.getClassTypeByID(selectedClass);
             int numFeatures = selection.features[0].length;
             for(int n = 0; n < numFeatures; n++){
                 String feat = selection.features[0][n];
@@ -1794,12 +1795,12 @@ public class NewCharacter extends JFrame{
             
             //Add Features that were selected from selectedFeatList, if any were
             //Do it here so that you dont need to remove if they hit the back button
-            if(selectedFeatList != null){
-                int numFeats = selectedFeatList.size();
-                for(int n = 0; n < numFeats; n++){
-                    myCharacter.addClassFeature(selectedFeatList.get(n));
-                }
-            }
+//            if(selectedFeatList != null){
+//                int numFeats = selectedFeatList.size();
+//                for(int n = 0; n < numFeats; n++){
+//                    myCharacter.addClassFeature(selectedFeatList.get(n));
+//                }
+//            }
             
             //Alex's new initialize method goes here
             //Covers language, items, etc.
@@ -1807,7 +1808,10 @@ public class NewCharacter extends JFrame{
             
             //Go to Main Gui
             setVisible(false);
+            CharacterCreator cc = new CharacterCreator(myCharacter);
+            cc.display();
             dispose();
+
         }
 
     }
