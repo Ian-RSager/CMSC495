@@ -128,6 +128,7 @@ public class CharacterCreator {
     TransparentJPanel featuresPanel;
     TransparentJPanel featuresDisplayPanel;
     TransparentJPanel featuresButtonsPanel;
+    JTextPane featuresTextPane;
     JButton addFeatureButton;
     JButton removeFeatureButton;
     
@@ -174,7 +175,6 @@ public class CharacterCreator {
     public CharacterCreator(Character inCharacter) {
         
         this.character = inCharacter;
-        this.msl = msl;
         
         /*
          * Set frame
@@ -316,10 +316,18 @@ public class CharacterCreator {
         // Class, level, background, faction, race, alignment, XP
         bioInfoPanel = new TransparentJPanel();
         Border bioInfoPanelBorder = BorderFactory.createLineBorder(Color.BLACK, 1);
-        Border bioInfoPanelMargin = new EmptyBorder(0, 10, 0, 0);
-        bioInfoPanel.setBorder(BorderFactory.createCompoundBorder(bioInfoPanelMargin, bioInfoPanelBorder));
+        Border bioInfoPanelMargin = new EmptyBorder(0, 10, 0, 0);   
         bioInfoPanel.setLayout(new GridLayout(0, 3));
-        topMainPanel.add(bioInfoPanel, BorderLayout.CENTER);
+        TransparentJPanel bioInfoPanelHelper = new TransparentJPanel();
+        bioInfoPanelHelper.setBorder(BorderFactory.createCompoundBorder(bioInfoPanelMargin, bioInfoPanelBorder));
+        TransparentJPanel subBioInfoPanel = new TransparentJPanel();
+        subBioInfoPanel.setBorder(new EmptyBorder(0, 0, 0, 30));
+        subBioInfoPanel.setLayout(new GridLayout(3, 1));
+        bioInfoPanelHelper.setLayout(new BorderLayout());
+        bioInfoPanelHelper.add(bioInfoPanel, BorderLayout.CENTER);
+        bioInfoPanelHelper.add(subBioInfoPanel, BorderLayout.EAST);
+        
+        topMainPanel.add(bioInfoPanelHelper, BorderLayout.CENTER);
         
         BasicInfoPanel classInfoPanel = new BasicInfoPanel("Class and Level", "Class " +
                                                            String.valueOf(character.getLevel()), character);
@@ -336,7 +344,18 @@ public class CharacterCreator {
                                                                       String.valueOf(character.getExperiencePoints()), character);
         experiencePointsInfoPanel.addSpinner();
         bioInfoPanel.add(experiencePointsInfoPanel);
-        
+        BasicInfoPanel heightInfoPanel = new BasicInfoPanel("Height", String.valueOf(character.getHeight()) + " ft", character);
+        heightInfoPanel.basicInfoNameLabel.setFont(new Font(null, Font.ITALIC, 10));
+        heightInfoPanel.basicInfoValue.setFont(new Font(null, Font.BOLD, 12));
+        subBioInfoPanel.add(heightInfoPanel);
+        BasicInfoPanel weightInfoPanel = new BasicInfoPanel("Weight", String.valueOf(character.getWeight()) + " lbs", character);
+        weightInfoPanel.basicInfoNameLabel.setFont(new Font(null, Font.ITALIC, 10));
+        weightInfoPanel.basicInfoValue.setFont(new Font(null, Font.BOLD, 12));
+        subBioInfoPanel.add(weightInfoPanel);
+        BasicInfoPanel sexInfoPanel = new BasicInfoPanel("Sex", character.getSex(), character);
+        sexInfoPanel.basicInfoNameLabel.setFont(new Font(null, Font.ITALIC, 10));
+        sexInfoPanel.basicInfoValue.setFont(new Font(null, Font.BOLD, 12));
+        subBioInfoPanel.add(sexInfoPanel);
         
         // Ability scores panel
         abilityScoresPanel = new TransparentJPanel();
@@ -474,14 +493,22 @@ public class CharacterCreator {
         //equippedItemsPanel.add(equippedItemsButtonsPanel, BorderLayout.SOUTH);
         
         // features display panel
-        featuresDisplayPanel = new TransparentJPanel();
-        JScrollPane featuresScrollPane = new JScrollPane(featuresDisplayPanel);
+        featuresTextPane = new JTextPane();
+        JScrollPane featuresScrollPane = new JScrollPane(featuresTextPane);
         featuresPanel.add(featuresScrollPane, BorderLayout.CENTER);
         featuresScrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
                                                                                                      Color.BLACK, 1, true), "Features"));
         featuresScrollPane.setOpaque(false);
         featuresScrollPane.getViewport().setOpaque(false);
         featuresScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        
+        featuresTextPane.setOpaque(false);
+        ArrayList<ClassFeature> characterFeatures = character.getFeaturesList();
+        for (ClassFeature feature: characterFeatures) {
+        		featuresTextPane.insertComponent(new JLabel(
+        					"<html><b>Feature: " + feature.name + 					
+        					"<br>Description: " + feature.description + "<br><br></html>"));
+        }
         
         // equippedItems display panel
         equippedItemsDisplayPanel = new TransparentJPanel();
