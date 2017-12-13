@@ -321,7 +321,7 @@ public class CharacterCreator {
         TransparentJPanel bioInfoPanelHelper = new TransparentJPanel();
         bioInfoPanelHelper.setBorder(BorderFactory.createCompoundBorder(bioInfoPanelMargin, bioInfoPanelBorder));
         TransparentJPanel subBioInfoPanel = new TransparentJPanel();
-        subBioInfoPanel.setBorder(new EmptyBorder(0, 0, 0, 30));
+        subBioInfoPanel.setBorder(new EmptyBorder(3, 0, 0, 30));
         subBioInfoPanel.setLayout(new GridLayout(3, 1));
         bioInfoPanelHelper.setLayout(new BorderLayout());
         bioInfoPanelHelper.add(bioInfoPanel, BorderLayout.CENTER);
@@ -505,14 +505,19 @@ public class CharacterCreator {
         featuresTextPane.setOpaque(false);
         ArrayList<ClassFeature> characterFeatures = character.getFeaturesList();
         for (ClassFeature feature: characterFeatures) {
+        		String levelInfo = "";
+        		for (int i = 0; i<feature.levelingInfo.length; i++) {
+        			levelInfo += feature.levelingInfo[i][0] + feature.levelingInfo[i][1] + "<br>";
+        		}
         		featuresTextPane.insertComponent(new JLabel(
-        					"<html><b>Feature: " + feature.name + 					
-        					"<br>Description: " + feature.description + "<br><br></html>"));
+        					"<html><b>" + feature.name + 					
+        					"</b><br>Description: " + feature.description + 
+        					"<br>" + levelInfo + "<br></html>"));
         }
         
         // equippedItems display panel
         equippedItemsDisplayPanel = new TransparentJPanel();
-        //equippedItemsDisplayPanel.setLayout(new GridLayout(0,1));
+        equippedItemsDisplayPanel.setLayout(new GridLayout(0,1));
         JScrollPane equippedItemsScrollPane = new JScrollPane(equippedItemsDisplayPanel);
         equippedItemsPanel.add(equippedItemsScrollPane, BorderLayout.CENTER);
         equippedItemsScrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
@@ -521,17 +526,33 @@ public class CharacterCreator {
         equippedItemsScrollPane.getViewport().setOpaque(false);
         equippedItemsScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         // equipped items combo boxes
-        JLabel wornArmorLabel = new JLabel("Worn Armor");
+        JLabel wornArmorLabel = new JLabel("Worn Armor:");
+        //wornArmorLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         equippedItemsDisplayPanel.add(wornArmorLabel);
         String[] wornArmorOptions = { "None", "Chain Mail", "Hide" };
         JComboBox wornArmorBox = new JComboBox(wornArmorOptions);
         equippedItemsDisplayPanel.add(wornArmorBox);
         
-        //        JLabel wieldedShieldLabel = new JLabel("Wielded Shield");
-        //        equippedItemsDisplayPanel.add(wieldedShieldLabel);
-        //        String[] wieldedShieldOptions = { "None", "Shield" };
-        //        JComboBox wieldedShieldBox = new JComboBox(wieldedShieldOptions);
-        //        equippedItemsDisplayPanel.add(wieldedShieldBox);
+        JLabel wieldedShieldLabel = new JLabel("Wielded Shield:");
+        //wieldedShieldLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        equippedItemsDisplayPanel.add(wieldedShieldLabel);
+        String[] wieldedShieldOptions = { "None", "Shield" };
+        JComboBox wieldedShieldBox = new JComboBox(wieldedShieldOptions);
+        equippedItemsDisplayPanel.add(wieldedShieldBox);
+        
+        JLabel equippedWeaponOneLabel = new JLabel("Equipped Weapon:");
+        //equippedWeaponOneLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        equippedItemsDisplayPanel.add(equippedWeaponOneLabel);
+        String[] equippedWeaponOneOptions = { "None", "Cabbage" };
+        JComboBox equippedWeaponOneBox = new JComboBox(equippedWeaponOneOptions);
+        equippedItemsDisplayPanel.add(equippedWeaponOneBox);
+        
+        JLabel equippedWeaponTwoLabel = new JLabel("Equipped Weapon:");
+        //equippedWeaponTwoLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        equippedItemsDisplayPanel.add(equippedWeaponTwoLabel);
+        String[] equippedWeaponTwoOptions = { "None", "Shield" };
+        JComboBox equippedWeaponTwoBox = new JComboBox(equippedWeaponTwoOptions);
+        equippedItemsDisplayPanel.add(equippedWeaponTwoBox);
         
         // languages panel
         languagesPanel = new TransparentJPanel();
@@ -752,6 +773,7 @@ public class CharacterCreator {
     	//stats panel refresh
     	hitPointsPanel.value = character.getHitPointsCurrent();
     	hitPointsPanel.model.setValue(hitPointsPanel.value);
+    	hitPointsPanel.maxHitPointLabel.setText("/" + character.getHitPointsMaximum());
         armorClassPanel.value = character.getArmorClass();
         armorClassPanel.model.setValue(armorClassPanel.value);
         initiativePanel.value = character.getInitiative();
@@ -808,27 +830,6 @@ public class CharacterCreator {
                     case 0:
                         NewCharacter nc = new NewCharacter();
                         nc.newCharacterGui();
-//                    		Character testChar = new Character();
-//                    		testChar.setCharacterImg("Portraits/Othovir.png");
-//                    		testChar.setName("Horace");
-//                    		testChar.setAbilityScoreCharisma(5);
-//                    		testChar.setAbilityScoreConstitution(10);
-//                    		testChar.setAbilityScoreDexterity(16);
-//                    		testChar.setAbilityScoreStrength(5);
-//                    		testChar.setAbilityScoreWisdom(18);
-//                    		testChar.setAbilityScoreIntelligence(10);
-//                    		testChar.setFaction("Faction X");
-//                    		testChar.setBackground("Background B");
-//                    		testChar.setHitPointsCurrent(20);
-//                    		testChar.setSpeed(4);
-//                    		testChar.setRace("Dwarf");
-//                    		testChar.setHitPointsCurrent(20);
-//                    		testChar.setArmorClass(5);
-//                    		testChar.addLanguage("Dwarvish");
-//                    		testChar.addLanguage("Elvish");
-//                    		testChar.setAlignment("Lawful Cabbage");
-//                    		CharacterCreator test = new CharacterCreator(testChar);
-//                    		test.display();
                         break;
                     case 1:
                         Character loadCharacter = new Character();
@@ -1046,6 +1047,7 @@ class StatsPanel extends JPanel {
     public JLabel statLabel;
     public SpinnerModel model;
     public int value = 0;
+    JLabel maxHitPointLabel;
     
     public StatsPanel(String inStat, Character inCharacter, CharacterCreator cc)
     
@@ -1105,6 +1107,11 @@ class StatsPanel extends JPanel {
             textField.setEditable(false);
             JPanel helperPanel = new TransparentJPanel();
             helperPanel.add(spinner);
+            if(inStat.matches("Hit Points")) {
+            		maxHitPointLabel = new JLabel("/" + inCharacter.getHitPointsMaximum());
+            		maxHitPointLabel.setOpaque(false);
+            		helperPanel.add(maxHitPointLabel);
+            }
             add(helperPanel, BorderLayout.CENTER);
             
             // listener to change set new values in character.java if spinner buttons are used
