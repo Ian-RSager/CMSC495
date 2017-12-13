@@ -32,7 +32,6 @@ import java.util.stream.*;
  * Fully created initializeCharacter method.
  * --12/13/2017--
  * Hopefully bugfixes to initializeCharacter method.
- * Hopefully fixed addItem method.
  */
 
 public class Character implements Serializable {
@@ -374,13 +373,13 @@ public class Character implements Serializable {
     
     // This method adds a new item to the character's current inventory, and sets the quantity of that item to the specified parameter.
     public void addItem(Item itemIn, int quantityToAddIn) {
-        /* if (this.hasItem(itemIn.getID())) {
+        if (this.hasItem(itemIn.getID())) {
             Item itemToIncrement = this.getInventoryItemByID(itemIn.getID());
             itemToIncrement.setQuantity(itemToIncrement.getQuantity() + quantityToAddIn);
-        } else { */
+        } else {
             itemIn.setQuantity(quantityToAddIn);
             this.itemsList.add(itemIn);
-        /*} // End if/else. */
+        } // End if/else.
     } // End add item method.
     
     // This method removes an item from the character's current inventory.
