@@ -96,42 +96,42 @@ public class MasterLists implements Serializable {
                 raceArray = gson.fromJson(jsonString, Race[].class);
                 masterRaceList = new HashMap<String, Race>();
                 for (Race thing : raceArray){
-                    masterRaceList.put(thing.name, thing);
+                    masterRaceList.put(thing.id, thing);
                 }
                 break;
             case 2:
                 classFeatureArray = gson.fromJson(jsonString, ClassFeature[].class);
                 masterClassFeatureList = new HashMap<String, ClassFeature>();
                 for (ClassFeature thing : classFeatureArray){
-                    masterClassFeatureList.put(thing.name, thing);
+                    masterClassFeatureList.put(thing.id, thing);
                 }
                 break;
             case 3:
                 itemArray = gson.fromJson(jsonString, Item[].class);
                 masterItemList = new HashMap<String, Item>();
                 for (Item thing : itemArray){
-                    masterItemList.put(thing.name, thing);
+                    masterItemList.put(thing.id, thing);
                 }
                 break;
             case 4:
                 armorArray = gson.fromJson(jsonString, Armor[].class);
                 masterArmorList = new HashMap<String, Armor>();
                 for (Armor thing : armorArray){
-                    masterArmorList.put(thing.name, thing);
+                    masterArmorList.put(thing.id, thing);
                 }
                 break;
             case 5:
                 weaponArray = gson.fromJson(jsonString, Weapon[].class);
                 masterWeaponList = new HashMap<String, Weapon>();
                 for (Weapon thing : weaponArray){
-                    masterWeaponList.put(thing.name, thing);
+                    masterWeaponList.put(thing.id, thing);
                 }
                 break;
             case 6:
                 skillArray = gson.fromJson(jsonString, Skill[].class);
                 masterSkillList = new HashMap<String, Skill>();
                 for (Skill thing : skillArray){
-                    masterSkillList.put(thing.name, thing);
+                    masterSkillList.put(thing.id, thing);
                 }
                 break;
             case 7:
