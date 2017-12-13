@@ -1804,7 +1804,7 @@ public class NewCharacter extends JFrame{
             
             //Alex's new initialize method goes here
             //Covers language, items, etc.
-            //myCharacter.initializeCharacter();
+            myCharacter.initializeCharacter();
             
             //Go to Main Gui
             setVisible(false);
