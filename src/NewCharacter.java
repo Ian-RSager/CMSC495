@@ -150,7 +150,7 @@ public class NewCharacter extends JFrame{
     
     //Main Test Function
     //Will be taken out when linked with the rest of the program
-    public static void main(String[] args){
+ //   public static void main(String[] args){
         //JFrame frame1 = new JFrame("DialogEx");
         //frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame1.setSize (700, 685);
@@ -158,10 +158,10 @@ public class NewCharacter extends JFrame{
         //frame1.setLocationRelativeTo(null);
         //frame1.setVisible(true);
       
-        NewCharacter nc = new NewCharacter();
-        nc.newCharacterGui();
+ //       NewCharacter nc = new NewCharacter();
+ //       nc.newCharacterGui();
         
-    }
+//    }
 
 
 
@@ -376,6 +376,7 @@ public class NewCharacter extends JFrame{
                     String rStr = selected.toString();
                     
                     raceLabel.setText(rStr);
+                    subRaceComboBox.addItem("None");
                     switch(rStr){
                         case "Dwarf":
                             updateRaceImg("Dwarf.jpg",iicon);
@@ -1561,7 +1562,7 @@ public class NewCharacter extends JFrame{
             iFlow.setOpaque(false);
             JButton imgPrevButton = new JButton();
             try{
-                Image prevImg = ImageIO.read(getClass().getResource("Back24.gif"));
+                Image prevImg = ImageIO.read(new File("Back24.gif"));
                 imgPrevButton.setIcon(new ImageIcon(prevImg));
             }
             catch(Exception ee){
@@ -1572,7 +1573,7 @@ public class NewCharacter extends JFrame{
  
             JButton imgNextButton = new JButton();
             try{
-                Image nextImg = ImageIO.read(getClass().getResource("Forward24.gif"));
+                Image nextImg = ImageIO.read(new File("Forward24.gif"));
                 imgNextButton.setIcon(new ImageIcon(nextImg));
             }
             catch(Exception ee){
