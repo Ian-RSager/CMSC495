@@ -78,7 +78,6 @@ public class NewCharacter extends JFrame{
     private Character myCharacter;
     private int hitdice = 0;   //Character's hit dice
     
-//    private  MasterLists ml;
     private ArrayList<String> selectedFeatList = null;
     
     //Constructor
@@ -131,7 +130,6 @@ public class NewCharacter extends JFrame{
         });
 
         //Create a new character to populate
-        //ml = new MasterLists();
         myCharacter = new Character();
 
         //Dont allow user to close it
@@ -195,7 +193,7 @@ public class NewCharacter extends JFrame{
         private String [] racesStr      = {"Dwarf","Elf","Human","Halfling",
                                            "Dragonborn","Gnome","Half-Elf",
                                            "Half-Orc","Tiefling"};
-        private String [] subracesStr   = {"Hill Dwarf","Mountain Dwarf"};
+        private String [] subracesStr   = {"None","Hill Dwarf","Mountain Dwarf"};
         private JComboBox<String> raceComboBox  = new JComboBox<String> (racesStr);
         private JComboBox<String> subRaceComboBox = new JComboBox<String> (subracesStr);
 
@@ -699,7 +697,7 @@ public class NewCharacter extends JFrame{
             left.add(helper);
     
    // Remove feature selection         
-  //          left.add(addFeatures);
+   //         left.add(addFeatures);
             
             //Add Left Panel to Gridbag Layout
             gbc.fill = GridBagConstraints.NONE;
@@ -930,6 +928,7 @@ public class NewCharacter extends JFrame{
             modelList = new DefaultListModel<>();  
             
             //Add Features to the list Here (Based on class)...
+            
             ClassType selection = MasterLists.getClassTypeByID(selectedClass);
             int numFeatures = selection.features[0].length;
             for(int n = 0; n < numFeatures; n++){
