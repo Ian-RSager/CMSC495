@@ -444,7 +444,7 @@ public class NewCharacter extends JFrame{
             //That's how we are handling it in Character.java
             String race = raceLabel.getText();
             String subrace = (String)subRaceComboBox.getSelectedItem();
-            if(subrace.length() > 0)
+            if(subrace.compareTo("None") != 0)
                 myCharacter.setRace(subrace);
             else
                 myCharacter.setRace(race);
