@@ -734,7 +734,7 @@ public class Character implements Serializable {
                 this.proficiencyBonus = 2;
                 break;
         } // End switch (this.level).
-        this.initiative = 10 + AttributeBonusCalculator.getAttributeBonus(this.abilityScoreDexterity);  // Recalculate initiative.
+        this.initiative = AttributeBonusCalculator.getAttributeBonus(this.abilityScoreDexterity);  // Recalculate initiative.
         // Iterate through skills list.  Update bonuses with new values.  Dump total values into totalSkillModifierArray.
         for (int i = 0; i < skillsList.size(); i++) {
             Skill currentSkill = skillsList.get(i);
