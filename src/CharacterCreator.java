@@ -1,4 +1,3 @@
-import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -7,17 +6,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.List;
-import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,8 +25,6 @@ import java.util.HashMap;
 import java.util.ListIterator;
 
 import javax.imageio.ImageIO;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
@@ -54,10 +44,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import javax.swing.KeyStroke;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
@@ -66,11 +54,9 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultFormatter;
 
 public class CharacterCreator {
@@ -505,6 +491,7 @@ public class CharacterCreator {
         
         // features display panel
         featuresTextPane = new JTextPane();
+        featuresTextPane.setEditable(false);
         JScrollPane featuresScrollPane = new JScrollPane(featuresTextPane);
         featuresPanel.add(featuresScrollPane, BorderLayout.CENTER);
         featuresScrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
@@ -515,26 +502,30 @@ public class CharacterCreator {
         
         featuresTextPane.setOpaque(false);
         ArrayList<ClassFeature> characterFeatures = character.getFeaturesList();
-        for (ClassFeature feature: characterFeatures) {        
-        		String levelInfo = "";
-        		try {
-        			for (int i = 0; i<feature.levelingInfo.length; i++) {
-        				if(feature.levelingInfo[i].length == 1) break;
-            			levelInfo += feature.levelingInfo[i][0] + feature.levelingInfo[i][1] + "<br>";
-            		}
-        		}
-        		catch (ArrayIndexOutOfBoundsException e) {
-        			levelInfo = "";
-        			System.out.println("array exception");
-        		}
-//        		catch (NullPointerException e) {
-//        			levelInfo = "";
-//        		}
-        		
-        		featuresTextPane.insertComponent(new JLabel(
-        					"<html><b>" + feature.getName() + 					
-        					"</b><br>Description: " + feature.getDescription() + 
-        					"<br>" + levelInfo + "<br></html>"));
+        for (ClassFeature feature: characterFeatures) {
+                String levelInfo = "";
+                try {
+                    for (int i = 0; i<feature.levelingInfo.length; i++) {
+                        if(feature.levelingInfo[i].length == 1) break;
+                        if(feature.levelingInfo[i][0].matches("[0-9]+")) break;
+                        levelInfo += feature.levelingInfo[i][0] + feature.levelingInfo[i][1] + "<br>";
+                    }
+                
+                }
+                catch (ArrayIndexOutOfBoundsException e) {
+                    levelInfo = "";
+                    System.out.println("array exception");
+                }
+                catch (NullPointerException e) {
+                    levelInfo = "";
+                }
+
+                featuresTextPane.insertComponent(new JLabel(
+                            "<html><b>" + feature.getName() +
+                            "</b><br>Description: " + feature.getDescription() + 
+                            "<br>" + levelInfo + "<br></html>"));
+         
+                
         }
         featuresTextPane.setCaretPosition(0);
         
@@ -548,95 +539,253 @@ public class CharacterCreator {
         // equipped items panels
         TransparentJPanel wornArmorSubPanel = new TransparentJPanel();
         wornArmorSubPanel.setLayout(new BoxLayout(wornArmorSubPanel, BoxLayout.Y_AXIS));
-        //wornArmorSubPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         TransparentJPanel wornArmorLabelsSubPanel = new TransparentJPanel();
         wornArmorLabelsSubPanel.setLayout(new GridLayout(0, 2));
         JLabel wornArmorLabel = new JLabel("Worn Armor:");
-        //wornArmorLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        wornArmorLabelsSubPanel.add(wornArmorLabel);
-        String[] wornArmorOptions = { "None", "Chain Mail", "Hide" };
-        JComboBox wornArmorBox = new JComboBox(wornArmorOptions);
+        wornArmorLabelsSubPanel.add(wornArmorLabel);  
+        ArrayList<String> wornArmorOptions = new ArrayList<>();
+        wornArmorOptions.add("None");
+        for (Item item: character.getItemsList()) {
+        	if (item instanceof Armor) wornArmorOptions.add(item.getName());
+        }
+        JComboBox wornArmorBox = new JComboBox(wornArmorOptions.toArray(new String[wornArmorOptions.size()]));
         wornArmorLabelsSubPanel.add(wornArmorBox);
-        JTextArea wornArmorDescriptionTextArea = new JTextArea("This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor");
-        wornArmorDescriptionTextArea.setLineWrap(true);
-        wornArmorDescriptionTextArea.setWrapStyleWord(true);
-        JScrollPane wornArmorDescriptionScrollPane = new JScrollPane(wornArmorDescriptionTextArea);
-        wornArmorDescriptionTextArea.setOpaque(false);
-        wornArmorDescriptionTextArea.setEditable(false);
+        JTextPane wornArmorDescriptionTextPane = new JTextPane();
+        JScrollPane wornArmorDescriptionScrollPane = new JScrollPane(wornArmorDescriptionTextPane);
+        wornArmorDescriptionTextPane.setOpaque(false);
+        wornArmorDescriptionTextPane.setEditable(false);
+        JLabel wornArmorDescriptionLabel = new JLabel("");
+        wornArmorDescriptionLabel.setPreferredSize(new Dimension(100, 100));
+        wornArmorDescriptionTextPane.insertComponent(wornArmorDescriptionLabel);
         wornArmorDescriptionScrollPane.setOpaque(false);
         wornArmorDescriptionScrollPane.getViewport().setOpaque(false);
         wornArmorSubPanel.add(wornArmorLabelsSubPanel);
         wornArmorSubPanel.add(wornArmorDescriptionScrollPane);
         equippedItemsDisplayPanel.add(wornArmorSubPanel);
+        wornArmorBox.addActionListener((ActionEvent e) -> {
+        	String choice = (String)wornArmorBox.getSelectedItem();
+        	if (choice.matches("None")) {
+        		wornArmorDescriptionLabel.setText("");
+        		wornArmorDescriptionLabel.setPreferredSize(new Dimension(100, 100));
+        	}
+        	else {
+        		String id = "";
+        		wornArmorDescriptionLabel.setPreferredSize(null);
+        		for (Item armorToDisplay: character.getItemsList()) {
+        			if (armorToDisplay instanceof Armor) {
+        				if (armorToDisplay.getName().matches(choice)) {
+        					id = armorToDisplay.getID(); 
+        				}
+        			}
+        		}
+            	Armor armorToDisplay = MasterLists.getArmorByID(id);
+            	String armorLabelString = "<html>Description: " + armorToDisplay.getDescription() +
+    					"<br>Cost: " + armorToDisplay.getSingleCost() + 
+    					"<br>Cost Currency: " + armorToDisplay.getCostCurrency() + 
+    					"<br>Weight: " + armorToDisplay.getSingleWeight() +
+    					"<br>Quantity: " + armorToDisplay.getQuantity() +
+    					"<br>Armor Type: " + armorToDisplay.getArmorType() +
+    					"<br>Armor Class: " + armorToDisplay.getArmorClass() +
+    					"<br>Max Dexterity Bonus: " + armorToDisplay.getMaxDexterityBonus() +
+    					"<br>Don Time: " + armorToDisplay.getDonTime() +
+    					"<br>Doff Time: " + armorToDisplay.getDoffTime() +
+    					"<br>Strength Threshhold: " + armorToDisplay.getStrengthThreshold() +
+    					"<br>Has Stealth Penalty: " + armorToDisplay.getHasStealthPenalty() +
+            			"<br></html>";
+            	wornArmorDescriptionLabel.setText(armorLabelString);
+        	}  	
+        });
         
         TransparentJPanel wieldedShieldSubPanel = new TransparentJPanel();
         wieldedShieldSubPanel.setLayout(new BoxLayout(wieldedShieldSubPanel, BoxLayout.Y_AXIS));
-        //wieldedShieldSubPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         TransparentJPanel wieldedShieldLabelsSubPanel = new TransparentJPanel();
         wieldedShieldLabelsSubPanel.setLayout(new GridLayout(0, 2));
         JLabel wieldedShieldLabel = new JLabel("Wielded Shield:");
-        //wornArmorLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        wieldedShieldLabelsSubPanel.add(wieldedShieldLabel);
-        String[] wieldedShieldOptions = { "None", "Big Shield", "Small Shield" };
-        JComboBox wieldedShieldBox = new JComboBox(wieldedShieldOptions);
+        wieldedShieldLabelsSubPanel.add(wieldedShieldLabel);  
+        ArrayList<String> wieldedShieldOptions = new ArrayList<>();
+        wieldedShieldOptions.add("None");
+        for (Item item: character.getItemsList()) {
+        	if (item instanceof Armor) wieldedShieldOptions.add(item.getName());
+        }
+        JComboBox wieldedShieldBox = new JComboBox(wieldedShieldOptions.toArray(new String[wieldedShieldOptions.size()]));
         wieldedShieldLabelsSubPanel.add(wieldedShieldBox);
-        JTextArea wieldedShieldDescriptionTextArea = new JTextArea("This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor");
-        wieldedShieldDescriptionTextArea.setLineWrap(true);
-        wieldedShieldDescriptionTextArea.setWrapStyleWord(true);
-        JScrollPane wieldedShieldDescriptionScrollPane = new JScrollPane(wieldedShieldDescriptionTextArea);
-        wieldedShieldDescriptionTextArea.setOpaque(false);
-        wieldedShieldDescriptionTextArea.setEditable(false);
+        JTextPane wieldedShieldDescriptionTextPane = new JTextPane();
+        JScrollPane wieldedShieldDescriptionScrollPane = new JScrollPane(wieldedShieldDescriptionTextPane);
+        wieldedShieldDescriptionTextPane.setOpaque(false);
+        wieldedShieldDescriptionTextPane.setEditable(false);
+        JLabel wieldedShieldDescriptionLabel = new JLabel("");
+        wieldedShieldDescriptionLabel.setPreferredSize(new Dimension(100, 100));
+        wieldedShieldDescriptionTextPane.insertComponent(wieldedShieldDescriptionLabel);
         wieldedShieldDescriptionScrollPane.setOpaque(false);
         wieldedShieldDescriptionScrollPane.getViewport().setOpaque(false);
         wieldedShieldSubPanel.add(wieldedShieldLabelsSubPanel);
         wieldedShieldSubPanel.add(wieldedShieldDescriptionScrollPane);
         equippedItemsDisplayPanel.add(wieldedShieldSubPanel);
+        wieldedShieldBox.addActionListener((ActionEvent e) -> {
+        	String choice = (String)wieldedShieldBox.getSelectedItem();
+        	if (choice.matches("None")) {
+        		wieldedShieldDescriptionLabel.setText("");
+        		wieldedShieldDescriptionLabel.setPreferredSize(new Dimension(100, 100));
+        	}
+        	else {
+        		String id = "";
+        		wieldedShieldDescriptionLabel.setPreferredSize(null);
+        		for (Item armorToDisplay: character.getItemsList()) {
+        			if (armorToDisplay instanceof Armor) {
+        				if (armorToDisplay.getName().matches(choice)) {
+        					id = armorToDisplay.getID(); 
+        				}
+        			}
+        		}
+            	Armor armorToDisplay = MasterLists.getArmorByID(id);
+            	String armorLabelString = "<html>Description: " + armorToDisplay.getDescription() +
+    					"<br>Cost: " + armorToDisplay.getSingleCost() + 
+    					"<br>Cost Currency: " + armorToDisplay.getCostCurrency() + 
+    					"<br>Weight: " + armorToDisplay.getSingleWeight() +
+    					"<br>Quantity: " + armorToDisplay.getQuantity() +
+    					"<br>Armor Type: " + armorToDisplay.getArmorType() +
+    					"<br>Armor Class: " + armorToDisplay.getArmorClass() +
+    					"<br>Max Dexterity Bonus: " + armorToDisplay.getMaxDexterityBonus() +
+    					"<br>Don Time: " + armorToDisplay.getDonTime() +
+    					"<br>Doff Time: " + armorToDisplay.getDoffTime() +
+    					"<br>Strength Threshhold: " + armorToDisplay.getStrengthThreshold() +
+    					"<br>Has Stealth Penalty: " + armorToDisplay.getHasStealthPenalty() +
+            			"<br></html>";
+            	wieldedShieldDescriptionLabel.setText(armorLabelString);
+        	}  	
+        });
         
         TransparentJPanel weaponOneSubPanel = new TransparentJPanel();
         weaponOneSubPanel.setLayout(new BoxLayout(weaponOneSubPanel, BoxLayout.Y_AXIS));
-        //weaponOneSubPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         TransparentJPanel weaponOneLabelsSubPanel = new TransparentJPanel();
         weaponOneLabelsSubPanel.setLayout(new GridLayout(0, 2));
         JLabel weaponOneLabel = new JLabel("Weapon One:");
-        //wornArmorLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        weaponOneLabelsSubPanel.add(weaponOneLabel);
-        String[] weaponOneOptions = { "None", "Cabbage Sword", "Broadsword" };
-        JComboBox weaponOneBox = new JComboBox(weaponOneOptions);
+        weaponOneLabelsSubPanel.add(weaponOneLabel);  
+        ArrayList<String> weaponOneOptions = new ArrayList<>();
+        weaponOneOptions.add("None");
+        for (Item item: character.getItemsList()) {
+        	if (item instanceof Weapon) weaponOneOptions.add(item.getName());
+        }
+        JComboBox weaponOneBox = new JComboBox(weaponOneOptions.toArray(new String[weaponOneOptions.size()]));
         weaponOneLabelsSubPanel.add(weaponOneBox);
-        JTextArea weaponOneDescriptionTextArea = new JTextArea("This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor");
-        weaponOneDescriptionTextArea.setLineWrap(true);
-        weaponOneDescriptionTextArea.setWrapStyleWord(true);
-        JScrollPane weaponOneDescriptionScrollPane = new JScrollPane(weaponOneDescriptionTextArea);
-        weaponOneDescriptionTextArea.setOpaque(false);
-        weaponOneDescriptionTextArea.setEditable(false);
+        JTextPane weaponOneDescriptionTextPane = new JTextPane();
+        JScrollPane weaponOneDescriptionScrollPane = new JScrollPane(weaponOneDescriptionTextPane);
+        weaponOneDescriptionTextPane.setOpaque(false);
+        weaponOneDescriptionTextPane.setEditable(false);
+        JLabel weaponOneDescriptionLabel = new JLabel("");
+        weaponOneDescriptionLabel.setPreferredSize(new Dimension(100, 100));
+        weaponOneDescriptionTextPane.insertComponent(weaponOneDescriptionLabel);
         weaponOneDescriptionScrollPane.setOpaque(false);
         weaponOneDescriptionScrollPane.getViewport().setOpaque(false);
         weaponOneSubPanel.add(weaponOneLabelsSubPanel);
         weaponOneSubPanel.add(weaponOneDescriptionScrollPane);
         equippedItemsDisplayPanel.add(weaponOneSubPanel);
+        weaponOneBox.addActionListener((ActionEvent e) -> {
+        	String choice = (String)weaponOneBox.getSelectedItem();
+        	if (choice.matches("None")) {
+        		weaponOneDescriptionLabel.setText("");
+        		weaponOneDescriptionLabel.setPreferredSize(new Dimension(100, 100));
+        	}
+        	else {
+        		String id = "";
+        		weaponOneDescriptionLabel.setPreferredSize(null);
+        		for (Item weaponToDisplay: character.getItemsList()) {
+        			if (weaponToDisplay instanceof Weapon) {
+        				if (weaponToDisplay.getName().matches(choice)) {
+        					id = weaponToDisplay.getID(); 
+        				}
+        			}
+        		}
+            	Weapon weaponToDisplay = MasterLists.getWeaponByID(id);
+            	String weaponsLabelString = "<html>Description: " + weaponToDisplay.getDescription() +
+    					"<br>Cost: " + weaponToDisplay.getSingleCost() + 
+    					"<br>Cost Currency: " + weaponToDisplay.getCostCurrency() + 
+    					"<br>Weight: " + weaponToDisplay.getSingleWeight() +
+    					"<br>Quantity: " + weaponToDisplay.getQuantity() +
+    					"<br>Damage: " + weaponToDisplay.getDamage() +
+    					"<br>Melee: " + weaponToDisplay.getIsMelee() +
+    					"<br>Ranged: " + weaponToDisplay.getIsRanged() +
+    					"<br>Has Reach: " + weaponToDisplay.getHasReach() +
+    					"<br>Normal Range: " + weaponToDisplay.getNormalRange() +
+    					"<br>Maximum Range: " + weaponToDisplay.getMaximumRange() +
+    					"<br>Is Loading: " + weaponToDisplay.isLoading +
+    					"<br>Has Finesse: " + weaponToDisplay.getHasFinesse() +
+    					"<br>Is Heavy: " + weaponToDisplay.getIsHeavy() +
+    					"<br>Is Light: " + weaponToDisplay.getIsLight() +
+    					"<br>Is Two Handed: " + weaponToDisplay.getIsTwoHanded() +
+    					"<br>Is Versatile: " + weaponToDisplay.getIsVersatile() +
+    					"<br>Is Special? " + weaponToDisplay.getIsSpecial() +
+    					"<br>Special Description: " + weaponToDisplay.getIsSpecialDescription() +
+            			"<br></html>";
+            	weaponOneDescriptionLabel.setText(weaponsLabelString);
+        	}  	
+        });
         
         TransparentJPanel weaponTwoSubPanel = new TransparentJPanel();
         weaponTwoSubPanel.setLayout(new BoxLayout(weaponTwoSubPanel, BoxLayout.Y_AXIS));
-        //weaponTwoSubPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         TransparentJPanel weaponTwoLabelsSubPanel = new TransparentJPanel();
         weaponTwoLabelsSubPanel.setLayout(new GridLayout(0, 2));
         JLabel weaponTwoLabel = new JLabel("Weapon Two:");
-        //wornArmorLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        weaponTwoLabelsSubPanel.add(weaponTwoLabel);
-        String[] weaponTwoOptions = { "None", "Cabbage Sword", "Dagger" };
-        JComboBox weaponTwoBox = new JComboBox(weaponTwoOptions);
+        weaponTwoLabelsSubPanel.add(weaponTwoLabel);  
+        ArrayList<String> weaponTwoOptions = new ArrayList<>();
+        weaponTwoOptions.add("None");
+        for (Item item: character.getItemsList()) {
+        	if (item instanceof Weapon) weaponTwoOptions.add(item.getName());
+        }
+        JComboBox weaponTwoBox = new JComboBox(weaponTwoOptions.toArray(new String[weaponTwoOptions.size()]));
         weaponTwoLabelsSubPanel.add(weaponTwoBox);
-        JTextArea weaponTwoDescriptionTextArea = new JTextArea("This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor This is a description of some armor");
-        weaponTwoDescriptionTextArea.setLineWrap(true);
-        weaponTwoDescriptionTextArea.setWrapStyleWord(true);
-        JScrollPane weaponTwoDescriptionScrollPane = new JScrollPane(weaponTwoDescriptionTextArea);
-        weaponTwoDescriptionTextArea.setOpaque(false);
-        weaponTwoDescriptionTextArea.setEditable(false);
+        JTextPane weaponTwoDescriptionTextPane = new JTextPane();
+        JScrollPane weaponTwoDescriptionScrollPane = new JScrollPane(weaponTwoDescriptionTextPane);
+        weaponTwoDescriptionTextPane.setOpaque(false);
+        weaponTwoDescriptionTextPane.setEditable(false);
+        JLabel weaponTwoDescriptionLabel = new JLabel("");
+        weaponTwoDescriptionLabel.setPreferredSize(new Dimension(100, 100));
+        weaponTwoDescriptionTextPane.insertComponent(weaponTwoDescriptionLabel);
         weaponTwoDescriptionScrollPane.setOpaque(false);
         weaponTwoDescriptionScrollPane.getViewport().setOpaque(false);
         weaponTwoSubPanel.add(weaponTwoLabelsSubPanel);
         weaponTwoSubPanel.add(weaponTwoDescriptionScrollPane);
         equippedItemsDisplayPanel.add(weaponTwoSubPanel);
+        weaponTwoBox.addActionListener((ActionEvent e) -> {
+        	String choice = (String)weaponTwoBox.getSelectedItem();
+        	if (choice.matches("None")) {
+        		weaponTwoDescriptionLabel.setText("");
+        		weaponTwoDescriptionLabel.setPreferredSize(new Dimension(100, 100));
+        	}
+        	else {
+        		String id = "";
+        		weaponTwoDescriptionLabel.setPreferredSize(null);
+        		for (Item weaponToDisplay: character.getItemsList()) {
+        			if (weaponToDisplay instanceof Weapon) {
+        				if (weaponToDisplay.getName().matches(choice)) {
+        					id = weaponToDisplay.getID(); 
+        				}
+        			}
+        		}
+            	Weapon weaponToDisplay = MasterLists.getWeaponByID(id);
+            	String weaponsLabelString = "<html>Description: " + weaponToDisplay.getDescription() +
+    					"<br>Cost: " + weaponToDisplay.getSingleCost() + 
+    					"<br>Cost Currency: " + weaponToDisplay.getCostCurrency() + 
+    					"<br>Weight: " + weaponToDisplay.getSingleWeight() +
+    					"<br>Quantity: " + weaponToDisplay.getQuantity() +
+    					"<br>Damage: " + weaponToDisplay.getDamage() +
+    					"<br>Melee: " + weaponToDisplay.getIsMelee() +
+    					"<br>Ranged: " + weaponToDisplay.getIsRanged() +
+    					"<br>Has Reach: " + weaponToDisplay.getHasReach() +
+    					"<br>Normal Range: " + weaponToDisplay.getNormalRange() +
+    					"<br>Maximum Range: " + weaponToDisplay.getMaximumRange() +
+    					"<br>Is Loading: " + weaponToDisplay.isLoading +
+    					"<br>Has Finesse: " + weaponToDisplay.getHasFinesse() +
+    					"<br>Is Heavy: " + weaponToDisplay.getIsHeavy() +
+    					"<br>Is Light: " + weaponToDisplay.getIsLight() +
+    					"<br>Is Two Handed: " + weaponToDisplay.getIsTwoHanded() +
+    					"<br>Is Versatile: " + weaponToDisplay.getIsVersatile() +
+    					"<br>Is Special? " + weaponToDisplay.getIsSpecial() +
+    					"<br>Special Description: " + weaponToDisplay.getIsSpecialDescription() +
+            			"<br></html>";
+            	weaponTwoDescriptionLabel.setText(weaponsLabelString);
+        	}  	
+        });
         
         // languages panel
         languagesPanel = new TransparentJPanel();
@@ -664,50 +813,94 @@ public class CharacterCreator {
          */
         
         //inventory panel
-        inventoryDisplayPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
-                                                                                                        Color.BLACK, 1, true), "Inventory"));
+//        inventoryDisplayPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
+//                                                                                                        Color.BLACK, 1, true), "Inventory"));
+        JTextPane inventoryTextPane = new JTextPane();
         TransparentJPanel inventoryTextPanel = new TransparentJPanel();
+        inventoryTextPanel.setLayout(new BoxLayout(inventoryTextPanel, BoxLayout.Y_AXIS));
+        inventoryTextPane.setOpaque(false);
+        inventoryTextPane.setEditable(false);
+        //inventoryTextPane.setLayout(new BoxLayout(inventoryTextPane, BoxLayout.PAGE_AXIS));
         inventoryScrollPane = new JScrollPane(inventoryTextPanel);
         inventoryScrollPane.setOpaque(false);
         inventoryScrollPane.getViewport().setOpaque(false);
-        JTextPane armorTextPane = new JTextPane();
-        armorTextPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true), "Armor", TitledBorder.RIGHT, TitledBorder.CENTER));
-        JTextPane weaponsTextPane = new JTextPane();
-        weaponsTextPane.setLayout(new BoxLayout(weaponsTextPane, BoxLayout.Y_AXIS));
-        weaponsTextPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true), "Weapons", TitledBorder.RIGHT, TitledBorder.CENTER));
-        JTextPane itemsTextPane = new JTextPane();
-        itemsTextPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK, 1, true), "Other Items", TitledBorder.RIGHT, TitledBorder.CENTER));
+        inventoryScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        inventoryScrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(
+                                                                                                        Color.BLACK, 1, true), "Inventory"));
+        inventoryDisplayPanel.add(inventoryScrollPane);
 
+        ArrayList<JLabel> weaponsLabels = new ArrayList<>();
+        ArrayList<JLabel> armorLabels = new ArrayList<>();
+        ArrayList<JLabel> itemLabels = new ArrayList<>();
+        
         for (Item item: character.getItemsList()) {
             if (item instanceof Weapon) {
-            	weaponsTextPane.insertComponent(new JLabel("<html><b>" + item.getName() + 	
-            			"</b><br>Description: " + item.getDescription() +
+            	String weaponsLabelString = "<html><b><span style='font-size:14px'>" + item.getName() + 	
+            			"</span></b><i>  (Weapon)</i>" +
+            			"<br>Description: " + item.getDescription() +
     					"<br>Cost: " + item.getSingleCost() + 
-    					"<br>Cost Currency: " + item.getCostCurrency() + 
-    					"<br>Weight: " + item.getSingleWeight() +
-    					"<br>Quantity: " + item.getQuantity() +
+    					"<br>Cost Currency: " + ((Weapon) item).getCostCurrency() + 
+    					"<br>Weight: " + ((Weapon) item).getSingleWeight() +
+    					"<br>Quantity: " + ((Weapon) item).getQuantity() +
     					"<br>Damage: " + ((Weapon) item).getDamage() +
     					"<br>Melee: " + ((Weapon) item).getIsMelee() +
     					"<br>Ranged: " + ((Weapon) item).getIsRanged() +
     					"<br>Has Reach: " + ((Weapon) item).getHasReach() +
-    					"<br>Is Thrown: " + ((Weapon) item).getIsThrown() +
-    					"<br>Damage: " + ((Weapon) item).getDamage() +
-    					"<br>Damage: " + ((Weapon) item).getDamage() +
-    					"<br>Damage: " + ((Weapon) item).getDamage() +
-            			"<br></html>"));
+    					"<br>Normal Range: " + ((Weapon) item).getNormalRange() +
+    					"<br>Maximum Range: " + ((Weapon) item).getMaximumRange() +
+    					"<br>Is Loading: " + ((Weapon) item).isLoading +
+    					"<br>Has Finesse: " + ((Weapon) item).getHasFinesse() +
+    					"<br>Is Heavy: " + ((Weapon) item).getIsHeavy() +
+    					"<br>Is Light: " + ((Weapon) item).getIsLight() +
+    					"<br>Is Two Handed: " + ((Weapon) item).getIsTwoHanded() +
+    					"<br>Is Versatile: " + ((Weapon) item).getIsVersatile() +
+    					"<br>Is Special? " + ((Weapon) item).getIsSpecial() +
+    					"<br>Special Description: " + ((Weapon) item).getIsSpecialDescription() +
+            			"<br><br></html>";
+            	weaponsLabels.add(new JLabel(weaponsLabelString));
             }
             else if (item instanceof Armor) {
-            	
+            	String armorLabelString = "<html><b><span style='font-size:14px'>" + item.getName() + 	
+            			"</span></b><i>  (Armor)</i>" +
+            			"<br>Description: " + item.getDescription() +
+    					"<br>Cost: " + item.getSingleCost() + 
+    					"<br>Cost Currency: " + ((Armor) item).getCostCurrency() + 
+    					"<br>Weight: " + ((Armor) item).getSingleWeight() +
+    					"<br>Quantity: " + ((Armor) item).getQuantity() +
+    					"<br>Armor Type: " + ((Armor) item).getArmorType() +
+    					"<br>Armor Class: " + ((Armor) item).getArmorClass() +
+    					"<br>Max Dexterity Bonus: " + ((Armor) item).getMaxDexterityBonus() +
+    					"<br>Don Time: " + ((Armor) item).getDonTime() +
+    					"<br>Doff Time: " + ((Armor) item).getDoffTime() +
+    					"<br>Strength Threshhold: " + ((Armor) item).getStrengthThreshold() +
+    					"<br>Has Stealth Penalty: " + ((Armor) item).getHasStealthPenalty() +
+            			"<br><br></html>";
+            	armorLabels.add(new JLabel(armorLabelString));
             }
             else {
-            	
+            	itemLabels.add(new JLabel("<html><b><span style='font-size:14px'>" + item.getName() + 	
+            			"</span></b><i>  (Item)</i>" +
+            			"<br>Description: " + item.getDescription() +
+    					"<br>Cost: " + item.getSingleCost() + 
+    					"<br>Cost Currency: " + item.getCostCurrency() + 
+    					"<br>Weight: " + item.getSingleWeight() +
+    					"<br>Quantity: " + item.getQuantity() +
+            			"<br><br></html>"));
             }
         }
+
         
-        inventoryTextPanel.add(armorTextPane);
-        inventoryTextPanel.add(weaponsTextPane);
-        inventoryTextPanel.add(itemsTextPane);
+        for (JLabel weaponsLabel: weaponsLabels) {
+        	inventoryTextPanel.add(weaponsLabel);
+        }
+        for (JLabel armorLabel: armorLabels) {
+        	inventoryTextPanel.add(armorLabel);
+        }
+        for (JLabel itemLabel: itemLabels) {
+        	inventoryTextPane.add(itemLabel);
+        }
         
+
         inventoryPanel.setLayout(new BorderLayout());
         inventoryButtonsPanel = new TransparentJPanel();
         inventoryButtonsPanel.setLayout(new GridLayout(1,0));
@@ -716,8 +909,7 @@ public class CharacterCreator {
         inventoryButtonsPanel.add(addItemButton);
         inventoryButtonsPanel.add(removeItemButton);
         
-        inventoryDisplayPanel.add(inventoryScrollPane);
-        inventoryPanel.add(inventoryDisplayPanel, BorderLayout.CENTER);
+        inventoryPanel.add(inventoryScrollPane, BorderLayout.CENTER);
 
         //can be added later if buttons desired
         //inventoryPanel.add(inventoryButtonsPanel, BorderLayout.SOUTH);
@@ -837,6 +1029,7 @@ public class CharacterCreator {
         frame.setVisible(true);
     }
     
+    
     private void saveCharacter() {
         JFileChooser jfc = new JFileChooser(".");
         FileNameExtensionFilter filter = new FileNameExtensionFilter("ser file", "ser");
@@ -899,7 +1092,7 @@ public class CharacterCreator {
         armorClassPanel.value = character.getArmorClass();
         armorClassPanel.model.setValue(armorClassPanel.value);
         initiativePanel.value = character.getInitiative();
-        initiativePanel.model.setValue(initiativePanel.value);
+        initiativePanel.statLabel.setText(String.valueOf(initiativePanel.value));
         proficiencyBonusPanel.value = character.getInitiative();
         proficiencyBonusPanel.statLabel.setText(String.valueOf(proficiencyBonusPanel.value));
         speedPanel.value = character.getSpeed();
@@ -1210,7 +1403,7 @@ class StatsPanel extends JPanel {
                 break;
         }
         
-        if (inStat.matches("Proficiency Bonus") || inStat.matches("Passive Perception")) {
+        if (inStat.matches("Proficiency Bonus") || inStat.matches("Passive Perception") || inStat.matches("Initiative")) {
             statLabel = new JLabel(String.valueOf(value));
             statLabel.setFont(new Font(null, Font.BOLD, 20));
             statLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -1252,7 +1445,7 @@ class StatsPanel extends JPanel {
                             inCharacter.setArmorClass((int) spinner.getValue());
                             break;
                         case "Initiative":
-                            inCharacter.setInitiative((int) spinner.getValue());
+                            //inCharacter.setInitiative((int) spinner.getValue());
                             break;
                         case "Proficiency Bonus":
                             
