@@ -1093,7 +1093,7 @@ public class CharacterCreator {
         armorClassPanel.model.setValue(armorClassPanel.value);
         initiativePanel.value = character.getInitiative();
         initiativePanel.statLabel.setText(String.valueOf(initiativePanel.value));
-        proficiencyBonusPanel.value = character.getInitiative();
+        proficiencyBonusPanel.value = character.getProficiencyBonus();
         proficiencyBonusPanel.statLabel.setText(String.valueOf(proficiencyBonusPanel.value));
         speedPanel.value = character.getSpeed();
         speedPanel.model.setValue(speedPanel.value);        
