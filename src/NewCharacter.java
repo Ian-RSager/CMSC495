@@ -1,6 +1,6 @@
 /*
  * File: NewCharacter.java
- * Date: December 13, 2017
+ * Date: December 14, 2017
  * Purpose: Creates a Gui with a Card Layout to Step by Step allow the user
  *          to create a new D&D 5th Edition character.
  */
@@ -45,7 +45,6 @@ import java.awt.Dimension;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.util.*;
-
 import java.awt.event.ComponentListener;
 import java.awt.geom.AffineTransform;
 import java.awt.Graphics2D;
@@ -76,9 +75,9 @@ public class NewCharacter extends JFrame{
 
     //Character being created
     private Character myCharacter;
-    private int hitdice = 0;   //Character's hit dice
+    private int hitdice = 0;    //Character's hit dice
+    private int classIndex = 0; //ID of Selected Character Class
     
-    private ArrayList<String> selectedFeatList = null;
     
     //Constructor
     public NewCharacter(){
@@ -95,7 +94,6 @@ public class NewCharacter extends JFrame{
             iiphoto.setImage(resizedPhoto);
             background=new JLabel(iiphoto);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             background=new JLabel();
         }
@@ -141,26 +139,11 @@ public class NewCharacter extends JFrame{
         setVisible(false);
     }
     
+    
     //newCharacterGui - method to create and display the new character creator gui
     public void newCharacterGui(){
         this.setVisible(true);
     }
-    
-    //Main Test Function
-    //Will be taken out when linked with the rest of the program
- //   public static void main(String[] args){
-        //JFrame frame1 = new JFrame("DialogEx");
-        //frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame1.setSize (700, 685);
-        //frame1.setMinimumSize(new Dimension(700, 685));
-        //frame1.setLocationRelativeTo(null);
-        //frame1.setVisible(true);
-      
- //       NewCharacter nc = new NewCharacter();
- //       nc.newCharacterGui();
-        
-//    }
-
 
 
     //Getter method for character object
@@ -168,8 +151,7 @@ public class NewCharacter extends JFrame{
         return myCharacter;
     }
 
-    
-    
+        
     //JPanelRace - Private Inner Class that handles the 
     //             panel used to obtain input regarding the 
     //             character's race
@@ -321,7 +303,6 @@ public class NewCharacter extends JFrame{
             left.add(blankLbl);
 
             //Select subrace Label
-            //titleFont = new Font("Default", Font.PLAIN, 18);
             subraceLabel.setFont(titleFont);
             left.add(subraceLabel, gbc);
 
@@ -454,6 +435,7 @@ public class NewCharacter extends JFrame{
             c1.next(cardPanel);
         }
 
+        
         //Updates the image associated with a race in the Gui
         private void updateRaceImg(String imageName, ImageIcon imgIcon){
             try {
@@ -506,7 +488,7 @@ public class NewCharacter extends JFrame{
         //Labels
         private JLabel classScreenLabel = new JLabel("Select a Class", JLabel.CENTER);
         private JLabel selectAClassLabel = new JLabel("Select a Class", JLabel.LEFT);
-        private JLabel startingLevelLabel = new JLabel("Starting Level", JLabel.LEFT);
+        private JLabel startingLevelLabel = new JLabel("Starting Level: 1", JLabel.LEFT);
         private JLabel classLabel = new JLabel("Barbarian", JLabel.CENTER);
         private JLabel blankLbl = new JLabel("", JLabel.CENTER);
 
@@ -515,22 +497,13 @@ public class NewCharacter extends JFrame{
                                            "Fighter","Monk","Paladin","Ranger",
                                            "Rogue","Sorcerer","Warlock","Wizard"};
         private JComboBox<String> classComboBox = new JComboBox<String> (classesStr);
-        
-        //Level Spinner (1 to 100, default 1, incr by 1)
-        //SpinnerNumberModel snm = new SpinnerNumberModel(new Integer(1),new Integer(1),new Integer(100),new Integer(1));
-        
-		//Week 7 -- Group decision to fix Level at 1 to simplify project because of features
-		SpinnerNumberModel snm = new SpinnerNumberModel(new Integer(1),new Integer(1),new Integer(1),new Integer(1));
-		JSpinner spnLevl = new JSpinner(snm);
-    
+            
         //Buttons
-        private JButton addFeatures = new JButton("Add Features");
         private JButton saveAndContinueButton = new JButton ("Save and Continue >");    
         private JButton previousButton = new JButton ("< Prev");    
 
         private Font titleFont;
-        private JDialog featModalDialog;
-        private JList<String> featJlist;
+
         
         //For Images
         private ImageIcon iicon = new ImageIcon();
@@ -539,7 +512,6 @@ public class NewCharacter extends JFrame{
         private JScrollPane jsp;
 
         //Descriptions of the classes
-        private int classIndex = 0;
         private String [] classDescrStr   = {
             "Barbarians are savage warriors who deal out powerful blows from their mighty" +
             " weapons. They charge from foe to foe and seldom feel the pain of an enemy's" +
@@ -603,18 +575,16 @@ public class NewCharacter extends JFrame{
             "rituals that can alter time and space, and hurl balls of fire that incinerate massed foes. Wizards wield "+
             "spells the way warriors brandish swords."
         };
-
+        private String selectedClass = "Barbarian";
+        
         //////////////////////
         // End of Variables //
         //////////////////////
 
-        private String selectedClass = "Barbarian";
+
         //Constructor
         public JPanelClass(){
 
-            JPanel helper = new JPanel();
-            helper.setLayout(new FlowLayout(FlowLayout.LEFT));
-            helper.setOpaque(false);
             setLayout(new GridBagLayout());
             setOpaque(false);
             GridBagConstraints gbc = new GridBagConstraints();
@@ -666,6 +636,7 @@ public class NewCharacter extends JFrame{
             jsp.setPreferredSize(new Dimension(300, 150));
             jsp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
             classDescriptionTextArea.setText(classDescrStr[0]);
+            classDescriptionTextArea.setCaretPosition(0);
             right.add(jsp,BorderLayout.SOUTH);
 
             
@@ -686,18 +657,9 @@ public class NewCharacter extends JFrame{
             left.add(blankLbl);
 
             //Select Starting Level
-            startingLevelLabel.setFont(titleFont);
-            
+            startingLevelLabel.setFont(titleFont);            
             left.add(startingLevelLabel);
 
-            //Starting Level
-            (((JSpinner.DefaultEditor) spnLevl.getEditor()).getTextField()).setColumns(2);
-            (((JSpinner.DefaultEditor) spnLevl.getEditor()).getTextField()).setEditable(false);
-            helper.add(spnLevl);
-            left.add(helper);
-    
-   // Remove feature selection         
-   //         left.add(addFeatures);
             
             //Add Left Panel to Gridbag Layout
             gbc.fill = GridBagConstraints.NONE;
@@ -736,7 +698,6 @@ public class NewCharacter extends JFrame{
             setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
             //Action Listeners - Next/Prev Buttons
-            addFeatures.addActionListener (e -> featureDialog());
             saveAndContinueButton.addActionListener   (e -> switchStateNext());
             previousButton.addActionListener   (e -> switchStatePrev());
             
@@ -749,9 +710,6 @@ public class NewCharacter extends JFrame{
                     Object selected = comboBox.getSelectedItem();
                     String cStr = selected.toString();
                     
-                    //Change of class, erase all features
-                    selectedFeatList = null;
-                                        
                     classLabel.setText(cStr);
                     switch(cStr){
                         case "Barbarian":
@@ -863,18 +821,14 @@ public class NewCharacter extends JFrame{
                                  85000,100000,120000,140000,165000,195000,225000,
                                  265000,305000,355000};
             int expPts = 0;
-            
-            if(((int)spnLevl.getValue()) > 20)
-                expPts = exprPtArray[19];
-            else
-                expPts = exprPtArray[((int)spnLevl.getValue())-1];
+
             
             //Obtain and Validate, and store character data
 
             //Nothing to validate, combo boxes force valid data
 
-            //Set class/starting level (level 1 only)
-            myCharacter.setClassLevel(classIndex,1);
+            //Set experience level (level 1 only)
+            expPts = exprPtArray[0];
             myCharacter.setExperiencePoints(expPts);
             
             //Go to next card
@@ -912,60 +866,6 @@ public class NewCharacter extends JFrame{
                 e.printStackTrace();
             }   
         }
-        
-        
-        private void featureDialog(){
-            selectedFeatList = null;
-            JButton saveFeat = new JButton("Save Selected Features");
-            JPanel featPanel = new JPanel(new BorderLayout());
-            JLabel info = new JLabel("Select all character features (Use Ctrl/Shift)",JLabel.CENTER);
-            featModalDialog = new JDialog(null, "Feature Selection", ModalityType.APPLICATION_MODAL);
-            featModalDialog.add(Box.createRigidArea(new Dimension(400, 400)));
-            featModalDialog.setSize (400, 400);
-            featModalDialog.setMinimumSize(new Dimension(400, 400));
-            
-            final DefaultListModel<String> modelList;    
-            modelList = new DefaultListModel<>();  
-            
-            //Add Features to the list Here (Based on class)...
-            
-            ClassType selection = MasterLists.getClassTypeByID(selectedClass);
-            int numFeatures = selection.features[0].length;
-            for(int n = 0; n < numFeatures; n++){
-                String feat = selection.features[0][n];
-                modelList.addElement(feat); 
-            }
-            
-            
-            featJlist = new JList<>(modelList);  
-            featJlist.setBounds(300,300, 75,75);  
-            JScrollPane listScroller = new JScrollPane(featJlist);
-            listScroller.setPreferredSize(new Dimension(300, 300));
-            saveFeat.addActionListener(e -> closeFeatureDialog());
-            
-            featPanel.add(info,BorderLayout.NORTH);
-            featPanel.add(listScroller,BorderLayout.CENTER);
-            featPanel.add(saveFeat,BorderLayout.SOUTH);
-            
-            //List of features to select using shift/ctrl and clicking mouse
-            featModalDialog.add(featPanel);
-
-            featModalDialog.pack();
-            featModalDialog.setLocationByPlatform(true);
-            featModalDialog.setLocationRelativeTo(this);            
-            featModalDialog.setVisible(true);
-
-            return;
-        }
-
-        
-        private void closeFeatureDialog(){
-            selectedFeatList = (ArrayList<String>) featJlist.getSelectedValuesList();
-
-            featModalDialog.setVisible(false);
-            featModalDialog.dispose();
-        }
-
     }
 
 
@@ -1256,6 +1156,7 @@ public class NewCharacter extends JFrame{
             
         }
         
+        
         //Listens for an Ability Score Spinner to be clicked
         //Updates remaining points on every click
         //Remaining points are allowed to go negative, but must be zero
@@ -1276,6 +1177,7 @@ public class NewCharacter extends JFrame{
             }
         };
         
+        
         private void calculateHitPoints(){
             int constitution = getConst();
             if(constitution >= 0){
@@ -1288,9 +1190,9 @@ public class NewCharacter extends JFrame{
             }
         }
         
+        
+        //Returns the constitution value
         private int getConst(){
-            
-            //return the const.
             if(rRoll.isSelected())
                 return Integer.parseInt(rollCon.getText());
             else if(rPt.isSelected())
@@ -1298,6 +1200,7 @@ public class NewCharacter extends JFrame{
             else
                 return -1;
         }
+        
         
         //Returns ability score cost
         //Values taken from D&D Players Handbook
@@ -1323,6 +1226,7 @@ public class NewCharacter extends JFrame{
                     return 0;
             }
         }
+        
         
         //Returns the modifier associated with an ability score
         private int abilityScoreToModifier(int abscore){
@@ -1368,12 +1272,14 @@ public class NewCharacter extends JFrame{
             return total;
         }
 
+        
         //Method to go to Previous Card
         private void switchStatePrev(){
             //Go to previous card
             CardLayout c1 = (CardLayout)(cardPanel.getLayout());
             c1.previous(cardPanel);
         }
+        
 
         //Method to go to Next Card
         private void switchStateNext(){
@@ -1513,9 +1419,6 @@ public class NewCharacter extends JFrame{
         //Constructor
         public JPanelAddInfo(){
 
-            JPanel helper = new JPanel();
-            helper.setLayout(new FlowLayout(FlowLayout.LEFT));
-            helper.setOpaque(false);
             setLayout(new GridBagLayout());
             setOpaque(false);
             GridBagConstraints gbc = new GridBagConstraints();
@@ -1666,6 +1569,7 @@ public class NewCharacter extends JFrame{
             previousButton.addActionListener   (e -> switchStatePrev());
         }
         
+        
         //Cycles through the character photo selection
         private void getPrevCharacterImg(){
             
@@ -1677,6 +1581,7 @@ public class NewCharacter extends JFrame{
             updateCharacterImg(charImgIndex);		
         }
     
+        
         private void getNextCharacterImg(){
 
             //Adjust image name index			
@@ -1686,6 +1591,7 @@ public class NewCharacter extends JFrame{
             
             updateCharacterImg(charImgIndex);	
         }
+        
         
         private void updateCharacterImg(int charImgIndex){
             try {
@@ -1717,6 +1623,7 @@ public class NewCharacter extends JFrame{
             }   
         }
 
+        
         //Method to go to Previous Card
         private void switchStatePrev(){
             //Go to previous card
@@ -1724,6 +1631,7 @@ public class NewCharacter extends JFrame{
             c1.previous(cardPanel);
         }
 
+        
         //Method to go to Next Card
         private void generateCharacter(){
             
@@ -1793,15 +1701,10 @@ public class NewCharacter extends JFrame{
             myCharacter.setBackground((String)backgroundComboBox.getSelectedItem());
             myCharacter.setCharacterImg("Portraits/" + charImages[charImgIndex]);
             
-            //Add Features that were selected from selectedFeatList, if any were
-            //Do it here so that you dont need to remove if they hit the back button
-//            if(selectedFeatList != null){
-//                int numFeats = selectedFeatList.size();
-//                for(int n = 0; n < numFeats; n++){
-//                    myCharacter.addClassFeature(selectedFeatList.get(n));
-//                }
-//            }
-            
+            //Set class/starting level (level 1 only)
+            //Done here to prevent accidental multiclassing
+            myCharacter.setClassLevel(classIndex,1);
+                        
             //Alex's new initialize method goes here
             //Covers language, items, etc.
             myCharacter.initializeCharacter();
@@ -1813,12 +1716,5 @@ public class NewCharacter extends JFrame{
             dispose();
 
         }
-
     }
-    
-
 }
-
-
-
- 
