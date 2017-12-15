@@ -1391,7 +1391,7 @@ public class NewCharacter extends JFrame{
                                                 "Sage","Soldier","Charlatan","Entertainer",
                                                 "Guild Artisan","Hermit","Outlander","Urchin",
                                                 "Caravan Specialist","Guild Merchant",
-                                                "Outlander","Knight","Sailor","Pirate"};
+                                                "Knight","Sailor","Pirate"};
         private JComboBox<String> backgroundComboBox = new JComboBox<String> (backgroundStr);
     
 
