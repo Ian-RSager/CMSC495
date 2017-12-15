@@ -12,7 +12,7 @@
     "doffTime": "Immediate",
     "strengthThreshold": null,
     "hasStealthPenalty": false,
-    "description": "neked."
+    "description": "Worn clothes offer no defensive benefit."
   },
   {
     "id": "armorPaddedLightArmor",
@@ -27,7 +27,7 @@
     "doffTime": "1 minute",
     "strengthThreshold": null,
     "hasStealthPenalty": true,
-    "description": "***Padded.*** Padded armor consists of quilted layers of cloth and batting."
+    "description": "This armor consists of quilted layers of cloth and batting."
   },
   {
     "id": "armorLeatherLightArmor",
@@ -42,7 +42,7 @@
     "doffTime": "1 minute",
     "strengthThreshold": null,
     "hasStealthPenalty": false,
-    "description": "***Leather.*** The breastplate and shoulder protectors of this armor are made of leather that has been stiffened by being boiled in oil. The rest of the armor is made of softer and more flexible materials."
+    "description": "The breastplate and shoulder protectors of this armor are made of leather that has been stiffened by being boiled in oil. The rest of the armor is made of softer and more flexible materials."
   },
   {
     "id": "armorStuddedLeatherLightArmor",
@@ -72,7 +72,7 @@
     "doffTime": "1 minute",
     "strengthThreshold": null,
     "hasStealthPenalty": true,
-    "description": "***Hide.*** This crude armor consists of thick furs and pelts. It is commonly worn by barbarian tribes, evil humanoids, and other folk who lack access to the tools and materials needed to create better armor."
+    "description": "This crude armor consists of thick furs and pelts. It is commonly worn by barbarian tribes, evil humanoids, and other folk who lack access to the tools and materials needed to create better armor."
   },
   {
     "id": "armorChainShirtMediumArmor",
@@ -87,7 +87,7 @@
     "doffTime": "1 minute",
     "strengthThreshold": null,
     "hasStealthPenalty": false,
-    "description": "***Chain Shirt.*** Made of interlocking metal rings, a chain shirt is worn between layers of clothing or leather. This armor offers modest protection to the wearer\’s upper body and allows the sound of the rings rubbing against one another to be muffled by outer layers."
+    "description": "Made of interlocking metal rings, a chain shirt is worn between layers of clothing or leather. This armor offers modest protection to the wearer\’s upper body and allows the sound of the rings rubbing against one another to be muffled by outer layers."
   },
   {
     "id": "armorScaleMailMediumArmor",
@@ -102,7 +102,7 @@
     "doffTime": "1 minute",
     "strengthThreshold": null,
     "hasStealthPenalty": true,
-    "description": "***Scale Mail.*** This armor consists of a coat and leggings (and perhaps a separate skirt) of leather covered with overlapping pieces of metal, much like the scales of a fish. The suit includes gauntlets."
+    "description": "This armor consists of a coat and leggings (and perhaps a separate skirt) of leather covered with overlapping pieces of metal, much like the scales of a fish. The suit includes gauntlets."
   },
   {
     "id": "armorBreastplateMediumArmor",
@@ -117,7 +117,7 @@
     "doffTime": "1 minute",
     "strengthThreshold": null,
     "hasStealthPenalty": false,
-    "description":"***Breastplate.*** This armor consists of a fitted metal chest piece worn with supple leather. Although it leaves the legs and arms relatively unprotected, this armor provides good protection for the wearer\’s vital organs while leaving the wearer relatively unencumbered."
+    "description":"This armor consists of a fitted metal chest piece worn with supple leather. Although it leaves the legs and arms relatively unprotected, this armor provides good protection for the wearer\’s vital organs while leaving the wearer relatively unencumbered."
   },
   {
     "id": "armorHalfPlateMediumArmor",
@@ -132,7 +132,7 @@
     "doffTime": "1 minute",
     "strengthThreshold": null,
     "hasStealthPenalty": true,
-    "description": "***Half Plate.*** Half plate consists of shaped metal plates that cover most of the wearer\’s body. It does not include leg protection beyond simple greaves that are attached with leather straps."
+    "description": "Half plate consists of shaped metal plates that cover most of the wearer\’s body. It does not include leg protection beyond simple greaves that are attached with leather straps."
   },
   {
     "id": "armorRingMailHeavyArmor",
@@ -147,7 +147,7 @@
     "doffTime": "5 minute",
     "strengthThreshold": null,
     "hasStealthPenalty": true,
-    "description": "***Ring Mail.*** This armor is leather armor with heavy rings sewn into it. The rings help reinforce the armor against blows from swords and axes. Ring mail is inferior to chain mail, and it\'s usually worn only by those who can\’t afford better armor."
+    "description": "This armor is leather armor with heavy rings sewn into it. The rings help reinforce the armor against blows from swords and axes. Ring mail is inferior to chain mail, and it\'s usually worn only by those who can\’t afford better armor."
   },
   {
     "id": "armorChainMailHeavyArmor",
@@ -162,7 +162,7 @@
     "doffTime": "5 minute",
     "strengthThreshold": 13,
     "hasStealthPenalty": true,
-    "description": "***Chain Mail.*** Made of interlocking metal rings, chain mail includes a layer of quilted fabric worn underneath the mail to prevent chafing and to cushion the impact of blows. The suit includes gauntlets."
+    "description": "Made of interlocking metal rings, this armor includes a layer of quilted fabric worn underneath the mail to prevent chafing and to cushion the impact of blows. The suit includes gauntlets."
   },
   {
     "id": "armorSplintHeavyArmor",
@@ -177,7 +177,7 @@
     "doffTime": "5 minute",
     "strengthThreshold": 15,
     "hasStealthPenalty": true,
-    "description": "***Splint.*** This armor is made of narrow vertical strips of metal riveted to a backing of leather that is worn over cloth padding. Flexible chain mail protects the joints."
+    "description": "This armor is made of narrow vertical strips of metal riveted to a backing of leather that is worn over cloth padding. Flexible chain mail protects the joints."
   },
   {
     "id": "armorPlateHeavyArmor",
@@ -192,7 +192,7 @@
     "doffTime": "5 minute",
     "strengthThreshold": 15,
     "hasStealthPenalty": true,
-    "description": "***Plate.*** Plate consists of shaped, interlocking metal plates to cover the entire body. A suit of plate includes gauntlets, heavy leather boots, a visored helmet, and thick layers of padding underneath the armor. Buckles and straps distribute the weight over the body."
+    "description": "This armor consists of shaped, interlocking metal plates to cover the entire body. A suit of plate includes gauntlets, heavy leather boots, a visored helmet, and thick layers of padding underneath the armor. Buckles and straps distribute the weight over the body."
   },
   {
     "id": "armorShield",
