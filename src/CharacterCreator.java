@@ -1089,6 +1089,8 @@ public class CharacterCreator {
     	hitPointsPanel.value = character.getHitPointsCurrent();
     	hitPointsPanel.model.setValue(hitPointsPanel.value);
     	hitPointsPanel.maxHitPointLabel.setText("/" + character.getHitPointsMaximum());
+	SpinnerNumberModel m = (SpinnerNumberModel)hitPointsPanel.model;
+    	m.setMaximum(character.getHitPointsMaximum());
         armorClassPanel.value = character.getArmorClass();
         armorClassPanel.model.setValue(armorClassPanel.value);
         initiativePanel.value = character.getInitiative();
