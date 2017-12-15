@@ -503,30 +503,66 @@ public class CharacterCreator {
         featuresTextPane.setOpaque(false);
         ArrayList<ClassFeature> characterFeatures = character.getFeaturesList();
         for (ClassFeature feature: characterFeatures) {
-                String levelInfo = "";
-                try {
-                    for (int i = 0; i<feature.levelingInfo.length; i++) {
-                        if(feature.levelingInfo[i].length == 1) break;
-                        if(feature.levelingInfo[i][0].matches("[0-9]+")) break;
-                        levelInfo += feature.levelingInfo[i][0] + feature.levelingInfo[i][1] + "<br>";
-                    }
-                
-                }
-                catch (ArrayIndexOutOfBoundsException e) {
-                    levelInfo = "";
-                    System.out.println("array exception");
-                }
-                catch (NullPointerException e) {
-                    levelInfo = "";
-                }
-
-                featuresTextPane.insertComponent(new JLabel(
+            String featureID = feature.getID();
+            String levelingInfo = "";
+            int characterLevel = character.getLevel();
+            String[][] levelingInfoArray = feature.getLevelingInfo();
+            
+            switch (featureID) {
+    case "featureSpellcastingBard": case "featureSpellcastingSorcerer":
+                    levelingInfo += "Cantrips Known: " + levelingInfoArray[characterLevel - 1][0] + "<br>";
+                    levelingInfo += "Spells Known: " + levelingInfoArray[characterLevel - 1][1] + "<br>";
+                    for (int i = 1; i < 9; i++) {
+                        if (levelingInfoArray[characterLevel - 1][i + 1].equalsIgnoreCase("")) {
+                            levelingInfo += "Level " + i + " Spell Slots: 0<br>";
+                        } else {
+                            levelingInfo += "Level " + i + " Spell Slots: " + levelingInfoArray[characterLevel - 1][i + 1] + "<br>";
+                        } // End if/else.
+                    } // End for.
+                    break;
+    case "featureSpellcastingCleric": case "featureSpellcastingDruid": case "featureSpellcastingWizard":
+                    levelingInfo += "Cantrips Known: " + levelingInfoArray[characterLevel - 1][0] + "<br>";
+                    for (int i = 1; i < 9; i++) {
+                        if (levelingInfoArray[characterLevel - 1][i].equalsIgnoreCase("")) {
+                            levelingInfo += "Level " + i + " Spell Slots: 0<br>";
+                        } else {
+                            levelingInfo += "Level " + i + " Spell Slots: " + levelingInfoArray[characterLevel - 1][i] + "<br>";
+                        } // End if/else.
+                    } // End for.
+                    break;
+    case "featureSpellcastingWarlock":
+                    levelingInfo += "Cantrips Known: " + levelingInfoArray[characterLevel - 1][0] + "<br>";
+                    levelingInfo += "Spells Known: " + levelingInfoArray[characterLevel - 1][1] + "<br>";
+                    levelingInfo += "Spell Slots: " + levelingInfoArray[characterLevel - 1][2] + "<br>";
+                    levelingInfo += "Slot Level: " + levelingInfoArray[characterLevel - 1][3] + "<br>";
+                    if (characterLevel == 1) {
+                        levelingInfo += "Invocations Known: 0<br>";
+                    } else {
+                        levelingInfo += "Invocations Known: " + levelingInfoArray[characterLevel - 1][4] + "<br>";
+                    } // End if/else.
+                    break;
+    default:
+                    try {
+                        for (int i = 0; i<feature.levelingInfo.length; i++) {
+                            if(feature.levelingInfo[i].length == 1) break;
+                            if(feature.levelingInfo[i][0].matches("[0-9]+")) break;
+                            levelingInfo += feature.levelingInfo[i][0] + feature.levelingInfo[i][1] + "<br>";
+                        } // End for.
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        levelingInfo = "";
+                        System.out.println("array exception");
+                    } catch (NullPointerException e) {
+                        levelingInfo = "";
+                    } // End try / catch.
+                    break;
+            } // End switch (featureID).
+            
+            featuresTextPane.insertComponent(new JLabel(
                             "<html><b>" + feature.getName() +
                             "</b><br>Description: " + feature.getDescription() + 
-                            "<br>" + levelInfo + "<br></html>"));
-         
-                
-        }
+                            "<br>" + levelingInfo + "<br></html>"));
+            
+} // End for.
         featuresTextPane.setCaretPosition(0);
         
         // equippedItems display panel
@@ -1088,6 +1124,8 @@ public class CharacterCreator {
     	//stats panel refresh
     	hitPointsPanel.value = character.getHitPointsCurrent();
     	hitPointsPanel.model.setValue(hitPointsPanel.value);
+    	SpinnerNumberModel m = (SpinnerNumberModel)hitPointsPanel.model;
+    	m.setMaximum(character.getHitPointsMaximum());
     	hitPointsPanel.maxHitPointLabel.setText("/" + character.getHitPointsMaximum());
 	SpinnerNumberModel m = (SpinnerNumberModel)hitPointsPanel.model;
     	m.setMaximum(character.getHitPointsMaximum());
