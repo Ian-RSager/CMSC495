@@ -175,7 +175,7 @@ public class NewCharacter extends JFrame{
         private String [] racesStr      = {"Dwarf","Elf","Human","Halfling",
                                            "Dragonborn","Gnome","Half-Elf",
                                            "Half-Orc","Tiefling"};
-        private String [] subracesStr   = {"None","Hill Dwarf","Mountain Dwarf"};
+        private String [] subracesStr   = {"Hill Dwarf","Mountain Dwarf"};
         private JComboBox<String> raceComboBox  = new JComboBox<String> (racesStr);
         private JComboBox<String> subRaceComboBox = new JComboBox<String> (subracesStr);
 
@@ -355,7 +355,7 @@ public class NewCharacter extends JFrame{
                     String rStr = selected.toString();
                     
                     raceLabel.setText(rStr);
-                    subRaceComboBox.addItem("None");
+//                    subRaceComboBox.addItem("None");
                     switch(rStr){
                         case "Dwarf":
                             updateRaceImg("Dwarf.jpg",iicon);
@@ -406,6 +406,7 @@ public class NewCharacter extends JFrame{
                             raceDescriptionTextArea.setText("Error, Invalid");	
                             break;
                     }
+                    subRaceComboBox.addItem("None");
                     raceDescriptionTextArea.setCaretPosition(0);
 
                 }
@@ -1257,15 +1258,15 @@ public class NewCharacter extends JFrame{
             int total = 0;
             Random rand = new Random();
 
-            int dice1 = rand.nextInt(7);
+            int dice1 = rand.nextInt(6)+1;
             smallest = dice1;
-            int dice2 = rand.nextInt(7);
+            int dice2 = rand.nextInt(6)+1;
             if(dice2 < smallest)
                 smallest = dice2;
-            int dice3 = rand.nextInt(7);
+            int dice3 = rand.nextInt(6)+1;
             if(dice3 < smallest)
                 smallest = dice3;
-            int dice4 = rand.nextInt(7);
+            int dice4 = rand.nextInt(6)+1;
             if(dice4 < smallest)
                 smallest = dice4;
             total = dice1+dice2+dice3+dice4-smallest;
